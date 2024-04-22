@@ -17,7 +17,28 @@ Textpassagen über [Albus Dumbledore](https://harrypotter.fandom.com/de/wiki/Alb
 
 Textpassagen über [Harry Potter](https://harrypotter.fandom.com/de/wiki/Harry_Potter):
 
+1. Wer ist Harry Potter? (leicht)
+   $\rightarrow$ A: Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black, der Mann von Ginny Weasley und der Vater von James, Albus und Lily und einer der berühmtesten Zauberer der Neuzeit.
+
+2. Wann bekam Harry seinen ersten Zauberstab und für wie lange hatte er diesen? (leicht/mittel)
+   $\rightarrow$ A: den erhielt Harry an seinem elften Geburtstag am 31. Juli 1991 bei Ollivanders in der Winkelgasse, 11 Zoll lang, aus Stechpalmenholz - ein Holz mit der Kraft, Böses zu widerstehen - und einem Kern mit Phönixfeder, zufällig war dieser Zauberstab ein Zwilling zu Harry größtem Widersacher, Voldemorts Zauberstab, der vom gleichen Phönix, Fawkes, eine Phönixfeder als Kern besaß. Dieser Zauberstab zerbrach bei einer Explosion, die Hermine Granger im Gefecht gegen die Schlange Nagini im Haus von Bathilda Bagshot in Godric's Hollow 1997 verursachte.
+
+3. Was war Harry's treibende Kraft um Lord Voldemort zu besiegen? (schwer)
+   $\rightarrow$ A: Seine Liebe war am stärksten, wenn sie sich auf Ginny Weasley bezog, welche bis zum Sieg über Voldemort die treibende Kraft war.
+
 Textpassagen über [Tom Riddle](https://harrypotter.fandom.com/de/wiki/Tom_Riddle):
+
+1. Was ist Lord Voldemort's realer Name? (leicht)
+   $\rightarrow$ A: Tom Vorlost Riddle ( Engl. Tom Marvolo Riddle ) alias Lord Voldemort (\* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste.
+
+2. Was war Voldemort's Ziel? (leicht)
+   $\rightarrow$ A: Voldemorts größtes Ziel war es "den Tod zu besiegen". Um an Unsterblichkeit zu gelangen, erschuf er sieben Horkruxe, davon einen unwissentlich. Demnach bestand seine Seele aus acht Bruchstücken.
+
+3. Wie ist Voldemort gestorben? (schwer)
+   $\rightarrow$ A: Voldemort benutzte einen Todesfluch, Harry einen Entwaffnungszauber. Die Zauberlichter rot und grün prallten aufeinander und der Todesfluch aus dem Zauberstab, der eigentlich Harry gehörte, flog zurück zu Voldemort, der daran starb. Da Harry keinen Todesfluch benutzt hatte, könnte man sagen, dass Voldemort sich selbst umgebracht hatte.
+
+4. Was heißt Voldemort auf Deutsch? (schwer)
+   $\rightarrow$ A: Der Name Voldemort kann in drei Teile geteilt werden: Vol-de-mort. Auf Deutsch würde das "vom Tod entflohen" heißen.
 
 Textpassagen über [Minerva McGonagall](https://harrypotter.fandom.com/de/wiki/Minerva_McGonagall):
 
