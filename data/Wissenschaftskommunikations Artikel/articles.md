@@ -42,6 +42,27 @@ Textpassagen über [Tom Riddle](https://harrypotter.fandom.com/de/wiki/Tom_Riddl
 
 Textpassagen über [Minerva McGonagall](https://harrypotter.fandom.com/de/wiki/Minerva_McGonagall):
 
+1. Für was ist Minerva McGonagall bekannt? (leicht)
+   $\rightarrow$ A: Minerva McGonagall war eine der mächtigsten Hexen, die es je gab, wenn nicht sogar die mächtigste Hexe.
+
+2. Wie hat sich Minerva gegenüber Dumbledooreverhalten? (mittel/schwer)
+   $\rightarrow$ A: Minerva hatte keine Scheu, ihre Loyalität Dumbledore gegenüber zu beweisen. Als Cornelius Fudge 1996 Auroren nach Hogwarts brachte, um Dumbledore verhaften zu lassen, trat sie tapfer für ihn ein und kündigte ihre Absicht an, die Auroren in seinem Namen zu bekämpfen. Sie ließ sich erst davon abringen, als Dumbledore sie daran erinnerte, dass sich jemand um Hogwarts und die Schüler kümmern müsse.
+
+3. Was hat Minerva nach ihrem Schulabschluss getan? (mittel/schwer)
+   $\rightarrow$ A: Nach ihrem Schulabschluss arbeitete Minerva zwei Jahre beim Zaubereiministerium in der Abteilung für magische Strafverfolgung.
+
 Textpassagen über [Severus Snape](https://harrypotter.fandom.com/de/wiki/Severus_Snape):
 
+1. Wer ist Severus Snape? (leicht)
+   $\rightarrow$ A: Severus Snape (\* 9. Januar 1960; † 2. Mai 1998) war ein halbblütiger Zauberer, Zaubertrankmeister (1981-96), Lehrer für Verteidigung gegen die dunklen Künste (1996-97) und Schulleiter (1997-98) der Hogwarts-Schule für Hexerei und Zauberei. Er war Mitglied im Orden des Phönix und spielte als Doppelagent eine entscheidende Rolle in beiden Zaubererkriegen gegen Lord Voldemort.
+
+2. Was war der Deckname von Severus Snape? (leicht)
+   $\rightarrow$ A: "Halbblutprinz" war ein Deckname, der von Severus Snape während dessen Schulzeit verwendet wurde.
+
 Textpassagen über [Schloss Hogwarts](https://harrypotter.fandom.com/de/wiki/Schloss_Hogwarts):
+
+1. Seit wann existiert Schloss Hogwarts? (leicht)
+   $\rightarrow$ A: Es wurde im späten Frühmittelalter (ca. 993) errichtet von einem magischen Architekten und den vier berühmtesten Zauberern dieses Zeitalters, den Hogwartsgründern: Godric Gryffindor, Helga Hufflepuff, Rowena Ravenclaw und Salazar Slytherin.
+
+2. Wie oft wurde die Kammer des Schreckens geöffnet und in welchem Jahr was dies jeweils? (leicht/mittel)
+   $\rightarrow$ A: Im Schuljahr 1942/1943 wurde sie erstmals geöffnet, wobei eine muggelstämmige Schülerin durch ein dort drin lebendes Monster ums Leben kam. Das zweite Mal wurde sie erneut 1992 geöffnet, wobei mehrere Hogwartsbewohner durch ein in der Kammer lebendes Monster versteinert wurde.Am 2. Mai 1998 konnten Ronald Weasley und Hermine Granger erneut in die Kammer des Schreckens eindringen, dieses mal, um sich Giftzähne eines Basilisken zu entnehmen, mit denen können Horkruxe vernichtet werden.
