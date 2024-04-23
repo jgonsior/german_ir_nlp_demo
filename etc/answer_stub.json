@@ -1,0 +1,22 @@
+{
+    "search_id": 1,
+    "anwser":[
+        {
+            "rank": 1,
+            "dokument_id": 1,
+            "dokument_name": "",
+            "categorie": "",
+            "authors": ["",""],
+            "passages": ["",""]
+
+        },
+        {
+            "rank": 1,
+            "dokument_id": 1,
+            "dokument_name": "",
+            "categorie": "",
+            "authors": ["",""],
+            "passages": ["",""]
+        }
+    ]
+}
