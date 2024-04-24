@@ -158,3 +158,15 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+
+# Backend
+data/question_answer_pairs/GermanDPR/test_qa_pairs.jsonl
+data/question_answer_pairs/GermanDPR/train_passages.csv
+data/question_answer_pairs/GermanDPR/train_triples.jsonl
+.ragatouille
+
+train_index_eval_RAG.sh
+backend/RAGatouille/evaluate.py
+backend/RAGatouille/indexing.py
+backend/RAGatouille/retrieval.py
+backend/RAGatouille/visualize_statistics.py
