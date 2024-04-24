@@ -2,11 +2,12 @@ from ragatouille import RAGTrainer
 import pandas as pd
 import os
 import shutil
+from pathlib import Path
 
 BASE_MODEL_NAME = "bert-base-german-cased"
 TRAINING_DATA_NAME = "GermanDPR"
-TRIPLES_PATH = "data/question_answer_pairs/GermanDPR/train_triples.jsonl" 
-CORPUS_PATH = "data/question_answer_pairs/GermanDPR/train_passages.csv" 
+TRIPLES_PATH = "data/qa/GermanDPR/train_triples.jsonl" 
+CORPUS_PATH = "data/qa/GermanDPR/train_passages.csv" 
 EPOCHS = [1,2] # training has to start with epoch 1. this variable currently only states how many epochs are trained
 
 def highest_alphabetical_directory(current_path):
@@ -69,12 +70,16 @@ if __name__ == "__main__":
                 pretrained_model_name = pretrained_model_name_or_path,
                 language_code="de")
 
-        # This step handles all the data processing, check the examples for more details!
-        trainer.prepare_training_data(raw_data=triples,
-                                        all_documents = corpus,
-                                        data_out_path=f".ragatouille/training_data/{BASE_MODEL_NAME}/{TRAINING_DATA_NAME}/epoch{str(e)}", 
-                                        num_new_negatives = 0, 
-                                        mine_hard_negatives=False)
+        # This step handles all the data processing. Check whether data has already been preprocessed
+        colbert_training_data_path = f"data/colbert/training_data/{TRAINING_DATA_NAME}"
+        if not os.path.exists(colbert_training_data_path) or not any(os.listdir(colbert_training_data_path)):
+            trainer.prepare_training_data(raw_data=triples,
+                                            all_documents = corpus,
+                                            data_out_path=colbert_training_data_path, 
+                                            num_new_negatives = 0, 
+                                            mine_hard_negatives=False)
+        else:
+            trainer.data_dir = Path(colbert_training_data_path)
 
         model_output_path = trainer.train(
                 batch_size=32,
@@ -89,6 +94,6 @@ if __name__ == "__main__":
                 )
         
         # original colbert code forgot to propagate model_output_path -> hence we have to find it our selves
-        trained_model_from_previous_epoch = f".ragatouille/colbert/checkpoints/{BASE_MODEL_NAME}/{TRAINING_DATA_NAME}/epoch{str(e)}"
+        trained_model_from_previous_epoch = f"data/colbert/checkpoints/{BASE_MODEL_NAME}/{TRAINING_DATA_NAME}/epoch{str(e)}"
         move_content(os.path.join(most_recent_created_path(".ragatouille/colbert/none"), "checkpoints/colbert"),
                         trained_model_from_previous_epoch)

@@ -2,8 +2,8 @@ import json
 import pandas as pd
 import random
 
-TRAINING_DATA_PATH_GERMAN_DPR = "data/question_answer_pairs/GermanDPR/GermanDPR_train.json"
-TEST_DATA_PATH_GERMAN_DPR = "data/question_answer_pairs/GermanDPR/GermanDPR_test.json"
+TRAINING_DATA_PATH_GERMAN_DPR = "data/qa/GermanDPR/GermanDPR_train.json"
+TEST_DATA_PATH_GERMAN_DPR = "data/qa/GermanDPR/GermanDPR_test.json"
 
 def get_raw_data_GermanDPR(data_path):
     '''
@@ -60,12 +60,12 @@ def create_full_passage_corpus(passages_path, full_corpus_output_path):
 if __name__ == "__main__":
     # creates triples for training (q, [p+], [p-,p-,p-]) in json format
     create_GermanDPR_train_files(TRAINING_DATA_PATH_GERMAN_DPR, 
-            "data/question_answer_pairs/GermanDPR/train_triples.jsonl",
-            "data/question_answer_pairs/GermanDPR/train_passages.csv")
+            "data/qa/GermanDPR/train_triples.jsonl",
+            "data/qa/GermanDPR/train_passages.csv")
 
     # creates the qa pairs for testing (evaluation)
     create_GermanDPR_test_qa_file(TEST_DATA_PATH_GERMAN_DPR, 
-            "data/question_answer_pairs/GermanDPR/test_qa_pairs.jsonl") 
+            "data/qa/GermanDPR/test_qa_pairs.jsonl") 
 
     # creates the full passage corpus which is used for evaluation/retrieval (has to be indexed) 
     #create_full_passage_corpus(OLD_PASSAGES_PATH, OLD_FULL_CORPUS_PATH)
