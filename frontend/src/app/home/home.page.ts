@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
-import { RefresherCustomEvent } from '@ionic/angular';
+import { Component, ViewChild, inject } from '@angular/core';
+import { IonSearchbar, RefresherCustomEvent } from '@ionic/angular';
 import { MessageComponent } from '../message/message.component';
 
 import { DataService } from '../services/data.service';
 import {QueryResponseResult} from "../types/query-response.type";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,21 +12,28 @@ import {QueryResponseResult} from "../types/query-response.type";
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  private data = inject(DataService);
-  protected queryResults: QueryResponseResult[] = [];
-  constructor() {
-    this.getMessages()
+
+  @ViewChild('searchBar') 
+  searchBar: IonSearchbar;
+  
+searchText:string="";
+
+  constructor(private router:Router) {
   }
 
-  refresh(ev: any) {
-    setTimeout(() => {
-      (ev as RefresherCustomEvent).detail.complete();
-    }, 3000);
+  onSearchClicked(){
+  
+   // const query = event.target.value.toLowerCase();
+
+   if(this.searchText.trim().length==0) {
+      this.searchBar.getInputElement().then(inputElement =>{
+        this.searchText="";
+        inputElement.blur();
+      });
+    return;
   }
 
-  async getMessages() {
-    await this.data.getQueryResults('Harry').then((response) => {
-      this.queryResults = response;
-    });
+    this.router.navigate(['/search-results'],{queryParams:{query:this.searchText}})
   }
+
 }
