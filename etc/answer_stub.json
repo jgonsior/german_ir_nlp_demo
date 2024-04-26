@@ -3,18 +3,17 @@
     "anwser":[
         {
             "rank": 1,
-            "dokument_id": 1,
-            "dokument_name": "",
-            "categorie": "",
+            "page_id": 1, // Falls eineindeutig mit wikipage name kann rausfallen
+            "page_name": "",
+            "categorie": "", // Bücher, Filme, Theater
             "authors": ["",""],
-            "passages": ["",""]
-
+            "passage": ["",""] // Liste der relevanten Passages
         },
         {
             "rank": 1,
             "dokument_id": 1,
             "dokument_name": "",
-            "categorie": "",
+            "categorie": ["",""],
             "authors": ["",""],
             "passages": ["",""]
         }
