@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 import os
+import shutil
 import subprocess
 import urllib.request
-import shutil
-from py7zr import unpack_7zarchive
+
 import pandas as pd
+from py7zr import unpack_7zarchive
 
 # enables shutil to unpack 7zip files
 shutil.register_unpack_format("7zip", [".7z"], unpack_7zarchive)
 
-if __name__ == "__main__":  
+if __name__ == "__main__":
 
     # https://<wiki-name>.fandom.com/wiki/Special:Statistics
     WIKI_DUMPS_URLS = {
         # films:
-        "harry_potter": "https://s3.amazonaws.com/wikia_xml_dumps/d/de/deharrypotter_pages_current.xml.7z", # https://harrypotter.fandom.com/de/wiki/Spezial:Statistik
-
+        "harry_potter": "https://s3.amazonaws.com/wikia_xml_dumps/d/de/deharrypotter_pages_current.xml.7z",  # https://harrypotter.fandom.com/de/wiki/Spezial:Statistik
     }
     REDOWNLOAD = True
 
@@ -25,11 +25,10 @@ if __name__ == "__main__":
     extraction_path = os.path.join(dump_path, "tmp")
     os.makedirs(extraction_path, exist_ok=True)
 
-
     for wiki_name, dump_url in WIKI_DUMPS_URLS.items():
-        print("#"*50)
+        print("#" * 50)
         print(f"Starting to extract {wiki_name} wiki.")
-        print("#"*50, end="\n\n")
+        print("#" * 50, end="\n\n")
         # download the data dump into the data/fandoms/dumps directory
         dump_file_name = dump_url.split("/")[-1]
         path_to_dump_archive = os.path.join(dump_path, dump_file_name)
@@ -77,7 +76,6 @@ if __name__ == "__main__":
 
         # removes the unpacked data dump file to save disk space
         os.remove(path_to_dump_file)
-
 
     # finally remove the tmp folder
     shutil.rmtree(extraction_path)
