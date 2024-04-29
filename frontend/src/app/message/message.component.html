@@ -1,16 +1,16 @@
-<ion-item *ngIf="message" [routerLink]="'/message/' + message.id" [detail]="false">
-  <div slot="start" [class]="!message.read ? 'dot dot-unread' : 'dot'"></div>
+<ion-item *ngIf="queryResponseResult" [routerLink]="'/message/' + queryResponseResult.document_id + '/' + queryResponseResult" [detail]="false">
+  <div slot="start" [class]="!queryResponseResult.authors ? 'dot dot-unread' : 'dot'"></div>
   <ion-label class="ion-text-wrap">
     <h2>
-      {{ message.fromName }}
+      {{ queryResponseResult.document_name }}
       <span class="date">
-        <ion-note>{{ message.date }}</ion-note>
+        <ion-note>{{ queryResponseResult.authors.join(', ') }}</ion-note>
         <ion-icon aria-hidden="true" name="chevron-forward" size="small" *ngIf="isIos()"></ion-icon>
       </span>
     </h2>
-    <h3>{{ message.subject }}</h3>
+    <h3>{{ queryResponseResult.categorie }}</h3>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      {{queryResponseResult.passages[0]}}
     </p>
   </ion-label>
   </ion-item>

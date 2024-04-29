@@ -2,3 +2,4 @@ flask
 beautifulsoup4
 lxml
 wikiextractor
+flask_cors
