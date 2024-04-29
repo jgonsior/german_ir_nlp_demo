@@ -2,8 +2,16 @@ import json
 import pandas as pd
 import random
 
-TRAINING_DATA_PATH_GERMAN_DPR = "data/qa/GermanDPR/GermanDPR_train.json"
-TEST_DATA_PATH_GERMAN_DPR = "data/qa/GermanDPR/GermanDPR_test.json"
+TRAINING_DATA_PATHS_GERMAN_DPR = ["backend/data/qa/GermanDPR/GermanDPR_train.json", 
+                                  "backend/data/qa/GermanDPR/GermanDPR_test.json"]
+TEST_DATA_PATH_GERMAN_DPR = "backend/data/qa/GermanDPR/GermanDPR_test.json"
+
+TRAINING_DATA_PATHS_XQA = ["backend/data/qa/XQA/dev_doc.json", 
+                           "backend/data/qa/XQA/test_doc.json"]
+TEST_DATA_PATH_XQA = "backend/data/qa/XQA/test_doc.json"
+
+FULL_CORPUS_PATH = "backend/data/wiki_dumps/harry_potter_corpus.csv"
+WIKI_DUMP_PATH = "backend/data/wiki_dumps/harry_potter.json"
 
 def get_raw_data_GermanDPR(data_path):
     '''
@@ -27,47 +35,90 @@ def get_raw_data_GermanDPR(data_path):
 
     return triples, corpus
 
-def create_GermanDPR_train_files(training_data_path, triple_path, passages_path):
-    triples, passages = get_raw_data_GermanDPR(training_data_path)
+def create_GermanDPR_train_files(training_data_paths, triple_path, passages_path):
+    triples = []
+    passages = []
+
+    for training_data_path in training_data_paths:
+        t, p = get_raw_data_GermanDPR(training_data_path)
+        triples += t
+        passages += p
     df_t = pd.DataFrame(triples, columns=["question", "positive_contexts", "negative_contexts"])
     df_t.to_json(triple_path, orient="records", lines=True)
     print(pd.read_json(triple_path, lines = True))
-    passages_df = pd.DataFrame(list(set(passages)))
+    passages = list(set(passages))
+    passages_df = pd.DataFrame({"passage_id": range(0, len(passages)), "passage": passages})
     passages_df.to_csv(passages_path, index=False, header=False)
 
-def create_GermanDPR_test_qa_file(test_data_path, qa_path):
-    qa_pairs = []
-    with open(test_data_path, "r", encoding="utf-8") as test_file:
-        data = json.load(test_file)
+def create_QXA_train_files(training_data_paths, triple_path, passages_path):
+    wiki_dump_passages = {}
+    with open("backend/data/qa/XQA/dump/wiki_text.json") as wiki_dump_file:
+        for line in wiki_dump_file:
+            data = json.loads(line)
+            wiki_dump_passages[data["id"]] = data["document"]
 
-    for q in data:
-        positive_ctxs = q["positive_ctxs"][0]["text"].replace('\n', '\\n')
-        qa_pairs.append([q["question"], positive_ctxs])
-    
-    df_qa_pairs = pd.DataFrame(qa_pairs, columns=["question", "answer"])
-    df_qa_pairs.to_json(qa_path, orient="records", lines=True)
-    print(pd.read_json(qa_path, lines = True))
-    
-def create_full_passage_corpus(passages_path, full_corpus_output_path):
-    _, train_corpus = get_raw_data_GermanDPR(TRAINING_DATA_PATH_GERMAN_DPR)
-    _, test_corpus = get_raw_data_GermanDPR(TEST_DATA_PATH_GERMAN_DPR)
-    passages_df = pd.read_csv(passages_path, header=None)
-    passages = list(set(passages_df[1].tolist() + train_corpus + test_corpus))
+    triples = []
+    passages = {}
+    for training_data_path in training_data_paths:
+        with open(training_data_path, 'r') as file:
+            for line in file:
+                data = json.loads(line)
+                question = data[0]["question"]
+                positive_contexts = []
+                negative_contexts = []
+                for answer in data:
+                    positive_contexts.append(answer["document"])
+                    passages["XQA-" + answer["document_id"]] = answer["document"].replace("\n","\\n")
 
-    passages_df = pd.DataFrame(passages)
-    passages_df.to_csv(full_corpus_output_path, index=False, header=False)
+                for key in random.sample(wiki_dump_passages.keys(), 10):
+                    negative_contexts.append(wiki_dump_passages[key])
+                    passages["XQA-dump-" + key] = wiki_dump_passages[key].replace("\n","\\n")
+                triples.append([question, positive_contexts, negative_contexts])
+    
+    df_t = pd.DataFrame(triples, columns=["question", "positive_contexts", "negative_contexts"])
+    df_t.to_json(triple_path, orient="records", lines=True)
+    print(pd.read_json(triple_path, lines = True))
+    passages_df = pd.DataFrame(list(passages.items()), columns=["passage_id", "passage"])
+    passages_df.to_csv(passages_path, index=False, header=False)   
+
+def create_full_passage_corpus_from_wiki_dump(wiki_dump_path, full_corpus_output_path):
+    num_passages = 0
+    with open(wiki_dump_path, 'r') as file:
+        wiki_dump_data = json.load(file)
+    df = pd.DataFrame(columns=['id', 'passage'])
+    for wiki in wiki_dump_data:
+        id = wiki["id"]
+        if(id == 18535):
+            break
+        title = wiki["title"]
+        for i, passage in enumerate(wiki["text"]):
+            new_row = {"id": f"{id}-{i}", "passage": f"[{title}] {passage}"}
+            df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
+            num_passages += 1
+    print("num passages: ", num_passages)
+    df.to_csv(full_corpus_output_path, index=False)
+
+def main():
+    # creates triples for training (q, [p+], [p-,p-,p-]) in json format
+    create_GermanDPR_train_files(TRAINING_DATA_PATHS_GERMAN_DPR, 
+            "backend/data/qa/GermanDPR/train_triples.jsonl",
+            "backend/data/qa/GermanDPR/train_passages.csv")
+    create_QXA_train_files(TRAINING_DATA_PATHS_XQA, 
+            "backend/data/qa/XQA/train_triples.jsonl",
+            "backend/data/qa/XQA/train_passages.csv"
+    )
+
+    # creates a csv file of harry passage from the wiki dump 
+    create_full_passage_corpus_from_wiki_dump(WIKI_DUMP_PATH, FULL_CORPUS_PATH)
+
+def test():
+    create_QXA_train_files(TRAINING_DATA_PATHS_XQA, 
+            "backend/data/qa/XQA/train_triples.jsonl",
+            "backend/data/qa/XQA/train_passages.csv"
+    )
+
 
 if __name__ == "__main__":
-    # creates triples for training (q, [p+], [p-,p-,p-]) in json format
-    create_GermanDPR_train_files(TRAINING_DATA_PATH_GERMAN_DPR, 
-            "data/qa/GermanDPR/train_triples.jsonl",
-            "data/qa/GermanDPR/train_passages.csv")
-
-    # creates the qa pairs for testing (evaluation)
-    create_GermanDPR_test_qa_file(TEST_DATA_PATH_GERMAN_DPR, 
-            "data/qa/GermanDPR/test_qa_pairs.jsonl") 
-
-    # creates the full passage corpus which is used for evaluation/retrieval (has to be indexed) 
-    #create_full_passage_corpus(OLD_PASSAGES_PATH, OLD_FULL_CORPUS_PATH)
-    #create_full_passage_corpus(NEW_PASSAGES_PATH, NEW_FULL_CORPUS_PATH)
+    main()
+    #test()
     

@@ -6,8 +6,8 @@ from pathlib import Path
 
 BASE_MODEL_NAME = "bert-base-german-cased"
 TRAINING_DATA_NAME = "GermanDPR"
-TRIPLES_PATH = "data/qa/GermanDPR/train_triples.jsonl" 
-CORPUS_PATH = "data/qa/GermanDPR/train_passages.csv" 
+TRIPLES_PATH = "backend/data/qa/GermanDPR/train_triples.jsonl" 
+CORPUS_PATH = "backend/data/qa/GermanDPR/train_passages.csv" 
 EPOCHS = [1,2] # training has to start with epoch 1. this variable currently only states how many epochs are trained
 
 def highest_alphabetical_directory(current_path):

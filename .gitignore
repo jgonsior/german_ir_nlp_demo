@@ -160,14 +160,17 @@ cython_debug/
 #.idea/
 
 # Backend
-data/qa/GermanDPR/test_qa_pairs.jsonl
-data/qa/GermanDPR/train_passages.csv
-data/qa/GermanDPR/train_triples.jsonl
+backend/data/qa/GermanDPR/test_qa_pairs.jsonl
+backend/data/qa/GermanDPR/train_passages.csv
+backend/data/qa/GermanDPR/train_triples.jsonl
+backend/data/qa/XQA/test_qa_pairs.jsonl
+backend/data/qa/XQA/train_passages.csv
+backend/data/qa/XQA/train_triples.jsonl
+backend/data/qa/XQA/dump
+backend/data/qa/XQA
 .ragatouille
-data/colbert
+backend/data/colbert
 
 train_index_eval_RAG.sh
 backend/RAGatouille/evaluate.py
-backend/RAGatouille/indexing.py
-backend/RAGatouille/retrieval.py
 backend/RAGatouille/visualize_statistics.py
