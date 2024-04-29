@@ -1,6 +1,9 @@
 from flask import request
 from . import bp
+from .generate_random_results import Randomizer
 
+
+randomizer = Randomizer()
 
 @bp.route('/search', methods=['GET'])
 def search():
@@ -8,6 +11,4 @@ def search():
         query = request.args.get('q')
         print(query, flush=True)
 
-        return 'Your search results'
-
-
+        return randomizer.get_result()
