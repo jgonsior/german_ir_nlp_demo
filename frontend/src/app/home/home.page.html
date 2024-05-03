@@ -5,25 +5,21 @@
 </ion-header>
 
 <ion-content class="ion-padding" [fullscreen]="true">
-  <div
-    class="fullheight xc"
-    style="max-width: 50%; margin-left: auto; margin-right: auto"
-  >
-    <ion-grid>
-      <ion-row class="ion-justify-content-center ion-align-items-center">
-        <ion-col size="auto">
-          <ion-searchbar
-            [(ngModel)]="searchText"
-            search-icon="search-circle"
-            show-clear-button="always"
-            placeholder="Search for magic"
-            #searchBar
-          ></ion-searchbar>
-        </ion-col>
-        <ion-col size="auto">
-          <ion-button (click)="onSearchClicked()">Suche</ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <div class="fullheight xc" style="margin-left: auto; margin-right: auto">
+    <ion-searchbar
+      [(ngModel)]="searchText"
+      search-icon="search-circle"
+      show-clear-button="always"
+      placeholder="Search for magic"
+      #searchBar
+      (keyup.enter)="onSearchClicked()"
+    ></ion-searchbar>
+
+    <ion-button
+      (click)="onSearchClicked()"
+      [attr.size]="getWindowWidth() >=600 ? 'large' : 'default'"
+      #searchButton
+      >Suche</ion-button
+    >
   </div>
 </ion-content>

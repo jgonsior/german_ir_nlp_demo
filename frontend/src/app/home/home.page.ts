@@ -1,9 +1,15 @@
-import { Component, ViewChild, inject } from '@angular/core';
-import { IonSearchbar, RefresherCustomEvent } from '@ionic/angular';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  ViewChild,
+  inject,
+} from '@angular/core';
+import { IonButton, IonSearchbar, RefresherCustomEvent } from '@ionic/angular';
 import { MessageComponent } from '../message/message.component';
 
 import { DataService } from '../services/data.service';
-import {QueryResponseResult} from "../types/query-response.type";
+import { QueryResponseResult } from '../types/query-response.type';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,28 +18,36 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
-  @ViewChild('searchBar') 
+  @ViewChild('searchBar')
   searchBar: IonSearchbar;
-  
-searchText:string="";
 
-  constructor(private router:Router) {
+  @ViewChild('searchButton')
+  searchButton: IonButton;
+
+  @HostListener('window:resize', ['$event.target.innerWidth'])
+  handleWindowResize(innerWidth: number) {
+    this.searchButton.size = innerWidth >= 600 ? 'large' : 'default';
   }
 
-  onSearchClicked(){
-  
-   // const query = event.target.value.toLowerCase();
+  getWindowWidth(): number {
+    return window.innerWidth;
+  }
 
-   if(this.searchText.trim().length==0) {
-      this.searchBar.getInputElement().then(inputElement =>{
-        this.searchText="";
+  searchText: string = '';
+
+  constructor(private router: Router) {}
+
+  onSearchClicked() {
+    if (this.searchText.trim().length == 0) {
+      this.searchBar.getInputElement().then((inputElement) => {
+        this.searchText = '';
         inputElement.blur();
       });
-    return;
-  }
+      return;
+    }
 
-    this.router.navigate(['/search-results'],{queryParams:{query:this.searchText}})
+    this.router.navigate(['/search-results'], {
+      queryParams: { query: this.searchText },
+    });
   }
-
 }
