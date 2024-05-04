@@ -17,6 +17,17 @@
     --border-radius: 8px;
 }
 
+.search-results__banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ion-color-custom-light);
+}
+
 .search-results__list {
     background: var(--ion-color-custom-light);
+}
+
+.fullheight {
+    height: 100vh;
 }
