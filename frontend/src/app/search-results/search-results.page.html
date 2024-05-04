@@ -1,5 +1,5 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header [translucent]="true" class="search-results__header">
+  <ion-toolbar class="search-results__toolbar">
     <ion-buttons slot="start">
       <ion-back-button
         [text]="getBackButtonText()"
@@ -8,8 +8,8 @@
     </ion-buttons>
     <ion-title>search-results</ion-title>
   </ion-toolbar>
-  <ion-toolbar>
-    <ion-searchbar
+  <ion-toolbar class="search-results__toolbar">
+    <ion-searchbar class="search-results__searchbar"
       [(ngModel)]="searchText"
       #searchBar
       (keyup.enter)="navigateWithNewQuery()"
@@ -22,7 +22,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-list>
+  <ion-list class="search-results__list">
     <app-message
       *ngFor="let queryResponseResult of queryResults"
       [queryResponseResult]="queryResponseResult"

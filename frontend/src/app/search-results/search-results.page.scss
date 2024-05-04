@@ -1,0 +1,22 @@
+.search-results__header {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.search-results__toolbar {
+    --background: var(--ion-color-custom-darkblue);
+}
+
+.search-results__searchbar {
+    background: unset;
+    --background: none;
+    --background: var(--ion-color-custom-book);
+    color: var(--ion-color-custom-red);
+    position: relative;
+    padding: 0 2rem 1rem 2rem;
+    --border-radius: 8px;
+}
+
+.search-results__list {
+    background: var(--ion-color-custom-light);
+}
