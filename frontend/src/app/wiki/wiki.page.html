@@ -6,13 +6,13 @@
 </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" *ngIf="queryResult">
+<ion-content [fullscreen]="true" *ngIf="document">
   <ion-item>
     <ion-label class="ion-text-wrap">
       <h2>{{ doc_name }}</h2>
     </ion-label>
   </ion-item>
   <div class="ion-padding">
-    <p>{{ passages.passage }}</p>
+    <p>{{ document.page }}</p>
   </div>
 </ion-content>

@@ -10,10 +10,9 @@ import {ActivatedRoute} from "@angular/router";
   templateUrl: "./wiki.page.html",
   styleUrls: ["./wiki.page.scss"],
 })
-export class WikiPage {
+export class WikiPage implements OnInit{
   public doc_name: String;
   public document: QueryResponsePage;
-  public passages: QueryResponseDocument;
   public queryResult!: QueryResponseResult;
   private data = inject(DataService);
   private activatedRoute = inject(ActivatedRoute);
@@ -26,10 +25,8 @@ export class WikiPage {
     const idx = this.activatedRoute.snapshot.paramMap.get('id') as string;
     this.queryResult = this.activatedRoute.snapshot.paramMap.get('answer') as unknown as QueryResponseResult;
     this.data.getDocomentById(parseInt(idx, 10)).then((res) => {
-      this.document = res as unknown as QueryResponsePage;
+      this.document = res;
     });
-    let page = this.document.page
-    this.passages = page as unknown as QueryResponseDocument;
   }
 
   getBackButtonText() {
