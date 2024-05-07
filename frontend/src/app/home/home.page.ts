@@ -6,7 +6,6 @@ import {
   inject,
 } from '@angular/core';
 import { IonButton, IonSearchbar, RefresherCustomEvent } from '@ionic/angular';
-import { MessageComponent } from '../message/message.component';
 
 import { DataService } from '../services/data.service';
 import { QueryResponseResult } from '../types/query-response.type';

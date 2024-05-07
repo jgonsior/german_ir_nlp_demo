@@ -23,10 +23,10 @@
   </ion-refresher>
 
   <ion-list>
-    <app-message
+    <app-search-answer
       *ngFor="let queryResponseResult of queryResults"
       [queryResponseResult]="queryResponseResult"
-    ></app-message>
+    ></app-search-answer>
   </ion-list>
   <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
