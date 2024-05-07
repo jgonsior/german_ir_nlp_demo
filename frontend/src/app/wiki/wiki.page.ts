@@ -26,6 +26,7 @@ export class WikiPage implements OnInit{
     this.queryResult = this.activatedRoute.snapshot.paramMap.get('answer') as unknown as QueryResponseResult;
     this.data.getDocomentById(parseInt(idx, 10)).then((res) => {
       this.document = res;
+      console.log(this.document)
     });
   }
 
