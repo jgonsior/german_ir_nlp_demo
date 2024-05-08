@@ -118,7 +118,7 @@ if __name__ == "__main__":
     generator="svalabs/mt5-large-german-query-gen-v1",
     #generator="ml6team/mt5-small-german-query-generation",
 
-    retrievers=["msmarco-distilbert-base-v3", "msmarco-MiniLM-L-6-v3"],
+    retrievers=["msmarco-distilbert-base-v3"], #, "msmarco-MiniLM-L-6-v3"],
     retriever_score_functions=["cos_sim", "cos_sim"],
     # Note that these two retriever model work with cosine-similarity
     cross_encoder="cross-encoder/ms-marco-MiniLM-L-6-v2",
