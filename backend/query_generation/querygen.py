@@ -114,6 +114,7 @@ if __name__ == "__main__":
     #the QPP will be chosen automatically: If QPP * |corpus| <= 250K, then QPP will be set to 250K / |corpus|; 
     #else QPP will be set 3 and |corpus| will be set to 250K / 3
 
+    # QGen Models
     #generator="BeIR/query-gen-msmarco-t5-base-v1",
     generator="svalabs/mt5-large-german-query-gen-v1",
     #generator="ml6team/mt5-small-german-query-generation",
