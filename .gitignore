@@ -170,7 +170,7 @@ backend/data/qa/XQA/dump
 backend/data/qa/XQA
 .ragatouille
 backend/data/colbert
-
+slurm-*.out
 train_index_eval_RAG.sh
 backend/RAGatouille/evaluate.py
 backend/RAGatouille/visualize_statistics.py

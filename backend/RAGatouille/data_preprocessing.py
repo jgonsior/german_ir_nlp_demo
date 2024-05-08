@@ -63,7 +63,7 @@ def create_QXA_train_files(training_data_paths, triple_path, passages_path):
         with open(training_data_path, 'r') as file:
             for line in file:
                 data = json.loads(line)
-                question = data[0]["question"]
+                question = data[0]["question"].replace("<Query>", "Wer oder Was")
                 positive_contexts = []
                 negative_contexts = []
                 for answer in data:
@@ -119,6 +119,6 @@ def test():
 
 
 if __name__ == "__main__":
-    main()
-    #test()
+    #main()
+    test()
     

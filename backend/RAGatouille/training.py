@@ -3,12 +3,7 @@ import pandas as pd
 import os
 import shutil
 from pathlib import Path
-
-BASE_MODEL_NAME = "bert-base-german-cased"
-TRAINING_DATA_NAME = "GermanDPR"
-TRIPLES_PATH = "backend/data/qa/GermanDPR/train_triples.jsonl" 
-CORPUS_PATH = "backend/data/qa/GermanDPR/train_passages.csv" 
-EPOCHS = [1,2] # training has to start with epoch 1. this variable currently only states how many epochs are trained
+import argparse
 
 def highest_alphabetical_directory(current_path):
     directories = [d for d in os.listdir(current_path) if os.path.isdir(os.path.join(current_path, d))]
@@ -54,24 +49,24 @@ def move_content(source_path, destination_path):
     os.rmdir(source_path)
     print(f"Removed source directory '{source_path}'.")
 
-if __name__ == "__main__":
-    corpus = pd.read_csv(CORPUS_PATH).values.tolist()
+def main(args):
+    corpus = pd.read_csv(args.corpus_path).values.tolist()
     trained_model_from_previous_epoch = None
 
-    triples = pd.read_json(TRIPLES_PATH, lines=True).values.tolist()
-    MODEL_NAME = f"{BASE_MODEL_NAME}-{TRAINING_DATA_NAME}"
-    for e in EPOCHS:
-        if e == EPOCHS[0]:
-            pretrained_model_name_or_path = BASE_MODEL_NAME
+    triples = pd.read_json(args.triples_path, lines=True).values.tolist()
+
+    for e in range(1, args.epochs+1):
+        if e == 1:
+            pretrained_model_name_or_path = args.pretrained_model_name_or_path
         else:
             pretrained_model_name_or_path = trained_model_from_previous_epoch
 
-        trainer = RAGTrainer(model_name = MODEL_NAME,
+        trainer = RAGTrainer(model_name = f"{args.base_model_name}-{args.union_train_data}",
                 pretrained_model_name = pretrained_model_name_or_path,
                 language_code="de")
 
         # This step handles all the data processing. Check whether data has already been preprocessed
-        colbert_training_data_path = f"data/colbert/training_data/{TRAINING_DATA_NAME}"
+        colbert_training_data_path = f"data/colbert/training_data/{args.union_train_data}"
         if not os.path.exists(colbert_training_data_path) or not any(os.listdir(colbert_training_data_path)):
             trainer.prepare_training_data(raw_data=triples,
                                             all_documents = corpus,
@@ -94,6 +89,22 @@ if __name__ == "__main__":
                 )
         
         # original colbert code forgot to propagate model_output_path -> hence we have to find it our selves
-        trained_model_from_previous_epoch = f"data/colbert/checkpoints/{BASE_MODEL_NAME}/{TRAINING_DATA_NAME}/epoch{str(e)}"
+        trained_model_from_previous_epoch = f"backend/data/colbert/checkpoints/{args.base_model_name}/{args.union_train_data}/epoch{str(e)}"
         move_content(os.path.join(most_recent_created_path(".ragatouille/colbert/none"), "checkpoints/colbert"),
                         trained_model_from_previous_epoch)
+        
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    
+    parser.add_argument('--base_model_name', type=str, help="e.g. 'bert-base-german-cased'")
+    parser.add_argument('--pretrained_model_name_or_path', type=str, help="e.g. 'bert-base-german-cased' or 'backend/data/colbert/checkpoints/bert-base-german-cased/GermanDPR/epoch1'")
+    parser.add_argument('--union_train_data', type=str, help="e.g. 'GermanDPR-XQA' when training a model already trained on GermanDPR additionally on XQA")
+    parser.add_argument('--triples_path', type=str, help="e.g. 'backend/data/qa/GermanDPR/train_triples.jsonl'")
+    parser.add_argument('--corpus_path', type=str, help="e.g. 'backend/data/qa/GermanDPR/train_passages.csv' (according to triples)")
+    parser.add_argument('--epochs', type=int, help="number of epochs to train on given training data")
+
+    args = parser.parse_args()
+
+    main(args)
+
+    # example call: conda run -n RAG_env_conda --no-capture-output python3 backend/RAGatouille/training.py --pretrained_model_name_or_path backend/data/colbert/checkpoints/bert-base-german-cased/GermanDPR/epoch1 --base_model_name bert-base-german-cased --union_train_data GermanDPR-XQA --triples_path backend/data/qa/XQA/train_triples.jsonl --corpus_path backend/data/qa/XQA/train_passages.csv --epochs 2
