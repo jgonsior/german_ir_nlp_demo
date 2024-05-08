@@ -34,7 +34,6 @@ def querygen_gpl(
 
     #### Make sure there is a `corpus.jsonl` file. It should be under either `path_to_generated_data` ####
     os.makedirs(path_to_generated_data, exist_ok=True)
-  
     assert "corpus.jsonl" in os.listdir(path_to_generated_data
         ), "Corpus should exist!"
     corpus = GenericDataLoader(path_to_generated_data).load_corpus()        
@@ -106,7 +105,7 @@ def querygen_gpl(
 
 if __name__ == "__main__":
     querygen_gpl(
-    path_to_generated_data="generated/",
+    path_to_generated_data="sample-data",
     batch_size_gpl=4,
     batch_size_generation=1,
     gpl_steps=10,
@@ -114,8 +113,11 @@ if __name__ == "__main__":
     # Number of Queries Per Passage (QPP) in the query generation step. When set to -1 (by default), 
     #the QPP will be chosen automatically: If QPP * |corpus| <= 250K, then QPP will be set to 250K / |corpus|; 
     #else QPP will be set 3 and |corpus| will be set to 250K / 3
-    output_dir=f"output/",
-    generator="BeIR/query-gen-msmarco-t5-base-v1",
+
+    #generator="BeIR/query-gen-msmarco-t5-base-v1",
+    generator="svalabs/mt5-large-german-query-gen-v1",
+    #generator="ml6team/mt5-small-german-query-generation",
+
     retrievers=["msmarco-distilbert-base-v3", "msmarco-MiniLM-L-6-v3"],
     retriever_score_functions=["cos_sim", "cos_sim"],
     # Note that these two retriever model work with cosine-similarity
@@ -128,9 +130,6 @@ if __name__ == "__main__":
     #     "--path_to_generated_data",
     #     required=True,
     #     help="Path for/to the generated data. GPL will first check this path for a `corpus.jsonl` file for the (sole) data input of the whole pipeline. If an empty folder is indicated, query generation and hard-negative mining will be run automatically; one can also use a BeIR-QGen format data folder to start and skip the query generation.",
-    # )
-    # parser.add_argument(
-    #     "--output_dir", required=True, help="Output path for the GPL model."
     # )
     # parser.add_argument(
     #     "--do_evaluation",
