@@ -14,8 +14,9 @@ class tfIdf:
 
     def return_url(self, name):
         for document in self.data:
-            if(name == document.get("title")):
+            if(name == document.get("name")):
                 print(document.get("url"))
+                print(document.get("id"))
                 webbrowser.open(document.get("url"))
 
     def normalize_vector(self, vector):
@@ -25,12 +26,13 @@ class tfIdf:
         return vector / norm
     
     def remove_unimportant_symbols(self, text):
-        unimportant_symbols = ['"', ',', '.', '[', ']', '{', '}', '(', ')', ':', ':']
+        unimportant_symbols = ['"', ',', '.', '[', ']', '{', '}', '(', ')', ':']
         new_text = ""
         for word in text:
             if word not in unimportant_symbols:
                 new_text = new_text + word.lower() + ""
-        return new_text
+        return new_text #bytes(new_text, "utf-8").decode("unicode_escape")
+        
     
     def find_all_tokens(self, data):
         all_tokens = set()
@@ -84,6 +86,9 @@ class tfIdf:
         for token in self.idf_dic:
             self.idf_dic[token] = math.log10(count / df_dic[token]) 
 
+        with open("idf_result.json", "w", encoding="utf-8") as outfile: 
+            json.dump(self.idf_dic, outfile)
+
         print("complete + count: " + str(count))
 
         #find tf-idf vectors 
@@ -98,14 +103,6 @@ class tfIdf:
         #with open("tf_idf_result.json", "w") as outfile: 
         #    json.dump(tf_idf_dic, outfile)
 
-        print("Dolores Umbridges Zauberstab")
-        for i in tf_idf_dic["Dolores Umbridges Zauberstab"]:
-            if i > 0.004476071371261539:
-                print(i, end = " ")
-        print("Ronald Weasleys erster Zauberstab")
-        for i in tf_idf_dic["Ronald Weasleys erster Zauberstab"]:
-            if i > 0.004476071371261539:
-                print(i, end = " ")
         return tf_idf_dic
     
     def find_query_tf_idf(self, data):
