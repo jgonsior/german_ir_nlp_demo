@@ -12,12 +12,16 @@ class tfIdf:
             self.data = json.load(read_file)
         self.all_tokens = self.find_all_tokens(self.data)
 
-    def return_url(self, name):
+    def return_url(self, name, page_number):
         for document in self.data:
-            if(name == document.get("name")):
-                print(document.get("url"))
-                print(document.get("id"))
-                webbrowser.open(document.get("url"))
+            if(name == document.get("id")):
+                dict_answ = {}
+                dict_answ["rank"] = page_number
+                dict_answ["page_id"] = name
+                dict_answ["page_name"] = document.get("title")
+                dict_answ["passage"] = document.get("text")
+                return dict_answ
+ 
 
     def normalize_vector(self, vector):
         norm = np.linalg.norm(vector)
@@ -50,6 +54,16 @@ class tfIdf:
 
         return copy_dic
     
+    def create_idf_result_json(self):
+        with open("idf_result.json", "w", encoding="utf-8") as outfile: 
+            json.dump(self.idf_dic, outfile, ensure_ascii=False)
+
+        with open('idf_result.json', 'r+', encoding="utf-8") as f:
+            data = json.load(f)
+            f.seek(0)
+            json.dump(data, f, ensure_ascii=False, indent=4)
+            f.truncate()
+    
     def find_tf_idf_weight(self):
 
         all_tokens_dic = {}
@@ -78,7 +92,7 @@ class tfIdf:
                 if(new_all_tokens_dic[token] > 0):
                     new_all_tokens_dic[token] = 1 + math.log10(new_all_tokens_dic[token])
             
-            tf_dict[document.get("title")] = new_all_tokens_dic
+            tf_dict[document.get("id")] = new_all_tokens_dic
             count = count + 1
             if count % 350  == 0:
                 print("complete on " + str(count * 100/4478) +"%")
@@ -86,11 +100,8 @@ class tfIdf:
         for token in self.idf_dic:
             self.idf_dic[token] = math.log10(count / df_dic[token]) 
 
-        with open("idf_result.json", "w", encoding="utf-8") as outfile: 
-            json.dump(self.idf_dic, outfile)
-
+        #self.create_idf_result_json()
         print("complete + count: " + str(count))
-
         #find tf-idf vectors 
         tf_idf_dic = tf_dict
         for document in tf_idf_dic:
