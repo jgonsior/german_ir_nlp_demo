@@ -33,12 +33,7 @@
 
 .home__content {
   --background: rgb(2,8,21);
-  --background: linear-gradient(180deg, rgba(2,8,21,1) 19%, rgba(48,126,158,1) 42%, rgba(202,248,232,1) 82%, rgba(253,252,240,1) 99%, rgba(253,252,240,1) 100%);
-}
-
-.scroll-y {
-  padding-left: 0;
-  padding-right: 0;
+  --background: linear-gradient(180deg, rgba(2,8,21,1) 40%, rgba(22,84,131,1) 50%, rgba(68,154,168,1) 60%, rgba(103,210,199,1) 70%, rgba(253,252,240,1) 85%);
 }
 
 .home__searchbar {
@@ -65,7 +60,7 @@
 .home__background {
   background-image: url("../../assets/Background Image.svg");
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-position: center;
 }
 
 .home__searchcol {
