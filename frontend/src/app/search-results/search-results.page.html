@@ -17,22 +17,22 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="search-results__content">
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-grid>
+  <ion-grid class="search-results__grid">
     <ion-row class="fullheight">
       <ion-col size="2" class="search-results__banner">
-        <img src="../../assets/male.png" alt="Male magician"/>
+        <img src="../../assets/male.svg" alt="Male magician"/>
       </ion-col>
-      <ion-col size="8">
+      <ion-col size="8" class="search-results__list--column">
         <ion-list class="search-results__list">
           <app-message *ngFor="let queryResponseResult of queryResults" [queryResponseResult]="queryResponseResult"></app-message>
         </ion-list>
       </ion-col>
       <ion-col size="2" class="search-results__banner">
-        <img src="../../assets/female.png" alt="Female magician"/>
+        <img src="../../assets/female.svg" alt="Female magician"/>
       </ion-col>
     </ion-row>
   </ion-grid>
