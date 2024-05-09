@@ -6,6 +6,7 @@ from gpl.toolkit import (
     set_logger_format,
 )
 import os
+import json
 import logging
 from typing import List
 #import argparse
@@ -102,30 +103,67 @@ def querygen_gpl(
         )
         pseudo_labeler.run()
 
+def search_value_jsonl(file_name: str, key: str, value, returnkey: str):
+    with open(file_name, "r") as f:
+        for obj in f:
+            obj = json.loads(obj)
+            if obj[key] == value:
+                return obj[returnkey]
+
+def format_to_training_data(directory: str):
+
+    write_data = []
+    with open(f"{directory}/hard-negatives.jsonl", 'r') as file:
+        for json_object in file:
+            write_object = {}
+            data = json.loads(json_object)
+            qid = data["qid"]
+            query_str = search_value_jsonl(f"{directory}/qgen-queries.jsonl", "_id", qid, "text")
+            write_object["query"] = query_str
+            
+            pos_id = data["pos"][0]
+            neg_id = data["neg"]["msmarco-distilbert-base-v3"]
+            with open(f"{directory}/corpus.jsonl", "r") as corpus:
+                neg_str = []
+                for text in corpus:
+                    text = json.loads(text)
+                    if text["_id"] in neg_id:
+                        neg_str.append(text["text"])
+                    elif text["_id"] == pos_id:
+                        pos_str = text["text"] 
+                                      
+            write_object["pos"] = [pos_str]
+            write_object["neg"] = neg_str
+            write_data.append(write_object)
+
+    with open(f"{directory}/training-data.json", "w", encoding="utf-8") as file:
+        json.dump(write_data, file, indent=1)
+                
 
 if __name__ == "__main__":
-    querygen_gpl(
-    path_to_generated_data="sample-data",
-    batch_size_gpl=4,
-    batch_size_generation=1,
-    gpl_steps=10,
-    queries_per_passage=5,
-    # Number of Queries Per Passage (QPP) in the query generation step. When set to -1 (by default), 
-    #the QPP will be chosen automatically: If QPP * |corpus| <= 250K, then QPP will be set to 250K / |corpus|; 
-    #else QPP will be set 3 and |corpus| will be set to 250K / 3
+    format_to_training_data("sample-data")
+    #     querygen_gpl(
+    #     path_to_generated_data="sample-data",
+    #     batch_size_gpl=4,
+    #     batch_size_generation=1,
+    #     gpl_steps=10,
+    #     queries_per_passage=5,
+    #     # Number of Queries Per Passage (QPP) in the query generation step. When set to -1 (by default), 
+    #     #the QPP will be chosen automatically: If QPP * |corpus| <= 250K, then QPP will be set to 250K / |corpus|; 
+    #     #else QPP will be set 3 and |corpus| will be set to 250K / 3
 
-    # QGen Models
-    #generator="BeIR/query-gen-msmarco-t5-base-v1",
-    generator="svalabs/mt5-large-german-query-gen-v1",
-    #generator="ml6team/mt5-small-german-query-generation",
+    #     # QGen Models
+    #     #generator="BeIR/query-gen-msmarco-t5-base-v1",
+    #     generator="svalabs/mt5-large-german-query-gen-v1",
+    #     #generator="ml6team/mt5-small-german-query-generation",
 
-    retrievers=["msmarco-distilbert-base-v3"], #, "msmarco-MiniLM-L-6-v3"],
-    retriever_score_functions=["cos_sim", "cos_sim"],
-    # Note that these two retriever model work with cosine-similarity
-    cross_encoder="cross-encoder/ms-marco-MiniLM-L-6-v2",
-    qgen_prefix="qgen",
-    # This prefix will appear as part of the (folder/file) names for query-generation results: For example, we will have "qgen-qrels/" and "qgen-queries.jsonl" by default.
-)
+    #     retrievers=["msmarco-distilbert-base-v3"], #, "msmarco-MiniLM-L-6-v3"],
+    #     retriever_score_functions=["cos_sim", "cos_sim"],
+    #     # Note that these two retriever model work with cosine-similarity
+    #     cross_encoder="cross-encoder/ms-marco-MiniLM-L-6-v2",
+    #     qgen_prefix="qgen",
+    #     # This prefix will appear as part of the (folder/file) names for query-generation results: For example, we will have "qgen-qrels/" and "qgen-queries.jsonl" by default.
+    # )  
     # parser = argparse.ArgumentParser()
     # parser.add_argument(
     #     "--path_to_generated_data",
@@ -175,7 +213,7 @@ if __name__ == "__main__":
     #     help="Specifying pooling method for dense retriever if in Huggingface-format. By default (None), it uses mean pooling. If in SBERT-format, there would be the indicated pooling method in its configure file and thus this argument will be ignored. ",
     # )
     # parser.add_argument("--max_seq_length", type=int, default=350)
- 
+
     # parser.add_argument(
     #     "--queries_per_passage",
     #     type=int,
