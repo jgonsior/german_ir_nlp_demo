@@ -3,14 +3,20 @@ import nltk
 import math 
 import numpy as np
 import webbrowser
+import os
 
 nltk.download('punkt')
 
 class TfIdf:
     all_tokens = set()
-
     def __init__(self):
-        with open("harry_potter.json", "r") as read_file:
+        current_dir = os.path.dirname(__file__)
+
+        # backend/ of project
+        main_dir = os.path.dirname(os.path.dirname(os.path.dirname(current_dir)))
+        self.data_dir = os.path.join(main_dir, 'data')
+
+        with open(os.path.join(self.data_dir, 'harry_potter.json'), 'r') as read_file:
             self.data = json.load(read_file)
         self.all_tokens = self.find_all_tokens(self.data)
 
@@ -57,7 +63,7 @@ class TfIdf:
         return copy_dic
     
     def create_idf_result_json(self):
-        with open("idf_result.json", "w", encoding="utf-8") as outfile: 
+        with open(os.path.join(self.data_dir, "tf_idf" , "idf_result.json"), "w", encoding="utf-8") as outfile:
             json.dump(self.idf_dic, outfile, ensure_ascii=False)
 
         with open('idf_result.json', 'r+', encoding="utf-8") as f:
@@ -113,7 +119,7 @@ class TfIdf:
                 current_vector.append(current_docu[token] * self.idf_dic[token])
             tf_idf_dic[document] = self.normalize_vector(np.array(current_vector))
 
-        #with open("tf_idf_result.json", "w") as outfile: 
+        # with open("tf_idf_result.json", "w") as outfile:
         #    json.dump(tf_idf_dic, outfile)
 
         return tf_idf_dic
@@ -156,5 +162,5 @@ class TfIdf:
                     inverted_index[token] = []
                 inverted_index[token].append(document_id)
 
-        with open("inverted_index.json", "w", encoding="utf-8") as outfile:
+        with open(os.path.join(self.data_dir, "inverted_index.json"), "w", encoding="utf-8") as outfile:
             json.dump(inverted_index, outfile, ensure_ascii=False, indent=4)

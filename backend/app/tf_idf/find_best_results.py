@@ -1,8 +1,6 @@
 import numpy as np
 import json
-import tf_idf
-
-str = "Was sind die wichtigsten Themen in Harry Potter und der Stein der Weisen?"
+from . import tf_idf
 
 
 class queryFinder:
@@ -13,10 +11,6 @@ class queryFinder:
 
         # inverted index will be stored as inverted_index.json
         self.tf_idf_class.calculate_inverted_index()
-
-    def generate_answer(self, dict):
-        with open("answer.json", "w", encoding="utf-8") as outfile: 
-            json.dump(dict, outfile, ensure_ascii=False, indent=4)
 
 
     def query_vector_finder(self, query, num):
@@ -53,8 +47,12 @@ class queryFinder:
         dict_answ = {} #answer
         dict_answ["answer"] = list_answer
 
-        self.generate_answer(dict_answ)
+        # self.generate_answer(dict_answ)
+        return dict_answ
 
-
-queryFind = queryFinder()
-queryFind.query_vector_finder(str, 3)
+    """
+    # answer can be saved as json
+    def generate_answer(self, dict):
+        with open("answer.json", "w", encoding="utf-8") as outfile:
+            json.dump(dict, outfile, ensure_ascii=False, indent=4)
+    """
