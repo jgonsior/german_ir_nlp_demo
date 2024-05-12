@@ -14,6 +14,7 @@ export class WikiPage implements OnInit{
   public doc_name: String;
   public document: QueryResponsePage;
   public queryResult!: QueryResponseResult;
+  public sorted_doc: Map<string[], string[]> = new Map();
   private data = inject(DataService);
   private activatedRoute = inject(ActivatedRoute);
   private platform = inject(Platform);
@@ -28,6 +29,22 @@ export class WikiPage implements OnInit{
       this.document = res;
       console.log(this.document)
     });
+
+    let current_head: string[] = [];
+    let passages: string[] = [];
+
+    for (let page of this.document.page) {
+      if (current_head == page.headers) {
+        passages.push(page.passage);
+      }
+      else {
+        this.sorted_doc.set(current_head,passages);
+        current_head = page.headers;
+        passages = [];
+        passages.push(page.passage);
+      }
+    }
+
   }
 
   getBackButtonText() {

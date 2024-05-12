@@ -6,13 +6,14 @@
 </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" *ngIf="document">
+<ion-content [fullscreen]="true" *ngIf="sorted_doc">
   <ion-item>
     <ion-label class="ion-text-wrap">
       <h2>{{ doc_name }}</h2>
     </ion-label>
   </ion-item>
-  <div class="ion-padding">
-    <p>{{ document.page }}</p>
+  <div class="ion-padding" *ngFor="let keys of sorted_doc">
+    <h></h>
+    <p></p>
   </div>
 </ion-content>
