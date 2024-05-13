@@ -12,3 +12,13 @@ export interface QueryResponseResult {
   authors: string[];
   passages: string[];
 }
+
+export interface QueryResponsePage {
+  page: QueryResponseDocument[]
+}
+
+export interface QueryResponseDocument {
+  headers: string[];
+  passage: string;
+  image_links: string[]
+}
