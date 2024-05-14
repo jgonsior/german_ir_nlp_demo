@@ -14,12 +14,17 @@ def calculate_inverted_index():
             data = json.load(file)
 
         for document in data:
+            title = document['title']
             raw_tokens = set(nltk.word_tokenize(document["text"]))
             tokens = clean_tokens(raw_tokens)
+
+            if document['title'] not in inverted_index.keys():
+                 inverted_index[title] = {}
+
             for token in tokens:
-                if token not in inverted_index:
-                    inverted_index[token] = []
-                inverted_index[token].append(document['id'])
+                if token not in inverted_index[title]:
+                    inverted_index[title][token] = []
+                inverted_index[title][token].append(document['id'])
 
         with open('backend/inv_index/inverted_index.json', 'w', encoding="utf-8") as output:
                 json.dump(inverted_index, output, indent=1, ensure_ascii=False)
