@@ -160,12 +160,12 @@ cython_debug/
 #.idea/
 
 # Backend
-backend/data/qa/GermanDPR/test_qa_pairs.jsonl
 backend/data/qa/GermanDPR/train_passages.csv
 backend/data/qa/GermanDPR/train_triples.jsonl
-backend/data/qa/XQA/test_qa_pairs.jsonl
 backend/data/qa/XQA/train_passages.csv
 backend/data/qa/XQA/train_triples.jsonl
+backend/data/qa/HP/passages.csv
+backend/data/qa/HP/train_triples.jsonl
 backend/data/qa/XQA/dump
 backend/data/qa/XQA
 .ragatouille
