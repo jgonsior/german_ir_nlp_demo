@@ -1,0 +1,27 @@
+\documentclass{article}
+\usepackage[scaled]{helvet}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage{setspace}
+\usepackage{relsize}
+\usepackage{geometry}
+
+\geometry{
+ a4paper,
+ total={170mm,257mm},
+ top=10mm,
+ bottom=10mm,
+}
+
+\newcommand{\wordbox}[1]{\framebox[%box_width%][c]{\strut #1}}
+
+\begin{document}
+\pagestyle{empty}
+\setstretch{2.0}
+
+\begin{center}
+\Large
+\spaceskip=1ex plus 0.5ex minus 0.2ex
+%document_content%
+\end{center}
+
+\end{document}

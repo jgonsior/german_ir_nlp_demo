@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage[scaled]{helvet}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{adjustbox}
+\usepackage{geometry}
+
+\geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=10mm,
+ right=10mm,
+ top=10mm,
+ bottom=10mm
+}
+
+\definecolor{LightGreen}{rgb}{0.8,1,0.8}
+\definecolor{LightRed}{rgb}{1,0.8,0.8}
+
+\renewcommand{\arraystretch}{1.5}
+
+\begin{document}
+\pagestyle{empty}
+
+\begin{table}[ht]
+\begin{adjustbox}{center}
+\begin{tabular}{
+  >{\columncolor{LightGreen}}l
+  >{\columncolor{LightGreen}}l
+  >{\columncolor{LightRed}}l
+  >{\columncolor{LightGreen}}l
+  >{\columncolor{LightGreen}}l
+}
+\hline
+\textbf{Eingabe 1} & \textbf{Eingabe 2} & \textbf{Ausgabe} & \textbf{Eingabe 3} & \textbf{Eingabe 4} \\
+\hline
+%document_content%
+\hline
+\end{tabular}
+\end{adjustbox}
+\end{table}
+\end{document}
