@@ -2,7 +2,8 @@ import { Component, inject } from '@angular/core';
 import { RefresherCustomEvent } from '@ionic/angular';
 import { MessageComponent } from '../message/message.component';
 
-import { DataService, Message } from '../services/data.service';
+import { DataService } from '../services/data.service';
+import {QueryResponseResult} from "../types/query-response.type";
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,10 @@ import { DataService, Message } from '../services/data.service';
 })
 export class HomePage {
   private data = inject(DataService);
-  constructor() {}
+  protected queryResults: QueryResponseResult[] = [];
+  constructor() {
+    this.getMessages()
+  }
 
   refresh(ev: any) {
     setTimeout(() => {
@@ -19,7 +23,9 @@ export class HomePage {
     }, 3000);
   }
 
-  getMessages(): Message[] {
-    return this.data.getMessages();
+  async getMessages() {
+    await this.data.getQueryResults('Harry').then((response) => {
+      this.queryResults = response;
+    });
   }
 }

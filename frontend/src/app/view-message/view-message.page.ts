@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IonicModule, Platform } from '@ionic/angular';
-import { DataService, Message } from '../services/data.service';
+import { DataService } from '../services/data.service';
+import {QueryResponseResult} from "../types/query-response.type";
 
 @Component({
   selector: 'app-view-message',
@@ -10,7 +11,8 @@ import { DataService, Message } from '../services/data.service';
   styleUrls: ['./view-message.page.scss'],
 })
 export class ViewMessagePage implements OnInit {
-  public message!: Message;
+  public document!: String;
+  public queryResult!: QueryResponseResult;
   private data = inject(DataService);
   private activatedRoute = inject(ActivatedRoute);
   private platform = inject(Platform);
@@ -19,7 +21,10 @@ export class ViewMessagePage implements OnInit {
 
   ngOnInit() {
     const id = this.activatedRoute.snapshot.paramMap.get('id') as string;
-    this.message = this.data.getMessageById(parseInt(id, 10));
+    this.queryResult = this.activatedRoute.snapshot.paramMap.get('answer') as unknown as QueryResponseResult;
+    this.data.getDocomentById(parseInt(id, 10)).then((res) => {
+      this.document = res;
+    });
   }
 
   getBackButtonText() {
