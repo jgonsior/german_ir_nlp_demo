@@ -4,7 +4,10 @@ Steps for GPL Query Generation:
 
 1. prepare 'corpus.jsonl' like in [data sample](sample-data/corpus.jsonl)
 2. put 'corpus.jsonl' in folder with arbitrary name
-3. cwd should be the project ''''german_ir_nlp_demo'''', then run ''''python -m backend.query_generation.querygen''''
+3. cwd should be the project `german_ir_nlp_demo`, then run
+    ```bash
+    python -m backend.query_generation.querygen
+    ```
 
 ## Fandom Corpus
 
