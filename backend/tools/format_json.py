@@ -44,5 +44,5 @@ def format_to_training_data(dir: str):
             write_data.append(write_object)
 
     with open(f"{work_dir}/training-data.json", "w", encoding="utf-8") as file:
-        json.dump(write_data, file, indent = 1)
+        json.dump(write_data, file, indent = 1, ensure_ascii=False)
                 
