@@ -119,7 +119,8 @@ if __name__ == "__main__":
 
     # QGen Models
     #generator="BeIR/query-gen-msmarco-t5-base-v1",
-    generator="svalabs/mt5-large-german-query-gen-v1",
+    generator="doc2query/msmarco-german-mt5-base-v1",
+    #generator="svalabs/mt5-large-german-query-gen-v1",
     #generator="ml6team/mt5-small-german-query-generation",
 
     retrievers=["msmarco-distilbert-base-v3"], #, "msmarco-MiniLM-L-6-v3"],
@@ -127,11 +128,17 @@ if __name__ == "__main__":
     # Note that these two retriever model work with cosine-similarity
     cross_encoder="cross-encoder/ms-marco-MiniLM-L-6-v2",
     qgen_prefix="qgen",
-    # This prefix will appear as part of the (folder/file) names for query-generation results: For example, we will have "qgen-qrels/" and "qgen-queries.jsonl" by default.
+    # This prefix will appear as part of the (fold
+    # er/file) names for query-generation results: For example, we will have "qgen-qrels/" and "qgen-queries.jsonl" by default.
     )  
-    format.format_to_data(directory)
-    format.corpus_json_to_csv(directory)
-    format.create_train_eval_test_triples(directory)
+
+
+    #format.format_to_data(directory)
+    #format.corpus_json_to_csv(directory)
+    #format.create_train_eval_test_triples(directory)
+
+
+
     # parser = argparse.ArgumentParser()
     # parser.add_argument(
     #     "--path_to_generated_data",
