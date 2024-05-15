@@ -1,7 +1,11 @@
 import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {QueryResponsePage, QueryResponseResult, QueryResponseType} from "../types/query-response.type";
+import {
+  QueryResponseDocument,
+  QueryResponseResult,
+  QueryResponseType
+} from "../types/query-response.type";
 import {lastValueFrom} from "rxjs";
 
 
@@ -20,6 +24,6 @@ export class DataService {
   }
 
   public async getDocomentById(id: number) {
-    return await lastValueFrom(this.httpClient.get<QueryResponsePage>(`${environment.baseUrl}/document?id=${id}`));
+    return await lastValueFrom(this.httpClient.get<QueryResponseDocument>(`${environment.baseUrl}/document?id=${id}`));
   }
 }
