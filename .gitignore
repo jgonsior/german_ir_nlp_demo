@@ -160,9 +160,9 @@ cython_debug/
 #.idea/
 
 # Backend
-backend/data/qa/GermanDPR/train_passages.csv
+backend/data/qa/GermanDPR/passages.csv
 backend/data/qa/GermanDPR/train_triples.jsonl
-backend/data/qa/XQA/train_passages.csv
+backend/data/qa/XQA/passages.csv
 backend/data/qa/XQA/train_triples.jsonl
 backend/data/qa/HP/passages.csv
 backend/data/qa/HP/train_triples.jsonl
@@ -174,3 +174,5 @@ slurm-*.out
 train_index_eval_RAG.sh
 backend/RAGatouille/evaluate.py
 backend/RAGatouille/visualize_statistics.py
+backend/data/wiki_dumps
+backend/data/qa/HP

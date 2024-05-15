@@ -98,6 +98,12 @@ def create_full_passage_corpus_from_wiki_dump(wiki_dump_path, full_corpus_output
     print("num passages: ", num_passages)
     df.to_csv(full_corpus_output_path, index=False)
 
+def convert_corpus_jsonl_to_csv(corpus_jsonl_path, output_path):
+    corpus_df = pd.read_json(corpus_jsonl_path, lines=True)
+    corpus_df['text'] = corpus_df['title'] + ' ' + corpus_df['text']
+    corpus_df.drop(columns=['title'], inplace=True)
+    corpus_df.to_csv(output_path, index=False, header=False)
+
 def main():
     # creates triples for training (q, [p+], [p-,p-,p-]) in json format
     create_GermanDPR_train_files(TRAINING_DATA_PATHS_GERMAN_DPR, 
@@ -109,13 +115,11 @@ def main():
     )
 
     # creates a csv file of harry passage from the wiki dump 
-    create_full_passage_corpus_from_wiki_dump(WIKI_DUMP_PATH, FULL_CORPUS_PATH)
+    # old: create_full_passage_corpus_from_wiki_dump(WIKI_DUMP_PATH, FULL_CORPUS_PATH)
+    convert_corpus_jsonl_to_csv("backend/data/wiki_dumps/corpus.jsonl", "backend/data/qa/HP/passages.csv")
 
 def test():
-    create_QXA_train_files(TRAINING_DATA_PATHS_XQA, 
-            "backend/data/qa/XQA/train_triples.jsonl",
-            "backend/data/qa/XQA/train_passages.csv"
-    )
+    convert_corpus_jsonl_to_csv("backend/data/wiki_dumps/corpus.jsonl", "backend/data/qa/HP/passages.csv")
 
 
 if __name__ == "__main__":

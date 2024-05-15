@@ -53,12 +53,13 @@ def main(args):
     corpus = pd.read_csv(args.corpus_path).values.tolist()
     trained_model_from_previous_epoch = None
 
-    triples = pd.read_json(args.triples_path, lines=True).values.tolist()
+    triples = pd.read_json(args.triples_path, lines=True)[["question", "positive_contexts", "negative_contexts"]].values.tolist()
 
-    for e in range(1, args.epochs+1):
-        if e == 1:
+    for e in args.epochs:
+        if e == 1 or e == "1":
             pretrained_model_name_or_path = args.pretrained_model_name_or_path
         else:
+            trained_model_from_previous_epoch = f"backend/data/colbert/checkpoints/{args.base_model_name}/{args.union_train_data}/epoch{int(e)-1}"
             pretrained_model_name_or_path = trained_model_from_previous_epoch
 
         trainer = RAGTrainer(model_name = f"{args.base_model_name}-{args.union_train_data}",
@@ -66,7 +67,7 @@ def main(args):
                 language_code="de")
 
         # This step handles all the data processing. Check whether data has already been preprocessed
-        colbert_training_data_path = f"data/colbert/training_data/{args.union_train_data}"
+        colbert_training_data_path = f"backend/data/colbert/training_data/{args.union_train_data}"
         if not os.path.exists(colbert_training_data_path) or not any(os.listdir(colbert_training_data_path)):
             trainer.prepare_training_data(raw_data=triples,
                                             all_documents = corpus,
@@ -89,19 +90,20 @@ def main(args):
                 )
         
         # original colbert code forgot to propagate model_output_path -> hence we have to find it our selves
-        trained_model_from_previous_epoch = f"backend/data/colbert/checkpoints/{args.base_model_name}/{args.union_train_data}/epoch{str(e)}"
+
         move_content(os.path.join(most_recent_created_path(".ragatouille/colbert/none"), "checkpoints/colbert"),
-                        trained_model_from_previous_epoch)
+                        f"backend/data/colbert/checkpoints/{args.base_model_name}/{args.union_train_data}/epoch{e}")
         
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     
-    parser.add_argument('--base_model_name', type=str, help="e.g. 'bert-base-german-cased'")
+    parser.add_argument('--base_model_name', type=str, default="bert-base-german-cased", help="BERT backbone")
     parser.add_argument('--pretrained_model_name_or_path', type=str, help="e.g. 'bert-base-german-cased' or 'backend/data/colbert/checkpoints/bert-base-german-cased/GermanDPR/epoch1'")
     parser.add_argument('--union_train_data', type=str, help="e.g. 'GermanDPR-XQA' when training a model already trained on GermanDPR additionally on XQA")
     parser.add_argument('--triples_path', type=str, help="e.g. 'backend/data/qa/GermanDPR/train_triples.jsonl'")
     parser.add_argument('--corpus_path', type=str, help="e.g. 'backend/data/qa/GermanDPR/train_passages.csv' (according to triples)")
-    parser.add_argument('--epochs', type=int, help="number of epochs to train on given training data")
+    parser.add_argument("--epochs", metavar="N", type=str, nargs="+",
+                        help="List of integers separated by spaces")
 
     args = parser.parse_args()
 
