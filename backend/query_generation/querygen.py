@@ -103,12 +103,15 @@ def querygen_gpl(
         )
         pseudo_labeler.run()
 
+
+
 if __name__ == "__main__":
+    directory = 'sample-data'
     querygen_gpl(
-    path_to_generated_data="backend/query_generation/sample-data",
+    path_to_generated_data=f'backend/query_generation/{directory}',
     batch_size_gpl=4,
     batch_size_generation=1,
-    gpl_steps=10,
+    gpl_steps=1,
     queries_per_passage=3,
     # Number of Queries Per Passage (QPP) in the query generation step. When set to -1 (by default), 
     #the QPP will be chosen automatically: If QPP * |corpus| <= 250K, then QPP will be set to 250K / |corpus|; 
@@ -126,7 +129,8 @@ if __name__ == "__main__":
     qgen_prefix="qgen",
     # This prefix will appear as part of the (folder/file) names for query-generation results: For example, we will have "qgen-qrels/" and "qgen-queries.jsonl" by default.
     )  
-    format.format_to_training_data("sample-data")
+    format.format_to_training_data(directory)
+    format.corpus_json_to_csv(directory)
     # parser = argparse.ArgumentParser()
     # parser.add_argument(
     #     "--path_to_generated_data",

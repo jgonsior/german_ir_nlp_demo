@@ -1,8 +1,13 @@
 [
  {
-  "query": "Worບຸນ war Dolores Umbridges Zauberstab?",
-  "pos": "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken.",
-  "neg": [
+  "question": "Worບຸນ war Dolores Umbridges Zauberstab?",
+  "positive_contexts": [
+   "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken."
+  ],
+  "positive_context_ids": [
+   "1"
+  ],
+  "negative_contexts": [
    "Der Kern eines Zauberstabs ist eine magische Substanz, der Länge nach in das Holz eingebettet. Sie sind normalerweise Teile von Haaren/Federn, entwendet von einer Art von magischem Wesen oder magischer Kreatur. Die Materialien, benutzt für Zauberstabkerne, können stark variieren, obwohl bestimmte Zauberstabmacher den Gebrauch von bestimmten Materialien bevorzugen; zum Beispiel entdeckte und machte Garrick Ollivander als erster Gebrauch von Phönixfedern, Drachenherzfasern und Einhornschwanzhaaren, wohingegen sein Vater schwächere Substanzen benutzte wie Kelpie-Haar und Schnurrhaare eines Kniesels.",
    "[Frühes Leben] Im Sommer 1991 erfuhr Hermine überraschend, dass sie eine Hexe war und auf die Hogwartsschule für Hexerei und Zauberei gehen durfte. Eifrig akzeptierte sie diese Einladung und begann sogleich, die Welt der Zauberei zu erkunden. Noch bevor ihr erstes Schuljahr in Hogwarts im September 1991 begann, hatte sie alle ihre Schulbücher gelesen und gelernt. Zusätzlich zu ihren Schulbüchern las Hermine auch viele andere Bücher, die ihr halfen, Magie und Zauberei zu verstehen.",
    "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges.",
@@ -12,12 +17,28 @@
    "Tom Vorlost Riddle alias Lord Voldemort (* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste. Seine größten Feinde waren Harry Potter und Albus Dumbledore. Voldemorts Schreckensherrschaft dauerte von 1970 bis 1981 und 1995 bis 1998, bis er in der Schlacht von Hogwarts von Harry Potter besiegt wurde. Er wurde nach seinem Vater Tom Riddle sr. und seinem Großvater Vorlost Gaunt benannt. Er hat zusammen mit Bellatrix Lestrange eine Tochter namens Delphini.",
    "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe.",
    "[Charakter] Seit jeher daran gewöhnt, sich gegen viele und Stärkere durchsetzen zu müssen, hatte sie gelernt, schnell und geschickt zu vermitteln und schlagfertig gute Ausreden zu erfinden. Bei ihren großen Brüdern hatte sie Einiges abgeguckt, wie etwa, dass es (zumindest mit der Hilfe ihrer Zwillingsbrüder) für alle unmöglich erscheinenden Situationen irgendeine Lösung gab. Außerdem setzte sie ihre Interessen wenn nötig auch mal unbemerkt durch. So hat sie sich hinter dem Rücken ihrer Brüder, die sie bei Quidditch-Spielen im Garten zu Hause immer ausgeschlossen hatten, alleine sehr gute Spieltechniken beigebracht. Die Weasley-Brüder waren daher sehr verblüfft, als sie in die Hausmannschaft von Gryffindor aufgenommen wurde. Dort spielte sie erstmals im 5. Teil für Harry als Sucherin und später dann als Jägerin."
+  ],
+  "negative_context_ids": [
+   "2",
+   "4",
+   "3",
+   "32",
+   "6",
+   "31",
+   "7",
+   "5",
+   "8"
   ]
  },
  {
-  "query": "Woraus besteht der Zauberstab von Dolores Umbridge?",
-  "pos": "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken.",
-  "neg": [
+  "question": "Woraus besteht der Zauberstab von Dolores Umbridge?",
+  "positive_contexts": [
+   "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken."
+  ],
+  "positive_context_ids": [
+   "1"
+  ],
+  "negative_contexts": [
    "Der Kern eines Zauberstabs ist eine magische Substanz, der Länge nach in das Holz eingebettet. Sie sind normalerweise Teile von Haaren/Federn, entwendet von einer Art von magischem Wesen oder magischer Kreatur. Die Materialien, benutzt für Zauberstabkerne, können stark variieren, obwohl bestimmte Zauberstabmacher den Gebrauch von bestimmten Materialien bevorzugen; zum Beispiel entdeckte und machte Garrick Ollivander als erster Gebrauch von Phönixfedern, Drachenherzfasern und Einhornschwanzhaaren, wohingegen sein Vater schwächere Substanzen benutzte wie Kelpie-Haar und Schnurrhaare eines Kniesels.",
    "Myrte Elizabeth Warren , eher bekannt als Maulende Myrte , der Geist einer Ravenclaw-Schülerin, spukt in einer Mädchentoilette, wo sie ständig jammert, dass sie tot ist und niemand um sie trauert. Sie wurde vor vielen Jahren, als sie selbst noch zur Schule ging, vom Basilisken aus der Kammer des Schreckens getötet. Voldemort schuf mit ihrem Tod seinen ersten Horkrux. Nachdem sie zunächst immer wieder Olive Hornby, einer Mitschülerin, die sie zu Lebzeiten immer lächerlich gemacht hatte, erschienen war, wurde sie in die Toilette verbannt. Sie war ein wenig in Harry Potter verliebt und beschwerte sich bei ihm, wenn er sie sporadisch traf (etwa alle zwei Jahre), dass er sie so selten besuchte.",
    "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern.",
@@ -27,12 +48,28 @@
    "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe.",
    "[Charakter] Seit jeher daran gewöhnt, sich gegen viele und Stärkere durchsetzen zu müssen, hatte sie gelernt, schnell und geschickt zu vermitteln und schlagfertig gute Ausreden zu erfinden. Bei ihren großen Brüdern hatte sie Einiges abgeguckt, wie etwa, dass es (zumindest mit der Hilfe ihrer Zwillingsbrüder) für alle unmöglich erscheinenden Situationen irgendeine Lösung gab. Außerdem setzte sie ihre Interessen wenn nötig auch mal unbemerkt durch. So hat sie sich hinter dem Rücken ihrer Brüder, die sie bei Quidditch-Spielen im Garten zu Hause immer ausgeschlossen hatten, alleine sehr gute Spieltechniken beigebracht. Die Weasley-Brüder waren daher sehr verblüfft, als sie in die Hausmannschaft von Gryffindor aufgenommen wurde. Dort spielte sie erstmals im 5. Teil für Harry als Sucherin und später dann als Jägerin.",
    "Tom Vorlost Riddle alias Lord Voldemort (* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste. Seine größten Feinde waren Harry Potter und Albus Dumbledore. Voldemorts Schreckensherrschaft dauerte von 1970 bis 1981 und 1995 bis 1998, bis er in der Schlacht von Hogwarts von Harry Potter besiegt wurde. Er wurde nach seinem Vater Tom Riddle sr. und seinem Großvater Vorlost Gaunt benannt. Er hat zusammen mit Bellatrix Lestrange eine Tochter namens Delphini."
+  ],
+  "negative_context_ids": [
+   "2",
+   "32",
+   "6",
+   "31",
+   "3",
+   "4",
+   "5",
+   "8",
+   "7"
   ]
  },
  {
-  "query": "Woraus wurde Dolores Umbridge Zauberstabəmobel hergestellt?",
-  "pos": "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken.",
-  "neg": [
+  "question": "Woraus wurde Dolores Umbridge Zauberstabəmobel hergestellt?",
+  "positive_contexts": [
+   "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken."
+  ],
+  "positive_context_ids": [
+   "1"
+  ],
+  "negative_contexts": [
    "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern.",
    "Myrte Elizabeth Warren , eher bekannt als Maulende Myrte , der Geist einer Ravenclaw-Schülerin, spukt in einer Mädchentoilette, wo sie ständig jammert, dass sie tot ist und niemand um sie trauert. Sie wurde vor vielen Jahren, als sie selbst noch zur Schule ging, vom Basilisken aus der Kammer des Schreckens getötet. Voldemort schuf mit ihrem Tod seinen ersten Horkrux. Nachdem sie zunächst immer wieder Olive Hornby, einer Mitschülerin, die sie zu Lebzeiten immer lächerlich gemacht hatte, erschienen war, wurde sie in die Toilette verbannt. Sie war ein wenig in Harry Potter verliebt und beschwerte sich bei ihm, wenn er sie sporadisch traf (etwa alle zwei Jahre), dass er sie so selten besuchte.",
    "Der Kern eines Zauberstabs ist eine magische Substanz, der Länge nach in das Holz eingebettet. Sie sind normalerweise Teile von Haaren/Federn, entwendet von einer Art von magischem Wesen oder magischer Kreatur. Die Materialien, benutzt für Zauberstabkerne, können stark variieren, obwohl bestimmte Zauberstabmacher den Gebrauch von bestimmten Materialien bevorzugen; zum Beispiel entdeckte und machte Garrick Ollivander als erster Gebrauch von Phönixfedern, Drachenherzfasern und Einhornschwanzhaaren, wohingegen sein Vater schwächere Substanzen benutzte wie Kelpie-Haar und Schnurrhaare eines Kniesels.",
@@ -42,12 +79,28 @@
    "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß.",
    "[Frühes Leben] Im Sommer 1991 erfuhr Hermine überraschend, dass sie eine Hexe war und auf die Hogwartsschule für Hexerei und Zauberei gehen durfte. Eifrig akzeptierte sie diese Einladung und begann sogleich, die Welt der Zauberei zu erkunden. Noch bevor ihr erstes Schuljahr in Hogwarts im September 1991 begann, hatte sie alle ihre Schulbücher gelesen und gelernt. Zusätzlich zu ihren Schulbüchern las Hermine auch viele andere Bücher, die ihr halfen, Magie und Zauberei zu verstehen.",
    "[Charakter] Seit jeher daran gewöhnt, sich gegen viele und Stärkere durchsetzen zu müssen, hatte sie gelernt, schnell und geschickt zu vermitteln und schlagfertig gute Ausreden zu erfinden. Bei ihren großen Brüdern hatte sie Einiges abgeguckt, wie etwa, dass es (zumindest mit der Hilfe ihrer Zwillingsbrüder) für alle unmöglich erscheinenden Situationen irgendeine Lösung gab. Außerdem setzte sie ihre Interessen wenn nötig auch mal unbemerkt durch. So hat sie sich hinter dem Rücken ihrer Brüder, die sie bei Quidditch-Spielen im Garten zu Hause immer ausgeschlossen hatten, alleine sehr gute Spieltechniken beigebracht. Die Weasley-Brüder waren daher sehr verblüfft, als sie in die Hausmannschaft von Gryffindor aufgenommen wurde. Dort spielte sie erstmals im 5. Teil für Harry als Sucherin und später dann als Jägerin."
+  ],
+  "negative_context_ids": [
+   "6",
+   "32",
+   "2",
+   "3",
+   "5",
+   "7",
+   "31",
+   "4",
+   "8"
   ]
  },
  {
-  "query": "woraus besteht ein Zauberstabkern?",
-  "pos": "Der Kern eines Zauberstabs ist eine magische Substanz, der Länge nach in das Holz eingebettet. Sie sind normalerweise Teile von Haaren/Federn, entwendet von einer Art von magischem Wesen oder magischer Kreatur. Die Materialien, benutzt für Zauberstabkerne, können stark variieren, obwohl bestimmte Zauberstabmacher den Gebrauch von bestimmten Materialien bevorzugen; zum Beispiel entdeckte und machte Garrick Ollivander als erster Gebrauch von Phönixfedern, Drachenherzfasern und Einhornschwanzhaaren, wohingegen sein Vater schwächere Substanzen benutzte wie Kelpie-Haar und Schnurrhaare eines Kniesels.",
-  "neg": [
+  "question": "woraus besteht ein Zauberstabkern?",
+  "positive_contexts": [
+   "Der Kern eines Zauberstabs ist eine magische Substanz, der Länge nach in das Holz eingebettet. Sie sind normalerweise Teile von Haaren/Federn, entwendet von einer Art von magischem Wesen oder magischer Kreatur. Die Materialien, benutzt für Zauberstabkerne, können stark variieren, obwohl bestimmte Zauberstabmacher den Gebrauch von bestimmten Materialien bevorzugen; zum Beispiel entdeckte und machte Garrick Ollivander als erster Gebrauch von Phönixfedern, Drachenherzfasern und Einhornschwanzhaaren, wohingegen sein Vater schwächere Substanzen benutzte wie Kelpie-Haar und Schnurrhaare eines Kniesels."
+  ],
+  "positive_context_ids": [
+   "2"
+  ],
+  "negative_contexts": [
    "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken.",
    "Myrte Elizabeth Warren , eher bekannt als Maulende Myrte , der Geist einer Ravenclaw-Schülerin, spukt in einer Mädchentoilette, wo sie ständig jammert, dass sie tot ist und niemand um sie trauert. Sie wurde vor vielen Jahren, als sie selbst noch zur Schule ging, vom Basilisken aus der Kammer des Schreckens getötet. Voldemort schuf mit ihrem Tod seinen ersten Horkrux. Nachdem sie zunächst immer wieder Olive Hornby, einer Mitschülerin, die sie zu Lebzeiten immer lächerlich gemacht hatte, erschienen war, wurde sie in die Toilette verbannt. Sie war ein wenig in Harry Potter verliebt und beschwerte sich bei ihm, wenn er sie sporadisch traf (etwa alle zwei Jahre), dass er sie so selten besuchte.",
    "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe.",
@@ -57,12 +110,28 @@
    "[Frühes Leben] Im Sommer 1991 erfuhr Hermine überraschend, dass sie eine Hexe war und auf die Hogwartsschule für Hexerei und Zauberei gehen durfte. Eifrig akzeptierte sie diese Einladung und begann sogleich, die Welt der Zauberei zu erkunden. Noch bevor ihr erstes Schuljahr in Hogwarts im September 1991 begann, hatte sie alle ihre Schulbücher gelesen und gelernt. Zusätzlich zu ihren Schulbüchern las Hermine auch viele andere Bücher, die ihr halfen, Magie und Zauberei zu verstehen.",
    "Tom Vorlost Riddle alias Lord Voldemort (* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste. Seine größten Feinde waren Harry Potter und Albus Dumbledore. Voldemorts Schreckensherrschaft dauerte von 1970 bis 1981 und 1995 bis 1998, bis er in der Schlacht von Hogwarts von Harry Potter besiegt wurde. Er wurde nach seinem Vater Tom Riddle sr. und seinem Großvater Vorlost Gaunt benannt. Er hat zusammen mit Bellatrix Lestrange eine Tochter namens Delphini.",
    "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern."
+  ],
+  "negative_context_ids": [
+   "1",
+   "32",
+   "5",
+   "31",
+   "8",
+   "3",
+   "4",
+   "7",
+   "6"
   ]
  },
  {
-  "query": "Woraus bestehen Zauberstabkerne?",
-  "pos": "Der Kern eines Zauberstabs ist eine magische Substanz, der Länge nach in das Holz eingebettet. Sie sind normalerweise Teile von Haaren/Federn, entwendet von einer Art von magischem Wesen oder magischer Kreatur. Die Materialien, benutzt für Zauberstabkerne, können stark variieren, obwohl bestimmte Zauberstabmacher den Gebrauch von bestimmten Materialien bevorzugen; zum Beispiel entdeckte und machte Garrick Ollivander als erster Gebrauch von Phönixfedern, Drachenherzfasern und Einhornschwanzhaaren, wohingegen sein Vater schwächere Substanzen benutzte wie Kelpie-Haar und Schnurrhaare eines Kniesels.",
-  "neg": [
+  "question": "Woraus bestehen Zauberstabkerne?",
+  "positive_contexts": [
+   "Der Kern eines Zauberstabs ist eine magische Substanz, der Länge nach in das Holz eingebettet. Sie sind normalerweise Teile von Haaren/Federn, entwendet von einer Art von magischem Wesen oder magischer Kreatur. Die Materialien, benutzt für Zauberstabkerne, können stark variieren, obwohl bestimmte Zauberstabmacher den Gebrauch von bestimmten Materialien bevorzugen; zum Beispiel entdeckte und machte Garrick Ollivander als erster Gebrauch von Phönixfedern, Drachenherzfasern und Einhornschwanzhaaren, wohingegen sein Vater schwächere Substanzen benutzte wie Kelpie-Haar und Schnurrhaare eines Kniesels."
+  ],
+  "positive_context_ids": [
+   "2"
+  ],
+  "negative_contexts": [
    "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken.",
    "Myrte Elizabeth Warren , eher bekannt als Maulende Myrte , der Geist einer Ravenclaw-Schülerin, spukt in einer Mädchentoilette, wo sie ständig jammert, dass sie tot ist und niemand um sie trauert. Sie wurde vor vielen Jahren, als sie selbst noch zur Schule ging, vom Basilisken aus der Kammer des Schreckens getötet. Voldemort schuf mit ihrem Tod seinen ersten Horkrux. Nachdem sie zunächst immer wieder Olive Hornby, einer Mitschülerin, die sie zu Lebzeiten immer lächerlich gemacht hatte, erschienen war, wurde sie in die Toilette verbannt. Sie war ein wenig in Harry Potter verliebt und beschwerte sich bei ihm, wenn er sie sporadisch traf (etwa alle zwei Jahre), dass er sie so selten besuchte.",
    "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß.",
@@ -72,12 +141,28 @@
    "[Charakter] Seit jeher daran gewöhnt, sich gegen viele und Stärkere durchsetzen zu müssen, hatte sie gelernt, schnell und geschickt zu vermitteln und schlagfertig gute Ausreden zu erfinden. Bei ihren großen Brüdern hatte sie Einiges abgeguckt, wie etwa, dass es (zumindest mit der Hilfe ihrer Zwillingsbrüder) für alle unmöglich erscheinenden Situationen irgendeine Lösung gab. Außerdem setzte sie ihre Interessen wenn nötig auch mal unbemerkt durch. So hat sie sich hinter dem Rücken ihrer Brüder, die sie bei Quidditch-Spielen im Garten zu Hause immer ausgeschlossen hatten, alleine sehr gute Spieltechniken beigebracht. Die Weasley-Brüder waren daher sehr verblüfft, als sie in die Hausmannschaft von Gryffindor aufgenommen wurde. Dort spielte sie erstmals im 5. Teil für Harry als Sucherin und später dann als Jägerin.",
    "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern.",
    "Tom Vorlost Riddle alias Lord Voldemort (* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste. Seine größten Feinde waren Harry Potter und Albus Dumbledore. Voldemorts Schreckensherrschaft dauerte von 1970 bis 1981 und 1995 bis 1998, bis er in der Schlacht von Hogwarts von Harry Potter besiegt wurde. Er wurde nach seinem Vater Tom Riddle sr. und seinem Großvater Vorlost Gaunt benannt. Er hat zusammen mit Bellatrix Lestrange eine Tochter namens Delphini."
+  ],
+  "negative_context_ids": [
+   "1",
+   "32",
+   "31",
+   "5",
+   "4",
+   "3",
+   "8",
+   "6",
+   "7"
   ]
  },
  {
-  "query": "Was ist ein Kern in einem Zauberstab?",
-  "pos": "Der Kern eines Zauberstabs ist eine magische Substanz, der Länge nach in das Holz eingebettet. Sie sind normalerweise Teile von Haaren/Federn, entwendet von einer Art von magischem Wesen oder magischer Kreatur. Die Materialien, benutzt für Zauberstabkerne, können stark variieren, obwohl bestimmte Zauberstabmacher den Gebrauch von bestimmten Materialien bevorzugen; zum Beispiel entdeckte und machte Garrick Ollivander als erster Gebrauch von Phönixfedern, Drachenherzfasern und Einhornschwanzhaaren, wohingegen sein Vater schwächere Substanzen benutzte wie Kelpie-Haar und Schnurrhaare eines Kniesels.",
-  "neg": [
+  "question": "Was ist ein Kern in einem Zauberstab?",
+  "positive_contexts": [
+   "Der Kern eines Zauberstabs ist eine magische Substanz, der Länge nach in das Holz eingebettet. Sie sind normalerweise Teile von Haaren/Federn, entwendet von einer Art von magischem Wesen oder magischer Kreatur. Die Materialien, benutzt für Zauberstabkerne, können stark variieren, obwohl bestimmte Zauberstabmacher den Gebrauch von bestimmten Materialien bevorzugen; zum Beispiel entdeckte und machte Garrick Ollivander als erster Gebrauch von Phönixfedern, Drachenherzfasern und Einhornschwanzhaaren, wohingegen sein Vater schwächere Substanzen benutzte wie Kelpie-Haar und Schnurrhaare eines Kniesels."
+  ],
+  "positive_context_ids": [
+   "2"
+  ],
+  "negative_contexts": [
    "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken.",
    "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges.",
    "Myrte Elizabeth Warren , eher bekannt als Maulende Myrte , der Geist einer Ravenclaw-Schülerin, spukt in einer Mädchentoilette, wo sie ständig jammert, dass sie tot ist und niemand um sie trauert. Sie wurde vor vielen Jahren, als sie selbst noch zur Schule ging, vom Basilisken aus der Kammer des Schreckens getötet. Voldemort schuf mit ihrem Tod seinen ersten Horkrux. Nachdem sie zunächst immer wieder Olive Hornby, einer Mitschülerin, die sie zu Lebzeiten immer lächerlich gemacht hatte, erschienen war, wurde sie in die Toilette verbannt. Sie war ein wenig in Harry Potter verliebt und beschwerte sich bei ihm, wenn er sie sporadisch traf (etwa alle zwei Jahre), dass er sie so selten besuchte.",
@@ -87,12 +172,28 @@
    "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe.",
    "[Charakter] Seit jeher daran gewöhnt, sich gegen viele und Stärkere durchsetzen zu müssen, hatte sie gelernt, schnell und geschickt zu vermitteln und schlagfertig gute Ausreden zu erfinden. Bei ihren großen Brüdern hatte sie Einiges abgeguckt, wie etwa, dass es (zumindest mit der Hilfe ihrer Zwillingsbrüder) für alle unmöglich erscheinenden Situationen irgendeine Lösung gab. Außerdem setzte sie ihre Interessen wenn nötig auch mal unbemerkt durch. So hat sie sich hinter dem Rücken ihrer Brüder, die sie bei Quidditch-Spielen im Garten zu Hause immer ausgeschlossen hatten, alleine sehr gute Spieltechniken beigebracht. Die Weasley-Brüder waren daher sehr verblüfft, als sie in die Hausmannschaft von Gryffindor aufgenommen wurde. Dort spielte sie erstmals im 5. Teil für Harry als Sucherin und später dann als Jägerin.",
    "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß."
+  ],
+  "negative_context_ids": [
+   "1",
+   "3",
+   "32",
+   "4",
+   "6",
+   "7",
+   "5",
+   "8",
+   "31"
   ]
  },
  {
-  "query": "war harry potter",
-  "pos": "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges.",
-  "neg": [
+  "question": "war harry potter",
+  "positive_contexts": [
+   "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges."
+  ],
+  "positive_context_ids": [
+   "3"
+  ],
+  "negative_contexts": [
    "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe.",
    "Tom Vorlost Riddle alias Lord Voldemort (* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste. Seine größten Feinde waren Harry Potter und Albus Dumbledore. Voldemorts Schreckensherrschaft dauerte von 1970 bis 1981 und 1995 bis 1998, bis er in der Schlacht von Hogwarts von Harry Potter besiegt wurde. Er wurde nach seinem Vater Tom Riddle sr. und seinem Großvater Vorlost Gaunt benannt. Er hat zusammen mit Bellatrix Lestrange eine Tochter namens Delphini.",
    "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken.",
@@ -102,12 +203,28 @@
    "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern.",
    "[Charakter] Seit jeher daran gewöhnt, sich gegen viele und Stärkere durchsetzen zu müssen, hatte sie gelernt, schnell und geschickt zu vermitteln und schlagfertig gute Ausreden zu erfinden. Bei ihren großen Brüdern hatte sie Einiges abgeguckt, wie etwa, dass es (zumindest mit der Hilfe ihrer Zwillingsbrüder) für alle unmöglich erscheinenden Situationen irgendeine Lösung gab. Außerdem setzte sie ihre Interessen wenn nötig auch mal unbemerkt durch. So hat sie sich hinter dem Rücken ihrer Brüder, die sie bei Quidditch-Spielen im Garten zu Hause immer ausgeschlossen hatten, alleine sehr gute Spieltechniken beigebracht. Die Weasley-Brüder waren daher sehr verblüfft, als sie in die Hausmannschaft von Gryffindor aufgenommen wurde. Dort spielte sie erstmals im 5. Teil für Harry als Sucherin und später dann als Jägerin.",
    "Der Kern eines Zauberstabs ist eine magische Substanz, der Länge nach in das Holz eingebettet. Sie sind normalerweise Teile von Haaren/Federn, entwendet von einer Art von magischem Wesen oder magischer Kreatur. Die Materialien, benutzt für Zauberstabkerne, können stark variieren, obwohl bestimmte Zauberstabmacher den Gebrauch von bestimmten Materialien bevorzugen; zum Beispiel entdeckte und machte Garrick Ollivander als erster Gebrauch von Phönixfedern, Drachenherzfasern und Einhornschwanzhaaren, wohingegen sein Vater schwächere Substanzen benutzte wie Kelpie-Haar und Schnurrhaare eines Kniesels."
+  ],
+  "negative_context_ids": [
+   "5",
+   "7",
+   "1",
+   "32",
+   "4",
+   "31",
+   "6",
+   "8",
+   "2"
   ]
  },
  {
-  "query": "wer war james potter kind",
-  "pos": "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges.",
-  "neg": [
+  "question": "wer war james potter kind",
+  "positive_contexts": [
+   "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges."
+  ],
+  "positive_context_ids": [
+   "3"
+  ],
+  "negative_contexts": [
    "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe.",
    "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß.",
    "Tom Vorlost Riddle alias Lord Voldemort (* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste. Seine größten Feinde waren Harry Potter und Albus Dumbledore. Voldemorts Schreckensherrschaft dauerte von 1970 bis 1981 und 1995 bis 1998, bis er in der Schlacht von Hogwarts von Harry Potter besiegt wurde. Er wurde nach seinem Vater Tom Riddle sr. und seinem Großvater Vorlost Gaunt benannt. Er hat zusammen mit Bellatrix Lestrange eine Tochter namens Delphini.",
@@ -117,12 +234,28 @@
    "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern.",
    "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken.",
    "Der Kern eines Zauberstabs ist eine magische Substanz, der Länge nach in das Holz eingebettet. Sie sind normalerweise Teile von Haaren/Federn, entwendet von einer Art von magischem Wesen oder magischer Kreatur. Die Materialien, benutzt für Zauberstabkerne, können stark variieren, obwohl bestimmte Zauberstabmacher den Gebrauch von bestimmten Materialien bevorzugen; zum Beispiel entdeckte und machte Garrick Ollivander als erster Gebrauch von Phönixfedern, Drachenherzfasern und Einhornschwanzhaaren, wohingegen sein Vater schwächere Substanzen benutzte wie Kelpie-Haar und Schnurrhaare eines Kniesels."
+  ],
+  "negative_context_ids": [
+   "5",
+   "31",
+   "7",
+   "4",
+   "32",
+   "8",
+   "6",
+   "1",
+   "2"
   ]
  },
  {
-  "query": "wo wurde harry potter geboren",
-  "pos": "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges.",
-  "neg": [
+  "question": "wo wurde harry potter geboren",
+  "positive_contexts": [
+   "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges."
+  ],
+  "positive_context_ids": [
+   "3"
+  ],
+  "negative_contexts": [
    "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe.",
    "Myrte Elizabeth Warren , eher bekannt als Maulende Myrte , der Geist einer Ravenclaw-Schülerin, spukt in einer Mädchentoilette, wo sie ständig jammert, dass sie tot ist und niemand um sie trauert. Sie wurde vor vielen Jahren, als sie selbst noch zur Schule ging, vom Basilisken aus der Kammer des Schreckens getötet. Voldemort schuf mit ihrem Tod seinen ersten Horkrux. Nachdem sie zunächst immer wieder Olive Hornby, einer Mitschülerin, die sie zu Lebzeiten immer lächerlich gemacht hatte, erschienen war, wurde sie in die Toilette verbannt. Sie war ein wenig in Harry Potter verliebt und beschwerte sich bei ihm, wenn er sie sporadisch traf (etwa alle zwei Jahre), dass er sie so selten besuchte.",
    "Tom Vorlost Riddle alias Lord Voldemort (* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste. Seine größten Feinde waren Harry Potter und Albus Dumbledore. Voldemorts Schreckensherrschaft dauerte von 1970 bis 1981 und 1995 bis 1998, bis er in der Schlacht von Hogwarts von Harry Potter besiegt wurde. Er wurde nach seinem Vater Tom Riddle sr. und seinem Großvater Vorlost Gaunt benannt. Er hat zusammen mit Bellatrix Lestrange eine Tochter namens Delphini.",
@@ -132,12 +265,28 @@
    "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern.",
    "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken.",
    "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß."
+  ],
+  "negative_context_ids": [
+   "5",
+   "32",
+   "7",
+   "8",
+   "2",
+   "4",
+   "6",
+   "1",
+   "31"
   ]
  },
  {
-  "query": "wie heißt ron james",
-  "pos": "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß.",
-  "neg": [
+  "question": "wie heißt ron james",
+  "positive_contexts": [
+   "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß."
+  ],
+  "positive_context_ids": [
+   "31"
+  ],
+  "negative_contexts": [
    "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe.",
    "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges.",
    "[Charakter] Seit jeher daran gewöhnt, sich gegen viele und Stärkere durchsetzen zu müssen, hatte sie gelernt, schnell und geschickt zu vermitteln und schlagfertig gute Ausreden zu erfinden. Bei ihren großen Brüdern hatte sie Einiges abgeguckt, wie etwa, dass es (zumindest mit der Hilfe ihrer Zwillingsbrüder) für alle unmöglich erscheinenden Situationen irgendeine Lösung gab. Außerdem setzte sie ihre Interessen wenn nötig auch mal unbemerkt durch. So hat sie sich hinter dem Rücken ihrer Brüder, die sie bei Quidditch-Spielen im Garten zu Hause immer ausgeschlossen hatten, alleine sehr gute Spieltechniken beigebracht. Die Weasley-Brüder waren daher sehr verblüfft, als sie in die Hausmannschaft von Gryffindor aufgenommen wurde. Dort spielte sie erstmals im 5. Teil für Harry als Sucherin und später dann als Jägerin.",
@@ -147,12 +296,28 @@
    "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken.",
    "Tom Vorlost Riddle alias Lord Voldemort (* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste. Seine größten Feinde waren Harry Potter und Albus Dumbledore. Voldemorts Schreckensherrschaft dauerte von 1970 bis 1981 und 1995 bis 1998, bis er in der Schlacht von Hogwarts von Harry Potter besiegt wurde. Er wurde nach seinem Vater Tom Riddle sr. und seinem Großvater Vorlost Gaunt benannt. Er hat zusammen mit Bellatrix Lestrange eine Tochter namens Delphini.",
    "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern."
+  ],
+  "negative_context_ids": [
+   "5",
+   "3",
+   "8",
+   "4",
+   "32",
+   "2",
+   "1",
+   "7",
+   "6"
   ]
  },
  {
-  "query": "wann wurde ron geboren",
-  "pos": "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß.",
-  "neg": [
+  "question": "wann wurde ron geboren",
+  "positive_contexts": [
+   "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß."
+  ],
+  "positive_context_ids": [
+   "31"
+  ],
+  "negative_contexts": [
    "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe.",
    "[Charakter] Seit jeher daran gewöhnt, sich gegen viele und Stärkere durchsetzen zu müssen, hatte sie gelernt, schnell und geschickt zu vermitteln und schlagfertig gute Ausreden zu erfinden. Bei ihren großen Brüdern hatte sie Einiges abgeguckt, wie etwa, dass es (zumindest mit der Hilfe ihrer Zwillingsbrüder) für alle unmöglich erscheinenden Situationen irgendeine Lösung gab. Außerdem setzte sie ihre Interessen wenn nötig auch mal unbemerkt durch. So hat sie sich hinter dem Rücken ihrer Brüder, die sie bei Quidditch-Spielen im Garten zu Hause immer ausgeschlossen hatten, alleine sehr gute Spieltechniken beigebracht. Die Weasley-Brüder waren daher sehr verblüfft, als sie in die Hausmannschaft von Gryffindor aufgenommen wurde. Dort spielte sie erstmals im 5. Teil für Harry als Sucherin und später dann als Jägerin.",
    "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges.",
@@ -162,12 +327,28 @@
    "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken.",
    "Tom Vorlost Riddle alias Lord Voldemort (* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste. Seine größten Feinde waren Harry Potter und Albus Dumbledore. Voldemorts Schreckensherrschaft dauerte von 1970 bis 1981 und 1995 bis 1998, bis er in der Schlacht von Hogwarts von Harry Potter besiegt wurde. Er wurde nach seinem Vater Tom Riddle sr. und seinem Großvater Vorlost Gaunt benannt. Er hat zusammen mit Bellatrix Lestrange eine Tochter namens Delphini.",
    "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern."
+  ],
+  "negative_context_ids": [
+   "5",
+   "8",
+   "3",
+   "32",
+   "2",
+   "4",
+   "1",
+   "7",
+   "6"
   ]
  },
  {
-  "query": "was für ein zauberer ist ron",
-  "pos": "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß.",
-  "neg": [
+  "question": "was für ein zauberer ist ron",
+  "positive_contexts": [
+   "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß."
+  ],
+  "positive_context_ids": [
+   "31"
+  ],
+  "negative_contexts": [
    "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe.",
    "Der Kern eines Zauberstabs ist eine magische Substanz, der Länge nach in das Holz eingebettet. Sie sind normalerweise Teile von Haaren/Federn, entwendet von einer Art von magischem Wesen oder magischer Kreatur. Die Materialien, benutzt für Zauberstabkerne, können stark variieren, obwohl bestimmte Zauberstabmacher den Gebrauch von bestimmten Materialien bevorzugen; zum Beispiel entdeckte und machte Garrick Ollivander als erster Gebrauch von Phönixfedern, Drachenherzfasern und Einhornschwanzhaaren, wohingegen sein Vater schwächere Substanzen benutzte wie Kelpie-Haar und Schnurrhaare eines Kniesels.",
    "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges.",
@@ -177,12 +358,28 @@
    "[Charakter] Seit jeher daran gewöhnt, sich gegen viele und Stärkere durchsetzen zu müssen, hatte sie gelernt, schnell und geschickt zu vermitteln und schlagfertig gute Ausreden zu erfinden. Bei ihren großen Brüdern hatte sie Einiges abgeguckt, wie etwa, dass es (zumindest mit der Hilfe ihrer Zwillingsbrüder) für alle unmöglich erscheinenden Situationen irgendeine Lösung gab. Außerdem setzte sie ihre Interessen wenn nötig auch mal unbemerkt durch. So hat sie sich hinter dem Rücken ihrer Brüder, die sie bei Quidditch-Spielen im Garten zu Hause immer ausgeschlossen hatten, alleine sehr gute Spieltechniken beigebracht. Die Weasley-Brüder waren daher sehr verblüfft, als sie in die Hausmannschaft von Gryffindor aufgenommen wurde. Dort spielte sie erstmals im 5. Teil für Harry als Sucherin und später dann als Jägerin.",
    "Tom Vorlost Riddle alias Lord Voldemort (* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste. Seine größten Feinde waren Harry Potter und Albus Dumbledore. Voldemorts Schreckensherrschaft dauerte von 1970 bis 1981 und 1995 bis 1998, bis er in der Schlacht von Hogwarts von Harry Potter besiegt wurde. Er wurde nach seinem Vater Tom Riddle sr. und seinem Großvater Vorlost Gaunt benannt. Er hat zusammen mit Bellatrix Lestrange eine Tochter namens Delphini.",
    "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern."
+  ],
+  "negative_context_ids": [
+   "5",
+   "2",
+   "3",
+   "1",
+   "4",
+   "32",
+   "8",
+   "7",
+   "6"
   ]
  },
  {
-  "query": "Warum ist Myrte in der Toilette verbannt?",
-  "pos": "Myrte Elizabeth Warren , eher bekannt als Maulende Myrte , der Geist einer Ravenclaw-Schülerin, spukt in einer Mädchentoilette, wo sie ständig jammert, dass sie tot ist und niemand um sie trauert. Sie wurde vor vielen Jahren, als sie selbst noch zur Schule ging, vom Basilisken aus der Kammer des Schreckens getötet. Voldemort schuf mit ihrem Tod seinen ersten Horkrux. Nachdem sie zunächst immer wieder Olive Hornby, einer Mitschülerin, die sie zu Lebzeiten immer lächerlich gemacht hatte, erschienen war, wurde sie in die Toilette verbannt. Sie war ein wenig in Harry Potter verliebt und beschwerte sich bei ihm, wenn er sie sporadisch traf (etwa alle zwei Jahre), dass er sie so selten besuchte.",
-  "neg": [
+  "question": "Warum ist Myrte in der Toilette verbannt?",
+  "positive_contexts": [
+   "Myrte Elizabeth Warren , eher bekannt als Maulende Myrte , der Geist einer Ravenclaw-Schülerin, spukt in einer Mädchentoilette, wo sie ständig jammert, dass sie tot ist und niemand um sie trauert. Sie wurde vor vielen Jahren, als sie selbst noch zur Schule ging, vom Basilisken aus der Kammer des Schreckens getötet. Voldemort schuf mit ihrem Tod seinen ersten Horkrux. Nachdem sie zunächst immer wieder Olive Hornby, einer Mitschülerin, die sie zu Lebzeiten immer lächerlich gemacht hatte, erschienen war, wurde sie in die Toilette verbannt. Sie war ein wenig in Harry Potter verliebt und beschwerte sich bei ihm, wenn er sie sporadisch traf (etwa alle zwei Jahre), dass er sie so selten besuchte."
+  ],
+  "positive_context_ids": [
+   "32"
+  ],
+  "negative_contexts": [
    "[Frühes Leben] Im Sommer 1991 erfuhr Hermine überraschend, dass sie eine Hexe war und auf die Hogwartsschule für Hexerei und Zauberei gehen durfte. Eifrig akzeptierte sie diese Einladung und begann sogleich, die Welt der Zauberei zu erkunden. Noch bevor ihr erstes Schuljahr in Hogwarts im September 1991 begann, hatte sie alle ihre Schulbücher gelesen und gelernt. Zusätzlich zu ihren Schulbüchern las Hermine auch viele andere Bücher, die ihr halfen, Magie und Zauberei zu verstehen.",
    "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges.",
    "Tom Vorlost Riddle alias Lord Voldemort (* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste. Seine größten Feinde waren Harry Potter und Albus Dumbledore. Voldemorts Schreckensherrschaft dauerte von 1970 bis 1981 und 1995 bis 1998, bis er in der Schlacht von Hogwarts von Harry Potter besiegt wurde. Er wurde nach seinem Vater Tom Riddle sr. und seinem Großvater Vorlost Gaunt benannt. Er hat zusammen mit Bellatrix Lestrange eine Tochter namens Delphini.",
@@ -192,12 +389,28 @@
    "Der Kern eines Zauberstabs ist eine magische Substanz, der Länge nach in das Holz eingebettet. Sie sind normalerweise Teile von Haaren/Federn, entwendet von einer Art von magischem Wesen oder magischer Kreatur. Die Materialien, benutzt für Zauberstabkerne, können stark variieren, obwohl bestimmte Zauberstabmacher den Gebrauch von bestimmten Materialien bevorzugen; zum Beispiel entdeckte und machte Garrick Ollivander als erster Gebrauch von Phönixfedern, Drachenherzfasern und Einhornschwanzhaaren, wohingegen sein Vater schwächere Substanzen benutzte wie Kelpie-Haar und Schnurrhaare eines Kniesels.",
    "[Charakter] Seit jeher daran gewöhnt, sich gegen viele und Stärkere durchsetzen zu müssen, hatte sie gelernt, schnell und geschickt zu vermitteln und schlagfertig gute Ausreden zu erfinden. Bei ihren großen Brüdern hatte sie Einiges abgeguckt, wie etwa, dass es (zumindest mit der Hilfe ihrer Zwillingsbrüder) für alle unmöglich erscheinenden Situationen irgendeine Lösung gab. Außerdem setzte sie ihre Interessen wenn nötig auch mal unbemerkt durch. So hat sie sich hinter dem Rücken ihrer Brüder, die sie bei Quidditch-Spielen im Garten zu Hause immer ausgeschlossen hatten, alleine sehr gute Spieltechniken beigebracht. Die Weasley-Brüder waren daher sehr verblüfft, als sie in die Hausmannschaft von Gryffindor aufgenommen wurde. Dort spielte sie erstmals im 5. Teil für Harry als Sucherin und später dann als Jägerin.",
    "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß."
+  ],
+  "negative_context_ids": [
+   "4",
+   "3",
+   "7",
+   "5",
+   "1",
+   "6",
+   "2",
+   "8",
+   "31"
   ]
  },
  {
-  "query": "Warum ist Myrte Warren in der Toilette verschwunden?",
-  "pos": "Myrte Elizabeth Warren , eher bekannt als Maulende Myrte , der Geist einer Ravenclaw-Schülerin, spukt in einer Mädchentoilette, wo sie ständig jammert, dass sie tot ist und niemand um sie trauert. Sie wurde vor vielen Jahren, als sie selbst noch zur Schule ging, vom Basilisken aus der Kammer des Schreckens getötet. Voldemort schuf mit ihrem Tod seinen ersten Horkrux. Nachdem sie zunächst immer wieder Olive Hornby, einer Mitschülerin, die sie zu Lebzeiten immer lächerlich gemacht hatte, erschienen war, wurde sie in die Toilette verbannt. Sie war ein wenig in Harry Potter verliebt und beschwerte sich bei ihm, wenn er sie sporadisch traf (etwa alle zwei Jahre), dass er sie so selten besuchte.",
-  "neg": [
+  "question": "Warum ist Myrte Warren in der Toilette verschwunden?",
+  "positive_contexts": [
+   "Myrte Elizabeth Warren , eher bekannt als Maulende Myrte , der Geist einer Ravenclaw-Schülerin, spukt in einer Mädchentoilette, wo sie ständig jammert, dass sie tot ist und niemand um sie trauert. Sie wurde vor vielen Jahren, als sie selbst noch zur Schule ging, vom Basilisken aus der Kammer des Schreckens getötet. Voldemort schuf mit ihrem Tod seinen ersten Horkrux. Nachdem sie zunächst immer wieder Olive Hornby, einer Mitschülerin, die sie zu Lebzeiten immer lächerlich gemacht hatte, erschienen war, wurde sie in die Toilette verbannt. Sie war ein wenig in Harry Potter verliebt und beschwerte sich bei ihm, wenn er sie sporadisch traf (etwa alle zwei Jahre), dass er sie so selten besuchte."
+  ],
+  "positive_context_ids": [
+   "32"
+  ],
+  "negative_contexts": [
    "[Frühes Leben] Im Sommer 1991 erfuhr Hermine überraschend, dass sie eine Hexe war und auf die Hogwartsschule für Hexerei und Zauberei gehen durfte. Eifrig akzeptierte sie diese Einladung und begann sogleich, die Welt der Zauberei zu erkunden. Noch bevor ihr erstes Schuljahr in Hogwarts im September 1991 begann, hatte sie alle ihre Schulbücher gelesen und gelernt. Zusätzlich zu ihren Schulbüchern las Hermine auch viele andere Bücher, die ihr halfen, Magie und Zauberei zu verstehen.",
    "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges.",
    "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern.",
@@ -207,12 +420,28 @@
    "Der Kern eines Zauberstabs ist eine magische Substanz, der Länge nach in das Holz eingebettet. Sie sind normalerweise Teile von Haaren/Federn, entwendet von einer Art von magischem Wesen oder magischer Kreatur. Die Materialien, benutzt für Zauberstabkerne, können stark variieren, obwohl bestimmte Zauberstabmacher den Gebrauch von bestimmten Materialien bevorzugen; zum Beispiel entdeckte und machte Garrick Ollivander als erster Gebrauch von Phönixfedern, Drachenherzfasern und Einhornschwanzhaaren, wohingegen sein Vater schwächere Substanzen benutzte wie Kelpie-Haar und Schnurrhaare eines Kniesels.",
    "[Charakter] Seit jeher daran gewöhnt, sich gegen viele und Stärkere durchsetzen zu müssen, hatte sie gelernt, schnell und geschickt zu vermitteln und schlagfertig gute Ausreden zu erfinden. Bei ihren großen Brüdern hatte sie Einiges abgeguckt, wie etwa, dass es (zumindest mit der Hilfe ihrer Zwillingsbrüder) für alle unmöglich erscheinenden Situationen irgendeine Lösung gab. Außerdem setzte sie ihre Interessen wenn nötig auch mal unbemerkt durch. So hat sie sich hinter dem Rücken ihrer Brüder, die sie bei Quidditch-Spielen im Garten zu Hause immer ausgeschlossen hatten, alleine sehr gute Spieltechniken beigebracht. Die Weasley-Brüder waren daher sehr verblüfft, als sie in die Hausmannschaft von Gryffindor aufgenommen wurde. Dort spielte sie erstmals im 5. Teil für Harry als Sucherin und später dann als Jägerin.",
    "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß."
+  ],
+  "negative_context_ids": [
+   "4",
+   "3",
+   "6",
+   "5",
+   "7",
+   "1",
+   "2",
+   "8",
+   "31"
   ]
  },
  {
-  "query": "Warum wurde Myrte Warren getötet fogad",
-  "pos": "Myrte Elizabeth Warren , eher bekannt als Maulende Myrte , der Geist einer Ravenclaw-Schülerin, spukt in einer Mädchentoilette, wo sie ständig jammert, dass sie tot ist und niemand um sie trauert. Sie wurde vor vielen Jahren, als sie selbst noch zur Schule ging, vom Basilisken aus der Kammer des Schreckens getötet. Voldemort schuf mit ihrem Tod seinen ersten Horkrux. Nachdem sie zunächst immer wieder Olive Hornby, einer Mitschülerin, die sie zu Lebzeiten immer lächerlich gemacht hatte, erschienen war, wurde sie in die Toilette verbannt. Sie war ein wenig in Harry Potter verliebt und beschwerte sich bei ihm, wenn er sie sporadisch traf (etwa alle zwei Jahre), dass er sie so selten besuchte.",
-  "neg": [
+  "question": "Warum wurde Myrte Warren getötet fogad",
+  "positive_contexts": [
+   "Myrte Elizabeth Warren , eher bekannt als Maulende Myrte , der Geist einer Ravenclaw-Schülerin, spukt in einer Mädchentoilette, wo sie ständig jammert, dass sie tot ist und niemand um sie trauert. Sie wurde vor vielen Jahren, als sie selbst noch zur Schule ging, vom Basilisken aus der Kammer des Schreckens getötet. Voldemort schuf mit ihrem Tod seinen ersten Horkrux. Nachdem sie zunächst immer wieder Olive Hornby, einer Mitschülerin, die sie zu Lebzeiten immer lächerlich gemacht hatte, erschienen war, wurde sie in die Toilette verbannt. Sie war ein wenig in Harry Potter verliebt und beschwerte sich bei ihm, wenn er sie sporadisch traf (etwa alle zwei Jahre), dass er sie so selten besuchte."
+  ],
+  "positive_context_ids": [
+   "32"
+  ],
+  "negative_contexts": [
    "Tom Vorlost Riddle alias Lord Voldemort (* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste. Seine größten Feinde waren Harry Potter und Albus Dumbledore. Voldemorts Schreckensherrschaft dauerte von 1970 bis 1981 und 1995 bis 1998, bis er in der Schlacht von Hogwarts von Harry Potter besiegt wurde. Er wurde nach seinem Vater Tom Riddle sr. und seinem Großvater Vorlost Gaunt benannt. Er hat zusammen mit Bellatrix Lestrange eine Tochter namens Delphini.",
    "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges.",
    "[Frühes Leben] Im Sommer 1991 erfuhr Hermine überraschend, dass sie eine Hexe war und auf die Hogwartsschule für Hexerei und Zauberei gehen durfte. Eifrig akzeptierte sie diese Einladung und begann sogleich, die Welt der Zauberei zu erkunden. Noch bevor ihr erstes Schuljahr in Hogwarts im September 1991 begann, hatte sie alle ihre Schulbücher gelesen und gelernt. Zusätzlich zu ihren Schulbüchern las Hermine auch viele andere Bücher, die ihr halfen, Magie und Zauberei zu verstehen.",
@@ -222,12 +451,28 @@
    "[Charakter] Seit jeher daran gewöhnt, sich gegen viele und Stärkere durchsetzen zu müssen, hatte sie gelernt, schnell und geschickt zu vermitteln und schlagfertig gute Ausreden zu erfinden. Bei ihren großen Brüdern hatte sie Einiges abgeguckt, wie etwa, dass es (zumindest mit der Hilfe ihrer Zwillingsbrüder) für alle unmöglich erscheinenden Situationen irgendeine Lösung gab. Außerdem setzte sie ihre Interessen wenn nötig auch mal unbemerkt durch. So hat sie sich hinter dem Rücken ihrer Brüder, die sie bei Quidditch-Spielen im Garten zu Hause immer ausgeschlossen hatten, alleine sehr gute Spieltechniken beigebracht. Die Weasley-Brüder waren daher sehr verblüfft, als sie in die Hausmannschaft von Gryffindor aufgenommen wurde. Dort spielte sie erstmals im 5. Teil für Harry als Sucherin und später dann als Jägerin.",
    "Der Kern eines Zauberstabs ist eine magische Substanz, der Länge nach in das Holz eingebettet. Sie sind normalerweise Teile von Haaren/Federn, entwendet von einer Art von magischem Wesen oder magischer Kreatur. Die Materialien, benutzt für Zauberstabkerne, können stark variieren, obwohl bestimmte Zauberstabmacher den Gebrauch von bestimmten Materialien bevorzugen; zum Beispiel entdeckte und machte Garrick Ollivander als erster Gebrauch von Phönixfedern, Drachenherzfasern und Einhornschwanzhaaren, wohingegen sein Vater schwächere Substanzen benutzte wie Kelpie-Haar und Schnurrhaare eines Kniesels.",
    "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß."
+  ],
+  "negative_context_ids": [
+   "7",
+   "3",
+   "4",
+   "5",
+   "6",
+   "1",
+   "8",
+   "2",
+   "31"
   ]
  },
  {
-  "query": "in welchem jahr hat hermine harry potter Hogwarts besucht?",
-  "pos": "[Frühes Leben] Im Sommer 1991 erfuhr Hermine überraschend, dass sie eine Hexe war und auf die Hogwartsschule für Hexerei und Zauberei gehen durfte. Eifrig akzeptierte sie diese Einladung und begann sogleich, die Welt der Zauberei zu erkunden. Noch bevor ihr erstes Schuljahr in Hogwarts im September 1991 begann, hatte sie alle ihre Schulbücher gelesen und gelernt. Zusätzlich zu ihren Schulbüchern las Hermine auch viele andere Bücher, die ihr halfen, Magie und Zauberei zu verstehen.",
-  "neg": [
+  "question": "in welchem jahr hat hermine harry potter Hogwarts besucht?",
+  "positive_contexts": [
+   "[Frühes Leben] Im Sommer 1991 erfuhr Hermine überraschend, dass sie eine Hexe war und auf die Hogwartsschule für Hexerei und Zauberei gehen durfte. Eifrig akzeptierte sie diese Einladung und begann sogleich, die Welt der Zauberei zu erkunden. Noch bevor ihr erstes Schuljahr in Hogwarts im September 1991 begann, hatte sie alle ihre Schulbücher gelesen und gelernt. Zusätzlich zu ihren Schulbüchern las Hermine auch viele andere Bücher, die ihr halfen, Magie und Zauberei zu verstehen."
+  ],
+  "positive_context_ids": [
+   "4"
+  ],
+  "negative_contexts": [
    "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges.",
    "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe.",
    "Myrte Elizabeth Warren , eher bekannt als Maulende Myrte , der Geist einer Ravenclaw-Schülerin, spukt in einer Mädchentoilette, wo sie ständig jammert, dass sie tot ist und niemand um sie trauert. Sie wurde vor vielen Jahren, als sie selbst noch zur Schule ging, vom Basilisken aus der Kammer des Schreckens getötet. Voldemort schuf mit ihrem Tod seinen ersten Horkrux. Nachdem sie zunächst immer wieder Olive Hornby, einer Mitschülerin, die sie zu Lebzeiten immer lächerlich gemacht hatte, erschienen war, wurde sie in die Toilette verbannt. Sie war ein wenig in Harry Potter verliebt und beschwerte sich bei ihm, wenn er sie sporadisch traf (etwa alle zwei Jahre), dass er sie so selten besuchte.",
@@ -237,12 +482,28 @@
    "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern.",
    "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken.",
    "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß."
+  ],
+  "negative_context_ids": [
+   "3",
+   "5",
+   "32",
+   "7",
+   "8",
+   "2",
+   "6",
+   "1",
+   "31"
   ]
  },
  {
-  "query": "In welchem Jahr ist Hermine in Hogwarts gegangen?",
-  "pos": "[Frühes Leben] Im Sommer 1991 erfuhr Hermine überraschend, dass sie eine Hexe war und auf die Hogwartsschule für Hexerei und Zauberei gehen durfte. Eifrig akzeptierte sie diese Einladung und begann sogleich, die Welt der Zauberei zu erkunden. Noch bevor ihr erstes Schuljahr in Hogwarts im September 1991 begann, hatte sie alle ihre Schulbücher gelesen und gelernt. Zusätzlich zu ihren Schulbüchern las Hermine auch viele andere Bücher, die ihr halfen, Magie und Zauberei zu verstehen.",
-  "neg": [
+  "question": "In welchem Jahr ist Hermine in Hogwarts gegangen?",
+  "positive_contexts": [
+   "[Frühes Leben] Im Sommer 1991 erfuhr Hermine überraschend, dass sie eine Hexe war und auf die Hogwartsschule für Hexerei und Zauberei gehen durfte. Eifrig akzeptierte sie diese Einladung und begann sogleich, die Welt der Zauberei zu erkunden. Noch bevor ihr erstes Schuljahr in Hogwarts im September 1991 begann, hatte sie alle ihre Schulbücher gelesen und gelernt. Zusätzlich zu ihren Schulbüchern las Hermine auch viele andere Bücher, die ihr halfen, Magie und Zauberei zu verstehen."
+  ],
+  "positive_context_ids": [
+   "4"
+  ],
+  "negative_contexts": [
    "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges.",
    "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe.",
    "Myrte Elizabeth Warren , eher bekannt als Maulende Myrte , der Geist einer Ravenclaw-Schülerin, spukt in einer Mädchentoilette, wo sie ständig jammert, dass sie tot ist und niemand um sie trauert. Sie wurde vor vielen Jahren, als sie selbst noch zur Schule ging, vom Basilisken aus der Kammer des Schreckens getötet. Voldemort schuf mit ihrem Tod seinen ersten Horkrux. Nachdem sie zunächst immer wieder Olive Hornby, einer Mitschülerin, die sie zu Lebzeiten immer lächerlich gemacht hatte, erschienen war, wurde sie in die Toilette verbannt. Sie war ein wenig in Harry Potter verliebt und beschwerte sich bei ihm, wenn er sie sporadisch traf (etwa alle zwei Jahre), dass er sie so selten besuchte.",
@@ -252,12 +513,28 @@
    "[Charakter] Seit jeher daran gewöhnt, sich gegen viele und Stärkere durchsetzen zu müssen, hatte sie gelernt, schnell und geschickt zu vermitteln und schlagfertig gute Ausreden zu erfinden. Bei ihren großen Brüdern hatte sie Einiges abgeguckt, wie etwa, dass es (zumindest mit der Hilfe ihrer Zwillingsbrüder) für alle unmöglich erscheinenden Situationen irgendeine Lösung gab. Außerdem setzte sie ihre Interessen wenn nötig auch mal unbemerkt durch. So hat sie sich hinter dem Rücken ihrer Brüder, die sie bei Quidditch-Spielen im Garten zu Hause immer ausgeschlossen hatten, alleine sehr gute Spieltechniken beigebracht. Die Weasley-Brüder waren daher sehr verblüfft, als sie in die Hausmannschaft von Gryffindor aufgenommen wurde. Dort spielte sie erstmals im 5. Teil für Harry als Sucherin und später dann als Jägerin.",
    "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken.",
    "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß."
+  ],
+  "negative_context_ids": [
+   "3",
+   "5",
+   "32",
+   "6",
+   "2",
+   "7",
+   "8",
+   "1",
+   "31"
   ]
  },
  {
-  "query": "wann hat hermine granger mit hogwarts angefangen",
-  "pos": "[Frühes Leben] Im Sommer 1991 erfuhr Hermine überraschend, dass sie eine Hexe war und auf die Hogwartsschule für Hexerei und Zauberei gehen durfte. Eifrig akzeptierte sie diese Einladung und begann sogleich, die Welt der Zauberei zu erkunden. Noch bevor ihr erstes Schuljahr in Hogwarts im September 1991 begann, hatte sie alle ihre Schulbücher gelesen und gelernt. Zusätzlich zu ihren Schulbüchern las Hermine auch viele andere Bücher, die ihr halfen, Magie und Zauberei zu verstehen.",
-  "neg": [
+  "question": "wann hat hermine granger mit hogwarts angefangen",
+  "positive_contexts": [
+   "[Frühes Leben] Im Sommer 1991 erfuhr Hermine überraschend, dass sie eine Hexe war und auf die Hogwartsschule für Hexerei und Zauberei gehen durfte. Eifrig akzeptierte sie diese Einladung und begann sogleich, die Welt der Zauberei zu erkunden. Noch bevor ihr erstes Schuljahr in Hogwarts im September 1991 begann, hatte sie alle ihre Schulbücher gelesen und gelernt. Zusätzlich zu ihren Schulbüchern las Hermine auch viele andere Bücher, die ihr halfen, Magie und Zauberei zu verstehen."
+  ],
+  "positive_context_ids": [
+   "4"
+  ],
+  "negative_contexts": [
    "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges.",
    "Myrte Elizabeth Warren , eher bekannt als Maulende Myrte , der Geist einer Ravenclaw-Schülerin, spukt in einer Mädchentoilette, wo sie ständig jammert, dass sie tot ist und niemand um sie trauert. Sie wurde vor vielen Jahren, als sie selbst noch zur Schule ging, vom Basilisken aus der Kammer des Schreckens getötet. Voldemort schuf mit ihrem Tod seinen ersten Horkrux. Nachdem sie zunächst immer wieder Olive Hornby, einer Mitschülerin, die sie zu Lebzeiten immer lächerlich gemacht hatte, erschienen war, wurde sie in die Toilette verbannt. Sie war ein wenig in Harry Potter verliebt und beschwerte sich bei ihm, wenn er sie sporadisch traf (etwa alle zwei Jahre), dass er sie so selten besuchte.",
    "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe.",
@@ -267,12 +544,28 @@
    "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken.",
    "Der Kern eines Zauberstabs ist eine magische Substanz, der Länge nach in das Holz eingebettet. Sie sind normalerweise Teile von Haaren/Federn, entwendet von einer Art von magischem Wesen oder magischer Kreatur. Die Materialien, benutzt für Zauberstabkerne, können stark variieren, obwohl bestimmte Zauberstabmacher den Gebrauch von bestimmten Materialien bevorzugen; zum Beispiel entdeckte und machte Garrick Ollivander als erster Gebrauch von Phönixfedern, Drachenherzfasern und Einhornschwanzhaaren, wohingegen sein Vater schwächere Substanzen benutzte wie Kelpie-Haar und Schnurrhaare eines Kniesels.",
    "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß."
+  ],
+  "negative_context_ids": [
+   "3",
+   "32",
+   "5",
+   "7",
+   "8",
+   "6",
+   "1",
+   "2",
+   "31"
   ]
  },
  {
-  "query": "warum hat harry keine harry potter freundin mehr gebraucht",
-  "pos": "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe.",
-  "neg": [
+  "question": "warum hat harry keine harry potter freundin mehr gebraucht",
+  "positive_contexts": [
+   "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe."
+  ],
+  "positive_context_ids": [
+   "5"
+  ],
+  "negative_contexts": [
    "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges.",
    "Tom Vorlost Riddle alias Lord Voldemort (* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste. Seine größten Feinde waren Harry Potter und Albus Dumbledore. Voldemorts Schreckensherrschaft dauerte von 1970 bis 1981 und 1995 bis 1998, bis er in der Schlacht von Hogwarts von Harry Potter besiegt wurde. Er wurde nach seinem Vater Tom Riddle sr. und seinem Großvater Vorlost Gaunt benannt. Er hat zusammen mit Bellatrix Lestrange eine Tochter namens Delphini.",
    "[Frühes Leben] Im Sommer 1991 erfuhr Hermine überraschend, dass sie eine Hexe war und auf die Hogwartsschule für Hexerei und Zauberei gehen durfte. Eifrig akzeptierte sie diese Einladung und begann sogleich, die Welt der Zauberei zu erkunden. Noch bevor ihr erstes Schuljahr in Hogwarts im September 1991 begann, hatte sie alle ihre Schulbücher gelesen und gelernt. Zusätzlich zu ihren Schulbüchern las Hermine auch viele andere Bücher, die ihr halfen, Magie und Zauberei zu verstehen.",
@@ -282,12 +575,28 @@
    "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß.",
    "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken.",
    "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern."
+  ],
+  "negative_context_ids": [
+   "3",
+   "7",
+   "4",
+   "32",
+   "8",
+   "2",
+   "31",
+   "1",
+   "6"
   ]
  },
  {
-  "query": "Was geschah mit Ron Weasley, als Harry die Harry Potter-Freunde verließ?",
-  "pos": "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe.",
-  "neg": [
+  "question": "Was geschah mit Ron Weasley, als Harry die Harry Potter-Freunde verließ?",
+  "positive_contexts": [
+   "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe."
+  ],
+  "positive_context_ids": [
+   "5"
+  ],
+  "negative_contexts": [
    "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß.",
    "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges.",
    "[Charakter] Seit jeher daran gewöhnt, sich gegen viele und Stärkere durchsetzen zu müssen, hatte sie gelernt, schnell und geschickt zu vermitteln und schlagfertig gute Ausreden zu erfinden. Bei ihren großen Brüdern hatte sie Einiges abgeguckt, wie etwa, dass es (zumindest mit der Hilfe ihrer Zwillingsbrüder) für alle unmöglich erscheinenden Situationen irgendeine Lösung gab. Außerdem setzte sie ihre Interessen wenn nötig auch mal unbemerkt durch. So hat sie sich hinter dem Rücken ihrer Brüder, die sie bei Quidditch-Spielen im Garten zu Hause immer ausgeschlossen hatten, alleine sehr gute Spieltechniken beigebracht. Die Weasley-Brüder waren daher sehr verblüfft, als sie in die Hausmannschaft von Gryffindor aufgenommen wurde. Dort spielte sie erstmals im 5. Teil für Harry als Sucherin und später dann als Jägerin.",
@@ -297,12 +606,28 @@
    "[Frühes Leben] Im Sommer 1991 erfuhr Hermine überraschend, dass sie eine Hexe war und auf die Hogwartsschule für Hexerei und Zauberei gehen durfte. Eifrig akzeptierte sie diese Einladung und begann sogleich, die Welt der Zauberei zu erkunden. Noch bevor ihr erstes Schuljahr in Hogwarts im September 1991 begann, hatte sie alle ihre Schulbücher gelesen und gelernt. Zusätzlich zu ihren Schulbüchern las Hermine auch viele andere Bücher, die ihr halfen, Magie und Zauberei zu verstehen.",
    "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern.",
    "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken."
+  ],
+  "negative_context_ids": [
+   "31",
+   "3",
+   "8",
+   "32",
+   "2",
+   "7",
+   "4",
+   "6",
+   "1"
   ]
  },
  {
-  "query": "wie viele harry potter freunde hat ron zerstört",
-  "pos": "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe.",
-  "neg": [
+  "question": "wie viele harry potter freunde hat ron zerstört",
+  "positive_contexts": [
+   "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe."
+  ],
+  "positive_context_ids": [
+   "5"
+  ],
+  "negative_contexts": [
    "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges.",
    "Myrte Elizabeth Warren , eher bekannt als Maulende Myrte , der Geist einer Ravenclaw-Schülerin, spukt in einer Mädchentoilette, wo sie ständig jammert, dass sie tot ist und niemand um sie trauert. Sie wurde vor vielen Jahren, als sie selbst noch zur Schule ging, vom Basilisken aus der Kammer des Schreckens getötet. Voldemort schuf mit ihrem Tod seinen ersten Horkrux. Nachdem sie zunächst immer wieder Olive Hornby, einer Mitschülerin, die sie zu Lebzeiten immer lächerlich gemacht hatte, erschienen war, wurde sie in die Toilette verbannt. Sie war ein wenig in Harry Potter verliebt und beschwerte sich bei ihm, wenn er sie sporadisch traf (etwa alle zwei Jahre), dass er sie so selten besuchte.",
    "[Charakter] Seit jeher daran gewöhnt, sich gegen viele und Stärkere durchsetzen zu müssen, hatte sie gelernt, schnell und geschickt zu vermitteln und schlagfertig gute Ausreden zu erfinden. Bei ihren großen Brüdern hatte sie Einiges abgeguckt, wie etwa, dass es (zumindest mit der Hilfe ihrer Zwillingsbrüder) für alle unmöglich erscheinenden Situationen irgendeine Lösung gab. Außerdem setzte sie ihre Interessen wenn nötig auch mal unbemerkt durch. So hat sie sich hinter dem Rücken ihrer Brüder, die sie bei Quidditch-Spielen im Garten zu Hause immer ausgeschlossen hatten, alleine sehr gute Spieltechniken beigebracht. Die Weasley-Brüder waren daher sehr verblüfft, als sie in die Hausmannschaft von Gryffindor aufgenommen wurde. Dort spielte sie erstmals im 5. Teil für Harry als Sucherin und später dann als Jägerin.",
@@ -312,12 +637,28 @@
    "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern.",
    "Der Kern eines Zauberstabs ist eine magische Substanz, der Länge nach in das Holz eingebettet. Sie sind normalerweise Teile von Haaren/Federn, entwendet von einer Art von magischem Wesen oder magischer Kreatur. Die Materialien, benutzt für Zauberstabkerne, können stark variieren, obwohl bestimmte Zauberstabmacher den Gebrauch von bestimmten Materialien bevorzugen; zum Beispiel entdeckte und machte Garrick Ollivander als erster Gebrauch von Phönixfedern, Drachenherzfasern und Einhornschwanzhaaren, wohingegen sein Vater schwächere Substanzen benutzte wie Kelpie-Haar und Schnurrhaare eines Kniesels.",
    "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken."
+  ],
+  "negative_context_ids": [
+   "3",
+   "32",
+   "8",
+   "7",
+   "31",
+   "4",
+   "6",
+   "2",
+   "1"
   ]
  },
  {
-  "query": "was war die armee von albus dumbledore",
-  "pos": "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern.",
-  "neg": [
+  "question": "was war die armee von albus dumbledore",
+  "positive_contexts": [
+   "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern."
+  ],
+  "positive_context_ids": [
+   "6"
+  ],
+  "negative_contexts": [
    "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken.",
    "[Frühes Leben] Im Sommer 1991 erfuhr Hermine überraschend, dass sie eine Hexe war und auf die Hogwartsschule für Hexerei und Zauberei gehen durfte. Eifrig akzeptierte sie diese Einladung und begann sogleich, die Welt der Zauberei zu erkunden. Noch bevor ihr erstes Schuljahr in Hogwarts im September 1991 begann, hatte sie alle ihre Schulbücher gelesen und gelernt. Zusätzlich zu ihren Schulbüchern las Hermine auch viele andere Bücher, die ihr halfen, Magie und Zauberei zu verstehen.",
    "Tom Vorlost Riddle alias Lord Voldemort (* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste. Seine größten Feinde waren Harry Potter und Albus Dumbledore. Voldemorts Schreckensherrschaft dauerte von 1970 bis 1981 und 1995 bis 1998, bis er in der Schlacht von Hogwarts von Harry Potter besiegt wurde. Er wurde nach seinem Vater Tom Riddle sr. und seinem Großvater Vorlost Gaunt benannt. Er hat zusammen mit Bellatrix Lestrange eine Tochter namens Delphini.",
@@ -327,12 +668,28 @@
    "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe.",
    "[Charakter] Seit jeher daran gewöhnt, sich gegen viele und Stärkere durchsetzen zu müssen, hatte sie gelernt, schnell und geschickt zu vermitteln und schlagfertig gute Ausreden zu erfinden. Bei ihren großen Brüdern hatte sie Einiges abgeguckt, wie etwa, dass es (zumindest mit der Hilfe ihrer Zwillingsbrüder) für alle unmöglich erscheinenden Situationen irgendeine Lösung gab. Außerdem setzte sie ihre Interessen wenn nötig auch mal unbemerkt durch. So hat sie sich hinter dem Rücken ihrer Brüder, die sie bei Quidditch-Spielen im Garten zu Hause immer ausgeschlossen hatten, alleine sehr gute Spieltechniken beigebracht. Die Weasley-Brüder waren daher sehr verblüfft, als sie in die Hausmannschaft von Gryffindor aufgenommen wurde. Dort spielte sie erstmals im 5. Teil für Harry als Sucherin und später dann als Jägerin.",
    "Der Kern eines Zauberstabs ist eine magische Substanz, der Länge nach in das Holz eingebettet. Sie sind normalerweise Teile von Haaren/Federn, entwendet von einer Art von magischem Wesen oder magischer Kreatur. Die Materialien, benutzt für Zauberstabkerne, können stark variieren, obwohl bestimmte Zauberstabmacher den Gebrauch von bestimmten Materialien bevorzugen; zum Beispiel entdeckte und machte Garrick Ollivander als erster Gebrauch von Phönixfedern, Drachenherzfasern und Einhornschwanzhaaren, wohingegen sein Vater schwächere Substanzen benutzte wie Kelpie-Haar und Schnurrhaare eines Kniesels."
+  ],
+  "negative_context_ids": [
+   "1",
+   "4",
+   "7",
+   "31",
+   "3",
+   "32",
+   "5",
+   "8",
+   "2"
   ]
  },
  {
-  "query": "wer hat Grindelwald gegründet",
-  "pos": "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern.",
-  "neg": [
+  "question": "wer hat Grindelwald gegründet",
+  "positive_contexts": [
+   "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern."
+  ],
+  "positive_context_ids": [
+   "6"
+  ],
+  "negative_contexts": [
    "[Charakter] Seit jeher daran gewöhnt, sich gegen viele und Stärkere durchsetzen zu müssen, hatte sie gelernt, schnell und geschickt zu vermitteln und schlagfertig gute Ausreden zu erfinden. Bei ihren großen Brüdern hatte sie Einiges abgeguckt, wie etwa, dass es (zumindest mit der Hilfe ihrer Zwillingsbrüder) für alle unmöglich erscheinenden Situationen irgendeine Lösung gab. Außerdem setzte sie ihre Interessen wenn nötig auch mal unbemerkt durch. So hat sie sich hinter dem Rücken ihrer Brüder, die sie bei Quidditch-Spielen im Garten zu Hause immer ausgeschlossen hatten, alleine sehr gute Spieltechniken beigebracht. Die Weasley-Brüder waren daher sehr verblüfft, als sie in die Hausmannschaft von Gryffindor aufgenommen wurde. Dort spielte sie erstmals im 5. Teil für Harry als Sucherin und später dann als Jägerin.",
    "Myrte Elizabeth Warren , eher bekannt als Maulende Myrte , der Geist einer Ravenclaw-Schülerin, spukt in einer Mädchentoilette, wo sie ständig jammert, dass sie tot ist und niemand um sie trauert. Sie wurde vor vielen Jahren, als sie selbst noch zur Schule ging, vom Basilisken aus der Kammer des Schreckens getötet. Voldemort schuf mit ihrem Tod seinen ersten Horkrux. Nachdem sie zunächst immer wieder Olive Hornby, einer Mitschülerin, die sie zu Lebzeiten immer lächerlich gemacht hatte, erschienen war, wurde sie in die Toilette verbannt. Sie war ein wenig in Harry Potter verliebt und beschwerte sich bei ihm, wenn er sie sporadisch traf (etwa alle zwei Jahre), dass er sie so selten besuchte.",
    "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges.",
@@ -342,12 +699,28 @@
    "[Frühes Leben] Im Sommer 1991 erfuhr Hermine überraschend, dass sie eine Hexe war und auf die Hogwartsschule für Hexerei und Zauberei gehen durfte. Eifrig akzeptierte sie diese Einladung und begann sogleich, die Welt der Zauberei zu erkunden. Noch bevor ihr erstes Schuljahr in Hogwarts im September 1991 begann, hatte sie alle ihre Schulbücher gelesen und gelernt. Zusätzlich zu ihren Schulbüchern las Hermine auch viele andere Bücher, die ihr halfen, Magie und Zauberei zu verstehen.",
    "Der Kern eines Zauberstabs ist eine magische Substanz, der Länge nach in das Holz eingebettet. Sie sind normalerweise Teile von Haaren/Federn, entwendet von einer Art von magischem Wesen oder magischer Kreatur. Die Materialien, benutzt für Zauberstabkerne, können stark variieren, obwohl bestimmte Zauberstabmacher den Gebrauch von bestimmten Materialien bevorzugen; zum Beispiel entdeckte und machte Garrick Ollivander als erster Gebrauch von Phönixfedern, Drachenherzfasern und Einhornschwanzhaaren, wohingegen sein Vater schwächere Substanzen benutzte wie Kelpie-Haar und Schnurrhaare eines Kniesels.",
    "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken."
+  ],
+  "negative_context_ids": [
+   "8",
+   "32",
+   "3",
+   "5",
+   "7",
+   "31",
+   "4",
+   "2",
+   "1"
   ]
  },
  {
-  "query": "Welche Armee wurde von Dumbledore geschaffen?",
-  "pos": "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern.",
-  "neg": [
+  "question": "Welche Armee wurde von Dumbledore geschaffen?",
+  "positive_contexts": [
+   "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern."
+  ],
+  "positive_context_ids": [
+   "6"
+  ],
+  "negative_contexts": [
    "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken.",
    "[Frühes Leben] Im Sommer 1991 erfuhr Hermine überraschend, dass sie eine Hexe war und auf die Hogwartsschule für Hexerei und Zauberei gehen durfte. Eifrig akzeptierte sie diese Einladung und begann sogleich, die Welt der Zauberei zu erkunden. Noch bevor ihr erstes Schuljahr in Hogwarts im September 1991 begann, hatte sie alle ihre Schulbücher gelesen und gelernt. Zusätzlich zu ihren Schulbüchern las Hermine auch viele andere Bücher, die ihr halfen, Magie und Zauberei zu verstehen.",
    "Myrte Elizabeth Warren , eher bekannt als Maulende Myrte , der Geist einer Ravenclaw-Schülerin, spukt in einer Mädchentoilette, wo sie ständig jammert, dass sie tot ist und niemand um sie trauert. Sie wurde vor vielen Jahren, als sie selbst noch zur Schule ging, vom Basilisken aus der Kammer des Schreckens getötet. Voldemort schuf mit ihrem Tod seinen ersten Horkrux. Nachdem sie zunächst immer wieder Olive Hornby, einer Mitschülerin, die sie zu Lebzeiten immer lächerlich gemacht hatte, erschienen war, wurde sie in die Toilette verbannt. Sie war ein wenig in Harry Potter verliebt und beschwerte sich bei ihm, wenn er sie sporadisch traf (etwa alle zwei Jahre), dass er sie so selten besuchte.",
@@ -357,12 +730,28 @@
    "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß.",
    "Der Kern eines Zauberstabs ist eine magische Substanz, der Länge nach in das Holz eingebettet. Sie sind normalerweise Teile von Haaren/Federn, entwendet von einer Art von magischem Wesen oder magischer Kreatur. Die Materialien, benutzt für Zauberstabkerne, können stark variieren, obwohl bestimmte Zauberstabmacher den Gebrauch von bestimmten Materialien bevorzugen; zum Beispiel entdeckte und machte Garrick Ollivander als erster Gebrauch von Phönixfedern, Drachenherzfasern und Einhornschwanzhaaren, wohingegen sein Vater schwächere Substanzen benutzte wie Kelpie-Haar und Schnurrhaare eines Kniesels.",
    "Tom Vorlost Riddle alias Lord Voldemort (* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste. Seine größten Feinde waren Harry Potter und Albus Dumbledore. Voldemorts Schreckensherrschaft dauerte von 1970 bis 1981 und 1995 bis 1998, bis er in der Schlacht von Hogwarts von Harry Potter besiegt wurde. Er wurde nach seinem Vater Tom Riddle sr. und seinem Großvater Vorlost Gaunt benannt. Er hat zusammen mit Bellatrix Lestrange eine Tochter namens Delphini."
+  ],
+  "negative_context_ids": [
+   "1",
+   "4",
+   "32",
+   "8",
+   "3",
+   "5",
+   "31",
+   "2",
+   "7"
   ]
  },
  {
-  "query": "Was war der schrecklichste schwarze Magier aller Zeiten?",
-  "pos": "Tom Vorlost Riddle alias Lord Voldemort (* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste. Seine größten Feinde waren Harry Potter und Albus Dumbledore. Voldemorts Schreckensherrschaft dauerte von 1970 bis 1981 und 1995 bis 1998, bis er in der Schlacht von Hogwarts von Harry Potter besiegt wurde. Er wurde nach seinem Vater Tom Riddle sr. und seinem Großvater Vorlost Gaunt benannt. Er hat zusammen mit Bellatrix Lestrange eine Tochter namens Delphini.",
-  "neg": [
+  "question": "Was war der schrecklichste schwarze Magier aller Zeiten?",
+  "positive_contexts": [
+   "Tom Vorlost Riddle alias Lord Voldemort (* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste. Seine größten Feinde waren Harry Potter und Albus Dumbledore. Voldemorts Schreckensherrschaft dauerte von 1970 bis 1981 und 1995 bis 1998, bis er in der Schlacht von Hogwarts von Harry Potter besiegt wurde. Er wurde nach seinem Vater Tom Riddle sr. und seinem Großvater Vorlost Gaunt benannt. Er hat zusammen mit Bellatrix Lestrange eine Tochter namens Delphini."
+  ],
+  "positive_context_ids": [
+   "7"
+  ],
+  "negative_contexts": [
    "Myrte Elizabeth Warren , eher bekannt als Maulende Myrte , der Geist einer Ravenclaw-Schülerin, spukt in einer Mädchentoilette, wo sie ständig jammert, dass sie tot ist und niemand um sie trauert. Sie wurde vor vielen Jahren, als sie selbst noch zur Schule ging, vom Basilisken aus der Kammer des Schreckens getötet. Voldemort schuf mit ihrem Tod seinen ersten Horkrux. Nachdem sie zunächst immer wieder Olive Hornby, einer Mitschülerin, die sie zu Lebzeiten immer lächerlich gemacht hatte, erschienen war, wurde sie in die Toilette verbannt. Sie war ein wenig in Harry Potter verliebt und beschwerte sich bei ihm, wenn er sie sporadisch traf (etwa alle zwei Jahre), dass er sie so selten besuchte.",
    "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe.",
    "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges.",
@@ -372,12 +761,28 @@
    "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern.",
    "[Charakter] Seit jeher daran gewöhnt, sich gegen viele und Stärkere durchsetzen zu müssen, hatte sie gelernt, schnell und geschickt zu vermitteln und schlagfertig gute Ausreden zu erfinden. Bei ihren großen Brüdern hatte sie Einiges abgeguckt, wie etwa, dass es (zumindest mit der Hilfe ihrer Zwillingsbrüder) für alle unmöglich erscheinenden Situationen irgendeine Lösung gab. Außerdem setzte sie ihre Interessen wenn nötig auch mal unbemerkt durch. So hat sie sich hinter dem Rücken ihrer Brüder, die sie bei Quidditch-Spielen im Garten zu Hause immer ausgeschlossen hatten, alleine sehr gute Spieltechniken beigebracht. Die Weasley-Brüder waren daher sehr verblüfft, als sie in die Hausmannschaft von Gryffindor aufgenommen wurde. Dort spielte sie erstmals im 5. Teil für Harry als Sucherin und später dann als Jägerin.",
    "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß."
+  ],
+  "negative_context_ids": [
+   "32",
+   "5",
+   "3",
+   "4",
+   "2",
+   "1",
+   "6",
+   "8",
+   "31"
   ]
  },
  {
-  "query": "wann ist tom rätsel gestorben",
-  "pos": "Tom Vorlost Riddle alias Lord Voldemort (* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste. Seine größten Feinde waren Harry Potter und Albus Dumbledore. Voldemorts Schreckensherrschaft dauerte von 1970 bis 1981 und 1995 bis 1998, bis er in der Schlacht von Hogwarts von Harry Potter besiegt wurde. Er wurde nach seinem Vater Tom Riddle sr. und seinem Großvater Vorlost Gaunt benannt. Er hat zusammen mit Bellatrix Lestrange eine Tochter namens Delphini.",
-  "neg": [
+  "question": "wann ist tom rätsel gestorben",
+  "positive_contexts": [
+   "Tom Vorlost Riddle alias Lord Voldemort (* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste. Seine größten Feinde waren Harry Potter und Albus Dumbledore. Voldemorts Schreckensherrschaft dauerte von 1970 bis 1981 und 1995 bis 1998, bis er in der Schlacht von Hogwarts von Harry Potter besiegt wurde. Er wurde nach seinem Vater Tom Riddle sr. und seinem Großvater Vorlost Gaunt benannt. Er hat zusammen mit Bellatrix Lestrange eine Tochter namens Delphini."
+  ],
+  "positive_context_ids": [
+   "7"
+  ],
+  "negative_contexts": [
    "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges.",
    "Myrte Elizabeth Warren , eher bekannt als Maulende Myrte , der Geist einer Ravenclaw-Schülerin, spukt in einer Mädchentoilette, wo sie ständig jammert, dass sie tot ist und niemand um sie trauert. Sie wurde vor vielen Jahren, als sie selbst noch zur Schule ging, vom Basilisken aus der Kammer des Schreckens getötet. Voldemort schuf mit ihrem Tod seinen ersten Horkrux. Nachdem sie zunächst immer wieder Olive Hornby, einer Mitschülerin, die sie zu Lebzeiten immer lächerlich gemacht hatte, erschienen war, wurde sie in die Toilette verbannt. Sie war ein wenig in Harry Potter verliebt und beschwerte sich bei ihm, wenn er sie sporadisch traf (etwa alle zwei Jahre), dass er sie so selten besuchte.",
    "Der Kern eines Zauberstabs ist eine magische Substanz, der Länge nach in das Holz eingebettet. Sie sind normalerweise Teile von Haaren/Federn, entwendet von einer Art von magischem Wesen oder magischer Kreatur. Die Materialien, benutzt für Zauberstabkerne, können stark variieren, obwohl bestimmte Zauberstabmacher den Gebrauch von bestimmten Materialien bevorzugen; zum Beispiel entdeckte und machte Garrick Ollivander als erster Gebrauch von Phönixfedern, Drachenherzfasern und Einhornschwanzhaaren, wohingegen sein Vater schwächere Substanzen benutzte wie Kelpie-Haar und Schnurrhaare eines Kniesels.",
@@ -387,12 +792,28 @@
    "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken.",
    "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern.",
    "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß."
+  ],
+  "negative_context_ids": [
+   "3",
+   "32",
+   "2",
+   "5",
+   "4",
+   "8",
+   "1",
+   "6",
+   "31"
   ]
  },
  {
-  "query": "wann wurde lord voldemort besiegt",
-  "pos": "Tom Vorlost Riddle alias Lord Voldemort (* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste. Seine größten Feinde waren Harry Potter und Albus Dumbledore. Voldemorts Schreckensherrschaft dauerte von 1970 bis 1981 und 1995 bis 1998, bis er in der Schlacht von Hogwarts von Harry Potter besiegt wurde. Er wurde nach seinem Vater Tom Riddle sr. und seinem Großvater Vorlost Gaunt benannt. Er hat zusammen mit Bellatrix Lestrange eine Tochter namens Delphini.",
-  "neg": [
+  "question": "wann wurde lord voldemort besiegt",
+  "positive_contexts": [
+   "Tom Vorlost Riddle alias Lord Voldemort (* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste. Seine größten Feinde waren Harry Potter und Albus Dumbledore. Voldemorts Schreckensherrschaft dauerte von 1970 bis 1981 und 1995 bis 1998, bis er in der Schlacht von Hogwarts von Harry Potter besiegt wurde. Er wurde nach seinem Vater Tom Riddle sr. und seinem Großvater Vorlost Gaunt benannt. Er hat zusammen mit Bellatrix Lestrange eine Tochter namens Delphini."
+  ],
+  "positive_context_ids": [
+   "7"
+  ],
+  "negative_contexts": [
    "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern.",
    "Myrte Elizabeth Warren , eher bekannt als Maulende Myrte , der Geist einer Ravenclaw-Schülerin, spukt in einer Mädchentoilette, wo sie ständig jammert, dass sie tot ist und niemand um sie trauert. Sie wurde vor vielen Jahren, als sie selbst noch zur Schule ging, vom Basilisken aus der Kammer des Schreckens getötet. Voldemort schuf mit ihrem Tod seinen ersten Horkrux. Nachdem sie zunächst immer wieder Olive Hornby, einer Mitschülerin, die sie zu Lebzeiten immer lächerlich gemacht hatte, erschienen war, wurde sie in die Toilette verbannt. Sie war ein wenig in Harry Potter verliebt und beschwerte sich bei ihm, wenn er sie sporadisch traf (etwa alle zwei Jahre), dass er sie so selten besuchte.",
    "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe.",
@@ -402,12 +823,28 @@
    "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges.",
    "[Frühes Leben] Im Sommer 1991 erfuhr Hermine überraschend, dass sie eine Hexe war und auf die Hogwartsschule für Hexerei und Zauberei gehen durfte. Eifrig akzeptierte sie diese Einladung und begann sogleich, die Welt der Zauberei zu erkunden. Noch bevor ihr erstes Schuljahr in Hogwarts im September 1991 begann, hatte sie alle ihre Schulbücher gelesen und gelernt. Zusätzlich zu ihren Schulbüchern las Hermine auch viele andere Bücher, die ihr halfen, Magie und Zauberei zu verstehen.",
    "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß."
+  ],
+  "negative_context_ids": [
+   "6",
+   "32",
+   "5",
+   "8",
+   "1",
+   "2",
+   "3",
+   "4",
+   "31"
   ]
  },
  {
-  "query": "Wer waren die Weasley-Brüder?",
-  "pos": "[Charakter] Seit jeher daran gewöhnt, sich gegen viele und Stärkere durchsetzen zu müssen, hatte sie gelernt, schnell und geschickt zu vermitteln und schlagfertig gute Ausreden zu erfinden. Bei ihren großen Brüdern hatte sie Einiges abgeguckt, wie etwa, dass es (zumindest mit der Hilfe ihrer Zwillingsbrüder) für alle unmöglich erscheinenden Situationen irgendeine Lösung gab. Außerdem setzte sie ihre Interessen wenn nötig auch mal unbemerkt durch. So hat sie sich hinter dem Rücken ihrer Brüder, die sie bei Quidditch-Spielen im Garten zu Hause immer ausgeschlossen hatten, alleine sehr gute Spieltechniken beigebracht. Die Weasley-Brüder waren daher sehr verblüfft, als sie in die Hausmannschaft von Gryffindor aufgenommen wurde. Dort spielte sie erstmals im 5. Teil für Harry als Sucherin und später dann als Jägerin.",
-  "neg": [
+  "question": "Wer waren die Weasley-Brüder?",
+  "positive_contexts": [
+   "[Charakter] Seit jeher daran gewöhnt, sich gegen viele und Stärkere durchsetzen zu müssen, hatte sie gelernt, schnell und geschickt zu vermitteln und schlagfertig gute Ausreden zu erfinden. Bei ihren großen Brüdern hatte sie Einiges abgeguckt, wie etwa, dass es (zumindest mit der Hilfe ihrer Zwillingsbrüder) für alle unmöglich erscheinenden Situationen irgendeine Lösung gab. Außerdem setzte sie ihre Interessen wenn nötig auch mal unbemerkt durch. So hat sie sich hinter dem Rücken ihrer Brüder, die sie bei Quidditch-Spielen im Garten zu Hause immer ausgeschlossen hatten, alleine sehr gute Spieltechniken beigebracht. Die Weasley-Brüder waren daher sehr verblüfft, als sie in die Hausmannschaft von Gryffindor aufgenommen wurde. Dort spielte sie erstmals im 5. Teil für Harry als Sucherin und später dann als Jägerin."
+  ],
+  "positive_context_ids": [
+   "8"
+  ],
+  "negative_contexts": [
    "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe.",
    "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß.",
    "Myrte Elizabeth Warren , eher bekannt als Maulende Myrte , der Geist einer Ravenclaw-Schülerin, spukt in einer Mädchentoilette, wo sie ständig jammert, dass sie tot ist und niemand um sie trauert. Sie wurde vor vielen Jahren, als sie selbst noch zur Schule ging, vom Basilisken aus der Kammer des Schreckens getötet. Voldemort schuf mit ihrem Tod seinen ersten Horkrux. Nachdem sie zunächst immer wieder Olive Hornby, einer Mitschülerin, die sie zu Lebzeiten immer lächerlich gemacht hatte, erschienen war, wurde sie in die Toilette verbannt. Sie war ein wenig in Harry Potter verliebt und beschwerte sich bei ihm, wenn er sie sporadisch traf (etwa alle zwei Jahre), dass er sie so selten besuchte.",
@@ -417,12 +854,28 @@
    "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern.",
    "Tom Vorlost Riddle alias Lord Voldemort (* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste. Seine größten Feinde waren Harry Potter und Albus Dumbledore. Voldemorts Schreckensherrschaft dauerte von 1970 bis 1981 und 1995 bis 1998, bis er in der Schlacht von Hogwarts von Harry Potter besiegt wurde. Er wurde nach seinem Vater Tom Riddle sr. und seinem Großvater Vorlost Gaunt benannt. Er hat zusammen mit Bellatrix Lestrange eine Tochter namens Delphini.",
    "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken."
+  ],
+  "negative_context_ids": [
+   "5",
+   "31",
+   "32",
+   "3",
+   "2",
+   "4",
+   "6",
+   "7",
+   "1"
   ]
  },
  {
-  "query": "wann wurde ginevra weasley in das geheime ereignis ingryffindor aufgenommen?",
-  "pos": "[Charakter] Seit jeher daran gewöhnt, sich gegen viele und Stärkere durchsetzen zu müssen, hatte sie gelernt, schnell und geschickt zu vermitteln und schlagfertig gute Ausreden zu erfinden. Bei ihren großen Brüdern hatte sie Einiges abgeguckt, wie etwa, dass es (zumindest mit der Hilfe ihrer Zwillingsbrüder) für alle unmöglich erscheinenden Situationen irgendeine Lösung gab. Außerdem setzte sie ihre Interessen wenn nötig auch mal unbemerkt durch. So hat sie sich hinter dem Rücken ihrer Brüder, die sie bei Quidditch-Spielen im Garten zu Hause immer ausgeschlossen hatten, alleine sehr gute Spieltechniken beigebracht. Die Weasley-Brüder waren daher sehr verblüfft, als sie in die Hausmannschaft von Gryffindor aufgenommen wurde. Dort spielte sie erstmals im 5. Teil für Harry als Sucherin und später dann als Jägerin.",
-  "neg": [
+  "question": "wann wurde ginevra weasley in das geheime ereignis ingryffindor aufgenommen?",
+  "positive_contexts": [
+   "[Charakter] Seit jeher daran gewöhnt, sich gegen viele und Stärkere durchsetzen zu müssen, hatte sie gelernt, schnell und geschickt zu vermitteln und schlagfertig gute Ausreden zu erfinden. Bei ihren großen Brüdern hatte sie Einiges abgeguckt, wie etwa, dass es (zumindest mit der Hilfe ihrer Zwillingsbrüder) für alle unmöglich erscheinenden Situationen irgendeine Lösung gab. Außerdem setzte sie ihre Interessen wenn nötig auch mal unbemerkt durch. So hat sie sich hinter dem Rücken ihrer Brüder, die sie bei Quidditch-Spielen im Garten zu Hause immer ausgeschlossen hatten, alleine sehr gute Spieltechniken beigebracht. Die Weasley-Brüder waren daher sehr verblüfft, als sie in die Hausmannschaft von Gryffindor aufgenommen wurde. Dort spielte sie erstmals im 5. Teil für Harry als Sucherin und später dann als Jägerin."
+  ],
+  "positive_context_ids": [
+   "8"
+  ],
+  "negative_contexts": [
    "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe.",
    "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß.",
    "Myrte Elizabeth Warren , eher bekannt als Maulende Myrte , der Geist einer Ravenclaw-Schülerin, spukt in einer Mädchentoilette, wo sie ständig jammert, dass sie tot ist und niemand um sie trauert. Sie wurde vor vielen Jahren, als sie selbst noch zur Schule ging, vom Basilisken aus der Kammer des Schreckens getötet. Voldemort schuf mit ihrem Tod seinen ersten Horkrux. Nachdem sie zunächst immer wieder Olive Hornby, einer Mitschülerin, die sie zu Lebzeiten immer lächerlich gemacht hatte, erschienen war, wurde sie in die Toilette verbannt. Sie war ein wenig in Harry Potter verliebt und beschwerte sich bei ihm, wenn er sie sporadisch traf (etwa alle zwei Jahre), dass er sie so selten besuchte.",
@@ -432,12 +885,28 @@
    "Der Zauberstab von Dolores Umbridge war 8 Zoll lang, hergestellt aus Birken-Holz mit Drachenherzfaser-Kern. Die Zauberstablänge wird als \"unüblich kurz\" bezeichnet von dem Zauberstabmacher Garrick Ollivander, was darauf hinweist, dass es Mängel in der Persönlichkeit des Besitzers gibt. Umbridge war fähig mit ihrem Zauberstab mächtige Magie zu erzeugen. Es könnte möglich sein, das das purpurfarbene Juwel in der Mitte des Zauberstabs magische Kräfte besitzt, die die Zauberkraft des Zauberstabs verstärken.",
    "[Frühes Leben] Im Sommer 1991 erfuhr Hermine überraschend, dass sie eine Hexe war und auf die Hogwartsschule für Hexerei und Zauberei gehen durfte. Eifrig akzeptierte sie diese Einladung und begann sogleich, die Welt der Zauberei zu erkunden. Noch bevor ihr erstes Schuljahr in Hogwarts im September 1991 begann, hatte sie alle ihre Schulbücher gelesen und gelernt. Zusätzlich zu ihren Schulbüchern las Hermine auch viele andere Bücher, die ihr halfen, Magie und Zauberei zu verstehen.",
    "Tom Vorlost Riddle alias Lord Voldemort (* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste. Seine größten Feinde waren Harry Potter und Albus Dumbledore. Voldemorts Schreckensherrschaft dauerte von 1970 bis 1981 und 1995 bis 1998, bis er in der Schlacht von Hogwarts von Harry Potter besiegt wurde. Er wurde nach seinem Vater Tom Riddle sr. und seinem Großvater Vorlost Gaunt benannt. Er hat zusammen mit Bellatrix Lestrange eine Tochter namens Delphini."
+  ],
+  "negative_context_ids": [
+   "5",
+   "31",
+   "32",
+   "6",
+   "3",
+   "2",
+   "1",
+   "4",
+   "7"
   ]
  },
  {
-  "query": "Wofür haben die Weasley-Brüder mitgespielt?",
-  "pos": "[Charakter] Seit jeher daran gewöhnt, sich gegen viele und Stärkere durchsetzen zu müssen, hatte sie gelernt, schnell und geschickt zu vermitteln und schlagfertig gute Ausreden zu erfinden. Bei ihren großen Brüdern hatte sie Einiges abgeguckt, wie etwa, dass es (zumindest mit der Hilfe ihrer Zwillingsbrüder) für alle unmöglich erscheinenden Situationen irgendeine Lösung gab. Außerdem setzte sie ihre Interessen wenn nötig auch mal unbemerkt durch. So hat sie sich hinter dem Rücken ihrer Brüder, die sie bei Quidditch-Spielen im Garten zu Hause immer ausgeschlossen hatten, alleine sehr gute Spieltechniken beigebracht. Die Weasley-Brüder waren daher sehr verblüfft, als sie in die Hausmannschaft von Gryffindor aufgenommen wurde. Dort spielte sie erstmals im 5. Teil für Harry als Sucherin und später dann als Jägerin.",
-  "neg": [
+  "question": "Wofür haben die Weasley-Brüder mitgespielt?",
+  "positive_contexts": [
+   "[Charakter] Seit jeher daran gewöhnt, sich gegen viele und Stärkere durchsetzen zu müssen, hatte sie gelernt, schnell und geschickt zu vermitteln und schlagfertig gute Ausreden zu erfinden. Bei ihren großen Brüdern hatte sie Einiges abgeguckt, wie etwa, dass es (zumindest mit der Hilfe ihrer Zwillingsbrüder) für alle unmöglich erscheinenden Situationen irgendeine Lösung gab. Außerdem setzte sie ihre Interessen wenn nötig auch mal unbemerkt durch. So hat sie sich hinter dem Rücken ihrer Brüder, die sie bei Quidditch-Spielen im Garten zu Hause immer ausgeschlossen hatten, alleine sehr gute Spieltechniken beigebracht. Die Weasley-Brüder waren daher sehr verblüfft, als sie in die Hausmannschaft von Gryffindor aufgenommen wurde. Dort spielte sie erstmals im 5. Teil für Harry als Sucherin und später dann als Jägerin."
+  ],
+  "positive_context_ids": [
+   "8"
+  ],
+  "negative_contexts": [
    "[Harry Potter] Als die drei Freunde bei der Suche der Horkruxe nicht weiterkamen, wurde Ron wütend auf Harry und verließ Harry und Hermine. Schließlich kehrte er doch zurück und zerstörte einen der Horkruxe.",
    "Ronald \"Ron\" Bilius Weasley (geb. 1. März 1980) ist ein reinblütiger Zauberer und der sechste Sohn von Molly und Arthur Weasley. Somit war er der jüngere Bruder von Bill, Charlie, Percy, Fred und George und der ältere Bruder von Ginny. Ron hat rote Haare, wie alle Weasleys, und blaue Augen. In den Büchern wird Ron als groß und schlackisg, mit langen Armen und großen Händen beschrieben. Im Film sind Harry und Ron jedoch in etwa gleich groß.",
    "Der Kern eines Zauberstabs ist eine magische Substanz, der Länge nach in das Holz eingebettet. Sie sind normalerweise Teile von Haaren/Federn, entwendet von einer Art von magischem Wesen oder magischer Kreatur. Die Materialien, benutzt für Zauberstabkerne, können stark variieren, obwohl bestimmte Zauberstabmacher den Gebrauch von bestimmten Materialien bevorzugen; zum Beispiel entdeckte und machte Garrick Ollivander als erster Gebrauch von Phönixfedern, Drachenherzfasern und Einhornschwanzhaaren, wohingegen sein Vater schwächere Substanzen benutzte wie Kelpie-Haar und Schnurrhaare eines Kniesels.",
@@ -447,6 +916,17 @@
    "Dumbledore's erste Armee, war eine kleine Gruppe von Gegnern Gellert Grindelwalds. Sie wurde von Newt Scamander im Auftrag von Albus Dumbledore in den 1930er gegründet, um Grindelwald's Eroberung der Zauberwelt zu verhindern.",
    "Harry James Potter (geb. 31. Juli 1980 in Godric's Hollow) ist ein halbblütiger Zauberer, das einzige Kind von James und Lily Potter (geb. Evans), der Patensohn von Sirius Black und einer der berühmtesten Zauberer der Neuzeit. Er war Mitgründer und Leiter von Dumbledores Armee, Mitglied im Orden des Phönix und Mittelpunkt des Widerstandes gegen Voldemort während des Zweiten Zaubererkrieges.",
    "Tom Vorlost Riddle alias Lord Voldemort (* 31. Dezember 1926, † 2. Mai 1998) war der schrecklichste schwarze Magier seit langer Zeit und nach Gellert Grindelwald auch der stärkste. Seine größten Feinde waren Harry Potter und Albus Dumbledore. Voldemorts Schreckensherrschaft dauerte von 1970 bis 1981 und 1995 bis 1998, bis er in der Schlacht von Hogwarts von Harry Potter besiegt wurde. Er wurde nach seinem Vater Tom Riddle sr. und seinem Großvater Vorlost Gaunt benannt. Er hat zusammen mit Bellatrix Lestrange eine Tochter namens Delphini."
+  ],
+  "negative_context_ids": [
+   "5",
+   "31",
+   "2",
+   "32",
+   "1",
+   "4",
+   "6",
+   "3",
+   "7"
   ]
  }
 ]

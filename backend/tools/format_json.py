@@ -1,4 +1,5 @@
 import os
+import csv
 import json
 import inspect
 
@@ -32,17 +33,33 @@ def format_to_training_data(dir: str):
             data = json.loads(json_object)
 
             qid = data["qid"]
-            write_object["query"] = query_map[qid]
+            write_object["question"] = query_map[qid]
             
             pos_id = data["pos"][0]
-            write_object["pos"] = corpus_map[pos_id]
+            write_object["positive_contexts"] = [corpus_map[pos_id]]
+            write_object["positive_context_ids"] = [pos_id]
 
-            neg_id = data["neg"]["msmarco-distilbert-base-v3"]
-            neg_list = [corpus_map[id] for id in neg_id]
+            neg_ids = data["neg"]["msmarco-distilbert-base-v3"]
+            neg_list = [corpus_map[id] for id in neg_ids]
                                       
-            write_object["neg"] = neg_list
+            write_object["negative_contexts"] = neg_list
+            write_object["negative_context_ids"] = neg_ids
             write_data.append(write_object)
 
     with open(f"{work_dir}/training-data.json", "w", encoding="utf-8") as file:
         json.dump(write_data, file, indent = 1, ensure_ascii=False)
-                
+
+
+def corpus_json_to_csv(dir: str):
+
+    abs_path_caller = os.path.dirname(inspect.stack()[1][1])
+    work_dir = f"{abs_path_caller}/{dir}"
+
+    with open(f"{work_dir}/corpus.jsonl", "r") as jsonl_file, open(f"{work_dir}/passages.csv", "w", newline="") as csv_file:
+        writer = csv.writer(csv_file)
+        writer.writerow(["id", "passage_text"])
+
+        for obj in jsonl_file:
+            data = json.loads(obj)
+            del data["title"]
+            writer.writerow(data.values())
