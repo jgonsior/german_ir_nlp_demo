@@ -51,6 +51,22 @@ def format_to_data(dir: str):
         json.dump(write_data, file, indent = 1, ensure_ascii=False)
 
 
+def jsonl_to_json(file: str):
+
+    abs_path_caller = os.path.dirname(inspect.stack()[1][1])
+    work_file = f"{abs_path_caller}/{file}"
+
+    jsons=[]
+
+    with open(work_file, "r") as f:
+        for obj in f:
+            jsons.append(json.loads(obj))
+
+    file_name = file.strip(".jsonl")
+    output_file = f"{abs_path_caller}/{file_name}.json"
+    with open(output_file, "w", encoding = "utf-8") as output:
+        json.dump(jsons, output, indent = 1, ensure_ascii = False)
+
 def corpus_json_to_csv(dir: str):
 
     abs_path_caller = os.path.dirname(inspect.stack()[1][1])
@@ -98,3 +114,4 @@ def create_train_eval_test_triples(dir: str):
         for obj in test_data:
             json.dump(obj, file, ensure_ascii=False)
             file.write("\n")
+
