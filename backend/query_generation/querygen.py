@@ -129,8 +129,9 @@ if __name__ == "__main__":
     qgen_prefix="qgen",
     # This prefix will appear as part of the (folder/file) names for query-generation results: For example, we will have "qgen-qrels/" and "qgen-queries.jsonl" by default.
     )  
-    format.format_to_training_data(directory)
+    format.format_to_data(directory)
     format.corpus_json_to_csv(directory)
+    format.create_train_eval_test_triples(directory)
     # parser = argparse.ArgumentParser()
     # parser.add_argument(
     #     "--path_to_generated_data",
