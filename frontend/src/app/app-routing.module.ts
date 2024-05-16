@@ -7,7 +7,7 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'wiki/:id/:answer',
+    path: 'wiki/:id',
     loadChildren: () => import('./wiki/wiki.module').then( m => m.WikiPageModule)
   },
   {

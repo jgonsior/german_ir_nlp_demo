@@ -24,8 +24,6 @@ export class SearchResultsPage implements OnInit {
 
   searchText: string = '';
 
-  count = 100;
-
   constructor(private route: ActivatedRoute, private router: Router) {
     this.getMessages();
   }
@@ -48,14 +46,19 @@ export class SearchResultsPage implements OnInit {
     if (q == null) return;
 
     await this.data.getQueryResults(q).then((response) => {
-      this.queryResults = Array(this.count).fill(response[0]);
-      //this.queryResults = response;
+      // this.queryResults = Array(this.count).fill(response[0]);
+      this.queryResults = response;
     });
   }
 
-  onIonInfinite(ev: any) {
-    this.count += 10;
-    this.getMessages();
+  async onIonInfinite(ev: any) {
+    var q = this.route.snapshot.queryParamMap.get('query');
+
+    if (q == null) return;
+
+    await this.data.getQueryResults(q).then((response) => {
+      this.queryResults.push(...response);
+    });
     setTimeout(() => {
       (ev as InfiniteScrollCustomEvent).target.complete();
     }, 500);
@@ -78,5 +81,6 @@ export class SearchResultsPage implements OnInit {
     this.router.navigate(['/search-results'], {
       queryParams: { query: this.searchText },
     });
+    this.getMessages();
   }
 }
