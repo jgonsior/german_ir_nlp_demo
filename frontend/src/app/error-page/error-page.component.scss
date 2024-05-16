@@ -1,0 +1,18 @@
+.error-container {
+    height: 100%;
+}
+
+.error-page__center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.error-page__text {
+    margin-top: 2rem;
+}
+
+.error-page__image {
+    //margin-top: -4rem;
+}

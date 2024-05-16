@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'search-results',
     loadChildren: () => import('./search-results/search-results.module').then( m => m.SearchResultsPageModule)
   },
+  {
+    path: 'error',
+    loadChildren: () => import('./error-page/error-page.module').then( m => m.ErrorPageComponentModule)
+  },
 ];
 
 @NgModule({
