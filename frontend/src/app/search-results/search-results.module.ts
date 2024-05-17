@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { SearchResultsPageRoutingModule } from './search-results-routing.module';
-import { MessageComponentModule } from '../message/message.module';
 import { ErrorMessageModule } from '../error-page/error-message/error-message.module';
 
 import { SearchResultsPage } from './search-results.page';
@@ -17,9 +16,8 @@ import {SearchAnswerComponentModule} from "../search-answer/search-answer.module
     FormsModule,
     IonicModule,
     SearchResultsPageRoutingModule,
-    SearchAnswerComponentModule
+    SearchAnswerComponentModule,
     ErrorMessageModule,
-    MessageComponentModule,
     SearchResultsPageRoutingModule
   ],
   declarations: [SearchResultsPage]

@@ -29,7 +29,7 @@
       <ion-col size="8" class="search-results__list--column">
         <ion-list class="search-results__list fullheight">
           <app-error-message *ngIf="queryResults.length == 0"></app-error-message>
-          <app-message *ngFor="let queryResponseResult of queryResults" [queryResponseResult]="queryResponseResult"></app-message>
+          <app-search-answer *ngFor="let queryResponseResult of queryResults" [queryResponseResult]="queryResponseResult"></app-search-answer>
         </ion-list>
       </ion-col>
       <ion-col size="2" class="search-results__banner">
