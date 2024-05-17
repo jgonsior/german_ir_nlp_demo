@@ -169,7 +169,21 @@ backend/data/qa/HP/train_triples.jsonl
 backend/data/qa/XQA/dump
 backend/data/qa/XQA
 .ragatouille
-backend/data/colbert
+# Ignore everything in backend/data/colbert
+backend/data/colbert/**
+
+# But do not ignore these specific directories and files
+!backend/data/colbert/
+!backend/data/colbert/checkpoints/
+!backend/data/colbert/checkpoints/bert-base-german-cased/
+!backend/data/colbert/checkpoints/bert-base-german-cased/GermanDPR-XQA-HP/
+!backend/data/colbert/checkpoints/bert-base-german-cased/GermanDPR-XQA-HP/epoch1
+
+!backend/data/colbert/indexes/
+!backend/data/colbert/indexes/bert-base-german-cased/
+!backend/data/colbert/indexes/bert-base-german-cased/GermanDPR-XQA-HP/
+!backend/data/colbert/indexes/bert-base-german-cased/GermanDPR-XQA-HP/epoch1
+
 slurm-*.out
 train_index_eval_RAG.sh
 backend/RAGatouille/evaluate.py
