@@ -1,0 +1,18 @@
+.error-message__content {
+    --background: var(--ion-color-custom-darkblue);
+}
+
+.error-message__center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.error-message__text {
+    margin-top: 2rem;
+}
+
+.error-message__image {
+    //margin-top: -4rem;
+}

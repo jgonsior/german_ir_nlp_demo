@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { SearchResultsPageRoutingModule } from './search-results-routing.module';
 import { MessageComponentModule } from '../message/message.module';
-
+import { ErrorMessageModule } from '../error-page/error-message/error-message.module';
 
 import { SearchResultsPage } from './search-results.page';
 
@@ -15,6 +15,7 @@ import { SearchResultsPage } from './search-results.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    ErrorMessageModule,
     MessageComponentModule,
     SearchResultsPageRoutingModule
   ],
