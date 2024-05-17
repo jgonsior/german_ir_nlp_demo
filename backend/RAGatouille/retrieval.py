@@ -1,16 +1,19 @@
 from ragatouille import RAGPretrainedModel
 import torch
 BASE_MODEL_NAME = "bert-base-german-cased"
-TRAINING_DATA_NAME = "GermanDPR"
+TRAINING_DATA_NAME = "GermanDPR-XQA-HP"
 EPOCH = 1
-FULL_CORPUS_NAME = "harry_potter_corpus"
-INDEX_PATH = f"backend/data/colbert/indexes/{BASE_MODEL_NAME}/{TRAINING_DATA_NAME}/{FULL_CORPUS_NAME}/epoch{EPOCH}"
+INDEX_PATH = f"backend/data/colbert/indexes/{BASE_MODEL_NAME}/{TRAINING_DATA_NAME}/epoch{EPOCH}"
 
 if __name__ == "__main__":
 
-    k = 1
-    results = RAG.search(query="Wie Heißt die Eule von Harry Potter?", k=k)
+    k = 5
+    RAG = RAGPretrainedModel.from_index(INDEX_PATH)
+    results = RAG.search(query="Wer hat Snape umgebracht?", k=k)
     print(results)
-    # embeddings = torch.load("data/colbert/indexes/bert-base-german-cased/GermanDPR/harry_potter_corpus/epoch1/0.codes.pt")
 
-    # print(embeddings.shape)
+
+    # get embeddings. not sure what this 1-dimensional vector is
+    embeddings = torch.load("backend/data/colbert/indexes/bert-base-german-cased/GermanDPR-XQA-HP/epoch1/0.codes.pt")
+    print(embeddings[0])
+    print(embeddings.shape)
