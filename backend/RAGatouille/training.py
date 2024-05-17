@@ -4,7 +4,7 @@ import os
 import shutil
 from pathlib import Path
 import argparse
-
+import random
 
 def highest_alphabetical_directory(current_path):
     directories = [d for d in os.listdir(current_path) if os.path.isdir(os.path.join(current_path, d))]
@@ -58,7 +58,7 @@ def main(args):
 
     triples = pd.read_json(args.triples_path, lines=True)[["question", "positive_contexts", "negative_contexts"]].values.tolist()
     if args.num_negatives < len(triples[0][2]):
-        triples = [[q, p, n[:args.num_negatives]] for q, p, n in triples]
+        triples = [[q, p, random.sample(n, args.num_negatives)] for q, p, n in triples]
     for e in args.epochs:
         if e == 1 or e == "1":
             pretrained_model_name_or_path = args.pretrained_model_name_or_path
@@ -71,7 +71,7 @@ def main(args):
                 language_code="de")
 
         # This step handles all the data processing. Check whether data has already been preprocessed
-        colbert_training_data_path = f"backend/data/colbert/training_data/{train_data}"
+        colbert_training_data_path = f"backend/data/colbert/training_data/{train_data}/epoch{e}"
         if not os.path.exists(colbert_training_data_path) or not any(os.listdir(colbert_training_data_path)):
             trainer.prepare_training_data(raw_data=triples,
                                             all_documents = corpus,
