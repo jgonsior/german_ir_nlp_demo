@@ -6,19 +6,15 @@ export interface QueryResponseType {
 
 export interface QueryResponseResult {
   rank: number;
-  document_id: string;
-  document_name: string;
-  categorie: string;
-  authors: string[];
-  passages: string[];
-}
-
-export interface QueryResponsePage {
-  page: QueryResponseDocument[]
+  id: string;
+  title: string;
+  // categorie: string;
+  text: string[];
 }
 
 export interface QueryResponseDocument {
   headers: string[];
-  passage: string;
+  text: string[];
+  title: string;
   image_links: string[]
 }

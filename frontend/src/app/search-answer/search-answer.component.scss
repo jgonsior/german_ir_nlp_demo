@@ -48,6 +48,7 @@ ion-item ion-note {
 
 ion-item ion-note.md {
   margin-right: 14px;
+  color: var(--ion-color-custom-red);
 }
 
 .dot {
@@ -66,4 +67,41 @@ ion-item ion-note.md {
 ion-footer ion-title {
   font-size: 11px;
   font-weight: normal;
+}
+
+.message__item {
+  --background: var(--ion-color-custom-darkblue);
+  color: var(--ion-color-custom-owl);
+  --border-color: none;
+  --border-radius: 8px;
+  margin-bottom: 16px;
+  &:hover {
+    --background: var(--ion-color-custom-book);
+    --color: var(--ion-color-custom-red);
+    ion-note {
+      color: var(--ion-color-custom-owl);
+    }
+    .message-component__category {
+      color: var(--ion-color-custom-darkblue);
+    }
+    
+    .message-component__passage {
+      color: var(--ion-color-custom-darkblue);
+    }
+  }
+}
+
+.message-component__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.message-component__category {
+  color: var(--ion-color-custom-book);
+}
+
+.message-component__passage {
+  color: var(--ion-color-custom-book);
 }

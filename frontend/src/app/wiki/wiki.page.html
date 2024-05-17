@@ -1,18 +1,36 @@
 <ion-header [translucent]="true">
-<ion-toolbar>
-  <ion-buttons>
-    <ion-back-button [text]="getBackButtonText()" default-href="/"></ion-back-button>
-  </ion-buttons>
-</ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button [text]="getBackButtonText()" default-href="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" *ngIf="document">
+<ion-content [fullscreen]="true" *ngIf="wikiPage">
   <ion-item>
     <ion-label class="ion-text-wrap">
-      <h2>{{ doc_name }}</h2>
+      <h2>{{ wikiPage.title }}</h2>
     </ion-label>
   </ion-item>
-  <div class="ion-padding">
-    <p>{{ document.page }}</p>
+
+  <div class="ion-padding" *ngIf="wikiPage">
+      <ng-container *ngFor="let header of wikiPage.headers; let i = index">
+        <ng-container *ngIf="!isHeaderAlreadyCreated(header)">
+          <ng-container *ngIf="i === wikiPage.headers.length - 1">
+            <h2 *ngIf="i === 0"> {{ header }} </h2>
+            <h3 *ngIf="i === 1"> {{ header }} </h3>
+            <h4 *ngIf="i === 2"> {{ header }} </h4>
+            <h5 *ngIf="i === 3"> {{ header }} </h5>
+            <p> {{ wikiPage.text.join('\n') }} </p>
+          </ng-container>
+          <ng-container *ngIf="i !== wikiPage.headers.length - 1">
+            <h2 *ngIf="i === 0"> {{ header }} </h2>
+            <h3 *ngIf="i === 1"> {{ header }} </h3>
+            <h4 *ngIf="i === 2"> {{ header }} </h4>
+            <h5 *ngIf="i === 3"> {{ header }} </h5>
+          </ng-container>
+      </ng-container>
+    </ng-container>
   </div>
 </ion-content>
+

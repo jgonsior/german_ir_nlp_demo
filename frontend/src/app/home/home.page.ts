@@ -23,11 +23,6 @@ export class HomePage {
   @ViewChild('searchButton')
   searchButton: IonButton;
 
-  @HostListener('window:resize', ['$event.target.innerWidth'])
-  handleWindowResize(innerWidth: number) {
-    this.searchButton.size = innerWidth >= 600 ? 'large' : 'default';
-  }
-
   getWindowWidth(): number {
     return window.innerWidth;
   }

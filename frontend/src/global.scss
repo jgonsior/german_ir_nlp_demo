@@ -24,3 +24,30 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+.home__searchbar {
+    .searchbar-input-container {
+        .searchbar-input {
+            height: 80px;
+            font-size: 2rem;
+        }
+
+        .searchbar-search-icon {
+            top: 23px;
+            width: 2rem;
+            height: 2rem;
+            color: var(--ion-color-custom-red);
+        }
+    }
+}
+
+.search-results__searchbar {
+    .searchbar-input-container {
+        .searchbar-input {
+        }
+
+        .searchbar-search-icon {
+            color: var(--ion-color-custom-red);
+        }
+    }
+}

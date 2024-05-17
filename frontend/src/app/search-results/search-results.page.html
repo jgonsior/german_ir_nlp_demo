@@ -1,5 +1,5 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header [translucent]="true" class="search-results__header">
+  <ion-toolbar class="search-results__toolbar">
     <ion-buttons slot="start">
       <ion-back-button
         [text]="getBackButtonText()"
@@ -8,8 +8,8 @@
     </ion-buttons>
     <ion-title>search-results</ion-title>
   </ion-toolbar>
-  <ion-toolbar>
-    <ion-searchbar
+  <ion-toolbar class="search-results__toolbar">
+    <ion-searchbar class="search-results__searchbar"
       [(ngModel)]="searchText"
       #searchBar
       (keyup.enter)="navigateWithNewQuery()"
@@ -17,17 +17,27 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="search-results__content">
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+  <ion-grid class="search-results__grid">
+    <ion-row class="fullheight">
+      <ion-col size="2" class="search-results__banner">
+        <img src="../../assets/male.svg" alt="Male magician"/>
+      </ion-col>
+      <ion-col size="8" class="search-results__list--column">
+        <ion-list class="search-results__list fullheight">
+          <app-error-message *ngIf="queryResults.length == 0"></app-error-message>
+          <app-message *ngFor="let queryResponseResult of queryResults" [queryResponseResult]="queryResponseResult"></app-message>
+        </ion-list>
+      </ion-col>
+      <ion-col size="2" class="search-results__banner">
+        <img src="../../assets/female.svg" alt="Female magician"/>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-  <ion-list>
-    <app-search-answer
-      *ngFor="let queryResponseResult of queryResults"
-      [queryResponseResult]="queryResponseResult"
-    ></app-search-answer>
-  </ion-list>
   <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
