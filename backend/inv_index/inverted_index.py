@@ -12,8 +12,9 @@ def clean_tokens(tokenlist, normalize: bool = True):
     stop_words = set(stopwords.words("german"))
     if normalize: 
         tokens = [stemmer.stem(token) for token in tokens_filtered if token not in stop_words]
+        tokens = [stemmer.stem(token) for token in tokens if token not in stop_words]
     else:
-        tokens = [token for token in tokens_filtered if token not in stop_words]
+        tokens = [token for token in tokens_filtered]
 
     return tokens
 
@@ -33,7 +34,7 @@ def calculate_inverted_index(wiki_pages, output: str, normalize: bool = True):
                 
                 if normalize:
                     raw_tokens = set(str(token.lemma_.lower()) for token in nlp(document["text"]))
-                    #raw_tokens = set(str(token.lemma_.lower()) for token in nlp(" ".join(raw_tokens1)))
+                    raw_tokens = set(str(token.lemma_.lower()) for token in nlp(" ".join(raw_tokens)))
                 else:
                     raw_tokens = set(nltk.word_tokenize(document["text"]))
 
@@ -50,8 +51,8 @@ def calculate_inverted_index(wiki_pages, output: str, normalize: bool = True):
                     if document['_id'] not in inverted_index[title][token]:
                         inverted_index[title][token].append(document['_id'])
 
-        sorted(lemmas)
-        lemmas = '{' + ', '.join(map(str, lemmas)) + '}'
+        #sorted(lemmas)
+        #lemmas = '{' + ', '.join(map(str, lemmas)) + '}'
 
         # with open('backend/inv_index/lemma.txt', 'w') as f:
         #     f.write(lemmas)
@@ -73,15 +74,15 @@ def get_all_tokens(file):
 if __name__ == '__main__':
     wiki_pages=["Harry Potter"]
     output = "inv_index_Harry.json"
-    calculate_inverted_index(wiki_pages, output)
+    calculate_inverted_index(wiki_pages, output, True)
 
-    tokens = get_all_tokens("inv_index_Harry.json")
+    #tokens = get_all_tokens(output)
     # tokens_double = get_all_tokens("inv_index_double_Harry.json")
-    tokens.sort()
+    #tokens.sort()
     # tokens_double.sort()
-    print(tokens)
+    #print(tokens)
     # print(tokens_double)
-    print(len(tokens))
+    #print(len(tokens))
     # print(len(tokens_double))
     # rem_token1 = [token for token in tokens if token not in tokens_double]
     # rem_token2 = [token for token in tokens_double if token not in tokens]
