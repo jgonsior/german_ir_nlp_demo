@@ -4,7 +4,8 @@ import os
 import shutil
 from pathlib import Path
 import argparse
-import random
+import random 
+import csv
 
 def highest_alphabetical_directory(current_path):
     directories = [d for d in os.listdir(current_path) if os.path.isdir(os.path.join(current_path, d))]
