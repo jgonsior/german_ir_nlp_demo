@@ -3,12 +3,12 @@ import { Platform } from '@ionic/angular';
 import {QueryResponseResult} from "../types/query-response.type";
 
 @Component({
-  selector: 'app-message',
-  templateUrl: './message.component.html',
-  styleUrls: ['./message.component.scss'],
+  selector: 'app-search-answer',
+  templateUrl: './search-answer.component.html',
+  styleUrls: ['./search-answer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MessageComponent {
+export class SearchAnswerComponent {
   private platform = inject(Platform);
   @Input() queryResponseResult?: QueryResponseResult;
   isIos() {
