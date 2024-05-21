@@ -18,3 +18,17 @@ export interface QueryResponseDocument {
   title: string;
   image_links: string[]
 }
+
+export enum ParsedDocumentTextTypes {
+  heading,
+  normal_text_passage
+}
+
+export interface ParsedQueryResponseDocument {
+  text: {
+    'type': ParsedDocumentTextTypes,
+    'depth': number,
+    'content': string,
+  }[];
+  title: string;
+}
