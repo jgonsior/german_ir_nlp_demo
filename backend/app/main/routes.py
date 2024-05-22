@@ -3,10 +3,10 @@ from flask import request, jsonify, make_response
 from . import bp
 from .document_manager import DocumentManager
 
-from app.tf_idf import find_best_results
+#from app.tf_idf import find_best_results
 
 dm = DocumentManager()
-qf = find_best_results.queryFinder()
+#qf = find_best_results.queryFinder()
 
 
 @bp.route('/search', methods=['GET'])
@@ -16,10 +16,10 @@ def search():
         print(query, flush=True)
 
         # Milestone 1
-        # resp = dm.get_random_documents(amount=3)
+        resp = dm.get_random_documents(amount=3)
 
         # Milestone 2
-        resp = qf.query_vector_finder(query, 3)
+        # resp = qf.query_vector_finder(query, 3)
 
         return jsonify(resp)
 
