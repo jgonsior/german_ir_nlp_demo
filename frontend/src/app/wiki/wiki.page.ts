@@ -2,8 +2,12 @@ import {Component, inject, OnInit} from "@angular/core";
 
 import {DataService} from "../services/data.service";
 import {Platform} from "@ionic/angular";
-import {QueryResponseDocument} from "../types/query-response.type";
+import {
+  ParsedDocumentTextTypes,
+  ParsedQueryResponseDocument,
+} from "../types/query-response.type";
 import {ActivatedRoute} from "@angular/router";
+import {ResponseParsingService} from "../services/response-parsing-service";
 
 @Component({
   selector: "app-wiki",
@@ -12,7 +16,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class WikiPage implements OnInit {
   public docName: String;
-  public wikiPage!: QueryResponseDocument;
+  public wikiPage!: ParsedQueryResponseDocument;
   public createdHeaders: string[] = [];
   private data = inject(DataService);
   private activatedRoute = inject(ActivatedRoute);
@@ -25,7 +29,7 @@ export class WikiPage implements OnInit {
     this.docName = this.activatedRoute.snapshot.paramMap.get('id') as string;
     const idx = this.activatedRoute.snapshot.paramMap.get('id') as string;
     this.data.getDocomentById(parseInt(idx, 10)).then((res) => {
-      this.wikiPage = res;
+      this.wikiPage = ResponseParsingService.parseDocumentResponse(res);
     });
   }
 
@@ -42,4 +46,5 @@ export class WikiPage implements OnInit {
     return this.createdHeaders.includes(header);
   }
 
+  protected readonly ParsedDocumentTextTypes = ParsedDocumentTextTypes;
 }

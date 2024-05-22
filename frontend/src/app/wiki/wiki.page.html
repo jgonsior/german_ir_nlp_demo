@@ -14,22 +14,16 @@
   </ion-item>
 
   <div class="ion-padding" *ngIf="wikiPage">
-      <ng-container *ngFor="let header of wikiPage.headers; let i = index">
-        <ng-container *ngIf="!isHeaderAlreadyCreated(header)">
-          <ng-container *ngIf="i === wikiPage.headers.length - 1">
-            <h2 *ngIf="i === 0"> {{ header }} </h2>
-            <h3 *ngIf="i === 1"> {{ header }} </h3>
-            <h4 *ngIf="i === 2"> {{ header }} </h4>
-            <h5 *ngIf="i === 3"> {{ header }} </h5>
-            <p> {{ wikiPage.text.join('\n') }} </p>
-          </ng-container>
-          <ng-container *ngIf="i !== wikiPage.headers.length - 1">
-            <h2 *ngIf="i === 0"> {{ header }} </h2>
-            <h3 *ngIf="i === 1"> {{ header }} </h3>
-            <h4 *ngIf="i === 2"> {{ header }} </h4>
-            <h5 *ngIf="i === 3"> {{ header }} </h5>
-          </ng-container>
-      </ng-container>
+      <ng-container *ngFor="let passages of wikiPage.text;">
+        <ng-container *ngIf="passages.type === ParsedDocumentTextTypes.heading">
+          <h2 *ngIf="passages.depth === 0"> {{ passages.content }} </h2>
+          <h3 *ngIf="passages.depth === 1"> {{ passages.content }} </h3>
+          <h4 *ngIf="passages.depth === 2"> {{ passages.content }} </h4>
+          <h5 *ngIf="passages.depth === 3"> {{ passages.content }} </h5>
+        </ng-container>
+        <ng-container *ngIf="passages.type === ParsedDocumentTextTypes.normal_text_passage">
+          <p>{{passages.content}}</p>
+        </ng-container>
     </ng-container>
   </div>
 </ion-content>
