@@ -24,7 +24,7 @@ def create_latex(dict_barcodes: dict, dict_questions: dict, mode: str, amount: i
 
             barcode_template = latex_jinja_env.get_template('barcode_single_stub.tex')
             result_barcode = barcode_template.render(barcode=dict_barcodes[barcode], barcode_name=barcode)
-            with open(f'../template/barcode_{barcode}.tex', 'w') as file:
+            with open(f'../barcodes_out/barcode_{barcode}.tex', 'w') as file:
                 file.write(result_barcode)
 
             if idx == amount:
@@ -33,7 +33,7 @@ def create_latex(dict_barcodes: dict, dict_questions: dict, mode: str, amount: i
         for idx, question in enumerate(dict_questions):
             question_template = latex_jinja_env.get_template('question_single_stub.tex')
             result_question = question_template.render(question=dict_questions[question], question_name=question)
-            with open(f'../template/question_{question}.tex', 'w') as file:
+            with open(f'../barcodes_out/question_{question}.tex', 'w') as file:
                 file.write(result_question)
 
             if idx == amount:
@@ -73,6 +73,7 @@ def generate_barcodes(index_file: str, questions_file: str, amount: int = 5, mod
                 dict_questions[question] = []
 
     for word in inv_index:
+
         lst_keys = list(dict_barcodes.keys())
         for doc in inv_index[word]:
             dict_barcodes[doc].append(1)
@@ -97,6 +98,6 @@ def generate_barcodes(index_file: str, questions_file: str, amount: int = 5, mod
 if __name__ == "__main__":
     amount = 5
     mode = 'single'
-    index_path = '../invIndex/inverted_index.json'
+    index_path = '../invIndex/inv_index_Harry.json'
     questions_path = '../invIndex/questions.json'
     generate_barcodes(index_path, questions_path)

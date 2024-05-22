@@ -1,22 +1,25 @@
-\documentclass{article}
+\documentclass{slides}
 
+\usepackage{pdflscape}
+\usagepacke{graphicx}
 \usepackage{tikz}
 
 \begin{document}
 \begin{landscape}
 \begin{figure}
-    \centering
+\scalebox{0.1}{
     \begin{tikzpicture}
         \BLOCK{ for numeral in question }
         # if numeral == 0
         \BLOCK{ set decl = 0 + loop.index0 }
-        \draw[white, fill=white] ( \VAR{ decl } ,0) rectangle (\VAR{ decl },3);
+        \draw[white, fill=white] ( \VAR{ decl } ,0) rectangle (\VAR{ decl },10);
         # else
         \BLOCK{ set decl = 0 + loop.index0 }
-        \draw[black, fill=black] (\VAR{ decl } ,0) rectangle (\VAR{ decl },3);
+        \draw[black, fill=black] (\VAR{ decl } ,0) rectangle (\VAR{ decl },10);
         # endif
         \BLOCK{ endfor }
     \end{tikzpicture}
+    }
     \caption{Barcode für Frage: \VAR{ question_name } }
 \end{figure}
 \end{landscape}
