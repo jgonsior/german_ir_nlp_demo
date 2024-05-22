@@ -1,5 +1,7 @@
 import json
 
+import datetime
+import cairo
 import jinja2
 import os
 
@@ -18,22 +20,40 @@ latex_jinja_env = jinja2.Environment(
 )
 
 
+def draw_svg(name: str, code: list, identity: str):
+    with cairo.SVGSurface(f'../barcodes_out/{identity}s/svg/{identity}_{name}.svg', len(code) * 10, 1000) as surface:
+        context = cairo.Context(surface)
+        for idx, numeral in enumerate(code):
+            if numeral == 0:
+                context.set_source_rgb(0, 0, 255)
+                context.rectangle(idx*10, 0, 10, 500)
+                context.fill()
+            else:
+                context.set_source_rgb(0, 0, 0)
+                context.rectangle(idx*10, 0, 10, 500)
+                context.fill()
+
+
 def create_latex(dict_barcodes: dict, dict_questions: dict, mode: str, amount: int):
     if mode == 'single':
         for idx, barcode in enumerate(dict_barcodes):
+            draw_svg(barcode, dict_barcodes[barcode], "document")
 
             barcode_template = latex_jinja_env.get_template('barcode_single_stub.tex')
             result_barcode = barcode_template.render(barcode=dict_barcodes[barcode], barcode_name=barcode)
-            with open(f'../barcodes_out/barcode_{barcode}.tex', 'w') as file:
+            with open(f'../barcodes_out/documents/tex/barcode_{barcode}.tex', 'w') as file:
                 file.write(result_barcode)
 
             if idx == amount:
                 break
 
         for idx, question in enumerate(dict_questions):
+            print(f'Drawing SVG for barcode {question}')
+            draw_svg(question, dict_questions[question], "question")
+
             question_template = latex_jinja_env.get_template('question_single_stub.tex')
             result_question = question_template.render(question=dict_questions[question], question_name=question)
-            with open(f'../barcodes_out/question_{question}.tex', 'w') as file:
+            with open(f'../barcodes_out/questions/tex/question_{question}.tex', 'w') as file:
                 file.write(result_question)
 
             if idx == amount:
@@ -55,6 +75,7 @@ def generate_barcodes(index_file: str, questions_file: str, amount: int = 5, mod
     dict_questions = {}
     dict_barcodes = {}
 
+    print(f'{datetime.datetime.now()}')
     print('Loading files...')
     with open(index_file, 'r', encoding='utf8') as infile:
         inv_index = json.load(infile)

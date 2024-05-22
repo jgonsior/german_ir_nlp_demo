@@ -1,26 +1,60 @@
-\documentclass{slides}
+\documentclass{article}
 
+\usepackage[a3paper, left=2cm, right=2cm, bottom=2cm, top=2cm]{geometry} % Adjust left and right margins
 \usepackage{graphicx}
 \usepackage{pdflscape}
 \usepackage{tikz}
 
 \begin{document}
 \begin{landscape}
-\begin{figure}
-\scalebox{0.1}{
-    \begin{tikzpicture}
         \BLOCK{ for numeral in barcode }
-        # if numeral == 0
-        \BLOCK{ set decl = 0 + loop.index0 }
-        \draw[white, fill=white] ( \VAR{ decl } ,0) rectangle (\VAR{ decl },10);
+        # if loop.index0 == 0
+        \begin{figure}
+        \scalebox{0.1}{
+        \begin{tikzpicture}
+            # if numeral == 0
+            \BLOCK{ set decl = 0 + loop.index0 }
+            \draw[white, fill=white] ( \VAR{ decl } ,0) rectangle (\VAR{ decl },10);
+            # else
+            \BLOCK{ set decl = 0 + loop.index0 }
+            \draw[black, fill=black] (\VAR{ decl } ,0) rectangle (\VAR{ decl },10);
+            # endif
+        # elif loop.index0 % 300 == 0
+                \end{tikzpicture}
+            }
+            \caption{Barcode für Dokument: \VAR{ barcode_name } bis \VAR{ loop.index0 } }
+            \end{figure}
+            \pagebreak
+            \begin{figure}
+            \scalebox{0.1}{
+            \begin{tikzpicture}
+                # if numeral == 0
+                \BLOCK{ set decl = 0 + loop.index0 }
+                \draw[white, fill=white] ( \VAR{ decl } ,0) rectangle (\VAR{ decl },10);
+                # else
+                \BLOCK{ set decl = 0 + loop.index0 }
+                \draw[black, fill=black] (\VAR{ decl } ,0) rectangle (\VAR{ decl },10);
+                # endif
+        # elif loop.last
+                # if numeral == 0
+                \BLOCK{ set decl = 0 + loop.index0 }
+                \draw[white, fill=white] ( \VAR{ decl } ,0) rectangle (\VAR{ decl },10);
+                # else
+                \BLOCK{ set decl = 0 + loop.index0 }
+                \draw[black, fill=black] (\VAR{ decl } ,0) rectangle (\VAR{ decl },10);
+                # endif
+                \end{tikzpicture}
+            \caption{Barcode für Dokument: \VAR{ barcode_name } }
+            \end{figure}
         # else
-        \BLOCK{ set decl = 0 + loop.index0 }
-        \draw[black, fill=black] (\VAR{ decl } ,0) rectangle (\VAR{ decl },10);
+            # if numeral == 0
+            \BLOCK{ set decl = 0 + loop.index0 }
+            \draw[white, fill=white] ( \VAR{ decl } ,0) rectangle (\VAR{ decl },10);
+            # else
+            \BLOCK{ set decl = 0 + loop.index0 }
+            \draw[black, fill=black] (\VAR{ decl } ,0) rectangle (\VAR{ decl },10);
+            # endif
         # endif
         \BLOCK{ endfor }
-    \end{tikzpicture}
-    }
-    \caption{Barcode für Dokument: \VAR{ barcode_name } }
-\end{figure}
 \end{landscape}
 \end{document}
