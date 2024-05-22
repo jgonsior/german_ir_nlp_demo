@@ -57,3 +57,7 @@
 ion-content::part(scroll) {
 	scrollbar-width: none;
 }
+
+.search-result__scroll {
+    background: transparent;
+}
