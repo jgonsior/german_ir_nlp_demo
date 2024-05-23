@@ -1,0 +1,16 @@
+<ion-item *ngIf="queryResponseResult" [routerLink]="'/message/' + queryResponseResult.document_id + '/' + queryResponseResult" [detail]="false">
+  <div slot="start" [class]="!queryResponseResult.authors ? 'dot dot-unread' : 'dot'"></div>
+  <ion-label class="ion-text-wrap">
+    <h2>
+      {{ queryResponseResult.document_name }}
+      <span class="date">
+        <ion-note>{{ queryResponseResult.authors.join(', ') }}</ion-note>
+        <ion-icon aria-hidden="true" name="chevron-forward" size="small" *ngIf="isIos()"></ion-icon>
+      </span>
+    </h2>
+    <h3>{{ queryResponseResult.categorie }}</h3>
+    <p>
+      {{queryResponseResult.passages[0]}}
+    </p>
+  </ion-label>
+  </ion-item>

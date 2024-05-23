@@ -1,0 +1,21 @@
+{
+    "search_id": 1,
+    "anwser":[
+        {
+            "rank": 1,
+            "page_id": 1, // Falls eineindeutig mit wikipage name kann rausfallen
+            "page_name": "",
+            "categorie": "", // Bücher, Filme, Theater
+            "authors": ["",""],
+            "passage": ["",""] // Liste der relevanten Passages
+        },
+        {
+            "rank": 1,
+            "dokument_id": 1,
+            "dokument_name": "",
+            "categorie": ["",""],
+            "authors": ["",""],
+            "passages": ["",""]
+        }
+    ]
+}
