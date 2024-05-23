@@ -1,0 +1,2 @@
+data.json filter=lfs diff=lfs merge=lfs -text
+*/hp-gpl/*triples.jsonl filter=lfs diff=lfs merge=lfs -text
