@@ -2,6 +2,7 @@
 import os
 import shutil
 import subprocess
+import time
 import urllib.request
 
 import pandas as pd
@@ -15,9 +16,8 @@ if __name__ == "__main__":
     # https://<wiki-name>.fandom.com/wiki/Special:Statistics
     WIKI_DUMPS_URLS = {
         # films:
-        "harry_potter": "https://s3.amazonaws.com/wikia_xml_dumps/d/de/deharrypotter_pages_current.xml.7z",  # https://harrypotter.fandom.com/de/wiki/Spezial:Statistik
+        "harry_potter": "https://s3.amazonaws.com/wikia_xml_dumps/d/de/deharrypotter_pages_current.xml",  # https://harrypotter.fandom.com/de/wiki/Spezial:Statistik
     }
-    REDOWNLOAD = True
 
     # create new directories for the data dumps in the data/ directory
     preprocessing_path = "backend/preprocessing/data"
@@ -31,25 +31,11 @@ if __name__ == "__main__":
         print("#" * 50, end="\n\n")
         # download the data dump into the data/fandoms/dumps directory
         dump_file_name = dump_url.split("/")[-1]
-        path_to_dump_archive = os.path.join(dump_path, dump_file_name)
-        path_to_dump_file = os.path.splitext(path_to_dump_archive)[0]
+        path_to_dump_file = os.path.join(dump_path, dump_file_name)
 
-        # download and extract the dump, if it doesn't exist or a re-download is requested
-        if not os.path.exists(path_to_dump_archive) or REDOWNLOAD:
-            print(f"Downloading {wiki_name} from {dump_url}.")
-            urllib.request.urlretrieve(dump_url, filename=path_to_dump_archive)
-
-        # convert relative to absolute paths, because py7zr doesn't work otherwise
-        abs_path_to_dump_archive = os.path.abspath(path_to_dump_archive)
-        abs_dump_path = os.path.abspath(dump_path)
-        # unpack the data dump
-        print(f"Unpacking {path_to_dump_archive} into {dump_path}.")
-        shutil.unpack_archive(filename=abs_path_to_dump_archive, extract_dir=abs_dump_path)
-
-        # use wikiextractor to extract and clean the data dumps
         # this created many json like files in the extraction_path/AA directory
         print(f"Beginning to clean the {wiki_name} wiki.")
-        cmd_str = f"python3 -m wikiextractor.WikiExtractor --json -o {extraction_path} {path_to_dump_file}"
+        cmd_str = f"python3 backend/preprocessing/wikiextractor/WikiExtractor.py --json -o {extraction_path} {path_to_dump_file}"
         subprocess.run(cmd_str, shell=True, check=True)
 
         # create dataframe and add the content of all data files to it
@@ -75,7 +61,6 @@ if __name__ == "__main__":
         os.makedirs(extraction_path, exist_ok=True)
 
         # removes the unpacked data dump file to save disk space
-        os.remove(path_to_dump_file)
 
     # finally remove the tmp folder
     shutil.rmtree(extraction_path)
