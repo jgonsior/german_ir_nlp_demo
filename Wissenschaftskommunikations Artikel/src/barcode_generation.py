@@ -50,13 +50,17 @@ def get_divided_code(code: list, divider: int) -> dict:
     dict_code = {}
     for i in range(divider):
         if i == 0:
-            dict_code[i] = code[:math.floor(len(code) / divider)]
+            upper_bound = math.floor(len(code) / divider)
+            print(i, upper_bound)
+            dict_code[i] = code[0:upper_bound]
         elif i == divider - 1:
             lower_bound = math.ceil((len(code) / divider) * i)
+            print(i, lower_bound)
             dict_code[i] = code[lower_bound::]
         else:
             lower_bound = math.ceil((len(code) / divider) * i)
-            upper_bound = math.floor((len(code) / divider) * (i + 1) + 1)
+            upper_bound = math.floor((len(code) / divider) * (i + 1))
+            print(i, lower_bound, upper_bound)
             dict_code[i] = code[lower_bound:upper_bound]
 
     return dict_code
