@@ -31,7 +31,6 @@ def draw_svg(name: str, dict_draw: dict, identity: str):
                 if numeral == 0:
                     context.set_source_rgb(0, 0, 0.6)
                     context.rectangle(idx * 10, 0, 10, 500)
-                    # context.fill()
                     context.fill_preserve()
                     context.set_source_rgb(1, 1, 1)
                     context.set_line_width(2)
@@ -39,7 +38,6 @@ def draw_svg(name: str, dict_draw: dict, identity: str):
                 else:
                     context.set_source_rgb(0, 0, 0)
                     context.rectangle(idx * 10, 0, 10, 500)
-                    # context.fill()
                     context.fill_preserve()
                     context.set_source_rgb(1, 1, 1)
                     context.set_line_width(2)
