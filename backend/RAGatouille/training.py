@@ -81,7 +81,7 @@ def main(args):
             # This step handles all the data processing. Check whether data has already been preprocessed
             colbert_training_data_path = f"backend/data/colbert/training_data/{train_data}/epoch{e}/part{part}"
             if not os.path.exists(colbert_training_data_path) or not any(os.listdir(colbert_training_data_path)):
-                trainer.prepare_training_data(raw_data=triples,
+                trainer.prepare_training_data(raw_data=triple_parts[part-1],
                                                 all_documents = corpus,
                                                 data_out_path=colbert_training_data_path, 
                                                 num_new_negatives = 0, 
