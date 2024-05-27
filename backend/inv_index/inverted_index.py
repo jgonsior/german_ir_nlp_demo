@@ -5,7 +5,7 @@ import spacy
 import json
 
 def clean_tokens(tokenlist, normalize: bool = True):
-    remove_chars = ['"', ',', '.', '[', ']', '{', '}', '(', ')', ':', '-', ';', "'", "!", '“', '„', '&', "''", "'s", '*', '...', '):', '/', '--', '---']
+    remove_chars = ['"', ',', '.', '[', ']', '{', '}', '(', ')', ':', '-', ';', "'", "!", '“', '„', '&', "''", "'s", '*', '...', '):', '/', '--', '---', '?', '``']
     tokens_filtered = [token.lower() for token in tokenlist if token not in remove_chars]        
 
     stemmer = SnowballStemmer("german")
@@ -76,13 +76,13 @@ if __name__ == '__main__':
     output = "inv_index_Harry.json"
     calculate_inverted_index(wiki_pages, output, True)
 
-    #tokens = get_all_tokens(output)
+    tokens = get_all_tokens(output)
     # tokens_double = get_all_tokens("inv_index_double_Harry.json")
-    #tokens.sort()
+    tokens.sort()
     # tokens_double.sort()
-    #print(tokens)
+    print(tokens)
     # print(tokens_double)
-    #print(len(tokens))
+    print(len(tokens))
     # print(len(tokens_double))
     # rem_token1 = [token for token in tokens if token not in tokens_double]
     # rem_token2 = [token for token in tokens_double if token not in tokens]
