@@ -53,29 +53,30 @@ def move_content(source_path, destination_path):
 
 def main(args):
     for e in args.epochs:
-        index_path = f"backend/data/colbert/indexes/{args.base_model_name}/{args.train_data}/epoch{e}"
-        pretrained_model_path = f"backend/data/colbert/checkpoints/{args.base_model_name}/{args.train_data}/epoch{e}"
-        print("CUDA available: ", torch.cuda.is_available(), flush = True)
-        passages_df = pd.read_csv(args.corpus_path, header=None)
-        passage_ids = passages_df[0].tolist()
-        passages = passages_df[1].tolist()
+        for part in args.parts:
+            index_path = f"backend/data/colbert/indexes/{args.base_model_name}/{args.train_data}/epoch{e}/part{part}"
+            pretrained_model_path = f"backend/data/colbert/checkpoints/{args.base_model_name}/{args.train_data}/epoch{e}/part{part}"
+            print("CUDA available: ", torch.cuda.is_available(), flush = True)
+            passages_df = pd.read_csv(args.corpus_path, header=None)
+            passage_ids = passages_df[0].tolist()
+            passages = passages_df[1].tolist()
 
-        print("index_path: ", index_path, flush = True)
-        
-        RAG = RAGPretrainedModel.from_pretrained(pretrained_model_path)
+            print("index_path: ", index_path, flush = True)
+            
+            RAG = RAGPretrainedModel.from_pretrained(pretrained_model_path)
 
-        print("...start indexing", flush = True)
-        RAG.index(
-            collection=passages, 
-            document_ids=passage_ids,
-            #document_metadatas=[{"entity": "person", "source": "wikipedia"}],
-            index_name=index_path, 
-            max_document_length=512,
-            split_documents=False,
-            bsize=32
-        )
-        move_content(f".ragatouille/colbert/indexes/{index_path}", index_path)
-        overwrite_index_metadata(f"{index_path}/metadata.json")
+            print("...start indexing", flush = True)
+            RAG.index(
+                collection=passages, 
+                document_ids=passage_ids,
+                #document_metadatas=[{"entity": "person", "source": "wikipedia"}],
+                index_name=index_path, 
+                max_document_length=512,
+                split_documents=False,
+                bsize=32
+            )
+            move_content(f".ragatouille/colbert/indexes/{index_path}", index_path)
+            overwrite_index_metadata(f"{index_path}/metadata.json")
 
     
 if __name__ == "__main__":
@@ -85,6 +86,8 @@ if __name__ == "__main__":
     parser.add_argument('--train_data', type=str, help="e.g. 'GermanDPR-XQA-HP'")
     parser.add_argument('--corpus_path', type=str, default="backend/data/qa/HP/passages.csv", help="e.g. 'backend/data/qa/HP/passages.csv' (according to triples)")
     parser.add_argument("--epochs", metavar="N", type=str, nargs="+",
+                        help="List of integers separated by spaces")
+    parser.add_argument("--parts", metavar="N", type=str, nargs="+",
                         help="List of integers separated by spaces")
     args = parser.parse_args()
 
