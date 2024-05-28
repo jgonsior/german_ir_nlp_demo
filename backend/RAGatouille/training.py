@@ -60,7 +60,6 @@ def main(args):
     train_data = f"{args.union_train_data}-{args.num_negatives}neg"
 
     corpus = pd.read_csv(args.corpus_path).values.tolist()
-    trained_model_from_previous_epoch = None
 
     triples = pd.read_json(args.triples_path, lines=True)[["question", "positive_contexts", "negative_contexts"]].values.tolist()
     if args.num_negatives < len(triples[0][2]):
@@ -68,11 +67,13 @@ def main(args):
     triple_parts = split_list(triples, args.num_parts)
     for e in args.epochs:
         for part in range(1, args.num_parts+1):
-            if e == 1 or e == "1":
-                pretrained_model_name_or_path = args.pretrained_model_name_or_path
+            if (part == 1 or part == "1"):
+                if (e == 1 or e == "1"):
+                    pretrained_model_name_or_path = args.pretrained_model_name_or_path
+                else:
+                    pretrained_model_name_or_path = f"backend/data/colbert/checkpoints/{args.base_model_name}/{train_data}/epoch{int(e)-1}/part{args.num_parts}"
             else:
-                trained_model_from_previous_epoch = f"backend/data/colbert/checkpoints/{args.base_model_name}/{train_data}/epoch{int(e)-1}/part{part-1}"
-                pretrained_model_name_or_path = trained_model_from_previous_epoch
+                pretrained_model_name_or_path = f"backend/data/colbert/checkpoints/{args.base_model_name}/{train_data}/epoch{int(e)}/part{part-1}"
 
             trainer = RAGTrainer(model_name = f"{args.base_model_name}-{train_data}",
                     pretrained_model_name = pretrained_model_name_or_path,
