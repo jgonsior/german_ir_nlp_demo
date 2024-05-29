@@ -2,7 +2,9 @@ import os
 import json
 
 def create_corpus():
-
+    """
+    create corpus.jsonl for gpl query generation from preprocessed wiki
+    """
     corpus = []
     with open('backend/query_generation/hp-gpl/harry_potter_unicode_processed.json', 'r') as file:
         data = json.load(file)
