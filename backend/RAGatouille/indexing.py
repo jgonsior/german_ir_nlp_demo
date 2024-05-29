@@ -53,7 +53,7 @@ def move_content(source_path, destination_path):
 
 def main(args):
     for e in args.epochs:
-        for part in args.parts:
+        for part in range(1, args.num_parts+1):
             index_path = f"backend/data/colbert/indexes/{args.base_model_name}/{args.train_data}/epoch{e}/part{part}"
             pretrained_model_path = f"backend/data/colbert/checkpoints/{args.base_model_name}/{args.train_data}/epoch{e}/part{part}"
             print("CUDA available: ", torch.cuda.is_available(), flush = True)
