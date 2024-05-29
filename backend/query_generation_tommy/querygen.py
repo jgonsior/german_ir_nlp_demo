@@ -30,7 +30,7 @@ def querygen_gpl(
 
     retrievers: List[str] = ["msmarco-distilbert-base-v3", "msmarco-MiniLM-L-6-v3"],
     retriever_score_functions: List[str] = ["cos_sim", "cos_sim"],
-    negatives_per_query: int = 50,
+    negatives_per_query: int = 10,
 ):
 
     #### Make sure there is a `corpus.jsonl` file. It should be under either `path_to_generated_data` ####
@@ -108,7 +108,7 @@ def querygen_gpl(
 if __name__ == "__main__":
     directory = 'sample-data'
     querygen_gpl(
-    path_to_generated_data=f'backend/query_generation/{directory}',
+    path_to_generated_data=f'backend/query_generation_tommy/{directory}',
     batch_size_gpl=4,
     batch_size_generation=1,
     gpl_steps=1,
