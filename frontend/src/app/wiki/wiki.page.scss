@@ -11,19 +11,49 @@
     --background: var(--ion-color-custom-darkblue);
 }
 
+.wiki__searchbar {
+    background: unset;
+    --background: none;
+    --background: var(--ion-color-custom-book);
+    color: var(--ion-color-custom-red);
+    position: relative;
+    padding: 0 2rem 1rem 2rem;
+    --border-radius: 8px;
+}
+
 .wiki__content {
+    background: var(--ion-color-custom-darkblue);
     --background: var(--ion-color-custom-darkblue);
+    overflow-y: hidden;
 }
 
 .wiki__grid {
-    padding: 2rem;
+    padding: 0 2rem 0 2rem;
+}
+
+.wiki__column {
+    padding: 0;
+}
+
+.wiki__row {
+    padding-top: 8rem;
+}
+
+.wiki__row--fixed {
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    height: 40px;
+    left: 0;
+    box-sizing: border-box;
+    padding: 0 2rem 0 2rem;
 }
 
 .wiki__item {
-    --background: var(--ion-color-custom-book);
-    --color: var(--ion-color-custom-red);
+    --background: var(--ion-color-custom-red);
+    --color: var(--ion-color-custom-book);
     width: 100%;
-    border-radius: 8px;
+    padding-bottom: 2rem;
 }
 
 .wiki__label {
@@ -43,24 +73,24 @@
     flex-direction: column;
 }
 
-.wiki__wrapper--image {
+.wiki__banner {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    padding: 1rem;
+    background: var(--ion-color-custom-darkblue);
+
+    >img {
+        position: fixed;
+        margin-top: 6rem;
+        padding: 0 2rem 0 2rem;
+        flex: 0 0 calc(calc(3 / var(--ion-grid-columns, 12))* 100%);
+        width: calc(calc(3 / var(--ion-grid-columns, 12))* 100%);
+        max-width: calc(calc(3 / var(--ion-grid-columns, 12))* 90%);
+    }
 }
 
 .wiki__background {
-    justify-content: center;
-
-    ion-col {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
     img {
-        position: relative;
         border-radius: 100%;
         background: var(--ion-color-custom-book);
         overflow: hidden;
@@ -76,4 +106,9 @@ h5 {
 
 p {
     color: var(--ion-color-custom-book);
+}
+
+
+ion-content::part(scroll) {
+    scrollbar-width: none;
 }

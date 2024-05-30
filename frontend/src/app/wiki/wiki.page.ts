@@ -21,6 +21,7 @@ export class WikiPage implements OnInit {
   private data = inject(DataService);
   private activatedRoute = inject(ActivatedRoute);
   private platform = inject(Platform);
+  searchText: string = '';
 
   constructor() {
   }
@@ -30,6 +31,9 @@ export class WikiPage implements OnInit {
     const idx = this.activatedRoute.snapshot.paramMap.get('id') as string;
     this.data.getDocomentById(parseInt(idx, 10)).then((res) => {
       this.wikiPage = ResponseParsingService.parseDocumentResponse(res);
+    });
+    this.data.currentSearchText.subscribe(text => {
+      this.searchText = text;
     });
   }
 
