@@ -25,6 +25,8 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
+$ion-config-padding: 10rem;
+
 .home__searchbar {
     .searchbar-input-container {
         .searchbar-input {
@@ -148,7 +150,7 @@
     }
 
     .search-results__header {
-        padding: 4rem 4rem 0 4rem !important;
+        padding: 4rem $ion-config-padding 0 $ion-config-padding !important;
         background: var(--ion-color-custom-darkblue);
     }
 
@@ -157,7 +159,7 @@
     }
 
     .search-results__grid {
-        padding: 0 6rem 0 4rem !important;
+        padding: 0 $ion-config-padding 0 $ion-config-padding !important;
     }
 
     .message-component__passage {
@@ -166,7 +168,7 @@
     }
 
     .wiki__header {
-        padding: 4rem 4rem 0 4rem !important;
+        padding: 4rem $ion-config-padding 0 $ion-config-padding !important;
         background: var(--ion-color-custom-darkblue);
     }
 
@@ -175,11 +177,11 @@
     }
 
     .wiki__row--fixed {
-        padding: 0 6rem 0 4rem !important;
+        padding: 0 $ion-config-padding 0 $ion-config-padding !important;
     }
 
     .wiki__row {
-        padding: 8rem 6rem 0 4rem !important;
+        padding: 8rem $ion-config-padding 0 $ion-config-padding !important;
     }
 
     .wiki__searchbar {
