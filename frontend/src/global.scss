@@ -91,7 +91,7 @@
 
     .home__logo {
         img {
-            height: 300px!important;
+            height: 225px!important;
         }
     }
 
@@ -148,12 +148,16 @@
     }
 
     .search-results__header {
-        padding: 2rem 0 0 2rem;
+        padding: 4rem 4rem 0 4rem !important;
         background: var(--ion-color-custom-darkblue);
     }
 
     .search-results__toolbar {
         padding-bottom: 2rem;
+    }
+
+    .search-results__grid {
+        padding: 0 6rem 0 4rem !important;
     }
 
     .message-component__passage {
@@ -162,7 +166,44 @@
     }
 
     .wiki__header {
-        padding: 2rem 0 0 2rem;
+        padding: 4rem 4rem 0 4rem !important;
         background: var(--ion-color-custom-darkblue);
+    }
+
+    .wiki__toolbar {
+        padding-bottom: 2rem;
+    }
+
+    .wiki__row--fixed {
+        padding: 0 6rem 0 4rem !important;
+    }
+
+    .wiki__row {
+        padding: 8rem 6rem 0 4rem !important;
+    }
+
+    .wiki__searchbar {
+        padding-left: 0 !important;
+        .searchbar-input-container {
+            .searchbar-input {
+                height: 80px;
+                font-size: 3rem;
+                padding-left: 6rem;
+            }
+    
+            .searchbar-search-icon {
+                top: 15px;
+                width: 3rem;
+                height: 3rem;
+                color: var(--ion-color-custom-red);
+            }
+
+            button {
+                ion-icon {
+                    width: 3rem;
+                    height: 3rem;
+                }
+            }
+        }
     }
   }
