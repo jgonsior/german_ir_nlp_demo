@@ -33,6 +33,9 @@
         position: fixed;
         margin-top: 6rem;
         padding: 0 2rem 0 2rem;
+        flex: 0 0 calc(calc(3 / var(--ion-grid-columns, 12))* 100%);
+        width: calc(calc(3 / var(--ion-grid-columns, 12))* 100%);
+        max-width: calc(calc(3 / var(--ion-grid-columns, 12))* 70%);
     }
 }
 
@@ -50,15 +53,12 @@
 
 .search-results__list--column {
     padding: 0;
+    min-height: 100vh
 }
 
 .search-results__list {
     padding-top: 0;
     background: var(--ion-color-custom-darkblue);
-}
-
-.fullheight {
-    height: 100vh;
 }
 
 ion-content::part(scroll) {

@@ -30,7 +30,11 @@ export class SearchResultsPage implements OnInit {
   ngOnInit(): void {
     var q = this.route.snapshot.queryParamMap.get('query');
 
-    if (q != null) this.searchText = q;
+    if (q != null) {
+      this.searchText = q;
+      this.data.changeSearchText(this.searchText);
+    }
+      
   }
 
   refresh(event: any) {
@@ -78,6 +82,7 @@ export class SearchResultsPage implements OnInit {
       return;
     }
 
+    this.data.changeSearchText(this.searchText);
     this.router.navigate(['/search-results'], {
       queryParams: { query: this.searchText },
     });
