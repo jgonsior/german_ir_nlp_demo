@@ -14,7 +14,7 @@ FILE_TO_PROCESS = os.getenv("FILE_TO_PROCESS")
 
 def get_cleaned_text(text: str) -> str:
     cleaned_text = html.unescape(text)
-    symbols_to_remove = ["[", "]", "(", ")", ",", ".", ":", "„", "“", "'", "&", "-"]
+    symbols_to_remove = ["[", "]", "(", ")", ",", ".", ":", "„", "“", "”", "'", "&", "-"]
     for symbol in symbols_to_remove:
         cleaned_text = cleaned_text.replace(symbol, "")
     cleaned_text = cleaned_text.replace("  ", " ")
