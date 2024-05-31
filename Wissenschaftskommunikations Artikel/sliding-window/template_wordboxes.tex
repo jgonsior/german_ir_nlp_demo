@@ -4,6 +4,9 @@
 \usepackage{setspace}
 \usepackage{relsize}
 \usepackage{geometry}
+\usepackage{eso-pic}
+\usepackage{graphicx}
+\usepackage{tikz}
 
 \geometry{
  a4paper,
@@ -13,6 +16,13 @@
 }
 
 \newcommand{\wordbox}[1]{\framebox[%box_width%][c]{\strut #1}}
+
+\AddToShipoutPicture*{
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=north east, fill=white, minimum size=1cm, draw=black, text=black, font=\large\bfseries]
+    at (current page.north east) [xshift=-1.5cm, yshift=-1cm] {%letter_increment%};
+  \end{tikzpicture}
+}
 
 \begin{document}
 \pagestyle{empty}

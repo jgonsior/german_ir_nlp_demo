@@ -6,11 +6,12 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 load_dotenv()
-PATH_PDFLATEX = os.getenv("PATH_PDFLATEX")
+PATH_LATEX_COMPILER = os.getenv("PATH_LATEX_COMPILER")
 BOX_WIDTH = os.getenv("BOX_WIDTH")
 BOX_SPACING = os.getenv("BOX_SPACING")
 FILE_TO_PROCESS = os.getenv("FILE_TO_PROCESS")
 
+number_to_letter = {i: chr(65 + i) for i in range(26)}
 
 def get_cleaned_text(text: str) -> str:
     cleaned_text = html.unescape(text)
@@ -60,6 +61,7 @@ if __name__ == '__main__':
                             for pair in get_substrings(cleaned_text):
                                 document_content += pair + r"\\"
 
+                        file_contents = file_contents.replace("%letter_increment%", number_to_letter[i])
                         file_contents = file_contents.replace("%document_content%", document_content)
 
                         # Purge old content and write new
@@ -67,10 +69,15 @@ if __name__ == '__main__':
                         temp_file.truncate()
                         temp_file.write(file_contents)
 
-                    if PATH_PDFLATEX:
-                        os.system(f"{PATH_PDFLATEX} {temporary_template}.tex")
+                    if template == "template_wordboxes.tex":
+                        compiler = "pdflatex"
                     else:
-                        os.system(f"pdflatex {temporary_template}.tex")
+                        compiler = "xelatex"
+
+                    if PATH_LATEX_COMPILER:
+                        os.system(f"{PATH_LATEX_COMPILER}{compiler}.exe {temporary_template}.tex")
+                    else:
+                        os.system(f"{compiler} {temporary_template}.tex")
 
                     shutil.move(f"{temporary_template}.pdf", f"output/{Path(template).stem.replace('template_', '')}_{str(i)}.pdf")
 
