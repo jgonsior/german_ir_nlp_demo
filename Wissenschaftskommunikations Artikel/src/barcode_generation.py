@@ -2,46 +2,49 @@ import json
 
 import datetime
 import math
+from typing import Tuple
 
 import cairo
 import jinja2
 import os
 
 latex_jinja_env = jinja2.Environment(
-    block_start_string=r'\BLOCK{',
-    block_end_string='}',
-    variable_start_string=r'\VAR{',
-    variable_end_string='}',
-    comment_start_string=r'\#{',
-    comment_end_string='}',
-    line_statement_prefix='#',
-    line_comment_prefix='%#',
+    block_start_string=r"\BLOCK{",
+    block_end_string="}",
+    variable_start_string=r"\VAR{",
+    variable_end_string="}",
+    comment_start_string=r"\#{",
+    comment_end_string="}",
+    line_statement_prefix="#",
+    line_comment_prefix="%#",
     trim_blocks=True,
     autoescape=False,
-    loader=jinja2.FileSystemLoader(os.path.relpath('../template/'))
+    loader=jinja2.FileSystemLoader(os.path.relpath("../template/")),
 )
 
 
-def draw_svg(name: str, dict_draw: dict, identity: str):
-    for code_seq in dict_draw:
-        with cairo.SVGSurface(f'../barcodes_out/{identity}s/svg/{identity}_{name}_{code_seq}.svg',
-                              (len(dict_draw[code_seq]) * 10), 1000) as surface:
-            context = cairo.Context(surface)
-            for idx, numeral in enumerate(dict_draw[code_seq]):
-                if numeral == 0:
-                    context.set_source_rgb(0, 0, 0)
-                    context.rectangle(idx * 10, 0, 10, 500)
-                    context.fill_preserve()
-                    context.set_source_rgb(1, 1, 1)
-                    context.set_line_width(2)
-                    context.stroke()
-                else:
-                    context.set_source_rgb(1, 0.84, 0.3)
-                    context.rectangle(idx * 10, 0, 10, 500)
-                    context.fill_preserve()
-                    context.set_source_rgb(1, 1, 1)
-                    context.set_line_width(2)
-                    context.stroke()
+def draw_svg(name: str, barcode: list, identity: str):
+    with cairo.SVGSurface(
+        f"../barcodes_out/{identity}s/svg/{identity}_{name}.svg",
+        (len(barcode) * 10),
+        1000,
+    ) as surface:
+        context = cairo.Context(surface)
+        for idx, numeral in enumerate(barcode):
+            if numeral == 0:
+                context.set_source_rgb(0, 0, 0)
+                context.rectangle(idx * 10, 0, 10, 500)
+                context.fill_preserve()
+                context.set_source_rgb(1, 1, 1)
+                context.set_line_width(2)
+                context.stroke()
+            else:
+                context.set_source_rgb(1, 0.84, 0.3)
+                context.rectangle(idx * 10, 0, 10, 500)
+                context.fill_preserve()
+                context.set_source_rgb(1, 1, 1)
+                context.set_line_width(2)
+                context.stroke()
 
 
 def get_divided_code(code: list, divider: int) -> dict:
@@ -49,73 +52,213 @@ def get_divided_code(code: list, divider: int) -> dict:
     for i in range(divider):
         if i == 0:
             upper_bound = math.floor(len(code) / divider) + 1
-            print(i, 0, upper_bound)
             dict_code[i] = code[0:upper_bound]
         elif i == divider - 1:
             lower_bound = math.ceil((len(code) / divider) * i)
-            print(i, lower_bound, len(code))
             dict_code[i] = code[lower_bound::]
         else:
             lower_bound = math.ceil((len(code) / divider) * i)
             upper_bound = math.floor((len(code) / divider) * (i + 1) + 1)
-            print(i, lower_bound, upper_bound)
             dict_code[i] = code[lower_bound:upper_bound]
 
     return dict_code
 
 
-def create_latex(dict_barcodes: dict, dict_questions: dict, mode: str, amount: int, divider: int):
-    if mode == 'single':
-        for idx, barcode in enumerate(dict_barcodes):
-            print(f'Drawing SVG for barcode {barcode}')
-            if divider <= 1:
-                draw_svg(barcode, {"1": dict_barcodes[barcode]}, "document")
+def xor_lists(list1, list2):
+    if len(list1) != len(list2):
+        raise ValueError("Both lists must have the same length")
+    return [a ^ b for a, b in zip(list1, list2)]
+
+
+def and_lists(list1, list2):
+    if len(list1) != len(list2):
+        raise ValueError("Both lists must have the same length")
+    return [a & b for a, b in zip(list1, list2)]
+
+
+def get_xor_and(dict_codes: dict) -> list:
+    lst_keys = list(dict_codes.keys())
+    if len(dict_codes) == 1:
+        print(
+            "You only provided one or zero question barcodes or document barcodes, the logic for "
+            "shortening them will be skipped!"
+        )
+        return dict_codes[lst_keys[0]]
+    elif len(dict_codes) == 0:
+        raise ValueError(
+            "You must provide at least one question barcode and document barcode"
+        )
+
+    for idx, barcode in enumerate(dict_codes):
+        if idx == 0:
+            xor_barcode = xor_lists(dict_codes[barcode], dict_codes[lst_keys[idx + 1]])
+            and_barcode = and_lists(dict_codes[barcode], dict_codes[lst_keys[idx + 1]])
+        elif idx == len(dict_codes) - 2:
+            xor_barcode = xor_lists(xor_barcode, dict_codes[lst_keys[idx + 1]])
+            and_barcode = and_lists(and_barcode, dict_codes[lst_keys[idx + 1]])
+        elif idx < len(dict_codes) - 3:
+            xor_barcode = xor_lists(xor_barcode, dict_codes[lst_keys[idx + 1]])
+            and_barcode = and_lists(and_barcode, dict_codes[lst_keys[idx + 1]])
+
+    return xor_barcode
+
+
+def remove_redundant(dict_codes: dict, lst_xor: list) -> dict:
+    for idx, num_xor in enumerate(lst_xor):
+        for barcode in dict_codes:
+            if num_xor == 0:
+                code = dict_codes[barcode]
+                code[idx] = ""
+                dict_codes[barcode] = code
+
+    for barcode in dict_codes:
+        dict_codes[barcode] = [i for i in dict_codes[barcode] if i != ""]
+
+    return dict_codes
+
+
+def fill_remaining_zeros(lst, result, max_length, ones_positions, max_zeros):
+    if len(result) < max_length:
+        if not ones_positions:
+            result.extend([0] * (max_length - len(result)))
+        else:
+            last_one_index = ones_positions[-1]
+            remaining_slots = max_length - len(result)
+            for i in range(last_one_index + 1, len(lst)):
+                if lst[i] == 0 and remaining_slots > 0:
+                    result.append(0)
+                    remaining_slots -= 1
+                if len(result) >= max_length:
+                    break
+
+    return result
+
+
+def barcode_minification(dict_codes: dict, max_length: int) -> dict:
+    for code in dict_codes:
+        lst = dict_codes[code]
+        result = []
+        zero_count = 0
+        ones_positions = [i for i, x in enumerate(lst) if x == 1]
+
+        ones_count = len(ones_positions)
+        max_zeros = (
+            (max_length - ones_count) // (ones_count - 1)
+            if ones_count > 1
+            else max_length - 1
+        )
+
+        for num in lst:
+            if num == 1:
+                result.append(num)
+                zero_count = 0
             else:
-                dict_code = get_divided_code(dict_barcodes[barcode], divider)
-                draw_svg(barcode, dict_code, "document")
+                zero_count += 1
+                if zero_count <= max_zeros:
+                    result.append(num)
 
-            barcode_template = latex_jinja_env.get_template('barcode_single_stub.tex')
-            result_barcode = barcode_template.render(barcode=dict_barcodes[barcode], barcode_name=barcode)
-            with open(f'../barcodes_out/documents/tex/barcode_{barcode}.tex', 'w') as file:
-                file.write(result_barcode)
-
-            if idx == amount:
+            if len(result) >= max_length:
                 break
 
-        for idx, question in enumerate(dict_questions):
-            print(f'Drawing SVG for question {question}')
-            if divider > 1:
-                dict_code = get_divided_code(dict_questions[question], divider)
-                draw_svg(question, dict_code, "question")
-            else:
-                draw_svg(question, {"1": dict_questions[question]}, "question")
+        if result.count(1) < ones_count:
+            result = []
+            zero_count = 0
+            for i, num in enumerate(lst):
+                if num == 1:
+                    result.append(num)
+                    zero_count = 0
+                else:
+                    zero_count += 1
+                    if zero_count <= max_zeros:
+                        result.append(num)
+                if len(result) >= max_length:
+                    break
 
-            question_template = latex_jinja_env.get_template('question_single_stub.tex')
-            result_question = question_template.render(question=dict_questions[question], question_name=question)
-            with open(f'../barcodes_out/questions/tex/question_{question}.tex', 'w') as file:
+        if len(result) < max_length:
+            if ones_positions and ones_positions[-1] >= len(result):
+                result.extend([0] * (max_length - len(result)))
+            else:
+                result = fill_remaining_zeros(
+                    lst, result, max_length, ones_positions, max_zeros
+                )
+
+        dict_codes[code] = result
+
+    return dict_codes
+
+
+def create_latex():
+    svg_path_documents = r"../barcodes_out/documents/svg/"
+    lst_documents = []
+    for file in os.listdir(svg_path_documents):
+        file_name, _ = file.split(".")
+        lst_documents.append(file_name)
+
+    svg_path_questions = r"../barcodes_out/questions/svg/"
+    lst_questions = []
+    for file in os.listdir(svg_path_questions):
+        file_name, _ = file.split(".")
+        lst_questions.append(file_name)
+
+    for idx, document in enumerate(lst_documents):
+        if idx < len(lst_documents) - 1:
+            document_template = latex_jinja_env.get_template("document_stub.tex")
+            result_document = document_template.render(
+                svg_file_one=lst_documents[idx], svg_file_two=lst_documents[idx + 1]
+            )
+
+            _, doc_one = lst_documents[idx].split("_")
+            _, doc_two = lst_documents[idx+1].split("_")
+
+            with open(
+                f"../barcodes_out/documents/tex/document_{doc_one}_{doc_two}.tex",
+                "w",
+            ) as file:
+                file.write(result_document)
+
+    for idx, document in enumerate(lst_questions):
+        if idx < len(lst_questions) - 1:
+            question_template = latex_jinja_env.get_template("question_stub.tex")
+            result_question = question_template.render(
+                svg_file_one=lst_questions[idx], svg_file_two=lst_questions[idx + 1]
+            )
+
+            _, quest_one = lst_questions[idx].split("_")
+            _, quest_two = lst_questions[idx + 1].split("_")
+
+            with open(
+                f"../barcodes_out/questions/tex/question_{quest_one}_{quest_two}.tex",
+                "w",
+            ) as file:
+                file.write(result_question)
+        if len(lst_questions) == 2:
+            question_template = latex_jinja_env.get_template("question_stub.tex")
+            result_question = question_template.render(
+                svg_file_one=lst_questions[0], svg_file_two=lst_questions[1]
+            )
+
+            _, quest_one = lst_questions[0].split("_")
+            _, quest_two = lst_questions[1].split("_")
+
+            with open(
+                    f"../barcodes_out/questions/tex/question_{quest_one}_{quest_two}.tex",
+                    "w",
+            ) as file:
                 file.write(result_question)
 
-            if idx == amount:
-                break
-    else:
-        barcode_template = latex_jinja_env.get_template('barcode_stub.tex')
-        result_barcode = barcode_template.render(dict_barcodes=dict_barcodes)
 
-        question_template = latex_jinja_env.get_template('question_stub.tex')
-        result_question = question_template.render(dict_questions=dict_questions)
-
-        with open('../template/question.tex', 'w') as file:
-            file.write(result_question)
-        with open('../template/barcode.tex', 'w') as f:
-            f.write(result_barcode)
-
-
-def generate_barcodes(index_file: str, questions_file: str, divider: int, amount: int = 5, mode: str = 'single'):
+def generate_barcodes(
+    index_file: str,
+    questions_file: str,
+    amount: int,
+    mode: str,
+    max_length: int,
+):
     """
 
+    :param max_length:
     :param index_file:
     :param questions_file:
-    :param divider:
     :param amount:
     :param mode:
     :return:
@@ -124,15 +267,15 @@ def generate_barcodes(index_file: str, questions_file: str, divider: int, amount
     dict_questions = {}
     dict_barcodes = {}
 
-    print(f'{datetime.datetime.now()}')
-    print('Loading files...')
-    with open(index_file, 'r', encoding='utf8') as infile:
+    print(f"{datetime.datetime.now()}")
+    print("Loading files...")
+    with open(index_file, "r", encoding="utf8") as infile:
         inv_index = json.load(infile)
-    with open(questions_file, 'r', encoding='utf8') as infile:
+    with open(questions_file, "r", encoding="utf8") as infile:
         questions = json.load(infile)
 
-    print('Done loading files...')
-    print('Generating barcodes...')
+    print("Done loading files...")
+    print("Generating barcodes...")
 
     for word in inv_index:
         for doc in inv_index[word]:
@@ -143,7 +286,6 @@ def generate_barcodes(index_file: str, questions_file: str, divider: int, amount
                 dict_questions[question] = []
 
     for word in inv_index:
-
         lst_keys = list(dict_barcodes.keys())
         for doc in inv_index[word]:
             dict_barcodes[doc].append(1)
@@ -159,15 +301,47 @@ def generate_barcodes(index_file: str, questions_file: str, divider: int, amount
             else:
                 dict_questions[question].append(0)
 
-    print('Done generating barcodes...')
-    print('Generating files...')
-    create_latex(dict_barcodes, dict_questions, mode, amount, divider)
-    print('Done generating files...')
+    xor_barcode_doc = get_xor_and(dict_barcodes)
+    xor_barcode_q = get_xor_and(dict_questions)
+
+    dict_barcodes = remove_redundant(dict_barcodes, xor_barcode_doc)
+    dict_questions = remove_redundant(dict_questions, xor_barcode_q)
+
+    dict_barcodes = barcode_minification(dict_barcodes, max_length)
+    dict_questions = barcode_minification(dict_questions, max_length)
+
+    print("Done generating barcodes...")
+    print("Generating svg files...")
+    if mode == "single":
+        for idx, barcode in enumerate(dict_barcodes):
+            print(f"Drawing SVG for barcode {barcode}")
+            draw_svg(barcode, dict_barcodes[barcode], "document")
+            if amount == idx:
+                break
+
+        for idx, question in enumerate(dict_questions):
+            print(f"Drawing SVG for question {question}")
+            draw_svg(question, dict_questions[question], "question")
+            if amount == idx:
+                break
+    else:
+        for idx, barcode in enumerate(dict_barcodes):
+            print(f"Drawing SVG for barcode {barcode}")
+            draw_svg(barcode, dict_barcodes[barcode], "document")
+
+        for idx, question in enumerate(dict_questions):
+            print(f"Drawing SVG for question {question}")
+            draw_svg(question, dict_questions[question], "question")
+    print("Done generating svg files...")
+    print("Generating TEX files...")
+    create_latex()
+    print("Done generating TEX files...")
+    print("DONE")
 
 
 if __name__ == "__main__":
-    amount = 5
-    mode = 'single'
-    index_path = '../invIndex/inv_index_Harry.json'
-    questions_path = '../invIndex/questions.json'
-    generate_barcodes(index_path, questions_path, divider=1)
+    amount = 8
+    mode = "single"
+    index_path = "../invIndex/inv_index_wisschenschaftskommunikation_normalized_summarised.json"
+    questions_path = "../invIndex/questions.json"
+    generate_barcodes(index_path, questions_path, amount, mode, max_length=100)
