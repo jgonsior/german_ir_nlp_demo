@@ -1,60 +1,18 @@
-\documentclass{article}
+\documentclass[a4paper, 10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[sfdefault]{AlegreyaSans} % Option 'black' gives heavier bold face
+\usepackage[a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm, bottom=2cm]{geometry} % Adjust left and right margins
+\usepackage{amsmath} % for \boxed
 
-\usepackage[a3paper, left=2cm, right=2cm, bottom=2cm, top=2cm]{geometry} % Adjust left and right margins
-\usepackage{graphicx}
-\usepackage{pdflscape}
-\usepackage{tikz}
+% Set the width of the lines around the box
+\setlength{\fboxrule}{2pt}
 
 \begin{document}
-\begin{landscape}
-        \BLOCK{ for numeral in question }
-        # if loop.index0 == 0
-        \begin{figure}
-        \scalebox{0.1}{
-        \begin{tikzpicture}
-            # if numeral == 0
-            \BLOCK{ set decl = 0 + loop.index0 }
-            \draw[white, fill=white] ( \VAR{ decl } ,0) rectangle (\VAR{ decl },10);
-            # else
-            \BLOCK{ set decl = 0 + loop.index0 }
-            \draw[black, fill=black] (\VAR{ decl } ,0) rectangle (\VAR{ decl },10);
-            # endif
-        # elif loop.index0 % 300 == 0
-            \end{tikzpicture}
-            }
-            \caption{Barcode für Dokument: \VAR{ question_name } }
-            \end{figure}
-            \pagebreak
-            \begin{figure}
-            \scalebox{0.1}{
-            \begin{tikzpicture}
-                # if numeral == 0
-                \BLOCK{ set decl = 0 + loop.index0 }
-                \draw[white, fill=white] ( \VAR{ decl } ,0) rectangle (\VAR{ decl },10);
-                # else
-                \BLOCK{ set decl = 0 + loop.index0 }
-                \draw[black, fill=black] (\VAR{ decl } ,0) rectangle (\VAR{ decl },10);
-                # endif
-        # elif loop.last
-                # if numeral == 0
-                \BLOCK{ set decl = 0 + loop.index0 }
-                \draw[white, fill=white] ( \VAR{ decl } ,0) rectangle (\VAR{ decl },10);
-                # else
-                \BLOCK{ set decl = 0 + loop.index0 }
-                \draw[black, fill=black] (\VAR{ decl } ,0) rectangle (\VAR{ decl },10);
-                # endif
-                \end{tikzpicture}
-            \caption{Barcode für Dokument: \VAR{ question_name } }
-            \end{figure}
-        # else
-            # if numeral == 0
-            \BLOCK{ set decl = 0 + loop.index0 }
-            \draw[white, fill=white] ( \VAR{ decl } ,0) rectangle (\VAR{ decl },10);
-            # else
-            \BLOCK{ set decl = 0 + loop.index0 }
-            \draw[black, fill=black] (\VAR{ decl } ,0) rectangle (\VAR{ decl },10);
-            # endif
-        # endif
-        \BLOCK{ endfor }
-\end{landscape}
-\end{document}
+
+\begin{minipage}[t]{\textwidth}
+\vspace*{-1.5cm} % Move the content up by 0.5cm
+\begin{flushright}
+\hspace*{\fill} % Move the content to the right edge
+$\boxed{\textbf{\Huge\phantom{00}2\phantom{00}}}$ % Your content here with increased padding
+\end{flushright}
+\end{minipage}

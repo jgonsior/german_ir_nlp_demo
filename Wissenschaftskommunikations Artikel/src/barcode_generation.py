@@ -29,14 +29,14 @@ def draw_svg(name: str, dict_draw: dict, identity: str):
             context = cairo.Context(surface)
             for idx, numeral in enumerate(dict_draw[code_seq]):
                 if numeral == 0:
-                    context.set_source_rgb(0, 0, 0.6)
+                    context.set_source_rgb(0, 0, 0)
                     context.rectangle(idx * 10, 0, 10, 500)
                     context.fill_preserve()
                     context.set_source_rgb(1, 1, 1)
                     context.set_line_width(2)
                     context.stroke()
                 else:
-                    context.set_source_rgb(0, 0, 0)
+                    context.set_source_rgb(1, 0.84, 0.3)
                     context.rectangle(idx * 10, 0, 10, 500)
                     context.fill_preserve()
                     context.set_source_rgb(1, 1, 1)
@@ -72,10 +72,6 @@ def create_latex(dict_barcodes: dict, dict_questions: dict, mode: str, amount: i
                 draw_svg(barcode, {"1": dict_barcodes[barcode]}, "document")
             else:
                 dict_code = get_divided_code(dict_barcodes[barcode], divider)
-                length = 0
-                for i in dict_code:
-                    length += len(dict_code[i])
-                print(len(dict_barcodes[barcode]), length)
                 draw_svg(barcode, dict_code, "document")
 
             barcode_template = latex_jinja_env.get_template('barcode_single_stub.tex')
@@ -90,10 +86,6 @@ def create_latex(dict_barcodes: dict, dict_questions: dict, mode: str, amount: i
             print(f'Drawing SVG for question {question}')
             if divider > 1:
                 dict_code = get_divided_code(dict_questions[question], divider)
-                length = 0
-                for i in dict_code:
-                    length += len(dict_code[i])
-                print(len(dict_questions[question]), length)
                 draw_svg(question, dict_code, "question")
             else:
                 draw_svg(question, {"1": dict_questions[question]}, "question")
@@ -119,6 +111,16 @@ def create_latex(dict_barcodes: dict, dict_questions: dict, mode: str, amount: i
 
 
 def generate_barcodes(index_file: str, questions_file: str, divider: int, amount: int = 5, mode: str = 'single'):
+    """
+
+    :param index_file:
+    :param questions_file:
+    :param divider:
+    :param amount:
+    :param mode:
+    :return:
+    """
+
     dict_questions = {}
     dict_barcodes = {}
 
@@ -168,4 +170,4 @@ if __name__ == "__main__":
     mode = 'single'
     index_path = '../invIndex/inv_index_Harry.json'
     questions_path = '../invIndex/questions.json'
-    generate_barcodes(index_path, questions_path, divider=4)
+    generate_barcodes(index_path, questions_path, divider=1)
