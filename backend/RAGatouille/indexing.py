@@ -87,7 +87,7 @@ if __name__ == "__main__":
     parser.add_argument('--corpus_path', type=str, default="backend/data/qa/HP/passages.csv", help="e.g. 'backend/data/qa/HP/passages.csv' (according to triples)")
     parser.add_argument("--epochs", metavar="N", type=str, nargs="+",
                         help="List of integers separated by spaces")
-    parser.add_argument("--parts", metavar="N", type=str, nargs="+",
+    parser.add_argument("--num_parts", metavar="N", type=str, nargs="+",
                         help="List of integers separated by spaces")
     args = parser.parse_args()
 
