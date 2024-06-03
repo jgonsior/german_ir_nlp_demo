@@ -192,59 +192,31 @@ def create_latex():
     lst_documents = []
     for file in os.listdir(svg_path_documents):
         file_name, _ = file.split(".")
-        lst_documents.append(file_name)
+        lst_documents.append(f"../svg/{file_name}")
 
     svg_path_questions = r"../barcodes_out/questions/svg/"
     lst_questions = []
     for file in os.listdir(svg_path_questions):
         file_name, _ = file.split(".")
-        lst_questions.append(file_name)
+        lst_questions.append(f"../svg/{file_name}")
 
-    for idx, document in enumerate(lst_documents):
-        if idx < len(lst_documents) - 1:
-            document_template = latex_jinja_env.get_template("document_stub.tex")
-            result_document = document_template.render(
-                svg_file_one=lst_documents[idx], svg_file_two=lst_documents[idx + 1]
-            )
+    document_template = latex_jinja_env.get_template("document_stub.tex")
+    result_document = document_template.render(lst_documents=lst_documents)
 
-            _, doc_one = lst_documents[idx].split("_")
-            _, doc_two = lst_documents[idx+1].split("_")
+    with open(
+        f"../barcodes_out/documents/tex/documents.tex",
+        "w",
+    ) as file:
+        file.write(result_document)
 
-            with open(
-                f"../barcodes_out/documents/tex/document_{doc_one}_{doc_two}.tex",
-                "w",
-            ) as file:
-                file.write(result_document)
+    question_template = latex_jinja_env.get_template("question_stub.tex")
+    result_question = question_template.render(lst_questions=lst_questions)
 
-    for idx, document in enumerate(lst_questions):
-        if idx < len(lst_questions) - 1:
-            question_template = latex_jinja_env.get_template("question_stub.tex")
-            result_question = question_template.render(
-                svg_file_one=lst_questions[idx], svg_file_two=lst_questions[idx + 1]
-            )
-
-            _, quest_one = lst_questions[idx].split("_")
-            _, quest_two = lst_questions[idx + 1].split("_")
-
-            with open(
-                f"../barcodes_out/questions/tex/question_{quest_one}_{quest_two}.tex",
-                "w",
-            ) as file:
-                file.write(result_question)
-        if len(lst_questions) == 2:
-            question_template = latex_jinja_env.get_template("question_stub.tex")
-            result_question = question_template.render(
-                svg_file_one=lst_questions[0], svg_file_two=lst_questions[1]
-            )
-
-            _, quest_one = lst_questions[0].split("_")
-            _, quest_two = lst_questions[1].split("_")
-
-            with open(
-                    f"../barcodes_out/questions/tex/question_{quest_one}_{quest_two}.tex",
-                    "w",
-            ) as file:
-                file.write(result_question)
+    with open(
+        f"../barcodes_out/questions/tex/questions.tex",
+        "w",
+    ) as file:
+        file.write(result_question)
 
 
 def generate_barcodes(
@@ -294,18 +266,18 @@ def generate_barcodes(
             dict_barcodes[key].append(0)
 
     for question in questions:
+        questions[question] = questions[question].replace("?", "")
+        lst_question = questions[question].lower().split()
+        print(lst_question)
         for word in inv_index:
-            lst_question = questions[question].split()
+            print(word)
             if word in lst_question:
                 dict_questions[question].append(1)
             else:
                 dict_questions[question].append(0)
 
     xor_barcode_doc = get_xor_and(dict_barcodes)
-    xor_barcode_q = get_xor_and(dict_questions)
-
     dict_barcodes = remove_redundant(dict_barcodes, xor_barcode_doc)
-    dict_questions = remove_redundant(dict_questions, xor_barcode_q)
 
     dict_barcodes = barcode_minification(dict_barcodes, max_length)
     dict_questions = barcode_minification(dict_questions, max_length)
