@@ -8,6 +8,7 @@ import {
 } from "../types/query-response.type";
 import {ActivatedRoute} from "@angular/router";
 import {ResponseParsingService} from "../services/response-parsing-service";
+import {WordEmbeddingResponse} from "../types/word-embedding-response";
 
 @Component({
   selector: "app-wiki",
@@ -21,15 +22,22 @@ export class WikiPage implements OnInit {
   private data = inject(DataService);
   private activatedRoute = inject(ActivatedRoute);
   private platform = inject(Platform);
+  protected wordembeddings: WordEmbeddingResponse;
+  protected searchedParagraph: string;
 
   constructor() {
   }
 
   ngOnInit() {
     this.docName = this.activatedRoute.snapshot.paramMap.get('id') as string;
+    this.searchedParagraph = this.activatedRoute.snapshot.paramMap.get('paragraph') as string;
     const idx = this.activatedRoute.snapshot.paramMap.get('id') as string;
     this.data.getDocomentById(parseInt(idx, 10)).then((res) => {
       this.wikiPage = ResponseParsingService.parseDocumentResponse(res);
+      console.log(this.wikiPage)
+      this.data.getWordEmbedding(this.searchedParagraph).then((res) => {
+        this.wordembeddings = res;
+      })
     });
   }
 

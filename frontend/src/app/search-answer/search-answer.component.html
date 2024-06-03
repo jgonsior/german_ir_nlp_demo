@@ -1,4 +1,4 @@
-<ion-item *ngIf="queryResponseResult" [routerLink]="'/wiki/' + queryResponseResult.id" [detail]="false" class="message__item">
+<ion-item *ngIf="queryResponseResult" [routerLink]="'/wiki/' + queryResponseResult.id + '/' + queryResponseResult.text" [detail]="false" class="message__item">
   <div slot="start" [class]="!queryResponseResult.title ? 'dot dot-unread' : 'dot'"></div>
   <ion-label class="ion-text-wrap">
     <ion-row class="message-component__header">
