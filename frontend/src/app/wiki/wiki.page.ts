@@ -6,8 +6,9 @@ import {
   ParsedDocumentTextTypes,
   ParsedQueryResponseDocument,
 } from "../types/query-response.type";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ResponseParsingService} from "../services/response-parsing-service";
+import {DataTransferService} from "../services/data-transfer.service";
 
 @Component({
   selector: "app-wiki",
@@ -17,8 +18,10 @@ import {ResponseParsingService} from "../services/response-parsing-service";
 export class WikiPage implements OnInit {
   public docName: String;
   public wikiPage!: ParsedQueryResponseDocument;
-  public createdHeaders: string[] = [];
+  public paragraph_id: string;
+  private router: Router;
   private data = inject(DataService);
+  private dataTransferService = inject(DataTransferService);
   private activatedRoute = inject(ActivatedRoute);
   private platform = inject(Platform);
 
@@ -31,19 +34,30 @@ export class WikiPage implements OnInit {
     this.data.getDocomentById(parseInt(idx, 10)).then((res) => {
       this.wikiPage = ResponseParsingService.parseDocumentResponse(res);
     });
+
+    let paragraph = this.dataTransferService.getData().text[0]
+
+    Object.keys(this.wikiPage.text).forEach((text: string, index) => {
+      if (text === paragraph){
+        this.paragraph_id = '#' + index;
+      }
+    });
+
+    this.addParagraphIdentifierToRoute()
+
+  }
+
+  addParagraphIdentifierToRoute() {
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      fragment: this.paragraph_id,
+      queryParamsHandling: 'preserve'
+    });
   }
 
   getBackButtonText() {
     const isIos = this.platform.is('ios')
     return isIos ? 'Inbox' : '';
-  }
-
-  addCreatedHeader(header: string) {
-    this.createdHeaders.push(header);
-  }
-
-  isHeaderAlreadyCreated(header: string): boolean {
-    return this.createdHeaders.includes(header);
   }
 
   protected readonly ParsedDocumentTextTypes = ParsedDocumentTextTypes;
