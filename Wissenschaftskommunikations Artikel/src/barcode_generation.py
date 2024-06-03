@@ -268,9 +268,7 @@ def generate_barcodes(
     for question in questions:
         questions[question] = questions[question].replace("?", "")
         lst_question = questions[question].lower().split()
-        print(lst_question)
         for word in inv_index:
-            print(word)
             if word in lst_question:
                 dict_questions[question].append(1)
             else:
