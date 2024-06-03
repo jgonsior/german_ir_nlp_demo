@@ -7,5 +7,5 @@ if "%FOLDER_PATH%"=="" (
 )
 
 for %%f in (%FOLDER_PATH%\*.tex) do (
-  pdflatex %%f
+  pdflatex --shell-escape %%f
 )

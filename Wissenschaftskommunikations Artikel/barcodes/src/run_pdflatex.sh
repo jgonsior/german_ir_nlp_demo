@@ -1,3 +1,5 @@
+#!/bin/bash
+
 FOLDER_PATH=$1
 
 if [ -z "$FOLDER_PATH" ]; then
@@ -6,5 +8,5 @@ if [ -z "$FOLDER_PATH" ]; then
 fi
 
 for file in "$FOLDER_PATH"/*.tex; do
-  pdflatex "$file"
+  pdflatex --shell-escape "$file"
 done

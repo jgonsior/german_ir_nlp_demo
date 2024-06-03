@@ -31,12 +31,6 @@ def detect_os():
     return os_name
 
 
-def xor_lists(list1, list2):
-    if len(list1) != len(list2):
-        raise ValueError("Both lists must have the same length")
-    return [a ^ b for a, b in zip(list1, list2)]
-
-
 def and_lists(list1, list2):
     if len(list1) != len(list2):
         raise ValueError("Both lists must have the same length")
@@ -58,22 +52,19 @@ def get_xor_and(dict_codes: dict) -> list:
 
     for idx, barcode in enumerate(dict_codes):
         if idx == 0:
-            xor_barcode = xor_lists(dict_codes[barcode], dict_codes[lst_keys[idx + 1]])
             and_barcode = and_lists(dict_codes[barcode], dict_codes[lst_keys[idx + 1]])
         elif idx == len(dict_codes) - 2:
-            xor_barcode = xor_lists(xor_barcode, dict_codes[lst_keys[idx + 1]])
             and_barcode = and_lists(and_barcode, dict_codes[lst_keys[idx + 1]])
         elif idx < len(dict_codes) - 3:
-            xor_barcode = xor_lists(xor_barcode, dict_codes[lst_keys[idx + 1]])
             and_barcode = and_lists(and_barcode, dict_codes[lst_keys[idx + 1]])
 
-    return xor_barcode
+    return and_barcode
 
 
 def remove_redundant(dict_codes: dict, lst_xor: list) -> dict:
     for idx, num_xor in enumerate(lst_xor):
         for barcode in dict_codes:
-            if num_xor == 0:
+            if num_xor == 1:
                 code = dict_codes[barcode]
                 code[idx] = ""
                 dict_codes[barcode] = code
@@ -84,7 +75,7 @@ def remove_redundant(dict_codes: dict, lst_xor: list) -> dict:
     return dict_codes
 
 
-def fill_remaining_zeros(lst, result, max_length, ones_positions, max_zeros):
+def fill_remaining_zeros(lst, result, max_length, ones_positions):
     if len(result) < max_length:
         if not ones_positions:
             result.extend([0] * (max_length - len(result)))
@@ -146,32 +137,12 @@ def barcode_minification(dict_codes: dict, max_length: int) -> dict:
                 result.extend([0] * (max_length - len(result)))
             else:
                 result = fill_remaining_zeros(
-                    lst, result, max_length, ones_positions, max_zeros
+                    lst, result, max_length, ones_positions
                 )
 
         dict_codes[code] = result
 
     return dict_codes
-
-
-def run_pdflatex(folder_path):
-    os_name = detect_os()
-
-    if os_name == "Linux" or os_name == "Darwin":  # Linux or MacOS
-        script_name = "run_pdflatex.sh"
-    elif os_name == "Windows":
-        script_name = "run_pdflatex.bat"
-    else:
-        raise ValueError("Unsupported Operating System")
-
-    script_path = os.path.join(os.getcwd(), script_name)
-
-    # Make sure the script is executable (only for Unix-like systems)
-    if os_name != "Windows":
-        subprocess.run(["chmod", "+x", script_path], check=True)
-
-    # Run the script with the folder path as an argument
-    subprocess.run([script_path, folder_path], check=True)
 
 
 def draw_svg(name: str, barcode: list, identity: str):
@@ -184,14 +155,14 @@ def draw_svg(name: str, barcode: list, identity: str):
         for idx, numeral in enumerate(barcode):
             if numeral == 0:
                 context.set_source_rgb(0, 0, 0)
-                context.rectangle(idx * 10, 0, 10, 500)
+                context.rectangle(idx * 10, 0, 10, 100)
                 context.fill_preserve()
                 context.set_source_rgb(1, 1, 1)
                 context.set_line_width(2)
                 context.stroke()
             else:
                 context.set_source_rgb(1, 0.84, 0.3)
-                context.rectangle(idx * 10, 0, 10, 500)
+                context.rectangle(idx * 10, 0, 10, 100)
                 context.fill_preserve()
                 context.set_source_rgb(1, 1, 1)
                 context.set_line_width(2)
@@ -203,13 +174,13 @@ def create_latex():
     lst_documents = []
     for file in os.listdir(svg_path_documents):
         file_name, _ = file.split(".")
-        lst_documents.append(f"../svg/{file_name}")
+        lst_documents.append(f"../barcodes_out/documents/svg/{file_name}")
 
     svg_path_questions = r"../barcodes_out/questions/svg/"
     lst_questions = []
     for file in os.listdir(svg_path_questions):
         file_name, _ = file.split(".")
-        lst_questions.append(f"../svg/{file_name}")
+        lst_questions.append(f"../barcodes_out/questions/svg/{file_name}")
 
     document_template = latex_jinja_env.get_template("document_stub.tex")
     result_document = document_template.render(lst_documents=lst_documents)
@@ -228,6 +199,27 @@ def create_latex():
         "w",
     ) as file:
         file.write(result_question)
+
+
+def create_pdf(switch: str):
+    folder_path = f'../barcodes_out/{switch}/tex'
+    os_name = detect_os()
+
+    if os_name == "Linux" or os_name == "Darwin":  # Linux or MacOS
+        script_name = "run_pdflatex.sh"
+    elif os_name == "Windows":
+        script_name = "run_pdflatex.bat"
+    else:
+        raise ValueError("Unsupported Operating System")
+
+    script_path = os.path.join(os.getcwd(), script_name)
+
+    # Make sure the script is executable (only for Unix-like systems)
+    if os_name != "Windows":
+        subprocess.run(["chmod", "+x", script_path], check=True)
+
+    # Run the script with the folder path as an argument
+    subprocess.run([script_path, folder_path], check=True)
 
 
 def generate_barcodes(
@@ -285,8 +277,8 @@ def generate_barcodes(
             else:
                 dict_questions[question].append(0)
 
-    xor_barcode_doc = get_xor_and(dict_barcodes) # TODO: instead of xor do and - invert - and to find all 0 or all 1
-    dict_barcodes = remove_redundant(dict_barcodes, xor_barcode_doc)
+    and_barcode_doc = get_xor_and(dict_barcodes) # TODO: instead of xor do and - invert - and to find all 0 or all 1
+    dict_barcodes = remove_redundant(dict_barcodes, and_barcode_doc)
 
     dict_barcodes = barcode_minification(dict_barcodes, max_length)
     dict_questions = barcode_minification(dict_questions, max_length)
@@ -318,8 +310,8 @@ def generate_barcodes(
     create_latex()
     print("Done generating TEX files...")
     print("Generating PDF files from TEX files...")
-    create_pdf()
-    create_pdf()
+    create_pdf('documents')
+    create_pdf('questions')
     print("Done generating PDF...")
     print("DONE")
 
@@ -335,7 +327,7 @@ if __name__ == "__main__":
             if "questions" not in file:
                 index_path = f"../invIndex/{file}"
             else:
-                questions_path = f"../invQuestions/{file}"
+                questions_path = f"../invIndex/{file}"
         else:
             raise Exception(f"File type {os.path.splitext(file)} not supported")
 
