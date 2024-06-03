@@ -1,12 +1,14 @@
 import json
 
 import datetime
-import math
-from typing import Tuple
+import platform
+import os
+import subprocess
 
 import cairo
 import jinja2
-import os
+
+INVERTED_INDEX_PATH = '../invIndex/'
 
 latex_jinja_env = jinja2.Environment(
     block_start_string=r"\BLOCK{",
@@ -23,45 +25,10 @@ latex_jinja_env = jinja2.Environment(
 )
 
 
-def draw_svg(name: str, barcode: list, identity: str):
-    with cairo.SVGSurface(
-        f"../barcodes_out/{identity}s/svg/{identity}_{name}.svg",
-        (len(barcode) * 10),
-        1000,
-    ) as surface:
-        context = cairo.Context(surface)
-        for idx, numeral in enumerate(barcode):
-            if numeral == 0:
-                context.set_source_rgb(0, 0, 0)
-                context.rectangle(idx * 10, 0, 10, 500)
-                context.fill_preserve()
-                context.set_source_rgb(1, 1, 1)
-                context.set_line_width(2)
-                context.stroke()
-            else:
-                context.set_source_rgb(1, 0.84, 0.3)
-                context.rectangle(idx * 10, 0, 10, 500)
-                context.fill_preserve()
-                context.set_source_rgb(1, 1, 1)
-                context.set_line_width(2)
-                context.stroke()
-
-
-def get_divided_code(code: list, divider: int) -> dict:
-    dict_code = {}
-    for i in range(divider):
-        if i == 0:
-            upper_bound = math.floor(len(code) / divider) + 1
-            dict_code[i] = code[0:upper_bound]
-        elif i == divider - 1:
-            lower_bound = math.ceil((len(code) / divider) * i)
-            dict_code[i] = code[lower_bound::]
-        else:
-            lower_bound = math.ceil((len(code) / divider) * i)
-            upper_bound = math.floor((len(code) / divider) * (i + 1) + 1)
-            dict_code[i] = code[lower_bound:upper_bound]
-
-    return dict_code
+def detect_os():
+    os_name = platform.system()
+    print(f"Detected OS: {os_name}")
+    return os_name
 
 
 def xor_lists(list1, list2):
@@ -187,6 +154,50 @@ def barcode_minification(dict_codes: dict, max_length: int) -> dict:
     return dict_codes
 
 
+def run_pdflatex(folder_path):
+    os_name = detect_os()
+
+    if os_name == "Linux" or os_name == "Darwin":  # Linux or MacOS
+        script_name = "run_pdflatex.sh"
+    elif os_name == "Windows":
+        script_name = "run_pdflatex.bat"
+    else:
+        raise ValueError("Unsupported Operating System")
+
+    script_path = os.path.join(os.getcwd(), script_name)
+
+    # Make sure the script is executable (only for Unix-like systems)
+    if os_name != "Windows":
+        subprocess.run(["chmod", "+x", script_path], check=True)
+
+    # Run the script with the folder path as an argument
+    subprocess.run([script_path, folder_path], check=True)
+
+
+def draw_svg(name: str, barcode: list, identity: str):
+    with cairo.SVGSurface(
+        f"../barcodes_out/{identity}s/svg/{identity}_{name}.svg",
+        (len(barcode) * 10),
+        1000,
+    ) as surface:
+        context = cairo.Context(surface)
+        for idx, numeral in enumerate(barcode):
+            if numeral == 0:
+                context.set_source_rgb(0, 0, 0)
+                context.rectangle(idx * 10, 0, 10, 500)
+                context.fill_preserve()
+                context.set_source_rgb(1, 1, 1)
+                context.set_line_width(2)
+                context.stroke()
+            else:
+                context.set_source_rgb(1, 0.84, 0.3)
+                context.rectangle(idx * 10, 0, 10, 500)
+                context.fill_preserve()
+                context.set_source_rgb(1, 1, 1)
+                context.set_line_width(2)
+                context.stroke()
+
+
 def create_latex():
     svg_path_documents = r"../barcodes_out/documents/svg/"
     lst_documents = []
@@ -274,7 +285,7 @@ def generate_barcodes(
             else:
                 dict_questions[question].append(0)
 
-    xor_barcode_doc = get_xor_and(dict_barcodes)
+    xor_barcode_doc = get_xor_and(dict_barcodes) # TODO: instead of xor do and - invert - and to find all 0 or all 1
     dict_barcodes = remove_redundant(dict_barcodes, xor_barcode_doc)
 
     dict_barcodes = barcode_minification(dict_barcodes, max_length)
@@ -306,12 +317,26 @@ def generate_barcodes(
     print("Generating TEX files...")
     create_latex()
     print("Done generating TEX files...")
+    print("Generating PDF files from TEX files...")
+    create_pdf()
+    create_pdf()
+    print("Done generating PDF...")
     print("DONE")
 
 
 if __name__ == "__main__":
     amount = 8
     mode = "single"
-    index_path = "../invIndex/inv_index_wisschenschaftskommunikation_normalized_summarised.json"
-    questions_path = "../invIndex/questions.json"
+    if len(os.listdir(INVERTED_INDEX_PATH)) < 2:
+        raise Exception("No inverted index or question files found. Please provide both in JSON format")
+
+    for file in os.listdir(INVERTED_INDEX_PATH):
+        if file.endswith(".json"):
+            if "questions" not in file:
+                index_path = f"../invIndex/{file}"
+            else:
+                questions_path = f"../invQuestions/{file}"
+        else:
+            raise Exception(f"File type {os.path.splitext(file)} not supported")
+
     generate_barcodes(index_path, questions_path, amount, mode, max_length=100)
