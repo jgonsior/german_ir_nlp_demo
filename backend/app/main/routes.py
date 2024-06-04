@@ -14,7 +14,6 @@ from app.tf_idf import find_best_results
 from . import bp
 from . import utils
 
-
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
 # Milestone 1
@@ -41,7 +40,7 @@ def search():
         print(query, flush=True)
 
         # Milestone 1
-        resp = dm.get_random_documents(amount=3)
+        # resp = dm.get_random_documents(amount=3)
 
         # Milestone 2
         # resp = qf.query_vector_finder(query, 3)
