@@ -145,6 +145,19 @@
     --ion-color-light-contrast-rgb: 255,255,255;
     --ion-color-light-shade: #1e2023;
     --ion-color-light-tint: #383a3e;
+
+    --ion-color-custom-light: #ddd8bb;
+    --ion-color-custom-aquablue: #72c4bf;
+    --ion-color-custom-lightblue: #4f8ca9;
+    --ion-color-custom-darkblue: #020815;
+    --ion-color-custom-blue: #1f4171;
+    --ion-color-custom-red: #c84120;
+    --ion-color-custom-green: #38c141;
+    --ion-color-custom-yellow: #f3c42c;
+    --ion-color-custom-owl: #e79342;
+    --ion-color-custom-book: #fbf3c5;
+
+
   }
 
   /*
@@ -242,3 +255,4 @@ html {
    */
   --ion-dynamic-font: var(--ion-default-dynamic-font);
 }
+

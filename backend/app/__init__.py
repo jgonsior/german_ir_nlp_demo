@@ -5,7 +5,7 @@ import configparser
 import os
 
 from .main import bp as main_bp
-from .tf_idf import bp as tf_idf_bp
+#from .tf_idf import bp as tf_idf_bp
 
 app_config = {}
 
@@ -25,6 +25,6 @@ def create_app():
 
 
     app.register_blueprint(main_bp)
-    app.register_blueprint(tf_idf_bp)
+    #app.register_blueprint(tf_idf_bp)
 
     return app

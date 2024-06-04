@@ -159,6 +159,7 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
+.DS_Store
 # Backend
 backend/data/qa/GermanDPR/passages.csv
 backend/data/qa/GermanDPR/train_triples.jsonl
