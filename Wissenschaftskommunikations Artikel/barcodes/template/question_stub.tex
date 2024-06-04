@@ -8,14 +8,13 @@
 \setlength{\fboxrule}{2pt}
 
 \begin{document}
-\BLOCK{ for question in lst_questions }
-\BLOCK{ set question_name = question.split("_")[3] }
 \begin{landscape}
 \thispagestyle{empty}
 \begin{minipage}[t]{\textwidth}
-        \includesvg[scale=1]{\VAR{ question }}
-        $\boxed{\textbf{\Huge\phantom{00}\VAR{ question_name }\phantom{00}}}$
+\BLOCK{ for question in lst_questions }
+\BLOCK{ set question_name = question.split("_")[3] }
+        $\boxed{\textbf{\Huge\phantom{00}\VAR{ question_name }\phantom{00}}}$\includegraphics[scale=1]{\VAR{ question }}
+\BLOCK{ endfor }
 \end{minipage}
 \end{landscape}
-\BLOCK{ endfor }
 \end{document}

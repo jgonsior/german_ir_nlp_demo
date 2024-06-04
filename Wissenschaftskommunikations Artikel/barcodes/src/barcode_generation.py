@@ -146,8 +146,8 @@ def barcode_minification(dict_codes: dict, max_length: int) -> dict:
 
 
 def draw_svg(name: str, barcode: list, identity: str):
-    with cairo.SVGSurface(
-        f"../barcodes_out/{identity}s/svg/{identity}_{name}.svg",
+    with cairo.PDFSurface(
+        f"../barcodes_out/{identity}s/pdf/{identity}_{name}.pdf",
         (len(barcode) * 10),
         1000,
     ) as surface:
@@ -170,15 +170,15 @@ def draw_svg(name: str, barcode: list, identity: str):
 
 
 def create_latex():
-    svg_path_documents = r"../barcodes_out/documents/svg/"
+    pdf_path_documents = r"../barcodes_out/documents/pdf/"
     lst_documents = []
-    for file in os.listdir(svg_path_documents):
+    for file in os.listdir(pdf_path_documents):
         file_name, _ = file.split(".")
         lst_documents.append(f"../barcodes_out/documents/svg/{file_name}")
 
-    svg_path_questions = r"../barcodes_out/questions/svg/"
+    pdf_path_questions = r"../barcodes_out/questions/pdf/"
     lst_questions = []
-    for file in os.listdir(svg_path_questions):
+    for file in os.listdir(pdf_path_questions):
         file_name, _ = file.split(".")
         lst_questions.append(f"../barcodes_out/questions/svg/{file_name}")
 
@@ -277,7 +277,7 @@ def generate_barcodes(
             else:
                 dict_questions[question].append(0)
 
-    and_barcode_doc = get_xor_and(dict_barcodes) # TODO: instead of xor do and - invert - and to find all 0 or all 1
+    and_barcode_doc = get_xor_and(dict_barcodes)
     dict_barcodes = remove_redundant(dict_barcodes, and_barcode_doc)
 
     dict_barcodes = barcode_minification(dict_barcodes, max_length)

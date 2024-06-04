@@ -8,13 +8,13 @@
 \setlength{\fboxrule}{2pt}
 
 \begin{document}
-\BLOCK{ for document in lst_documents }
-\BLOCK{ set document_name = document.split("_")[3] }
 \begin{landscape}
 \thispagestyle{empty}
 \begin{minipage}[t]{\textwidth}
-        $\boxed{\textbf{\Huge\phantom{00}\VAR{ document_name }\phantom{00}}}$ \includesvg[scale=1]{\VAR{ document }}
+\BLOCK{ for document in lst_documents }
+\BLOCK{ set document_name = document.split("_")[3] }
+        $\boxed{\textbf{\Huge\phantom{00}\VAR{ document_name }\phantom{00}}}$ \includegraphics[scale=1]{\VAR{ document }}
+\BLOCK{ endfor }
 \end{minipage}
 \end{landscape}
-\BLOCK{ endfor }
 \end{document}
