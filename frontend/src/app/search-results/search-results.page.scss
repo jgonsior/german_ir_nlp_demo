@@ -68,3 +68,10 @@ ion-content::part(scroll) {
 .search-result__scroll {
     background: transparent;
 }
+
+.custom-loading {
+    --background: #e3edff;
+    --spinner-color: #1c6dff;
+  
+    color: #1c6dff;
+  }

@@ -1,13 +1,18 @@
 <ion-header [translucent]="true" class="wiki__header">
   <ion-toolbar class="wiki__toolbar">
     <ion-buttons slot="start">
-      <ion-back-button [text]="getBackButtonText()" default-href="/"></ion-back-button>
+      <ion-back-button
+        [text]="getBackButtonText()"
+        default-href="/"
+      ></ion-back-button>
     </ion-buttons>
     <ion-title>Wikipage</ion-title>
   </ion-toolbar>
   <ion-toolbar class="wiki__toolbar">
-    <ion-searchbar class="wiki__searchbar"
+    <ion-searchbar
+      class="wiki__searchbar"
       [(ngModel)]="searchText"
+      (keyup.enter)="onSearchClicked()"
       #searchBar
     ></ion-searchbar>
   </ion-toolbar>
@@ -26,21 +31,28 @@
       <ion-col size="3" class="wiki__banner">
         <img src="../../assets/Wiki.svg" alt="Wiki Image" />
       </ion-col>
-      <ion-col size="6" class=" ion-padding wiki__column" *ngIf="wikiPage">
+      <ion-col size="6" class="ion-padding wiki__column" *ngIf="wikiPage">
         <ng-container *ngFor="let passages of wikiPage.text">
-          <ng-container *ngIf="passages.type === ParsedDocumentTextTypes.heading">
-            <h2 *ngIf="passages.depth === 0"> {{ passages.content }} </h2>
-            <h3 *ngIf="passages.depth === 1"> {{ passages.content }} </h3>
-            <h4 *ngIf="passages.depth === 2"> {{ passages.content }} </h4>
-            <h5 *ngIf="passages.depth === 3"> {{ passages.content }} </h5>
+          <ng-container
+            *ngIf="passages.type === ParsedDocumentTextTypes.heading"
+          >
+            <h2 *ngIf="passages.depth === 0">{{ passages.content }}</h2>
+            <h3 *ngIf="passages.depth === 1">{{ passages.content }}</h3>
+            <h4 *ngIf="passages.depth === 2">{{ passages.content }}</h4>
+            <h5 *ngIf="passages.depth === 3">{{ passages.content }}</h5>
           </ng-container>
-          <ng-container *ngIf="passages.type === ParsedDocumentTextTypes.normal_text_passage">
+          <ng-container
+            *ngIf="passages.type === ParsedDocumentTextTypes.normal_text_passage"
+          >
             <p>{{passages.content}}</p>
           </ng-container>
         </ng-container>
       </ion-col>
       <ion-col size="3" class="wiki__banner wiki__background">
-        <img src="../../assets/Wiki Background.svg" alt="Wiki Background Image" />
+        <img
+          src="../../assets/Wiki Background.svg"
+          alt="Wiki Background Image"
+        />
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -8,13 +8,14 @@ import {
 } from '@ionic/angular';
 import { DataService } from '../services/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-search-results',
   templateUrl: './search-results.page.html',
   styleUrls: ['./search-results.page.scss'],
 })
-export class SearchResultsPage implements OnInit {
+export class SearchResultsPage {
   private data = inject(DataService);
   protected queryResults: QueryResponseResult[] = [];
   private platform = inject(Platform);
@@ -24,24 +25,25 @@ export class SearchResultsPage implements OnInit {
 
   searchText: string = '';
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private loadingCtrl: LoadingController
+  ) {
     this.getMessages();
-  }
-  ngOnInit(): void {
-    var q = this.route.snapshot.queryParamMap.get('query');
 
-    if (q != null) {
-      this.searchText = q;
-      this.data.changeSearchText(this.searchText);
-    }
-      
+    route.queryParams.subscribe((p) => {
+      if (this.searchText != p['query']) {
+        this.searchText = p['query'];
+        this.getMessages();
+        this.queryResults = [];
+      }
+    });
   }
 
   refresh(event: any) {
     this.getMessages();
-    setTimeout(() => {
-      (event as RefresherCustomEvent).detail.complete();
-    }, 3000);
+    (event as RefresherCustomEvent).detail.complete();
   }
 
   async getMessages() {
@@ -49,9 +51,17 @@ export class SearchResultsPage implements OnInit {
 
     if (q == null) return;
 
+    const loading = await this.loadingCtrl.create({
+      message: 'Lade...',
+      cssClass: 'custom-loading',
+    });
+
+    loading.present();
+
     await this.data.getQueryResults(q).then((response) => {
       // this.queryResults = Array(this.count).fill(response[0]);
       this.queryResults = response;
+      loading.dismiss();
     });
   }
 
@@ -63,9 +73,7 @@ export class SearchResultsPage implements OnInit {
     await this.data.getQueryResults(q).then((response) => {
       this.queryResults.push(...response);
     });
-    setTimeout(() => {
-      (ev as InfiniteScrollCustomEvent).target.complete();
-    }, 500);
+    (ev as InfiniteScrollCustomEvent).target.complete();
   }
 
   getBackButtonText() {

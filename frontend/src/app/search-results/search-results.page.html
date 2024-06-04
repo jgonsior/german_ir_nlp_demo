@@ -9,7 +9,8 @@
     <ion-title>Suchergebnisse</ion-title>
   </ion-toolbar>
   <ion-toolbar class="search-results__toolbar">
-    <ion-searchbar class="search-results__searchbar"
+    <ion-searchbar
+      class="search-results__searchbar"
       [(ngModel)]="searchText"
       #searchBar
       (keyup.enter)="navigateWithNewQuery()"
@@ -24,21 +25,30 @@
   <ion-grid class="search-results__grid">
     <ion-row>
       <ion-col size="2" class="search-results__banner">
-        <img src="../../assets/male.svg" alt="Male magician"/>
+        <img src="../../assets/male.svg" alt="Male magician" />
       </ion-col>
       <ion-col size="8" class="search-results__list--column">
         <ion-list class="search-results__list fullheight">
-          <app-error-message *ngIf="queryResults.length === 0"></app-error-message>
-          <app-search-answer *ngFor="let queryResponseResult of queryResults" [queryResponseResult]="queryResponseResult"></app-search-answer>
+          <app-error-message
+            *ngIf="queryResults.length === 0"
+          ></app-error-message>
+          <app-search-answer
+            *ngFor="let queryResponseResult of queryResults"
+            [queryResponseResult]="queryResponseResult"
+            [query]="searchText"
+          ></app-search-answer>
         </ion-list>
       </ion-col>
       <ion-col size="2" class="search-results__banner">
-        <img src="../../assets/female.svg" alt="Female magician"/>
+        <img src="../../assets/female.svg" alt="Female magician" />
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
-    <ion-infinite-scroll-content class="search-result__scroll"></ion-infinite-scroll-content>
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)" threshold="5%">
+    <ion-infinite-scroll-content
+      class="search-result__scroll"
+      loadingSpinner="bubbles"
+    ></ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>
