@@ -9,7 +9,8 @@ def update_model_metadata():
     metadata_path = os.path.join(index_path, 'metadata.json')
 
     if not os.path.isfile(metadata_path):
-        raise FileNotFoundError(f"{metadata_path} does not exist! Check config.ini")
+        raise FileNotFoundError("{} does not exist! Check config.ini".format(metadata_path))
+
 
     with open(metadata_path, 'r') as f:
         metadata = json.load(f)

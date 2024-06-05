@@ -4,12 +4,6 @@ from random import randint
 import torch
 import os
 
-from app.tf_idf import find_best_results
-from .document_manager import DocumentManager
-
-from app.tf_idf import find_best_results
-#
-#from app.tf_idf import find_best_results
 
 from . import bp
 from . import utils
@@ -17,8 +11,11 @@ from . import utils
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
 # Milestone 1
+# from .document_manager import DocumentManager
 # dm = DocumentManager()
+
 # Milestone 2
+# from app.tf_idf import find_best_results
 # qf = find_best_results.queryFinder()
 
 # Milestone 3-5
