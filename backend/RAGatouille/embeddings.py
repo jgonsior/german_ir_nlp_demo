@@ -2,23 +2,25 @@ import transformers as tf
 import numpy as np
 import pandas as pd
 
-tokenizer = tf.BertTokenizer.from_pretrained("/home/tommynguyen/VSCode/german_ir_nlp_demo/backend/data/colbert/checkpoints/bert-base-german-cased/GermanDPR-XQA-HP/epoch1")
+tokenizer = tf.BertTokenizer.from_pretrained("backend/data/colbert/checkpoints/bert-base-german-cased/GermanDPR-XQA-HP/epoch1")
 
-df = pd.read_csv("/home/tommynguyen/VSCode/german_ir_nlp_demo/embeddings.csv")
+df = pd.read_csv("embeddings.csv")
 
-def embed_word(tokenizer: tf.BertTokenizer, df:pd.DataFrame, word: str) -> np.ndarray:
+
+def embed_word(tokenizer: tf.BertTokenizer, df: pd.DataFrame, word: str) -> np.ndarray:
 
     tokens = tokenizer(word)["input_ids"][1:-1]
-
-    df['embedding'] = df['embedding'].apply(lambda x: np.fromstring(x.strip('[]'), sep=' '))
-    #df['embedding_mean'] = df['embedding'].apply(lambda x: sum(x)/len(x))
-
+    df["embedding"] = df["embedding"].apply(lambda x: np.fromstring(x.strip("[]"), sep=" "))
     embedding = df.iloc[tokens]["embedding"].mean()
+
     return embedding
 
+
 print(embed_word(tokenizer=tokenizer, df=df, word="Hufflepuff"))
-#print(embeddings.shape)
-#print(embeddings.mean().shape)#.mean(axis=0))
+
+
+# print(embeddings.shape)
+# print(embeddings.mean().shape)#.mean(axis=0))
 
 
 # with open("backend/data/colbert/checkpoints/bert-base-german-cased/GermanDPR-XQA-HP/epoch1/vocab.txt", "r", encoding="utf-8") as tokens:
