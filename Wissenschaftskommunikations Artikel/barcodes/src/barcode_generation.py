@@ -168,7 +168,7 @@ def draw_svg(name: str, barcode: list, identity: str):
                 context.set_line_width(2)
                 context.stroke()
 
-
+-output-directory
 def create_latex():
     pdf_path_documents = r"../barcodes_out/documents/svg/"
     lst_documents = []
@@ -203,6 +203,7 @@ def create_latex():
 
 def create_pdf(switch: str):
     folder_path = f'../barcodes_out/{switch}/tex'
+    output_path = f'../barcodes_out/{switch}/pdf'
     os_name = detect_os()
 
     if os_name == "Linux" or os_name == "Darwin":  # Linux or MacOS
@@ -219,7 +220,7 @@ def create_pdf(switch: str):
         subprocess.run(["chmod", "+x", script_path], check=True)
 
     # Run the script with the folder path as an argument
-    subprocess.run([script_path, folder_path], check=True)
+    subprocess.run([script_path, folder_path, output_path], check=True)
 
 
 def generate_barcodes(

@@ -1,5 +1,6 @@
 @echo off
 set FOLDER_PATH=%1
+set OUTPUT_PATH=%2
 
 if "%FOLDER_PATH%"=="" (
   echo No folder path provided.
@@ -7,5 +8,5 @@ if "%FOLDER_PATH%"=="" (
 )
 
 for %%f in (%FOLDER_PATH%\*.tex) do (
-  pdflatex --shell-escape %%f
+  pdflatex -output-path=%OUTPUT_PATH% --shell-escape %%f
 )

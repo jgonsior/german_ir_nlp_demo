@@ -1,6 +1,7 @@
 #!/bin/bash
 
 FOLDER_PATH=$1
+OUTPUT_PATH=$2
 
 if [ -z "$FOLDER_PATH" ]; then
   echo "No folder path provided."
@@ -8,5 +9,5 @@ if [ -z "$FOLDER_PATH" ]; then
 fi
 
 for file in "$FOLDER_PATH"/*.tex; do
-  pdflatex --shell-escape "$file"
+  pdflatex -output-directory="$OUTPUT_PATH" --shell-escape "$file"
 done
