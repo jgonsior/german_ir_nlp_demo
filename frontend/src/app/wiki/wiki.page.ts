@@ -8,7 +8,8 @@ import {
 } from "../types/query-response.type";
 import {ActivatedRoute} from "@angular/router";
 import {ResponseParsingService} from "../services/response-parsing-service";
-import {WordEmbeddingResponse} from "../types/word-embedding-response";
+import {WordEmbedding, WordEmbeddingResponse} from "../types/word-embedding-response";
+import Color from "color";
 
 @Component({
   selector: "app-wiki",
@@ -34,7 +35,6 @@ export class WikiPage implements OnInit {
     const idx = this.activatedRoute.snapshot.paramMap.get('id') as string;
     this.data.getDocomentById(parseInt(idx, 10)).then((res) => {
       this.wikiPage = ResponseParsingService.parseDocumentResponse(res);
-      console.log(this.wikiPage)
       this.data.getWordEmbedding(this.searchedParagraph).then((res) => {
         this.wordembeddings = res;
       })
@@ -46,13 +46,10 @@ export class WikiPage implements OnInit {
     return isIos ? 'Inbox' : '';
   }
 
-  addCreatedHeader(header: string) {
-    this.createdHeaders.push(header);
-  }
-
-  isHeaderAlreadyCreated(header: string): boolean {
-    return this.createdHeaders.includes(header);
-  }
-
   protected readonly ParsedDocumentTextTypes = ParsedDocumentTextTypes;
+
+  createColorFromEmbedding(embedding: WordEmbedding) {
+    const alpha = embedding.embedding.reduce((a, b) => a * b, 1);
+    return Color('#0054ff').alpha(embedding.embedding[0]/100)
+  }
 }

@@ -37,18 +37,18 @@ def get_document():
         return jsonify(doc)
 
 
-@bp.route('/word_embeddings/', methods=['GET'])
+@bp.route('/word_embeddings/', methods=['POST'])
 def get_word_embeddings():
-    if request.method == 'GET':
-        paragraph = request.args.get('paragraph')
+    if request.method == 'POST':
+        paragraph = request.json['paragraph']
 
         word_embeddings = []
         for word in paragraph.split(' '):
             word_embeddings.append(
-                {'word': word, 'embedding': get_word_embedding(word)}
+                {'word': word, 'embedding': create_word_embedding(word)}
             )
         return jsonify({'result': word_embeddings})
 
 
-def get_word_embedding(word):
+def create_word_embedding(word):
     return randint(0, 100), randint(0, 100), randint(0, 100)
