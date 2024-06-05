@@ -1,15 +1,21 @@
 <ion-header [translucent]="true" class="wiki__header">
+  <div class="home__logo">
+    <a href="/home">
+      <h1>
+        <img src="../../assets/title.svg" alt="Logo" />
+      </h1>
+    </a>
+  </div>
   <ion-toolbar class="wiki__toolbar">
     <ion-buttons slot="start">
       <ion-back-button [text]="getBackButtonText()" default-href="/"></ion-back-button>
     </ion-buttons>
-    <ion-title>Wikipage</ion-title>
+    <ion-title>
+      Wikipage
+    </ion-title>
   </ion-toolbar>
   <ion-toolbar class="wiki__toolbar">
-    <ion-searchbar class="wiki__searchbar"
-      [(ngModel)]="searchText"
-      #searchBar
-    ></ion-searchbar>
+    <ion-searchbar class="wiki__searchbar" [(ngModel)]="searchText" #searchBar></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
