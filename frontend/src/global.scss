@@ -54,33 +54,41 @@ $ion-config-padding: 10rem;
     }
 }
 
+.home__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
 @media only screen and (min-width: 1200px) {
     h1 {
-        font-size: 4rem!important;
+        font-size: 5.5rem!important;
     }
 
     h2 {
-        font-size: 3.5rem!important;
+        font-size: 5rem!important;
     }
 
     h3 {
-        font-size: 3rem!important;
+        font-size: 4.5rem!important;
     }
 
     h4 {
-        font-size: 2.5rem!important;
+        font-size: 4rem!important;
     }
 
     h5 {
-        font-size: 2rem!important;
+        font-size: 3.5rem!important;
     }
 
     p {
-        font-size: 1.5rem!important;
+        font-size: 3rem!important;
+        line-height: normal !important;
     }
 
     ion-title {
-        font-size: 3rem!important;
+        font-size: 5rem!important;
     }
 
     ion-back-button {
@@ -89,6 +97,11 @@ $ion-config-padding: 10rem;
 
     ion-note {
         font-size: 2rem!important;
+    }
+
+    .home__header {
+        padding: 4rem $ion-config-padding 0 $ion-config-padding !important;
+        background: var(--ion-color-custom-darkblue);
     }
 
     .home__logo {
