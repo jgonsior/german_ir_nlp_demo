@@ -8,7 +8,7 @@ import subprocess
 import cairo
 import jinja2
 
-INVERTED_INDEX_PATH = '../invIndex/'
+INVERTED_INDEX_PATH = "../invIndex/"
 
 latex_jinja_env = jinja2.Environment(
     block_start_string=r"\BLOCK{",
@@ -136,9 +136,7 @@ def barcode_minification(dict_codes: dict, max_length: int) -> dict:
             if ones_positions and ones_positions[-1] >= len(result):
                 result.extend([0] * (max_length - len(result)))
             else:
-                result = fill_remaining_zeros(
-                    lst, result, max_length, ones_positions
-                )
+                result = fill_remaining_zeros(lst, result, max_length, ones_positions)
 
         dict_codes[code] = result
 
@@ -168,42 +166,27 @@ def draw_svg(name: str, barcode: list, identity: str):
                 context.set_line_width(2)
                 context.stroke()
 
--output-directory
-def create_latex():
-    pdf_path_documents = r"../barcodes_out/documents/svg/"
-    lst_documents = []
-    for file in os.listdir(pdf_path_documents):
-        file_name, _ = file.split(".")
-        lst_documents.append(f"../barcodes_out/documents/svg/{file_name}")
 
-    pdf_path_questions = r"../barcodes_out/questions/svg/"
-    lst_questions = []
-    for file in os.listdir(pdf_path_questions):
+def create_latex(switch: str):
+    pdf_path_files = f"../barcodes_out/{switch}/svg/"
+    lst_file = []
+    for file in os.listdir(pdf_path_files):
         file_name, _ = file.split(".")
-        lst_questions.append(f"../barcodes_out/questions/svg/{file_name}")
+        lst_file.append(file_name)
 
-    document_template = latex_jinja_env.get_template("document_stub.tex")
-    result_document = document_template.render(lst_documents=lst_documents)
+    document_template = latex_jinja_env.get_template(f"{switch}_stub.tex")
+    result_document = document_template.render(lst_files=lst_file)
 
     with open(
-        f"../barcodes_out/documents/tex/documents.tex",
+        f"../barcodes_out/{switch}/tex/{switch}.tex",
         "w",
-    ) as file:
-        file.write(result_document)
-
-    question_template = latex_jinja_env.get_template("question_stub.tex")
-    result_question = question_template.render(lst_questions=lst_questions)
-
-    with open(
-        f"../barcodes_out/questions/tex/questions.tex",
-        "w",
-    ) as file:
-        file.write(result_question)
+    ) as document_file:
+        document_file.write(result_document)
 
 
 def create_pdf(switch: str):
-    folder_path = f'../barcodes_out/{switch}/tex'
-    output_path = f'../barcodes_out/{switch}/pdf'
+    folder_path = f"../barcodes_out/{switch}/tex"
+    output_path = f"../barcodes_out/{switch}/pdf"
     os_name = detect_os()
 
     if os_name == "Linux" or os_name == "Darwin":  # Linux or MacOS
@@ -308,11 +291,12 @@ def generate_barcodes(
             draw_svg(question, dict_questions[question], "question")
     print("Done generating svg files...")
     print("Generating TEX files...")
-    create_latex()
+    create_latex("documents")
+    create_latex("questions")
     print("Done generating TEX files...")
     print("Generating PDF files from TEX files...")
-    create_pdf('documents')
-    create_pdf('questions')
+    create_pdf("documents")
+    create_pdf("questions")
     print("Done generating PDF...")
     print("DONE")
 
@@ -321,7 +305,9 @@ if __name__ == "__main__":
     amount = 8
     mode = "single"
     if len(os.listdir(INVERTED_INDEX_PATH)) < 2:
-        raise Exception("No inverted index or question files found. Please provide both in JSON format")
+        raise Exception(
+            "No inverted index or question files found. Please provide both in JSON format"
+        )
 
     for file in os.listdir(INVERTED_INDEX_PATH):
         if file.endswith(".json"):

@@ -2,18 +2,18 @@
 \usepackage{graphicx}
 \usepackage{pdflscape}
 \usepackage{svg}
-
-\usepackage[a4paper, left=0cm, right=2cm, bottom=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm, bottom=2cm]{geometry}
 \usepackage{amsmath} % for \boxed
 
+\svgpath{{../barcodes_out/documents/svg/}}
 \setlength{\fboxrule}{2pt}
 
 \begin{document}
 \begin{landscape}
-\BLOCK{ for question in lst_questions }
-\BLOCK{ set question_name = question.split("_")[2] }
 \thispagestyle{empty}
-\begin{minipage}[t]{\textwidth}
+\BLOCK{ for document in lst_files }
+\BLOCK{ set document_name = document.split("_")[2] }
+\begin{minipage}[t]{0.17\textwidth}
         \vspace*{-2.39cm}
         # if question_name|length == 3
         \hspace*{1.5cm}
@@ -22,15 +22,12 @@
         # else
         \hspace*{0.25cm}
         # endif
-        $\boxed{\textbf{\Huge\VAR{ question_name }}}$
+        $\boxed{\textbf{\Huge\VAR{ document_name }}}$
 \end{minipage}
-\begin{minipage}[t]{\textwidth}
-        \includesvg[scale=0.9]{\VAR{ question }}
+\begin{minipage}[t]{0.83\textwidth}
+    \includesvg[scale=0.9]{\VAR{ document }}
 \end{minipage}
 
-# if loop.index % 5 == 0
-\thispagestyle{empty}
-# endif
 \BLOCK{ endfor }
 \end{landscape}
 \end{document}
