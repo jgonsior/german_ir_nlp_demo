@@ -146,10 +146,10 @@ def barcode_minification(dict_codes: dict, max_length: int) -> dict:
 
 
 def draw_svg(name: str, barcode: list, identity: str):
-    with cairo.PDFSurface(
-        f"../barcodes_out/{identity}s/pdf/{identity}_{name}.pdf",
+    with cairo.SVGSurface(
+        f"../barcodes_out/{identity}s/svg/{identity}_{name}.svg",
         (len(barcode) * 10),
-        1000,
+        100,
     ) as surface:
         context = cairo.Context(surface)
         for idx, numeral in enumerate(barcode):
@@ -170,13 +170,13 @@ def draw_svg(name: str, barcode: list, identity: str):
 
 
 def create_latex():
-    pdf_path_documents = r"../barcodes_out/documents/pdf/"
+    pdf_path_documents = r"../barcodes_out/documents/svg/"
     lst_documents = []
     for file in os.listdir(pdf_path_documents):
         file_name, _ = file.split(".")
         lst_documents.append(f"../barcodes_out/documents/svg/{file_name}")
 
-    pdf_path_questions = r"../barcodes_out/questions/pdf/"
+    pdf_path_questions = r"../barcodes_out/questions/svg/"
     lst_questions = []
     for file in os.listdir(pdf_path_questions):
         file_name, _ = file.split(".")

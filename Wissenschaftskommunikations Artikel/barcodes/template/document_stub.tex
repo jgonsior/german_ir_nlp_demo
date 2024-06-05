@@ -12,8 +12,8 @@
 \thispagestyle{empty}
 \begin{minipage}[t]{\textwidth}
 \BLOCK{ for document in lst_documents }
-\BLOCK{ set document_name = document.split("_")[3] }
-        $\boxed{\textbf{\Huge\phantom{00}\VAR{ document_name }\phantom{00}}}$ \includegraphics[scale=1]{\VAR{ document }}
+\BLOCK{ set document_name = document.split("_")[2] }
+        $\boxed{\textbf{\Huge\phantom{00}\VAR{ document_name }\phantom{00}}}$ \includesvg[scale=0.9]{\VAR{ document }}
 \BLOCK{ endfor }
 \end{minipage}
 \end{landscape}
