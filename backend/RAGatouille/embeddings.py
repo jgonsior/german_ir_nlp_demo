@@ -1,36 +1,24 @@
-import transformers as tf
 import numpy as np
 import pandas as pd
+import transformers as tf
 
 tokenizer = tf.BertTokenizer.from_pretrained("backend/data/colbert/checkpoints/bert-base-german-cased/GermanDPR-XQA-HP/epoch1")
+df_embeddings = pd.read_csv("embeddings.csv")
 
-df = pd.read_csv("embeddings.csv")
+# Preprocess df_embeddings
+df_embeddings["embedding"] = df_embeddings["embedding"].apply(lambda x: np.fromstring(x.strip("[]"), sep=" "))
 
 
 def embed_word(tokenizer: tf.BertTokenizer, df: pd.DataFrame, word: str) -> np.ndarray:
-
     tokens = tokenizer(word)["input_ids"][1:-1]
-    df["embedding"] = df["embedding"].apply(lambda x: np.fromstring(x.strip("[]"), sep=" "))
-    embedding = df.iloc[tokens]["embedding"].mean()
-
+    embedding = df["embedding"].iloc[tokens].mean()
     return embedding
 
 
-print(embed_word(tokenizer=tokenizer, df=df, word="Hufflepuff"))
+with open("words_to_embed.txt", "r") as file:
+    words = [line.strip() for line in file]
 
+results = [(word, embed_word(tokenizer=tokenizer, df=df_embeddings, word=word)) for word in words]
 
-# print(embeddings.shape)
-# print(embeddings.mean().shape)#.mean(axis=0))
-
-
-# with open("backend/data/colbert/checkpoints/bert-base-german-cased/GermanDPR-XQA-HP/epoch1/vocab.txt", "r", encoding="utf-8") as tokens:
-#     lines = tokens.readlines()
-
-# lines = [line[:-1] for line in lines]
-
-
-# embeddings = [(token, list(RAG.model.inference_ckpt.bert.parameters())[0][i].detach().numpy()) for i, token in enumerate(lines)]
-# df = pd.DataFrame(embeddings, columns=["token", "embedding"])
-# print(df.head(10))
-
-# df.to_csv("embeddings.csv", index=False)
+results_df = pd.DataFrame(results, columns=["word", "embedding"])
+results_df.to_csv("unity.csv", index=False)
