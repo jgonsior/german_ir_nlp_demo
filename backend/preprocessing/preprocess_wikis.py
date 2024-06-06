@@ -7,6 +7,8 @@ import re
 import nltk
 import numpy as np
 
+SPECIFIC_TEXT = re.escape("Dieser Artikel \u00fcber einen spezifischen ist ein . Du kannst helfen, [ ihn zu erweitern].")
+
 
 def clean_wiki(
     wiki,
@@ -56,17 +58,29 @@ def wiki_filter(wiki_page, min_length, regex=None):
     return True
 
 
-def split_page_in_paragraphs(wiki_page, max_heading_length=5, max_words_per_parag=250, min_words_per_parag=20, regex=None):
+def split_page_in_paragraphs(wiki_page, max_heading_length=5, max_words_per_parag=250, min_words_per_parag=1, regex=None):
     parags = wiki_page.split("\n")
 
     # first iteration: drop links and empty lines
     clean_parags = []
     for parag in parags:
         parag = parag.strip()
-        if parag == "":
-            continue
+
+        # Remove "}}" or "{{" and all characters up to the next space
+        parag = re.sub(r"(\}\}|\{\{)[^ ]*", "", parag)
+
+        # Remove unnecessary patterns and characters
+        parag = re.sub(r"&amp;", "&", parag)
+        parag = re.sub(r"\[ b\]", "", parag)
+        parag = re.sub(r"\[src\]", "", parag)
+
+        parag = re.sub(SPECIFIC_TEXT, "", parag)
+        parag = re.sub(r"\"&lt;/ref&gt;", "", parag)
 
         if regex is not None and regex.match(parag):
+            continue
+
+        if parag == "":
             continue
 
         clean_parags.append(parag)
@@ -78,7 +92,7 @@ def split_page_in_paragraphs(wiki_page, max_heading_length=5, max_words_per_para
     # (2) creates a new paragraph after `max_words_per_parag`, but still allows to
     #     finish the sentence, so lines can be longer
     last_parag_heading = ""
-    for j, parag in enumerate(parags[1:], start=1):
+    for j, parag in enumerate(parags[0:], start=0):
         prev_parag = parags[j - 1]
         sub_parags = split_paragraphs(parag, max_words_per_parag=max_words_per_parag, min_words_per_parag=min_words_per_parag)
         if len(prev_parag.split(" ")) <= max_heading_length:
@@ -214,21 +228,21 @@ if __name__ == "__main__":
 
     # regex pattern for paragraphs, which should be removed, will be applied to each paragraph
     # in a page seperatly
-    PARAGRAPH_ANTI_PATTERN = r"(&lt;|__[\w]*__)"
+    PARAGRAPH_ANTI_PATTERN = r"(&lt;|&gt;|__[\w]*__)"
     parag_regex = re.compile(PARAGRAPH_ANTI_PATTERN)
 
     # wikis with less than `MIN_LENGTH` words will be discarded
-    MIN_LENGTH = 8
+    MIN_LENGTH = 0
 
     # if a paragraph contains at most `MAX_HEADING_LENGTH` words, then it is considered a
     # paragraph heading and is append to the next paragraphs
-    MAX_HEADING_LENGTH = 8
+    MAX_HEADING_LENGTH = 9
 
     # soft upper bound for paragraphs, which can be exceeded
-    MAX_WORDS_PER_PARAG = 120
+    MAX_WORDS_PER_PARAG = 1000
 
     # lower bound for paragraphs
-    MIN_WORDS_PER_PARAG = 20
+    MIN_WORDS_PER_PARAG = 5
 
     for file in os.listdir(WIKI_PATHS):
         path_to_wiki = os.path.join(WIKI_PATHS, file)
@@ -238,7 +252,7 @@ if __name__ == "__main__":
             continue
 
         print("#" * 50)
-        print(f"Starting to clean {file.replace('_raw', '')} wiki.")
+        print(f"Starting to clean {file.replace('_passages', '')} wiki.")
         print("#" * 50, end="\n\n")
 
         with open(path_to_wiki, mode="r", encoding="utf-8") as f:
@@ -255,6 +269,6 @@ if __name__ == "__main__":
             print_statistics=True,
         )
 
-        path_to_cleaned_wiki = os.path.join(os.path.split(WIKI_PATHS)[0], file.replace("_raw", ""))
+        path_to_cleaned_wiki = os.path.join(os.path.split(WIKI_PATHS)[0], file.replace("_raw", "_processed"))
         with open(path_to_cleaned_wiki, mode="w", encoding="utf-8") as f:
             json.dump(cleaned_wiki, f, indent=1)
