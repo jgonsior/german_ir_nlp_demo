@@ -9,5 +9,5 @@ if [ -z "$FOLDER_PATH" ]; then
 fi
 
 for file in "$FOLDER_PATH"/*.tex; do
-  pdflatex -output-directory="$OUTPUT_PATH" --shell-escape "$file"
+  pdflatex -interaction=batchmode -output-directory="$OUTPUT_PATH" --shell-escape "$file"
 done

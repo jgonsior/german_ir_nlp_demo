@@ -1,8 +1,8 @@
 \documentclass[a4paper, 10pt]{article}
 \usepackage{graphicx}
 \usepackage{pdflscape}
-\usepackage{svg}
-\usepackage[a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[inkscapepath=../barcodes_out/documents/pdf/inkscape_out/]{svg}
+\usepackage[a4paper, left=2cm, right=2cm, top=2cm, bottom=0.5cm]{geometry}
 \usepackage{amsmath} % for \boxed
 
 \svgpath{{../barcodes_out/documents/svg/}}
@@ -12,12 +12,13 @@
 \begin{landscape}
 \thispagestyle{empty}
 \BLOCK{ for document in lst_files }
-\BLOCK{ set document_name = document.split("_")[2] }
+\BLOCK{ set document_name = document.split("_")[1] }
 \begin{minipage}[t]{0.17\textwidth}
-        \vspace*{-2.39cm}
-        # if question_name|length == 3
-        \hspace*{1.5cm}
-        # elif question_name|length == 4
+        \BLOCK{ set decl = document_name|length }
+        \vspace*{-2.47cm}
+        # if decl == 3
+        \hspace*{1.25cm}
+        # elif decl == 4
         \hspace*{0.75cm}
         # else
         \hspace*{0.25cm}
@@ -25,7 +26,7 @@
         $\boxed{\textbf{\Huge\VAR{ document_name }}}$
 \end{minipage}
 \begin{minipage}[t]{0.83\textwidth}
-    \includesvg[scale=0.9]{\VAR{ document }}
+    \includesvg[scale=0.7]{\VAR{ document }}
 \end{minipage}
 
 \BLOCK{ endfor }

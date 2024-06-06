@@ -8,5 +8,5 @@ if "%FOLDER_PATH%"=="" (
 )
 
 for %%f in (%FOLDER_PATH%\*.tex) do (
-  pdflatex -output-path=%OUTPUT_PATH% --shell-escape %%f
+  pdflatex -interaction=batchmode -output-path=%OUTPUT_PATH% --shell-escape %%f
 )
