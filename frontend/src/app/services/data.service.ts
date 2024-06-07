@@ -6,15 +6,21 @@ import {
   QueryResponseResult,
   QueryResponseType
 } from "../types/query-response.type";
-import {lastValueFrom} from "rxjs";
+import {BehaviorSubject, lastValueFrom} from "rxjs";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+  private searchTextSource = new BehaviorSubject<string>('');
+  currentSearchText = this.searchTextSource.asObservable();
 
   constructor(private httpClient: HttpClient) {
+  }
+
+  changeSearchText(text: string) {
+    this.searchTextSource.next(text);
   }
 
   public async getQueryResults(query: String): Promise<QueryResponseResult[]> {

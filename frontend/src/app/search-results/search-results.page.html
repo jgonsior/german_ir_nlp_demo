@@ -1,4 +1,11 @@
 <ion-header [translucent]="true" class="search-results__header">
+  <div class="home__logo">
+    <a href="/home">
+      <h1>
+        <img src="../../assets/title.svg" alt="Logo" />
+      </h1>
+    </a>
+  </div>
   <ion-toolbar class="search-results__toolbar">
     <ion-buttons slot="start">
       <ion-back-button
@@ -22,7 +29,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-grid class="search-results__grid">
-    <ion-row class="fullheight">
+    <ion-row>
       <ion-col size="2" class="search-results__banner">
         <img src="../../assets/male.svg" alt="Male magician"/>
       </ion-col>
@@ -39,6 +46,6 @@
   </ion-grid>
 
   <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
-    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    <ion-infinite-scroll-content class="search-result__scroll"></ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>

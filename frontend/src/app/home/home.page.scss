@@ -7,14 +7,6 @@
   --background: var(--ion-color-custom-darkblue);
 }
 
-.home__logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 2rem;
-}
-
 .home__logo img {
   max-width: 100%;
   height: 120px;
@@ -33,7 +25,7 @@
 
 .home__content {
   --background: rgb(2,8,21);
-  --background: linear-gradient(180deg, rgba(2,8,21,1) 40%, rgba(22,84,131,1) 50%, rgba(68,154,168,1) 60%, rgba(103,210,199,1) 70%, rgba(253,252,240,1) 85%);
+  --background: linear-gradient(180deg, rgba(2,8,21,1) 30%, rgba(22,84,131,1) 45%, rgba(68,154,168,1) 60%, rgba(103,210,199,1) 70%, rgba(253,252,240,1) 90%);
 }
 
 .home__searchbar {
