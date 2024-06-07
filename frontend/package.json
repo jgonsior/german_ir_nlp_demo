@@ -27,6 +27,7 @@
     "@capacitor/keyboard": "6.0.0",
     "@capacitor/status-bar": "6.0.0",
     "@ionic/angular": "^7.0.0",
+    "http-server": "^14.1.1",
     "@types/color": "^3.0.6",
     "color": "^4.2.3",
     "ionicons": "^7.0.0",

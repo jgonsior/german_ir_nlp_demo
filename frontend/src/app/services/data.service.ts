@@ -6,7 +6,7 @@ import {
   QueryResponseResult,
   QueryResponseType
 } from "../types/query-response.type";
-import {lastValueFrom} from "rxjs";
+import {BehaviorSubject, lastValueFrom} from "rxjs";
 import {WordEmbeddingResponse} from "../types/word-embedding-response";
 
 
@@ -14,8 +14,14 @@ import {WordEmbeddingResponse} from "../types/word-embedding-response";
   providedIn: 'root'
 })
 export class DataService {
+  private searchTextSource = new BehaviorSubject<string>('');
+  currentSearchText = this.searchTextSource.asObservable();
 
   constructor(private httpClient: HttpClient) {
+  }
+
+  changeSearchText(text: string) {
+    this.searchTextSource.next(text);
   }
 
   public async getQueryResults(query: String): Promise<QueryResponseResult[]> {
