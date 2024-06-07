@@ -9,7 +9,7 @@
     <ion-title>Suchergebnisse</ion-title>
   </ion-toolbar>
   <ion-toolbar class="search-results__toolbar">
-    <ion-searchbar class="search-results__searchbar"
+    <ion-searchbar class="search-results__searchbar" placeholder="Suche nach Magie"
       [(ngModel)]="searchText"
       #searchBar
       (keyup.enter)="navigateWithNewQuery()"
