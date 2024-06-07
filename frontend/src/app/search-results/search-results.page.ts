@@ -24,9 +24,7 @@ export class SearchResultsPage implements OnInit {
 
   searchText: string = '';
 
-  constructor(private route: ActivatedRoute, private router: Router) {
-    this.getMessages();
-  }
+  constructor(private route: ActivatedRoute, private router: Router) {}
   ngOnInit(): void {
     var q = this.route.snapshot.queryParamMap.get('query');
 
@@ -45,7 +43,7 @@ export class SearchResultsPage implements OnInit {
   }
 
   async getMessages() {
-    var q = this.route.snapshot.queryParamMap.get('query');
+    const q = this.searchText;
 
     if (q == null) return;
 
@@ -56,7 +54,7 @@ export class SearchResultsPage implements OnInit {
   }
 
   async onIonInfinite(ev: any) {
-    var q = this.route.snapshot.queryParamMap.get('query');
+    const q = this.searchText;
 
     if (q == null) return;
 
