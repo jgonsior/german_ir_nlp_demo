@@ -11,11 +11,9 @@ BOX_WIDTH = os.getenv("BOX_WIDTH")
 BOX_SPACING = os.getenv("BOX_SPACING")
 FILE_TO_PROCESS = os.getenv("FILE_TO_PROCESS")
 
-number_to_letter = {i: chr(65 + i) for i in range(26)}
-
 def get_cleaned_text(text: str) -> str:
     cleaned_text = html.unescape(text)
-    symbols_to_remove = ["[", "]", "(", ")", ",", ".", ":", "„", "“", "”", "'", "&", "-"]
+    symbols_to_remove = ["[", "]", "(", ")", ",", ".", ":", "„", "“", "”", "'", "&", "’"]
     for symbol in symbols_to_remove:
         cleaned_text = cleaned_text.replace(symbol, "")
     cleaned_text = cleaned_text.replace("  ", " ")
@@ -36,18 +34,19 @@ if __name__ == '__main__':
     with open(file_dir, encoding="utf-8") as file:
         documents = json.load(file)
 
-        for document in documents:
-            for i in range(len(document["text"])):
+        for i in range(len(documents)):
+            document = documents[i]
+            for j in range(len(document["text"])):
                 for template in ["template_wordboxes.tex", "template_tables.tex"]:
 
                     temporary_template = Path(template).stem + "_temp"
 
-                    shutil.copyfile(template, f"{temporary_template}.tex")
+                    shutil.copyfile(f"./source-material/{template}", f"{temporary_template}.tex")
 
                     with open(f"{temporary_template}.tex", "r+", encoding="utf-8") as temp_file:
                         file_contents = temp_file.read()
 
-                        cleaned_text = get_cleaned_text(document["text"][i])
+                        cleaned_text = get_cleaned_text(document["text"][j])
 
                         # We write our boxes in main part of the tex file
                         if template == "template_wordboxes.tex":
@@ -61,7 +60,10 @@ if __name__ == '__main__':
                             for pair in get_substrings(cleaned_text):
                                 document_content += pair + r"\\"
 
-                        file_contents = file_contents.replace("%letter_increment%", number_to_letter[i])
+                        if "id" in document:
+                            file_contents = file_contents.replace("%letter_increment%", document["id"])
+                        else:
+                            file_contents = file_contents.replace("%letter_increment%", " ")
                         file_contents = file_contents.replace("%document_content%", document_content)
 
                         # Purge old content and write new

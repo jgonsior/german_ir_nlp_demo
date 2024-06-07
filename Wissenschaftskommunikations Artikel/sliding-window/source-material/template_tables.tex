@@ -20,26 +20,26 @@
  top=5mm
 }
 
-\definecolor{Gold}{rgb}{0.81, 0.57, 0.02}
-\definecolor{Black}{rgb}{0.2, 0.2, 0.2}
-\definecolor{Grey}{rgb}{0.3, 0.3, 0.3}
+\definecolor{Gold}{rgb}{1.0, 0.84, 0.0}
+\definecolor{Black}{rgb}{0.0, 0.0, 0.0}
+\definecolor{Grey}{rgb}{0.5, 0.5, 0.5}
 
 \renewcommand{\arraystretch}{1.5}
 
 \newfontface\harrypotterfont{harryp.TTF}
 
-\AddToShipoutPictureBG*{
-  \begin{tikzpicture}[remember picture,overlay]
-    \node[opacity=0.3,inner sep=0] at (current page.center) {
-      \includegraphics[width=1.4\paperwidth, height=1.4\paperheight, keepaspectratio]{background_upscaled.png};
-    };
-  \end{tikzpicture}
-}
-
 \AddToShipoutPicture*{
   \begin{tikzpicture}[remember picture,overlay]
     \node[anchor=north east, fill=white, minimum size=1cm, draw=black, text=black, font=\large\bfseries]
     at (current page.north east) [xshift=-1.5cm, yshift=-1cm] {%letter_increment%};
+  \end{tikzpicture}
+}
+
+\AddToShipoutPictureBG{
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[opacity=0.3,inner sep=0] at (current page.center) {
+      \includegraphics[width=1.4\paperwidth, height=1.4\paperheight, keepaspectratio]{source-material/background_upscaled.png};
+    };
   \end{tikzpicture}
 }
 

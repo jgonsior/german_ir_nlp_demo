@@ -7,6 +7,8 @@
 \usepackage{eso-pic}
 \usepackage{graphicx}
 \usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{everypage}
 
 \geometry{
  a4paper,
@@ -15,7 +17,7 @@
  bottom=10mm,
 }
 
-\newcommand{\wordbox}[1]{\framebox[%box_width%][c]{\strut #1}}
+\newcommand{\wordbox}[1]{\colorbox{white}{\framebox[%box_width%][c]{\strut #1}}}
 
 \AddToShipoutPicture*{
   \begin{tikzpicture}[remember picture,overlay]
@@ -24,12 +26,20 @@
   \end{tikzpicture}
 }
 
+\AddToShipoutPictureBG{
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[opacity=0.3,inner sep=0] at (current page.center) {
+      \includegraphics[width=1.4\paperwidth, height=1.4\paperheight, keepaspectratio]{source-material/background_upscaled.png};
+    };
+  \end{tikzpicture}
+}
+
 \begin{document}
 \pagestyle{empty}
 \setstretch{2.0}
 
 \begin{center}
-\Large
+\LARGE
 \spaceskip=1ex plus 0.5ex minus 0.2ex
 %document_content%
 \end{center}

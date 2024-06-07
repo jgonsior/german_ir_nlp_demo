@@ -37,6 +37,7 @@ The file needs to be a JSON and must have the following format:
 ```json
 [
   {
+    "id": "DOC ID",
     "text": [
       "TEXT 1",
       "TEXT 2",
@@ -44,6 +45,7 @@ The file needs to be a JSON and must have the following format:
     ]
   },
   {
+    "id": "DOC ID",
     "text": [
       "TEXT 1",
       "TEXT 2",
