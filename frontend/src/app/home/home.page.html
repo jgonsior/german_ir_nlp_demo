@@ -1,22 +1,32 @@
 <ion-header [translucent]="true" class="home__header">
   <ion-toolbar class="home__toolbar">
     <div class="home__logo">
-      <img src="../../assets/title.svg" alt="Logo"/>
+      <img src="../../assets/title.svg" alt="Logo" />
     </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="home__content" [fullscreen]="true">
-  <div class="fullheight xc home__background" style="margin-left: auto; margin-right: auto">
+  <div
+    class="fullheight xc home__background"
+    style="margin-left: auto; margin-right: auto"
+  >
     <ion-grid [fixed]="true" class="home__grid">
       <ion-row class="ion-align-items-center ion-justify-content-end home__row">
         <ion-col class="home__searchcol">
-          <ion-searchbar [(ngModel)]="searchText" search-icon="search-circle" show-clear-button="always"
-            placeholder="Suche nach Magie" #searchBar (keyup.enter)="onSearchClicked()"
-            class="home__searchbar">
+          <ion-searchbar
+            [(ngModel)]="searchText"
+            search-icon="search-circle"
+            show-clear-button="always"
+            placeholder="Suche nach Magie"
+            #searchBar
+            (keyup.enter)="onSearchClicked()"
+            class="home__searchbar"
+          >
           </ion-searchbar>
-          <ion-button (click)="onSearchClicked()"
-              id="searchButton">Suche</ion-button>
+          <ion-button (click)="onSearchClicked()" id="searchButton"
+            >Suche</ion-button
+          >
         </ion-col>
       </ion-row>
     </ion-grid>
