@@ -159,7 +159,7 @@ def draw_svg(name: str, barcode: list, identity: str):
                 context.set_line_width(2)
                 context.stroke()
             else:
-                context.set_source_rgb(1, 0.84, 0.3)
+                context.set_source_rgb(1, 0.84, 0)
                 context.rectangle(idx * 10, 0, 10, 100)
                 context.fill_preserve()
                 context.set_source_rgb(1, 1, 1)

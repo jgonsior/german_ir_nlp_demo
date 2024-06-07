@@ -2,20 +2,19 @@
 \usepackage{graphicx}
 \usepackage{pdflscape}
 \usepackage[inkscapepath=../barcodes_out/documents/pdf/inkscape_out/]{svg}
-\usepackage[a4paper, left=2cm, right=2cm, top=2cm, bottom=0.5cm]{geometry}
+\usepackage[a4paper, left=0.5cm, right=0.5cm, top=0.5cm, bottom=0.5cm]{geometry}
 \usepackage{amsmath} % for \boxed
 
 \svgpath{{../barcodes_out/documents/svg/}}
 \setlength{\fboxrule}{2pt}
 
 \begin{document}
-\begin{landscape}
 \thispagestyle{empty}
 \BLOCK{ for document in lst_files }
 \BLOCK{ set document_name = document.split("_")[1] }
-\begin{minipage}[t]{0.17\textwidth}
+\begin{minipage}[t]{0.15\textwidth}
         \BLOCK{ set decl = document_name|length }
-        \vspace*{-2.47cm}
+        \vspace*{-1.59cm}
         # if decl == 3
         \hspace*{1.25cm}
         # elif decl == 4
@@ -25,10 +24,12 @@
         # endif
         $\boxed{\textbf{\Huge\VAR{ document_name }}}$
 \end{minipage}
-\begin{minipage}[t]{0.83\textwidth}
-    \includesvg[scale=0.7]{\VAR{ document }}
+\begin{minipage}[t]{0.85\textwidth}
+    \includesvg[scale=0.45]{\VAR{ document }}
 \end{minipage}
 
+# if loop.index % 7 == 0
+\thispagestyle{empty}
+# endif
 \BLOCK{ endfor }
-\end{landscape}
 \end{document}
