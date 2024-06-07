@@ -10,6 +10,7 @@ export class DataTransferService {
   constructor() { }
 
   setData(data: QueryResponseResult): void {
+    console.log('set data', data);
     this.data = data;
   }
 
