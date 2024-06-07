@@ -1,6 +1,6 @@
 <ion-item
   *ngIf="queryResponseResult"
-  [routerLink]="'/wiki/' + queryResponseResult.id"
+  [routerLink]="'/wiki/' + queryResponseResult.id + '/' + queryResponseResult.text"
   [queryParams]="{ query: query }"
   [detail]="false"
   class="message__item"
