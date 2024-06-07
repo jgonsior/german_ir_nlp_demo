@@ -1,4 +1,11 @@
 <ion-header [translucent]="true" class="search-results__header">
+  <div class="home__logo">
+    <a href="/home">
+      <h1>
+        <img src="../../assets/title.svg" alt="Logo" />
+      </h1>
+    </a>
+  </div>
   <ion-toolbar class="search-results__toolbar">
     <ion-buttons slot="start">
       <ion-back-button
@@ -9,8 +16,7 @@
     <ion-title>Suchergebnisse</ion-title>
   </ion-toolbar>
   <ion-toolbar class="search-results__toolbar">
-    <ion-searchbar
-      class="search-results__searchbar"
+    <ion-searchbar class="search-results__searchbar" placeholder="Suche nach Magie"
       [(ngModel)]="searchText"
       #searchBar
       (keyup.enter)="navigateWithNewQuery()"

@@ -11,6 +11,10 @@
     --background: var(--ion-color-custom-darkblue);
 }
 
+.wiki__headline {
+    margin: 0;
+}
+
 .wiki__searchbar {
     background: unset;
     --background: none;

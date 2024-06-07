@@ -47,7 +47,7 @@ export class SearchResultsPage {
   }
 
   async getMessages() {
-    var q = this.route.snapshot.queryParamMap.get('query');
+    const q = this.searchText;
 
     if (q == null) return;
 
@@ -66,7 +66,7 @@ export class SearchResultsPage {
   }
 
   async onIonInfinite(ev: any) {
-    var q = this.route.snapshot.queryParamMap.get('query');
+    const q = this.searchText;
 
     if (q == null) return;
 
