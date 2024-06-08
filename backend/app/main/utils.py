@@ -19,3 +19,11 @@ def update_model_metadata():
 
     with open(metadata_path, 'w') as file:
         json.dump(metadata, file, indent=4)
+
+
+def transform_results(results):
+    for doc in results:
+        doc['id'] = doc.pop('document_id').split('-')[0]
+        doc['passage'] = doc.pop('content')
+
+        del doc['passage_id']

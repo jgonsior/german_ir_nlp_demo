@@ -11,8 +11,8 @@ from . import utils
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
 # Milestone 1
-# from .document_manager import DocumentManager
-# dm = DocumentManager()
+from .document_manager import DocumentManager
+dm = DocumentManager()
 
 # Milestone 2
 # from app.tf_idf import find_best_results
@@ -45,6 +45,8 @@ def search():
         # Milestone 3-5
         k = 5
         results = MODEL_RAG.search(query=query, k=k)
+
+        utils.transform_results(results)
 
         print('------------------------------------------')
         print(results)
