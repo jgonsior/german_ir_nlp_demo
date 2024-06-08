@@ -5,10 +5,20 @@ import platform
 import os
 import subprocess
 
+import nltk
+import spacy
 import cairo
 import jinja2
 
+from nltk.corpus import stopwords
+from nltk.stem.snowball import SnowballStemmer
+
 INVERTED_INDEX_PATH = "../invIndex/"
+
+nltk.download('stopwords')
+stemmer = SnowballStemmer("german")
+stop_words = set(stopwords.words("german"))
+nlp = spacy.load('de_core_news_sm')
 
 latex_jinja_env = jinja2.Environment(
     block_start_string=r"\BLOCK{",
@@ -144,6 +154,10 @@ def barcode_minification(dict_codes: dict, max_length: int) -> dict:
 
 
 def draw_svg(name: str, barcode: list, identity: str):
+    if not os.path.exists(f"../barcodes_out/{identity}s/svg/"):
+        os.makedirs(f"../barcodes_out/{identity}s/svg/")
+        print(f"created directory: ../barcodes_out/{identity}s/svg/ to save the latex file to")
+
     with cairo.SVGSurface(
         f"../barcodes_out/{identity}s/svg/{identity}_{name}.svg",
         (len(barcode) * 10),
@@ -177,6 +191,10 @@ def create_latex(switch: str):
     document_template = latex_jinja_env.get_template(f"{switch}_stub.tex")
     result_document = document_template.render(lst_files=lst_file)
 
+    if not os.path.exists(f"../barcodes_out/{switch}/tex"):
+        os.makedirs(f"../barcodes_out/{switch}/tex")
+        print(f"created directory: ../barcodes_out/{switch}/tex to save the latex file to")
+
     with open(
         f"../barcodes_out/{switch}/tex/{switch}.tex",
         "w",
@@ -187,6 +205,11 @@ def create_latex(switch: str):
 def create_pdf(switch: str):
     folder_path = f"../barcodes_out/{switch}/tex"
     output_path = f"../barcodes_out/{switch}/pdf"
+
+    if not os.path.exists(f"../barcodes_out/{switch}/pdf/"):
+        os.makedirs(f"../barcodes_out/{switch}/pdf/")
+        print(f"created directory: ../barcodes_out/{switch}/pdf/ to save the pdf files to")
+
     os_name = detect_os()
 
     if os_name == "Linux" or os_name == "Darwin":  # Linux or MacOS
@@ -254,9 +277,14 @@ def generate_barcodes(
 
     for question in questions:
         questions[question] = questions[question].replace("?", "")
-        lst_question = questions[question].lower().split()
+
+        question_raw = set(str(token.lemma_.lower()) for token in nlp(questions[question]))
+        question_raw = set(str(token.lemma_.lower()) for token in nlp(" ".join(question_raw)))
+        question_token = [stemmer.stem(token) for token in question_raw if token not in stop_words]
+        question_token = [stemmer.stem(token) for token in question_token if token not in stop_words]
+
         for word in inv_index:
-            if word in lst_question:
+            if word in question_token:
                 dict_questions[question].append(1)
             else:
                 dict_questions[question].append(0)
