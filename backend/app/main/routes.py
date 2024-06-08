@@ -1,12 +1,12 @@
 from flask import request, jsonify, make_response, current_app
-from ragatouille import RAGPretrainedModel
 from random import randint
 import torch
+import numpy as np
 import os
 
-
-from . import bp
+from .ragatouille_model_manager import RagatouilleModelManager
 from . import utils
+from . import bp
 
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
@@ -19,15 +19,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = ""
 # qf = find_best_results.queryFinder()
 
 # Milestone 3-5
-MODEL_RAG = None
-
-@bp.before_app_request
-def initialize_model():
-    global MODEL_RAG
-    # Update metadata.json (checkpoint path)
-    utils.update_model_metadata()
-    INDEX_PATH = current_app.config.get('INDEX_PATH')
-    MODEL_RAG = RAGPretrainedModel.from_index(INDEX_PATH)
+model_manager = RagatouilleModelManager()
 
 
 @bp.route('/search', methods=['GET'])
@@ -43,12 +35,23 @@ def search():
         # resp = qf.query_vector_finder(query, 3)
 
         # Milestone 3-5
+        # k could be passed by the frontend as well?
         k = 5
-        results = MODEL_RAG.search(query=query, k=k)
+        results = model_manager.search(query=query, k=k)
+        query_embeddings = model_manager.get_query_embeddings(query)
+        document_embeddings = model_manager.get_document_embeddings(results)
 
         print('------------------------------------------')
         print(results)
         print('------------------------------------------')
+
+        utils.reformat_response(results, query_embeddings, document_embeddings)
+
+        print('Length query embeddings ', str(len(query_embeddings[0])))
+        #print(np.array(query_embeddings).shape)
+        print('Length document embeddings ', str(len(document_embeddings)))
+        #print(np.array(document_embeddings).shape)
+        print('Length first document embeddings ', str(len(document_embeddings[0])))
 
         return jsonify(results)
 

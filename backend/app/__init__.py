@@ -5,8 +5,6 @@ import configparser
 import os
 
 
-app_config = {}
-
 def create_app():
     app = Flask(__name__)
     CORS(app)
