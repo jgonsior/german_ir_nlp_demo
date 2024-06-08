@@ -15,10 +15,10 @@ def update_model_metadata():
     with open(metadata_path, 'r') as f:
         metadata = json.load(f)
 
-    metadata['config']['checkpoints'] = checkpoint_path
+    metadata['config']['checkpoint'] = checkpoint_path
 
-    with open(metadata_path, 'w') as file:
-        json.dump(metadata, file, indent=4)
+    with open(metadata_path, 'w') as f:
+        json.dump(metadata, f, indent=4)
 
 
 def transform_results(results):
