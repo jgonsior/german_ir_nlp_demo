@@ -4,7 +4,7 @@ import pandas as pd
 import seaborn as sns
 from sklearn.decomposition import PCA
 
-df = pd.read_csv("unity.csv")
+df = pd.read_csv("Wissenschaftskommunikations Artikel/colored_embeddings.csv.csv")
 
 df["embedding"] = df["embedding"].apply(lambda x: np.fromstring(x.strip("[]"), sep=" "))
 
