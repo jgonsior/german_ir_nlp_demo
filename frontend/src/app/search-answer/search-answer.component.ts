@@ -13,6 +13,7 @@ export class SearchAnswerComponent {
   private platform = inject(Platform);
   private dataTransferService = inject(DataTransferService);
   @Input() queryResponseResult: QueryResponseResult;
+  @Input() query: String;
   isIos() {
     return this.platform.is('ios')
   }

@@ -1,7 +1,7 @@
-import {AfterViewInit, Component, inject, OnInit} from "@angular/core";
+import {AfterViewInit, Component, inject, OnInit, ViewChild} from "@angular/core";
 
 import {DataService} from "../services/data.service";
-import {Platform} from "@ionic/angular";
+import {IonSearchbar, Platform} from "@ionic/angular";
 import {ParsedDocumentTextTypes, ParsedQueryResponseDocument,} from "../types/query-response.type";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ResponseParsingService} from "../services/response-parsing-service";
@@ -21,7 +21,12 @@ export class WikiPage implements OnInit, AfterViewInit {
   private activatedRoute = inject(ActivatedRoute);
   private platform = inject(Platform);
 
-  constructor() {
+  @ViewChild('searchBar')
+  searchBar: IonSearchbar;
+
+  searchText: string = '';
+
+  constructor(private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -46,6 +51,9 @@ export class WikiPage implements OnInit, AfterViewInit {
         }
       });
     });
+    this.route.queryParams.subscribe((p) => {
+      this.searchText = p['query'];
+    });
   }
 
   ngAfterViewInit() {
@@ -53,9 +61,23 @@ export class WikiPage implements OnInit, AfterViewInit {
       const paragraphElement = document.getElementById(this.paragraph_id);
       console.log('paragraphElement', paragraphElement);
       if (paragraphElement) {
-        paragraphElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        paragraphElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }, 200);
+  }
+
+  onSearchClicked() {
+    if (this.searchText.trim().length == 0) {
+      this.searchBar.getInputElement().then((inputElement) => {
+        this.searchText = '';
+        inputElement.blur();
+      });
+      return;
+    }
+
+    this.router.navigate(['/search-results'], {
+      queryParams: { query: this.searchText },
+    });
   }
 
   getBackButtonText() {
