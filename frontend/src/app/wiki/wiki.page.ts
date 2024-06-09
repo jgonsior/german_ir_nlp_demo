@@ -21,7 +21,7 @@ export class WikiPage implements OnInit, AfterViewInit {
   private activatedRoute = inject(ActivatedRoute);
   private platform = inject(Platform);
 
-  constructor(private router: Router) {
+  constructor() {
   }
 
   ngOnInit() {
@@ -40,20 +40,22 @@ export class WikiPage implements OnInit, AfterViewInit {
         return item.content;
       });
 
-      Object(paragraphs).forEach((paragraph: string, i: number) => {
-        if (paragraph === search_result.text[0]){
-          this.paragraph_id= '#' + i
+      paragraphs.forEach((text, index) => {
+        if (text === search_result.text[0]) {
+          this.paragraph_id = '#' + index
         }
       });
     });
   }
 
   ngAfterViewInit() {
-    this.router.navigate([], {
-      relativeTo: this.activatedRoute,
-      fragment: this.paragraph_id,
-      queryParamsHandling: 'preserve'
-    });
+    setTimeout(() => {
+      const paragraphElement = document.getElementById(this.paragraph_id);
+      console.log('paragraphElement', paragraphElement);
+      if (paragraphElement) {
+        paragraphElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 200);
   }
 
   getBackButtonText() {

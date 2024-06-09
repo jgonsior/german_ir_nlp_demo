@@ -15,7 +15,7 @@
             <h1>{{ wikiPage.title }}</h1>
           </ion-label>
         </ion-item>
-        <p>{{wikiPage.text[0].content}}</p>
+        <p id="#0">{{wikiPage.text[0].content}}</p>
       </ion-col>
       <ion-col size="4" class="wiki__wrapper--image">
         <img src="../../assets/Wiki.svg" alt="Wiki Image" />
@@ -24,7 +24,7 @@
 
     <ion-row class="wiki__row--background">
       <ion-col class="ion-padding" *ngIf="wikiPage">
-        <ng-container *ngFor="let passages of wikiPage.text.slice(1);">
+        <ng-container *ngFor="let passages of wikiPage.text.slice(1), let i = index;">
           <ng-container *ngIf="passages.type === ParsedDocumentTextTypes.heading">
             <h2 *ngIf="passages.depth === 0"> {{ passages.content }} </h2>
             <h3 *ngIf="passages.depth === 1"> {{ passages.content }} </h3>
@@ -32,7 +32,7 @@
             <h5 *ngIf="passages.depth === 3"> {{ passages.content }} </h5>
           </ng-container>
           <ng-container *ngIf="passages.type === ParsedDocumentTextTypes.normal_text_passage">
-            <p>{{passages.content}}</p>
+            <p id="#{{ i }}">{{passages.content}}</p>
           </ng-container>
         </ng-container>
       </ion-col>
