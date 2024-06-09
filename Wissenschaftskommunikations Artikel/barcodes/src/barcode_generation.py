@@ -4,6 +4,7 @@ import datetime
 import platform
 import os
 import subprocess
+import random
 
 import nltk
 import spacy
@@ -153,28 +154,33 @@ def barcode_minification(dict_codes: dict, max_length: int) -> dict:
     return dict_codes
 
 
-def draw_svg(name: str, barcode: list, identity: str):
-    if not os.path.exists(f"../barcodes_out/{identity}s/svg/"):
-        os.makedirs(f"../barcodes_out/{identity}s/svg/")
-        print(f"created directory: ../barcodes_out/{identity}s/svg/ to save the latex file to")
+def draw_svg(name: str, barcode: list, identity: str, height: int, width: int):
+    if not os.path.exists(f"../barcodes_out/{identity}/svg/"):
+        os.makedirs(f"../barcodes_out/{identity}/svg/")
+        print(f"created directory: ../barcodes_out/{identity}/svg/ to save the latex file to")
+
+    if len(identity) == 9:
+        identity_short = identity[:8]
+    else:
+        identity_short = identity
 
     with cairo.SVGSurface(
-        f"../barcodes_out/{identity}s/svg/{identity}_{name}.svg",
-        (len(barcode) * 10),
-        100,
+            f"../barcodes_out/{identity}/svg/{identity_short}_{name}.svg",
+            (len(barcode) * width),
+            height,
     ) as surface:
         context = cairo.Context(surface)
         for idx, numeral in enumerate(barcode):
             if numeral == 0:
                 context.set_source_rgb(0, 0, 0)
-                context.rectangle(idx * 10, 0, 10, 100)
+                context.rectangle(idx * width, 0, width, height)
                 context.fill_preserve()
                 context.set_source_rgb(1, 1, 1)
                 context.set_line_width(2)
                 context.stroke()
             else:
                 context.set_source_rgb(1, 0.84, 0)
-                context.rectangle(idx * 10, 0, 10, 100)
+                context.rectangle(idx * width, 0, width, height)
                 context.fill_preserve()
                 context.set_source_rgb(1, 1, 1)
                 context.set_line_width(2)
@@ -188,6 +194,7 @@ def create_latex(switch: str):
         file_name, _ = file.split(".")
         lst_file.append(file_name)
 
+    lst_file = sorted(lst_file)
     document_template = latex_jinja_env.get_template(f"{switch}_stub.tex")
     result_document = document_template.render(lst_files=lst_file)
 
@@ -196,8 +203,8 @@ def create_latex(switch: str):
         print(f"created directory: ../barcodes_out/{switch}/tex to save the latex file to")
 
     with open(
-        f"../barcodes_out/{switch}/tex/{switch}.tex",
-        "w",
+            f"../barcodes_out/{switch}/tex/{switch}.tex",
+            "w",
     ) as document_file:
         document_file.write(result_document)
 
@@ -229,12 +236,25 @@ def create_pdf(switch: str):
     subprocess.run([script_path, folder_path, output_path], check=True)
 
 
+def generate_dummy():
+    if not os.path.exists(f"../barcodes_out/dummy/tex/"):
+        os.makedirs(f"../barcodes_out/dummy/tex/")
+        print(f"created directory: ../barcodes_out/dummy/tex/ to save the pdf files to")
+    if not os.path.exists(f"../barcodes_out/dummy/pdf/"):
+        os.makedirs(f"../barcodes_out/dummy/pdf/")
+        print(f"created directory: ../barcodes_out/dummy/pdf/ to save the pdf files to")
+
+    barcode = [random.choice([0, 1]) for _ in range(20)]
+
+    draw_svg("dummy", barcode, "dummy", 500, 30)
+
+
 def generate_barcodes(
-    index_file: str,
-    questions_file: str,
-    amount: int,
-    mode: str,
-    max_length: int,
+        index_file: str,
+        questions_file: str,
+        amount: int,
+        mode: str,
+        max_length: int,
 ):
     """
 
@@ -289,34 +309,47 @@ def generate_barcodes(
             else:
                 dict_questions[question].append(0)
 
-    and_barcode_doc = get_xor_and(dict_barcodes)
-    dict_barcodes = remove_redundant(dict_barcodes, and_barcode_doc)
+    dict_codes = {}
+    lst_para = ['1-1', '1-46', '2-68', '2-59', '2-73', '3-2', '3-12', '3-24', '3-117', '3-200',
+                '4-2', '4-8', '4-13', '4-60', '4-68', '4-78', '6-1', '6-2', '6-77', '6-78']
+    for collection in dict_barcodes:
+        if collection in lst_para:
+            dict_codes[collection] = dict_barcodes[collection]
+
+    and_barcode_doc = get_xor_and(dict_codes)
+    dict_barcodes = remove_redundant(dict_codes, and_barcode_doc)
 
     dict_barcodes = barcode_minification(dict_barcodes, max_length)
     dict_questions = barcode_minification(dict_questions, max_length)
 
+    if not os.path.isfile(f"../barcodes_out/dummy/svg/dummy.svg"):
+        print("Generating dummy barcode...")
+        generate_dummy()
+        print("Done generating dummy barcode...")
+
     print("Done generating barcodes...")
+
     print("Generating svg files...")
     if mode == "single":
         for idx, barcode in enumerate(dict_barcodes):
             print(f"Drawing SVG for barcode {barcode}")
-            draw_svg(barcode, dict_barcodes[barcode], "document")
+            draw_svg(barcode, dict_barcodes[barcode], "documents", 100, 10)
             if amount == idx:
                 break
 
         for idx, question in enumerate(dict_questions):
             print(f"Drawing SVG for question {question}")
-            draw_svg(question, dict_questions[question], "question")
+            draw_svg(question, dict_questions[question], "questions", 100, 10)
             if amount == idx:
                 break
     else:
         for idx, barcode in enumerate(dict_barcodes):
             print(f"Drawing SVG for barcode {barcode}")
-            draw_svg(barcode, dict_barcodes[barcode], "document")
+            draw_svg(barcode, dict_barcodes[barcode], "documents", 100, 10)
 
         for idx, question in enumerate(dict_questions):
             print(f"Drawing SVG for question {question}")
-            draw_svg(question, dict_questions[question], "question")
+            draw_svg(question, dict_questions[question], "questions", 100, 10)
     print("Done generating svg files...")
     print("Generating TEX files...")
     create_latex("documents")
@@ -329,9 +362,27 @@ def generate_barcodes(
     print("DONE")
 
 
+def handler(amount: int, mode: str, max_length: int = 100):
+    if len(os.listdir(INVERTED_INDEX_PATH)) < 2:
+        raise Exception(
+            "No inverted index or question files found. Please provide both in JSON format"
+        )
+
+    for file in os.listdir(INVERTED_INDEX_PATH):
+        if file.endswith(".json"):
+            if "questions" not in file:
+                index_path = f"../invIndex/{file}"
+            else:
+                questions_path = f"../invIndex/{file}"
+        else:
+            raise Exception(f"File type {os.path.splitext(file)} not supported")
+
+    generate_barcodes(index_path, questions_path, amount, mode, max_length)
+
+
 if __name__ == "__main__":
     amount = 8
-    mode = "single"
+    mode = ""
     if len(os.listdir(INVERTED_INDEX_PATH)) < 2:
         raise Exception(
             "No inverted index or question files found. Please provide both in JSON format"

@@ -1,0 +1,48 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage{graphicx}
+\usepackage{pdflscape}
+\usepackage{svg}
+\usepackage[a4paper, left=2cm, right=2cm, bottom=2cm, top=2cm]{geometry}
+\usepackage{tikz}
+
+\begin{document}
+\begin{landscape}
+\thispagestyle{empty}
+
+% Page Heading
+\begin{center}
+    \textbf{\huge AUFBAU EINES BARCODES}
+\end{center}
+
+% Main Content with SVG and Arrows
+\begin{center}
+    \begin{tikzpicture}
+        \node[anchor=south west,inner sep=0] (image) at (0,0) {\includesvg[scale=0.9]{../svg/dummy_dummy}};
+        \begin{scope}[x={(image.south east)},y={(image.north west)}]
+            % Adjust the coordinates and text as needed
+            % Arrow pointing to the middle of the yellow stripe
+            \draw[->, >=latex, black, ultra thick] (0.275,-0.15) node[below] {\huge Harry} -- (0.275,0);
+            % Arrow pointing to the middle of the black stripe
+            \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge Dumbledore} -- (0.675,0);
+        \end{scope}
+    \end{tikzpicture}
+\end{center}
+
+% Legend
+\begin{tikzpicture}[overlay]
+    \node[anchor=north east] at ([xshift=13.5cm, yshift=3.5cm]image.north east) {
+        \begin{minipage}{8cm}
+            \begin{tikzpicture}
+                % Yellow Box with Label
+                \draw[fill=yellow, draw=black] (0,0) rectangle (1,0.5);
+                \node[right] at (1.2,0.25) {Wort in Absatz enthalten};
+                % Black Box with Label
+                \draw[fill=black, draw=black] (0,-1) rectangle (1,-0.5);
+                \node[right] at (1.2,-0.75) {\color{black} Wort nicht in Absatz enthalten};
+            \end{tikzpicture}
+        \end{minipage}
+    };
+\end{tikzpicture}
+
+\end{landscape}
+\end{document}
