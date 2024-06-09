@@ -31,8 +31,8 @@ export class WikiPage implements OnInit, AfterViewInit {
       this.wikiPage = ResponseParsingService.parseDocumentResponse(res);
       console.log('wikiData', this.wikiPage);
 
-      let paragraph = this.dataTransferService.getData()
-      console.log('Query Response Data', paragraph)
+      let search_result = this.dataTransferService.getData()
+      console.log('Query Response Data', search_result)
 
       let paragraphs = this.wikiPage.text.
       filter((item) => item.type == ParsedDocumentTextTypes.normal_text_passage)
@@ -40,8 +40,11 @@ export class WikiPage implements OnInit, AfterViewInit {
         return item.content;
       });
 
-
-
+      Object(paragraphs).forEach((paragraph: string, i: number) => {
+        if (paragraph === search_result.text[0]){
+          this.paragraph_id= '#' + i
+        }
+      });
     });
   }
 
