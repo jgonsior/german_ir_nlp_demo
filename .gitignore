@@ -175,9 +175,5 @@ backend/data/colbert
 
 slurm-*.out
 setup.sh
-train_index_eval_RAG.sh
-train_index_eval_RAG_old.sh
-backend/RAGatouille/evaluate.py
-backend/RAGatouille/visualize_statistics.py
 backend/data/wiki_dumps
 backend/data/qa/HP
