@@ -1,5 +1,8 @@
-kill -s QUIT $(cat /home/josi3886/german_ir_nlp_demo/gunicorn.pid)
+kill -s QUIT $(cat /home/josi3886/demo/backend/gunicorn.pid)
 sleep 2
 rm nohup.out
-source venv/bin/activate;
-/usr/bin/nohup gunicorn -w 2 -b 0.0.0.0:8081 -p gunicorn.pid run:app &
+#. $HOME/.bashrc
+#$HOME/miniconda3/bin/activate
+#conda activate RAG_env_conda
+
+/usr/bin/nohup gunicorn -w 2 -b 0.0.0.0:8080 -p gunicorn.pid --timeout 300 run:app &
