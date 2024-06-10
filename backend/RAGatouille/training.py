@@ -51,53 +51,58 @@ def move_content(source_path, destination_path):
     os.rmdir(source_path)
     print(f"Removed source directory '{source_path}'.")
 
+def split_list(lst, n):
+    # Calculate the size of each chunk
+    k, m = divmod(len(lst), n)
+    return [lst[i * k + min(i, m):(i + 1) * k + min(i + 1, m)] for i in range(n)]
+
 def main(args):
     train_data = f"{args.union_train_data}-{args.num_negatives}neg"
 
     corpus = pd.read_csv(args.corpus_path).values.tolist()
-    trained_model_from_previous_epoch = None
 
     triples = pd.read_json(args.triples_path, lines=True)[["question", "positive_contexts", "negative_contexts"]].values.tolist()
     if args.num_negatives < len(triples[0][2]):
         triples = [[q, p, random.sample(n, args.num_negatives)] for q, p, n in triples]
+    triple_parts = split_list(triples, args.num_parts)
     for e in args.epochs:
-        if e == 1 or e == "1":
-            pretrained_model_name_or_path = args.pretrained_model_name_or_path
-        else:
-            trained_model_from_previous_epoch = f"backend/data/colbert/checkpoints/{args.base_model_name}/{train_data}/epoch{int(e)-1}"
-            pretrained_model_name_or_path = trained_model_from_previous_epoch
+        for part in range(1, args.num_parts+1):
+            if (part == 1 or part == "1"):
+                if (e == 1 or e == "1"):
+                    pretrained_model_name_or_path = args.pretrained_model_name_or_path
+                else:
+                    pretrained_model_name_or_path = f"backend/data/colbert/checkpoints/{args.base_model_name}/{train_data}/epoch{int(e)-1}/part{args.num_parts}"
+            else:
+                pretrained_model_name_or_path = f"backend/data/colbert/checkpoints/{args.base_model_name}/{train_data}/epoch{int(e)}/part{part-1}"
 
-        trainer = RAGTrainer(model_name = f"{args.base_model_name}-{train_data}",
-                pretrained_model_name = pretrained_model_name_or_path,
-                language_code="de")
+            trainer = RAGTrainer(model_name = f"{args.base_model_name}-{train_data}",
+                    pretrained_model_name = pretrained_model_name_or_path,
+                    language_code="de")
 
-        # This step handles all the data processing. Check whether data has already been preprocessed
-        colbert_training_data_path = f"backend/data/colbert/training_data/{train_data}/epoch{e}"
-        if not os.path.exists(colbert_training_data_path) or not any(os.listdir(colbert_training_data_path)):
-            trainer.prepare_training_data(raw_data=triples,
+            # This step handles all the data processing. Check whether data has already been preprocessed
+            colbert_training_data_path = f"backend/data/colbert/training_data/{train_data}/epoch{e}/part{part}"
+            trainer.prepare_training_data(raw_data=triple_parts[part-1],
                                             all_documents = corpus,
                                             data_out_path=colbert_training_data_path, 
                                             num_new_negatives = 0, 
                                             mine_hard_negatives=False)
-        else:
-            trainer.data_dir = Path(colbert_training_data_path)
 
-        model_output_path = trainer.train(
-                batch_size=32,
-                nbits=4, # How many bits will the trained model use when compressing indexes
-                maxsteps=500000, # Maximum steps hard stop
-                use_ib_negatives=True, # Use in-batch negative to calculate loss
-                dim=128, # How many dimensions per embedding. 128 is the default and works well.
-                learning_rate=5e-6, # Learning rate, small values ([3e-6,3e-5] work best if the base model is BERT-like, 5e-6 is often the sweet spot)
-                doc_maxlen=512, # Maximum document length. Because of how ColBERT works, smaller chunks (128-256) work very well.
-                use_relu=False, # Disable ReLU -- doesn't improve performance
-                warmup_steps="auto", # Defaults to 10%
-                )
-        
-        # original colbert code forgot to propagate model_output_path -> hence we have to find it our selves
+            model_output_path = trainer.train(
+                    batch_size=32,
+                    nbits=4, # How many bits will the trained model use when compressing indexes
+                    maxsteps=10_000_000, # Maximum steps hard stop
+                    use_ib_negatives=True, # Use in-batch negative to calculate loss
+                    dim=128, # How many dimensions per embedding. 128 is the default and works well.
+                    learning_rate=5e-6, # Learning rate, small values ([3e-6,3e-5] work best if the base model is BERT-like, 5e-6 is often the sweet spot)
+                    doc_maxlen=512, # Maximum document length. Because of how ColBERT works, smaller chunks (128-256) work very well.
+                    use_relu=False, # Disable ReLU -- doesn't improve performance
+                    warmup_steps="auto", # Defaults to 10%
+                    )
+            
+            # original colbert code forgot to propagate model_output_path -> hence we have to find it our selves
 
-        move_content(os.path.join(most_recent_created_path(".ragatouille/colbert/none"), "checkpoints/colbert"),
-                        f"backend/data/colbert/checkpoints/{args.base_model_name}/{train_data}/epoch{e}")
+            move_content(os.path.join(most_recent_created_path(".ragatouille/colbert/none"), "checkpoints/colbert"),
+                            f"backend/data/colbert/checkpoints/{args.base_model_name}/{train_data}/epoch{e}/part{part}")
         
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -110,6 +115,8 @@ if __name__ == "__main__":
     parser.add_argument("--epochs", metavar="N", type=str, nargs="+",
                         help="List of integers separated by spaces")
     parser.add_argument('--num_negatives', type=int, default=1, help="how many negative contexts of the training triples should be used")
+    parser.add_argument('--num_parts', type=int, default=1, help="in how many parts of equal size should the training triples be split")
+    
     args = parser.parse_args()
 
     main(args)

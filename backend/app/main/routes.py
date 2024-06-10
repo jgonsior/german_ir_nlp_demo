@@ -1,12 +1,11 @@
 from flask import request, jsonify, make_response, current_app
-from ragatouille import RAGPretrainedModel
 from random import randint
 import torch
+import numpy as np
 import os
 
-
-from . import bp
 from . import utils
+from . import bp
 
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
@@ -19,15 +18,9 @@ dm = DocumentManager()
 # qf = find_best_results.queryFinder()
 
 # Milestone 3-5
-MODEL_RAG = None
-
-@bp.before_app_request
-def initialize_model():
-    global MODEL_RAG
-    # Update metadata.json (checkpoint path)
-    utils.update_model_metadata()
-    INDEX_PATH = current_app.config.get('INDEX_PATH')
-    MODEL_RAG = RAGPretrainedModel.from_index(INDEX_PATH)
+# check __init__.py
+# from .ragatouille_model_manager import RagatouilleModelManager
+# model_manager = RagatouilleModelManager()
 
 
 @bp.route('/search', methods=['GET'])
@@ -43,23 +36,36 @@ def search():
         # resp = qf.query_vector_finder(query, 3)
 
         # Milestone 3-5
-        k = 5
-        results = MODEL_RAG.search(query=query, k=k)
-
-        utils.transform_results(results)
-
-        print('------------------------------------------')
-        print(results)
-        print('------------------------------------------')
-
+        # k could be passed by the frontend as well?
+        k = 10
+        results = current_app.rag_model_manager.search(query=query, k=k)
+        utils.rename_fields_and_add_title(results)
         return jsonify(results)
 
 
-@bp.route('/document/', methods=['GET'])
+@bp.route('/word_embeddings', methods=['POST'])
+def get_word_embeddings():
+    if request.method == 'POST':
+        paragraph = request.json['paragraph']
+
+        word_embeddings = current_app.rag_model_manager.get_word_embeddings(paragraph)
+        resp = []
+        for word, embedding in word_embeddings.items():
+            tmp = {
+                'word': word,
+                'embedding': np.linalg.norm(embedding)
+            }
+            resp.append(tmp)
+
+        return jsonify(resp)
+
+
+@bp.route('/document', methods=['GET'])
 def get_document():
     if request.method == 'GET':
         document_id = request.args.get('id')
         doc = dm.get_document_by_id(document_id)
+
         print('Get Document id=', document_id)
         if not doc:
                 return make_response(jsonify({'error': 'Document not found'}), 404)
