@@ -54,9 +54,6 @@ export class WikiPage implements OnInit, AfterViewInit {
     this.route.queryParams.subscribe((p) => {
       this.searchText = p['query'];
     });
-    this.route.queryParams.subscribe((p) => {
-      this.searchText = p['query'];
-    });
   }
 
   ngAfterViewInit() {
@@ -69,19 +66,6 @@ export class WikiPage implements OnInit, AfterViewInit {
     }, 200);
   }
 
-  onSearchClicked() {
-    if (this.searchText.trim().length == 0) {
-      this.searchBar.getInputElement().then((inputElement) => {
-        this.searchText = '';
-        inputElement.blur();
-      });
-      return;
-    }
-
-    this.router.navigate(['/search-results'], {
-      queryParams: { query: this.searchText },
-    });
-  }
 
   getBackButtonText() {
     const isIos = this.platform.is('ios')
