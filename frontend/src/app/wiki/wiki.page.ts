@@ -8,9 +8,9 @@ import {ResponseParsingService} from "../services/response-parsing-service";
 import {DataTransferService} from "../services/data-transfer.service";
 
 @Component({
-  selector: "app-wiki",
-  templateUrl: "./wiki.page.html",
-  styleUrls: ["./wiki.page.scss"],
+  selector: 'app-wiki',
+  templateUrl: './wiki.page.html',
+  styleUrls: ['./wiki.page.scss'],
 })
 export class WikiPage implements OnInit, AfterViewInit {
   public docName: String;
@@ -54,6 +54,9 @@ export class WikiPage implements OnInit, AfterViewInit {
     this.route.queryParams.subscribe((p) => {
       this.searchText = p['query'];
     });
+    this.route.queryParams.subscribe((p) => {
+      this.searchText = p['query'];
+    });
   }
 
   ngAfterViewInit() {
@@ -83,6 +86,20 @@ export class WikiPage implements OnInit, AfterViewInit {
   getBackButtonText() {
     const isIos = this.platform.is('ios')
     return isIos ? 'Inbox' : '';
+  }
+
+  onSearchClicked() {
+    if (this.searchText.trim().length == 0) {
+      this.searchBar.getInputElement().then((inputElement) => {
+        this.searchText = '';
+        inputElement.blur();
+      });
+      return;
+    }
+
+    this.router.navigate(['/search-results'], {
+      queryParams: { query: this.searchText },
+    });
   }
 
   protected readonly ParsedDocumentTextTypes = ParsedDocumentTextTypes;

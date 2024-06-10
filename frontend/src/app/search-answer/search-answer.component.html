@@ -7,15 +7,17 @@
       </h1>
       <span class="date">
         <ion-note>{{ queryResponseResult.id }}</ion-note>
-        <ion-icon aria-hidden="true" name="chevron-forward" size="small" *ngIf="isIos()"></ion-icon>
+        <ion-icon
+          aria-hidden="true"
+          name="chevron-forward"
+          size="small"
+          *ngIf="isIos()"
+        ></ion-icon>
       </span>
-    </ion-row>
-    <ion-row class="message-component__category">
-      <h3>{{ queryResponseResult.title }}</h3>
     </ion-row>
     <ion-row class="message-component__passage">
       <p>
-        {{queryResponseResult.text.join(', ')}}
+        {{ queryResponseResult.text.join(", ") }}
       </p>
     </ion-row>
   </ion-label>

@@ -43,5 +43,7 @@ export class HomePage {
     this.router.navigate(['/search-results'], {
       queryParams: { query: this.searchText },
     });
+
+    this.searchText = '';
   }
 }
