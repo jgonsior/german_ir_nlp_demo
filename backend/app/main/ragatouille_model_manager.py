@@ -22,31 +22,40 @@ class RagatouilleModelManager:
         self.rag_model = RAGPretrainedModel.from_index(index_path)
 
 
-    def get_model_embeddings(self, text):
-        inputs = self.tokenizer(text, return_tensors='pt')
-        print('tokens:', inputs)
-        print(self.tokenizer.convert_ids_to_tokens(inputs['input_ids'][0]))
-        with torch.no_grad():
-            outputs = self.model(**inputs)
-        return outputs.last_hidden_state
-
-
     def search(self, query, k):
         results = self.rag_model.search(query=query, k=k)
         return results
 
 
-    def get_query_embeddings(self, query):
-        return self.get_model_embeddings(query)
+    def get_word_embeddings(self, text):
+        inputs = self.tokenizer(text, return_tensors='pt')
+        with torch.no_grad():
+            outputs = self.model(**inputs)
 
 
-    def get_document_embeddings(self, documents):
-        document_embeddings = []
-        for doc in documents:
-            doc_text = doc['passage']
-            doc_embeddings = self.get_model_embeddings(doc_text)
-            document_embeddings.append(doc_embeddings)
-        return document_embeddings
+        token_embeddings = outputs.last_hidden_state[0]
+        tokens = self.tokenizer.convert_ids_to_tokens(inputs['input_ids'][0])
+        words = text.split()
+
+        word_embeddings = {}
+        word_tokens = []
+        current_word = ""
+
+        for token, embedding in zip(tokens, token_embeddings):
+            if token.startswith("##"):
+                current_word += token[2:]
+            else:
+                if current_word:
+                    word_embeddings[current_word] = embedding.tolist()
+                current_word = token
+                word_tokens = [embedding]
+                continue
+            word_tokens.append(embedding)
+
+        if current_word:
+            word_embeddings[current_word] = embedding.tolist()
+
+        return word_embeddings
 
 
 def create_ragatouille_model_manager(index_path, model_path):

@@ -43,6 +43,23 @@ def search():
         return jsonify(results)
 
 
+@bp.route('/word_embeddings', methods=['POST'])
+def get_word_embeddings():
+    if request.method == 'POST':
+        paragraph = request.json['paragraph']
+
+        word_embeddings = current_app.rag_model_manager.get_word_embeddings(paragraph)
+        resp = []
+        for word, embedding in word_embeddings.items():
+            tmp = {
+                'word': word,
+                'embedding': np.linalg.norm(embedding)
+            }
+            resp.append(tmp)
+
+        return jsonify(resp)
+
+
 @bp.route('/document', methods=['GET'])
 def get_document():
     if request.method == 'GET':

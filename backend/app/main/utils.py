@@ -22,7 +22,6 @@ def update_model_metadata(index_path, checkpoint_path):
         json.dump(metadata, file, indent=4)
 
 
-
 def rename_fields_and_add_title(results):
 
     for i, result in enumerate(results):
