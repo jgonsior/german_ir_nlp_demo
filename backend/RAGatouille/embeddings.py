@@ -1,24 +1,60 @@
+import os
+import torch
+from flask import current_app
+from transformers import AutoTokenizer, AutoModel
+from ragatouille import RAGPretrainedModel
 import numpy as np
-import pandas as pd
-import transformers as tf
 
-tokenizer = tf.BertTokenizer.from_pretrained("backend/data/colbert/checkpoints/bert-base-german-cased/GermanDPR-XQA-HP/epoch1")
-df_embeddings = pd.read_csv("embeddings.csv")
+class RagatouilleModelManager:
+    def __init__(self):
 
-# Preprocess df_embeddings
-df_embeddings["embedding"] = df_embeddings["embedding"].apply(lambda x: np.fromstring(x.strip("[]"), sep=" "))
+        base_model_name = "bert-base-german-cased"
+
+        self.tokenizer = AutoTokenizer.from_pretrained(base_model_name)
+        self.model = AutoModel.from_pretrained(base_model_name)
+
+        # TODO
+        index_path = ''
+        # self.model = RAGPretrainedModel.from_index(index_path)
+        # self.model = AutoModel.from_pretrained(index_path)
 
 
-def embed_word(tokenizer: tf.BertTokenizer, df: pd.DataFrame, word: str) -> np.ndarray:
-    tokens = tokenizer(word)["input_ids"][1:-1]
-    embedding = df["embedding"].iloc[tokens].mean()
-    return embedding
+    def get_word_embeddings(self, text):
+        inputs = self.tokenizer(text, return_tensors='pt')
+        with torch.no_grad():
+            outputs = self.model(**inputs)
 
 
-with open("words_to_embed.txt", "r") as file:
-    words = [line.strip() for line in file]
+        token_embeddings = outputs.last_hidden_state[0]
+        tokens = self.tokenizer.convert_ids_to_tokens(inputs['input_ids'][0])
+        words = text.split()
 
-results = [(word, embed_word(tokenizer=tokenizer, df=df_embeddings, word=word)) for word in words]
+        word_embeddings = {}
+        word_tokens = []
+        current_word = ""
 
-results_df = pd.DataFrame(results, columns=["word", "embedding"])
-results_df.to_csv("unity.csv", index=False)
+        for token, embedding in zip(tokens, token_embeddings):
+            if token.startswith("##"):
+                current_word += token[2:]
+            else:
+                if current_word:
+                    word_embeddings[current_word] = embedding.tolist()
+                current_word = token
+                word_tokens = [embedding]
+                continue
+            word_tokens.append(embedding)
+
+        if current_word:
+            word_embeddings[current_word] = embedding.tolist()
+
+        return word_embeddings
+
+
+if __name__ == '__main__':
+
+    model_manager = RagatouilleModelManager()
+    text = "Wer hat Snape umgebracht?"
+    embeddings = model_manager.get_word_embeddings(text)
+
+    for word, embedding in embeddings.items():
+        print(f"Wort: {word}, Embedding: {embedding}")
