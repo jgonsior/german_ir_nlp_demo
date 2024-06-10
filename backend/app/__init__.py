@@ -4,8 +4,8 @@ from flask_cors import CORS
 import configparser
 import os
 
+from app.main.ragatouille_model_manager import create_ragatouille_model_manager
 
-app_config = {}
 
 def create_app():
     app = Flask(__name__)
@@ -17,12 +17,19 @@ def create_app():
     config = configparser.ConfigParser()
     config.read(config_path)
 
-    app.config['INDEX_PATH'] = os.path.join(os.path.abspath(os.path.join(app.root_path, os.pardir)), config.get('paths', 'index'))
-    app.config['CHECKPOINT_PATH'] = os.path.join(os.path.abspath(os.path.join(app.root_path, os.pardir)), config.get('paths', 'checkpoint'))
+    index_path = os.path.join(os.path.abspath(os.path.join(app.root_path, os.pardir)), config.get('paths', 'index'))
+    app.config['INDEX_PATH'] = index_path
+
+    checkpoint_path = os.path.join(os.path.abspath(os.path.join(app.root_path, os.pardir)), config.get('paths', 'checkpoint'))
+    app.config['CHECKPOINT_PATH'] = checkpoint_path
 
 
     from .main import bp as main_bp
     app.register_blueprint(main_bp)
+
+    # Milestone 3-5
+    with app.app_context():
+        app.rag_model_manager = create_ragatouille_model_manager(index_path, checkpoint_path)
 
     # Milestone 2
     #from .tf_idf import bp as tf_idf_bp

@@ -2,9 +2,10 @@ from flask import current_app
 import json
 import os
 
-def update_model_metadata():
-    index_path = current_app.config.get('INDEX_PATH')
-    checkpoint_path = current_app.config.get('CHECKPOINT_PATH')
+from .document_manager import DocumentManager
+dm = DocumentManager()
+
+def update_model_metadata(index_path, checkpoint_path):
 
     metadata_path = os.path.join(index_path, 'metadata.json')
 
@@ -21,9 +22,14 @@ def update_model_metadata():
         json.dump(metadata, f, indent=4)
 
 
-def transform_results(results):
-    for doc in results:
-        doc['id'] = doc.pop('document_id').split('-')[0]
-        doc['passage'] = doc.pop('content')
+def rename_fields_and_add_title(results):
+    for i, result in enumerate(results):
+        # rename fields for frontend
+        doc_id = result.pop('document_id').split('-')[0]
+        result['id'] = doc_id
+        result['passage'] = result.pop('content')
 
-        del doc['passage_id']
+        del result['passage_id']
+
+        doc = dm.get_document_by_id(doc_id)
+        result['title'] = doc['title']
