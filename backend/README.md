@@ -5,7 +5,7 @@ Install Conda Environment:  [Miniconda](https://docs.anaconda.com/free/miniconda
 ```
 # setup env
 conda env create -f RAG_env_conda.yml
-conda activate RAG_env
+conda activate RAG_env_conda
 
 # deploy
 python run.py

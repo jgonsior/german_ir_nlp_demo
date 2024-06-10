@@ -15,11 +15,11 @@ export class ResponseParsingService {
         const headers = headerSection.split(', ');
         let i = 0;
         for (let header of headers) {
-          if(!this.wasHeadingCreated(parsedDocument, header)) {
+          if(!this.wasHeadingCreated(parsedDocument, this.unescapeHtml(header))) {
             parsedDocument.text.push({
               type: ParsedDocumentTextTypes.heading,
               depth: i,
-              content: header
+              content: this.unescapeHtml(header)
             });
             i++;
           }
@@ -45,5 +45,13 @@ export class ResponseParsingService {
       return value.type === ParsedDocumentTextTypes.heading && value.content == heading;
     })
     return foundHeading !== undefined
+  }
+
+  static unescapeHtml(safe: string) {
+    return safe
+      // For security reasons we will not allow the construction of html tags
+      // .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .replace(/\"\=\= (\w+) \=/g, "$1");
   }
 }

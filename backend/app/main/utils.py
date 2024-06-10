@@ -18,12 +18,11 @@ def update_model_metadata(index_path, checkpoint_path):
 
     metadata['config']['checkpoint'] = checkpoint_path
 
-    with open(metadata_path, 'w') as file:
-        json.dump(metadata, file, indent=4)
+    with open(metadata_path, 'w') as f:
+        json.dump(metadata, f, indent=4)
 
 
 def rename_fields_and_add_title(results):
-
     for i, result in enumerate(results):
         # rename fields for frontend
         doc_id = result.pop('document_id').split('-')[0]

@@ -25,6 +25,8 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
+$ion-config-padding: 10rem;
+
 .home__searchbar {
     .searchbar-input-container {
         .searchbar-input {
@@ -51,3 +53,172 @@
         }
     }
 }
+
+.home__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+@media only screen and (min-width: 1200px) {
+    h1 {
+        font-size: 5.5rem!important;
+    }
+
+    h2 {
+        font-size: 5rem!important;
+    }
+
+    h3 {
+        font-size: 4.5rem!important;
+    }
+
+    h4 {
+        font-size: 4rem!important;
+    }
+
+    h5 {
+        font-size: 3.5rem!important;
+    }
+
+    p {
+        font-size: 3rem!important;
+        line-height: normal !important;
+    }
+
+    ion-title {
+        font-size: 5rem!important;
+    }
+
+    ion-back-button {
+        --icon-font-size: 3rem!important;
+    }
+
+    ion-note {
+        font-size: 2rem!important;
+    }
+
+    .home__header {
+        padding: 4rem $ion-config-padding 0 $ion-config-padding !important;
+        background: var(--ion-color-custom-darkblue);
+    }
+
+    .home__logo {
+        img {
+            height: 225px!important;
+        }
+    }
+
+    .home__grid {
+        width: 100%;
+    }
+
+    .home__searchbar {
+        .searchbar-input-container {
+            .searchbar-input {
+                height: 120px;
+                font-size: 4rem;
+                padding-left: 6rem;
+            }
+    
+            .searchbar-search-icon {
+                top: 28px;
+                width: 4rem;
+                height: 4rem;
+                color: var(--ion-color-custom-red);
+            }
+        }
+
+    }
+    
+    #searchButton {
+        min-height: 120px !important;
+        font-size: 2rem !important;
+    }
+
+    .search-results__searchbar {
+        padding-left: 0 !important;
+        .searchbar-input-container {
+            .searchbar-input {
+                height: 80px;
+                font-size: 3rem;
+                padding-left: 6rem;
+            }
+    
+            .searchbar-search-icon {
+                top: 15px;
+                width: 3rem;
+                height: 3rem;
+                color: var(--ion-color-custom-red);
+            }
+
+            button {
+                ion-icon {
+                    width: 3rem;
+                    height: 3rem;
+                }
+            }
+        }
+    }
+
+    .search-results__header {
+        padding: 4rem $ion-config-padding 0 $ion-config-padding !important;
+        background: var(--ion-color-custom-darkblue);
+    }
+
+    .search-results__toolbar {
+        padding-bottom: 2rem;
+    }
+
+    .search-results__grid {
+        padding: 0 $ion-config-padding 0 $ion-config-padding !important;
+    }
+
+    .message-component__passage {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .wiki__header {
+        padding: 4rem $ion-config-padding 0 $ion-config-padding !important;
+        background: var(--ion-color-custom-darkblue);
+    }
+
+    .wiki__toolbar {
+        padding-bottom: 2rem;
+    }
+
+    .wiki__row--fixed {
+        padding: 0 $ion-config-padding 0 $ion-config-padding !important;
+    }
+
+    .wiki__row {
+        padding: 8rem $ion-config-padding 0 $ion-config-padding !important;
+    }
+
+    .wiki__searchbar {
+        padding-left: 0 !important;
+        .searchbar-input-container {
+            .searchbar-input {
+                height: 80px;
+                font-size: 3rem;
+                padding-left: 6rem;
+            }
+    
+            .searchbar-search-icon {
+                top: 15px;
+                width: 3rem;
+                height: 3rem;
+                color: var(--ion-color-custom-red);
+            }
+
+            button {
+                ion-icon {
+                    width: 3rem;
+                    height: 3rem;
+                }
+            }
+        }
+    }
+  }
