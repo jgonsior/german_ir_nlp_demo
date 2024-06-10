@@ -10,6 +10,9 @@
 #SBATCH --mail-type=FAIL
 #SBATCH -J tie_RAG
 
+source /home/flml293c/spack/share/spack/setup-env.sh
+spack load cuda
+
 # Start time
 start_time=$(date +%s)
 

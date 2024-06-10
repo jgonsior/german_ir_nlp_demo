@@ -39,15 +39,17 @@ def main(args):
     # append best checkpoint stats to best statistics
     df_stat = pd.read_csv(args.statistics_path)
     filtered_df_stat = df_stat[df_stat.iloc[:, 0] == f"{base_model_name}-{train_data}-{epoch}-{part}"]
-    
+    print(f"{base_model_name}-{train_data}-{epoch}-{part}")    
+    print(filtered_df_stat)
     name = f"{train_data}-DPR{DPR_epoch}{DPR_part}-XQA{XQA_epoch}{XQA_part}-HP{epoch}{part}".replace("part", "p").replace("epoch", "e")
     filtered_df_stat.iloc[:, 0] = name
+    print(filtered_df_stat)
     if os.path.exists(args.best_statistics_path): 
         df_best_stat = pd.read_csv(args.best_statistics_path)
-        df_best_stat.update(filtered_df_stat)
+        df_best_stat = pd.concat([df_best_stat, filtered_df_stat], axis=0)
     else:
         df_best_stat = filtered_df_stat
-    
+    print("df_best_stat", df_best_stat)
     # visualize best_statistics
     for _, row in df_best_stat.iterrows():
         y_values = list(row.iloc[1:len(Ks)+1])
