@@ -177,3 +177,5 @@ slurm-*.out
 setup.sh
 backend/data/wiki_dumps
 backend/data/qa/HP
+test.py
+test.pdf
