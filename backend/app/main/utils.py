@@ -33,5 +33,3 @@ def rename_fields_and_add_title(results):
 
         doc = dm.get_document_by_id(doc_id)
         result['title'] = doc['title']
-
-    print(results)
