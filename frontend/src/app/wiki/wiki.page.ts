@@ -46,7 +46,7 @@ export class WikiPage implements OnInit, AfterViewInit {
       });
 
       paragraphs.forEach((text, index) => {
-        if (text === search_result.text[0]) {
+        if (text === search_result.passage) {
           this.paragraph_id = '#' + index
         }
       });

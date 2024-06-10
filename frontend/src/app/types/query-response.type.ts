@@ -9,7 +9,7 @@ export interface QueryResponseResult {
   id: string;
   title: string;
   // categorie: string;
-  text: string[];
+  passage: string;
 }
 
 export interface QueryResponseDocument {
