@@ -17,8 +17,8 @@ class RagatouilleModelManager:
         utils.update_model_metadata(index_path, checkpoint_path)
 
         self.tokenizer = AutoTokenizer.from_pretrained(base_model_name)
-        self.model = AutoModel.from_pretrained(base_model_name)
 
+        self.model = AutoModel.from_pretrained(checkpoint_path)
         self.rag_model = RAGPretrainedModel.from_index(index_path)
 
 
