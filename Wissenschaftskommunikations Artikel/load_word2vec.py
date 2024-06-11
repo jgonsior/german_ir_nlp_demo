@@ -41,22 +41,27 @@ terms_to_display = [
 ]
 
 
-def plot_embeddings():
+def generate_embeddin_for_term(term: str, question_id: int):
+    plt.figure(figsize=(15, 4))
+    sns.heatmap(
+        [model.wv[term]],
+        cmap=sns.color_palette("coolwarm", as_cmap=True),
+        cbar=False,
+        xticklabels=False,
+        yticklabels=False,
+        linewidths=1,
+    )
+    plt.savefig(f"Wissenschaftskommunikations Artikel/answers/answer_{question_id}.svg", dpi="figure", format="svg")
+
+
+def plot_embeddings(generate_questions: bool, generate_answers: bool):
 
     for question_id, term_pair in enumerate(terms_to_display):
-        question = term_pair[1]
 
-        plt.figure(figsize=(15, 4))
-        sns.heatmap(
-            [model.wv[question]],
-            cmap=sns.color_palette("coolwarm", as_cmap=True),
-            cbar=False,
-            xticklabels=False,
-            yticklabels=False,
-            linewidths=1,
-        )
-        # plt.show()
-        plt.savefig(f"Wissenschaftskommunikations Artikel/answers/answer_{question_id}.svg", dpi="figure", format="svg")
+        if generate_questions:
+            generate_embeddin_for_term(term=term_pair[0], question_id=question_id)
+        if generate_answers:
+            generate_embeddin_for_term(term=term_pair[1], question_id=question_id)
 
 
-plot_embeddings()
+plot_embeddings(generate_questions=True, generate_answers=True)
