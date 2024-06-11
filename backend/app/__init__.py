@@ -22,6 +22,7 @@ def create_app():
 
     checkpoint_path = os.path.join(os.path.abspath(os.path.join(app.root_path, os.pardir)), config.get('paths', 'checkpoint'))
     app.config['CHECKPOINT_PATH'] = checkpoint_path
+    app.config['CORS_HEADERS'] = 'Content-Type'
 
 
     from .main import bp as main_bp
