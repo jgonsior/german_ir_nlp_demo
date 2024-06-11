@@ -6,25 +6,57 @@ from gensim.models import Word2Vec
 # Load the model
 model = Word2Vec.load("Wissenschaftskommunikations Artikel/harry_potter_german_word2vec.model")
 
-plt.figure(figsize=(15, 4))
-sns.heatmap(
-    [
-        model.wv["harry"],
-        model.wv["potter"],
-        model.wv["zauberer"],
-        model.wv["hexen"],
-        model.wv["dumbledore"],
-        model.wv["schulleiter"],
-    ],
-    cmap=sns.color_palette("coolwarm", as_cmap=True),
-    cbar=True,
-    xticklabels=False,
-    yticklabels=False,
-    linewidths=1,
-)
+# Method of finding the most similar vector for a given term
+# print(model.wv.most_similar("schwahfel"))
 
-# Rotate y-tick labels to 90 degrees
-# plt.yticks(rotation=0)
-plt.savefig("Wissenschaftskommunikations Artikel/word2vec.pdf", dpi="figure", format="pdf")
+# Has the structure ("question", "answer")
+terms_to_display = [
+    ("harry", "potter"),
+    ("zauberer", "hexen"),
+    ("dumbledore", "schulleiter"),
+    ("hufflepuff", "branstone"),
+    ("tom", "riddle"),
+    ("malfoy", "draco"),
+    ("bellatrix", "lestrange"),
+    ("ariana", "aberforth"),
+    ("dolores", "umbridge"),
+    ("flitwick", "filius"),
+    ("sirius", "severus"),
+    ("alexia", "walkin"),
+    ("peter", "pettigrew"),
+    ("phönixfeder", "kern"),
+    ("dobby", "hauself"),
+    ("schneeeule", "hedwig"),
+    ("lilly", "beschuldigung"),
+    ("orden", "phönix"),
+    ("adalbert", "schwahfel"),
+    ("george", "fred"),
+    ("slughorn", "horace"),
+    ("heiligtümer", "todes"),
+    ("daniel", "radcliffe"),
+    ("emma", "watson"),
+    ("kammer", "schreckens"),
+    ("drachenherzfaser", "weißbuche"),
+    ("viktor", "krum"),
+]
 
-plt.show()
+
+def plot_embeddings():
+
+    for question_id, term_pair in enumerate(terms_to_display):
+        question = term_pair[1]
+
+        plt.figure(figsize=(15, 4))
+        sns.heatmap(
+            [model.wv[question]],
+            cmap=sns.color_palette("coolwarm", as_cmap=True),
+            cbar=False,
+            xticklabels=False,
+            yticklabels=False,
+            linewidths=1,
+        )
+        # plt.show()
+        plt.savefig(f"Wissenschaftskommunikations Artikel/answers/answer_{question_id}.svg", dpi="figure", format="svg")
+
+
+plot_embeddings()
