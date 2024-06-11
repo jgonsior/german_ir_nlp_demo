@@ -51,14 +51,9 @@
             <h5 *ngIf="passages.depth === 3">{{ passages.content }}</h5>
           </ng-container>
           <ng-container *ngIf="passages.type === ParsedDocumentTextTypes.normal_text_passage">
-            <div *ngIf="passages.content === searchedParagraph && wordembeddings; else noEmbeddings">
-              <ng-container *ngFor="let word of wordembeddings.result; let i = index">
-                <span id="hover-trigger-{{i}}" [ngStyle]="{'background-color': createColorFromEmbedding(word)}">{{word.word}} </span>
-                <ion-popover trigger="hover-trigger-{{i}}" triggerAction="hover">
-                  <ng-template>
-                    <ion-content class="ion-padding">{{ word.word }}</ion-content>
-                  </ng-template>
-                </ion-popover>
+            <div id="i" *ngIf="passages.content === searchedParagraph && wordembeddings; else noEmbeddings">
+              <ng-container *ngFor="let word of wordembeddings.result">
+                <span [ngStyle]="{'background-color': createColorFromEmbedding(word)}">{{word.word}} </span>
               </ng-container>
             </div>
             <ng-template #noEmbeddings><p>{{passages.content}}</p></ng-template>

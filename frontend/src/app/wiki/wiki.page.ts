@@ -6,6 +6,8 @@ import {ParsedDocumentTextTypes, ParsedQueryResponseDocument,} from "../types/qu
 import {ActivatedRoute, Router} from "@angular/router";
 import {ResponseParsingService} from "../services/response-parsing-service";
 import {DataTransferService} from "../services/data-transfer.service";
+import {WordEmbedding, WordEmbeddingResponse} from "../types/word-embedding-response";
+import Color from "color";
 
 @Component({
   selector: 'app-wiki',
@@ -33,14 +35,17 @@ export class WikiPage implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.docName = this.activatedRoute.snapshot.paramMap.get('id') as string;
-    this.searchedParagraph = this.activatedRoute.snapshot.paramMap.get('paragraph') as string;
     const idx = this.activatedRoute.snapshot.paramMap.get('id') as string;
     this.data.getDocomentById(parseInt(idx, 10)).then((res) => {
       this.wikiPage = ResponseParsingService.parseDocumentResponse(res);
       console.log('wikiData', this.wikiPage);
 
       let search_result = this.dataTransferService.getData()
+      this.searchedParagraph = search_result.passage
       console.log('Query Response Data', search_result)
+      this.data.getWordEmbedding(search_result.passage).then((res) => {
+        this.wordembeddings = res;
+      })
 
       let paragraphs = this.wikiPage.text.
       filter((item) => item.type == ParsedDocumentTextTypes.normal_text_passage)
@@ -53,9 +58,6 @@ export class WikiPage implements OnInit, AfterViewInit {
           this.paragraph_id = '#' + index
         }
       });
-      this.data.getWordEmbedding(this.searchedParagraph).then((res) => {
-        this.wordembeddings = res;
-      })
     });
     this.route.queryParams.subscribe((p) => {
       this.searchText = p['query'];
@@ -95,7 +97,9 @@ export class WikiPage implements OnInit, AfterViewInit {
   protected readonly ParsedDocumentTextTypes = ParsedDocumentTextTypes;
 
   createColorFromEmbedding(embedding: WordEmbedding) {
-    const alpha = embedding.embedding.reduce((a, b) => a * b, 1);
-    return Color('#0054ff').alpha(embedding.embedding[0]/100)
+    const MIN_WORD_EMBEDDING = 20;
+    const MAX_WORD_EMBEDDING = 25;
+    const alpha = embedding.embedding - MIN_WORD_EMBEDDING / (MAX_WORD_EMBEDDING - MIN_WORD_EMBEDDING);
+    return Color('#0054ff').alpha(alpha)
   }
 }

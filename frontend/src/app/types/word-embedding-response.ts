@@ -5,5 +5,5 @@ export interface WordEmbeddingResponse {
 }
 export interface WordEmbedding {
   word: string;
-  embedding: number[];
+  embedding: number;
 }
