@@ -30,8 +30,6 @@ export class SearchResultsPage {
     private router: Router,
     private loadingCtrl: LoadingController
   ) {
-    this.getMessages();
-
     route.queryParams.subscribe((p) => {
       if (this.searchText != p['query']) {
         this.searchText = p['query'];

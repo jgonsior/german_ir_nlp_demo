@@ -25,9 +25,9 @@ export class DataService {
   }
 
   public async getQueryResults(query: String): Promise<QueryResponseResult[]> {
-    const response = await lastValueFrom(this.httpClient.get<QueryResponseType>(`${environment.baseUrl}/search?q=${query}`));
+    const response = await lastValueFrom(this.httpClient.get<QueryResponseResult[]>(`${environment.baseUrl}/search?q=${query}`));
 
-    return response.answers;
+    return response;
   }
 
   public async getDocomentById(id: number) {

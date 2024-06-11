@@ -41,7 +41,7 @@
         <img src="../../assets/Wiki.svg" alt="Wiki Image" />
       </ion-col>
       <ion-col size="6" class="ion-padding wiki__column" *ngIf="wikiPage">
-        <ng-container *ngFor="let passages of wikiPage.text">
+        <ng-container *ngFor="let passages of wikiPage.text; let i = index">
           <ng-container
             *ngIf="passages.type === ParsedDocumentTextTypes.heading"
           >
