@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, inject, OnInit, ViewChild} from "@angular/core";
+import {AfterViewChecked, Component, inject, OnInit, ViewChild} from "@angular/core";
 
 import {DataService} from "../services/data.service";
 import {IonSearchbar, Platform} from "@ionic/angular";
@@ -12,10 +12,10 @@ import {DataTransferService} from "../services/data-transfer.service";
   templateUrl: './wiki.page.html',
   styleUrls: ['./wiki.page.scss'],
 })
-export class WikiPage implements OnInit, AfterViewInit {
+export class WikiPage implements OnInit, AfterViewChecked {
   public docName: String;
   public wikiPage!: ParsedQueryResponseDocument;
-  public paragraph_id: string;
+  public paragraph_id!: string;
   private data = inject(DataService);
   private dataTransferService = inject(DataTransferService);
   private activatedRoute = inject(ActivatedRoute);
@@ -46,8 +46,10 @@ export class WikiPage implements OnInit, AfterViewInit {
       });
 
       paragraphs.forEach((text, index) => {
-        if (text === search_result.passage) {
-          this.paragraph_id = '#' + index
+        if (search_result.passage.includes(text)) {
+          console.log('Check yielded true');
+          this.paragraph_id = '#' + index;
+          console.log(this.paragraph_id);
         }
       });
     });
@@ -56,16 +58,19 @@ export class WikiPage implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
+  ngAfterViewChecked() {
+    this.scrollToParagraph();
+  }
+
+  scrollToParagraph() {
     setTimeout(() => {
       const paragraphElement = document.getElementById(this.paragraph_id);
       console.log('paragraphElement', paragraphElement);
       if (paragraphElement) {
         paragraphElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-    }, 200);
+    }, 0);
   }
-
 
   getBackButtonText() {
     const isIos = this.platform.is('ios')
