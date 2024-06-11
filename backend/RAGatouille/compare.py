@@ -89,7 +89,7 @@ Ks = [1,2,3,4,5,6,8,10,20,50,100]
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--models", metavar="N", type=str, nargs="+", default = "backend/data/colbert/best/GermanDPR-XQA-HP-10neg-DPRe1p7-XQAe1p18-HPe1p19/checkpoint backend/data/colbert/best/old/checkpoint",
+    parser.add_argument("--models", metavar="N", type=str, nargs="+", default = "backend/data/colbert/best/GermanDPR-XQA-HP-10neg-DPRe1p8-XQAe1p18-HPe1p15/checkpoint backend/data/colbert/best/GermanDPR-XQA-HP-10neg-DPRe1p7-XQAe1p18-HPe1p19/checkpoint backend/data/colbert/best/old/checkpoint",
                         help="List of integers separated by spaces")
     
     parser.add_argument('--corpus_path', type=str, default="backend/data/qa/HP/passages.csv", help="e.g. 'backend/data/qa/HP/passages.csv' (according to triples)")

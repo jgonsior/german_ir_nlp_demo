@@ -17,7 +17,7 @@ spack load cuda
 start_time=$(date +%s)
 
 # Epochs variable
-epochs="1"
+epochs="1 2"
 
 # training
 conda run -n RAG_env_conda --no-capture-output python3 backend/RAGatouille/training.py --pretrained_model_name_or_path bert-base-german-cased --union_train_data GermanDPR --triples_path backend/data/qa/GermanDPR/train_triples.jsonl --corpus_path backend/data/qa/GermanDPR/passages.csv --num_negatives 10 --epochs $epochs --num_parts 20
