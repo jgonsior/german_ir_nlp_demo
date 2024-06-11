@@ -21,6 +21,9 @@ class RagatouilleModelManager:
         self.model = AutoModel.from_pretrained(checkpoint_path)
         self.rag_model = RAGPretrainedModel.from_index(index_path)
 
+        # initial request to load the model
+        self.rag_model.search('Initial Request', k=1)
+
 
     def search(self, query, k):
         results = self.rag_model.search(query=query, k=k)
