@@ -7,7 +7,7 @@ import {
   QueryResponseType
 } from "../types/query-response.type";
 import {BehaviorSubject, lastValueFrom} from "rxjs";
-import {WordEmbeddingResponse} from "../types/word-embedding-response";
+import {WordEmbedding} from "../types/word-embedding-response";
 
 
 @Injectable({
@@ -35,6 +35,6 @@ export class DataService {
   }
 
   public async getWordEmbedding(paragraph: String) {
-    return await lastValueFrom(this.httpClient.post<WordEmbeddingResponse>(`${environment.baseUrl}/word_embeddings/`, {'paragraph': paragraph}));
+    return await lastValueFrom(this.httpClient.post<WordEmbedding[]>(`${environment.baseUrl}/word_embeddings`, {'paragraph': paragraph}));
   }
 }

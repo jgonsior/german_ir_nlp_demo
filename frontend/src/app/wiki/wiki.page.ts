@@ -6,7 +6,7 @@ import {ParsedDocumentTextTypes, ParsedQueryResponseDocument,} from "../types/qu
 import {ActivatedRoute, Router} from "@angular/router";
 import {ResponseParsingService} from "../services/response-parsing-service";
 import {DataTransferService} from "../services/data-transfer.service";
-import {WordEmbedding, WordEmbeddingResponse} from "../types/word-embedding-response";
+import {WordEmbedding} from "../types/word-embedding-response";
 import Color from "color";
 
 @Component({
@@ -22,7 +22,7 @@ export class WikiPage implements OnInit, AfterViewInit {
   private dataTransferService = inject(DataTransferService);
   private activatedRoute = inject(ActivatedRoute);
   private platform = inject(Platform);
-  protected wordembeddings: WordEmbeddingResponse;
+  protected wordembeddings: WordEmbedding[];
   protected searchedParagraph: string;
 
   @ViewChild('searchBar')
@@ -99,7 +99,7 @@ export class WikiPage implements OnInit, AfterViewInit {
   createColorFromEmbedding(embedding: WordEmbedding) {
     const MIN_WORD_EMBEDDING = 20;
     const MAX_WORD_EMBEDDING = 25;
-    const alpha = embedding.embedding - MIN_WORD_EMBEDDING / (MAX_WORD_EMBEDDING - MIN_WORD_EMBEDDING);
-    return Color('#0054ff').alpha(alpha)
+    const alpha = (embedding.embedding - MIN_WORD_EMBEDDING) / (MAX_WORD_EMBEDDING - MIN_WORD_EMBEDDING);
+    return Color('#0054ff').alpha(1 - alpha);
   }
 }
