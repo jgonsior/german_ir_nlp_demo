@@ -41,10 +41,21 @@ export class WikiPage implements OnInit, AfterViewInit {
       console.log('wikiData', this.wikiPage);
 
       let search_result = this.dataTransferService.getData()
-      this.searchedParagraph = search_result.passage
-      console.log('Query Response Data', search_result)
+      this.searchedParagraph = ResponseParsingService.unescapeHtml(search_result.passage);
+      console.log('Query Response Data', this.searchedParagraph);
       this.data.getWordEmbedding(search_result.passage).then((res) => {
-        this.wordembeddings = res;
+        let shouldTrashHeading = false
+        this.wordembeddings = res.filter((item) => {
+          if (item.word.startsWith('[')) {
+            shouldTrashHeading = true;
+            return false;
+          }
+          if(shouldTrashHeading || item.word.endsWith(']')) {
+            shouldTrashHeading = false
+            return false;
+          }
+          return true;
+        });
       })
 
       let paragraphs = this.wikiPage.text.
@@ -97,9 +108,9 @@ export class WikiPage implements OnInit, AfterViewInit {
   protected readonly ParsedDocumentTextTypes = ParsedDocumentTextTypes;
 
   createColorFromEmbedding(embedding: WordEmbedding) {
-    const MIN_WORD_EMBEDDING = 20;
-    const MAX_WORD_EMBEDDING = 25;
+    const MIN_WORD_EMBEDDING = 22;
+    const MAX_WORD_EMBEDDING = 26;
     const alpha = (embedding.embedding - MIN_WORD_EMBEDDING) / (MAX_WORD_EMBEDDING - MIN_WORD_EMBEDDING);
-    return Color('#0054ff').alpha(1 - alpha);
+    return Color('#0054ff').alpha(alpha);
   }
 }
