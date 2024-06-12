@@ -1,0 +1,46 @@
+\documentclass[a3paper, 16pt]{article}
+\usepackage{graphicx}
+\usepackage{pdflscape}
+\usepackage[inkscapepath=../barcodes_out/dummy/pdf/inkscape_out/]{svg}
+\usepackage[a3paper, left=0.5cm, right=0.5cm, top=0.5cm, bottom=0.5cm]{geometry}
+
+\svgpath{{../barcodes_out/dummy/svg/}}
+
+\begin{document}
+\thispagestyle{empty}
+
+\begin{center}
+    \textbf{\huge AUFBAU EINES BARCODES}
+\end{center}
+
+\begin{center}
+    \begin{tikzpicture}
+        \node[anchor=south west,inner sep=0] (image) at (0,0) {\includesvg[scale=0.9]{\VAR{ file } }};
+        \begin{scope}[x={(image.south east)},y={(image.north west)}]
+        \BLOCK{ for numeral in dummy }
+        \BLOCK{ set word = dimensions[loop.index]}
+            # if numeral == 0
+                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge \VAR{ word }};
+            # elif numeral == 1
+                node[anchor=south, rotate=90] at (0.275,0) {\huge \VAR{ word }};
+            # endif
+        \BLOCK{ endfor }
+        \end{scope}
+    \end{tikzpicture}
+\end{center}
+
+% Legend
+\begin{tikzpicture}[overlay]
+    \node[anchor=north east] at ([xshift=13.5cm, yshift=3.5cm]image.north east) {
+        \begin{minipage}{8cm}
+            \begin{tikzpicture}
+                \draw[fill=yellow, draw=black] (0,0) rectangle (1,0.5);
+                \node[right] at (1.2,0.25) {Wort in Absatz enthalten};
+                \draw[fill=black, draw=black] (0,-1) rectangle (1,-0.5);
+                \node[right] at (1.2,-0.75) {\color{black} Wort nicht in Absatz enthalten};
+            \end{tikzpicture}
+        \end{minipage}
+    };
+\end{tikzpicture}
+
+\end{document}

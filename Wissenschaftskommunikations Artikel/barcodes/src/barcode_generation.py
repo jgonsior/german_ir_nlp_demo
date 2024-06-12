@@ -40,6 +40,35 @@ def detect_os():
     return os_name
 
 
+def randomized_list_extension(lst_dimensions: list, lst_words: list, amount: int) -> list:
+    while len(lst_dimensions) % amount != 0:
+        next_element = random.choice(lst_words)
+
+        if next_element not in lst_dimensions:
+            lst_dimensions.append(next_element)
+
+    lst_dimensions = sorted(lst_dimensions)
+
+    return lst_dimensions
+
+
+def get_stemmed_list(tokens: str) -> list:
+    token_raw = set(
+        str(token.lemma_.lower()) for token in nlp(tokens)
+    )
+    token_raw = set(
+        str(token.lemma_.lower()) for token in nlp(" ".join(token_raw))
+    )
+    lst_token = [
+        stemmer.stem(token) for token in token_raw if token not in stop_words
+    ]
+    lst_token = [
+        stemmer.stem(token) for token in lst_token if token not in stop_words
+    ]
+
+    return lst_token
+
+
 def draw_svg(name: str, barcode: list, identity: str, height: int, width: int):
     if not os.path.exists(f"../barcodes_out/{identity}/svg/"):
         os.makedirs(f"../barcodes_out/{identity}/svg/")
@@ -75,16 +104,22 @@ def draw_svg(name: str, barcode: list, identity: str, height: int, width: int):
                 context.stroke()
 
 
-def create_latex(switch: str):
+def create_latex(switch: str, dimensions=None, dummy=None):
     pdf_path_files = f"../barcodes_out/{switch}/svg/"
     lst_file = []
     for file in os.listdir(pdf_path_files):
         file_name, _ = file.split(".")
         lst_file.append(file_name)
 
-    lst_file = sorted(lst_file)
-    document_template = latex_jinja_env.get_template(f"{switch}_stub.tex")
-    result_document = document_template.render(lst_files=lst_file)
+    if dimensions is not None and dummy is not None:
+        print('dummy', dummy)
+        lst_file = sorted(lst_file)
+        document_template = latex_jinja_env.get_template(f"{switch}_stub.tex")
+        result_document = document_template.render(file=lst_file[0], dimensions=dimensions, dummy=dummy)
+    else:
+        lst_file = sorted(lst_file)
+        document_template = latex_jinja_env.get_template(f"{switch}_stub.tex")
+        result_document = document_template.render(lst_files=lst_file)
 
     if not os.path.exists(f"../barcodes_out/{switch}/tex"):
         os.makedirs(f"../barcodes_out/{switch}/tex")
@@ -128,7 +163,7 @@ def create_pdf(switch: str):
     subprocess.run([script_path, folder_path, output_path], check=True)
 
 
-def generate_dummy():
+def generate_dummy(dimension: int) -> list:
     if not os.path.exists(f"../barcodes_out/dummy/tex/"):
         os.makedirs(f"../barcodes_out/dummy/tex/")
         print(f"created directory: ../barcodes_out/dummy/tex/ to save the pdf files to")
@@ -136,9 +171,43 @@ def generate_dummy():
         os.makedirs(f"../barcodes_out/dummy/pdf/")
         print(f"created directory: ../barcodes_out/dummy/pdf/ to save the pdf files to")
 
-    barcode = [random.choice([0, 1]) for _ in range(20)]
+    barcode = [random.choice([0, 1]) for _ in range(dimension)]
 
-    draw_svg("dummy", barcode, "dummy", 500, 30)
+    return barcode
+
+
+def create_dimension_codes(index: dict, questions: dict, dimensions: list) -> tuple[dict, dict]:
+    dict_barcodes = {}
+    dict_questions = {}
+
+    for word in dimensions:
+        for doc in index[word]:
+            if doc not in dict_barcodes:
+                dict_barcodes[doc] = []
+
+    for question in questions:
+        if question not in dict_questions:
+            dict_questions[question] = []
+
+    for word in dimensions:
+        lst_keys = list(dict_barcodes.keys())
+        for doc in index[word]:
+            dict_barcodes[doc].append(1)
+            lst_keys.remove(doc)
+        for key in lst_keys:
+            dict_barcodes[key].append(0)
+
+    for question in questions:
+        question_string = questions[question].replace("?", "")
+        question_token = get_stemmed_list(question_string)
+
+        for word in dimensions:
+            if word in question_token:
+                dict_questions[question].append(1)
+            else:
+                dict_questions[question].append(0)
+
+    return dict_barcodes, dict_questions
 
 
 def generate_barcodes(
@@ -151,16 +220,17 @@ def generate_barcodes(
 ):
     """
 
-    :param max_length:
-    :param index_file:
-    :param questions_file:
-    :param amount:
-    :param mode:
-    :return:
-    """
+    Args:
+        index_file:
+        questions_file:
+        dimension_file:
+        answer_file:
+        amount:
+        mode:
 
-    dict_questions = {}
-    dict_barcodes = {}
+    Returns:
+
+    """
 
     print(f"{datetime.datetime.now()}")
     print("Loading files...")
@@ -178,54 +248,35 @@ def generate_barcodes(
     print("Done loading files...")
     print("Generating barcodes...")
 
-    for word in inv_index:
-        for doc in inv_index[word]:
-            if doc not in dict_barcodes:
-                dict_barcodes[doc] = []
-        for question in questions:
-            if question not in dict_questions:
-                dict_questions[question] = []
-
-    for word in inv_index:
-        lst_keys = list(dict_barcodes.keys())
-        for doc in inv_index[word]:
-            dict_barcodes[doc].append(1)
-            lst_keys.remove(doc)
-        for key in lst_keys:
-            dict_barcodes[key].append(0)
-
-    for question in questions:
-        questions[question] = questions[question].replace("?", "")
-
-        question_raw = set(
-            str(token.lemma_.lower()) for token in nlp(questions[question])
-        )
-        question_raw = set(
-            str(token.lemma_.lower()) for token in nlp(" ".join(question_raw))
-        )
-        question_token = [
-            stemmer.stem(token) for token in question_raw if token not in stop_words
-        ]
-        question_token = [
-            stemmer.stem(token) for token in question_token if token not in stop_words
-        ]
-
-        for word in inv_index:
-            if word in question_token:
-                dict_questions[question].append(1)
+    if not dimensions:
+        dict_barcodes, dict_questions = create_dimension_codes(inv_index, questions, list(inv_index.keys()))
+        lst_dimensions = randomized_list_extension([], list(inv_index.keys()), 30)
+        dummy = generate_dummy(30)
+    else:
+        lst_dimensions = list(dimensions.values())
+        for ind, dim in enumerate(lst_dimensions):
+            if dim not in ['existiert', 'Hogwarts']:
+                word = get_stemmed_list(dim)[0]
             else:
-                dict_questions[question].append(0)
+                word = dim.lower()
+            lst_dimensions[ind] = word
 
-    dict_codes = {}
-    lst_para = []
-    for collection in dict_barcodes:
-        if collection in lst_para:
-            dict_codes[collection] = dict_barcodes[collection]
+        lst_dimensions = randomized_list_extension(lst_dimensions, list(inv_index.keys()), 100)
+        dict_barcodes, dict_questions = create_dimension_codes(inv_index, questions, lst_dimensions)
+        dummy = generate_dummy(len(lst_dimensions))
 
-    if not os.path.isfile(f"../barcodes_out/dummy/svg/dummy.svg"):
-        print("Generating dummy barcode...")
-        generate_dummy()
-        print("Done generating dummy barcode...")
+    if answers:
+        lst_doc = []
+        for doc in inv_index:
+            lst_doc.extend(inv_index[doc])
+
+        lst_para = randomized_list_extension(list(answers.values()), list(set(lst_doc)), 17)
+
+        dict_answers = {}
+        for collection in dict_barcodes:
+            if collection in lst_para:
+                dict_answers[collection] = dict_barcodes[collection]
+        dict_barcodes = dict_answers
 
     print("Done generating barcodes...")
 
@@ -242,6 +293,9 @@ def generate_barcodes(
             draw_svg(question, dict_questions[question], "questions", 100, 10)
             if amount == idx:
                 break
+
+        print("Drawing SVG for the dummy barcode...")
+        draw_svg('dummy', dummy, "dummy", 500, 30)
     else:
         for idx, barcode in enumerate(dict_barcodes):
             print(f"Drawing SVG for barcode {barcode}")
@@ -250,15 +304,21 @@ def generate_barcodes(
         for idx, question in enumerate(dict_questions):
             print(f"Drawing SVG for question {question}")
             draw_svg(question, dict_questions[question], "questions", 100, 10)
+
+        print("Drawing SVG for the dummy barcode...")
+        draw_svg('dummy', dummy, "dummy", 500, 30)
     print("Done generating svg files...")
-    print("Generating TEX files...")
-    create_latex("documents")
-    create_latex("questions")
-    print("Done generating TEX files...")
-    print("Generating PDF files from TEX files...")
-    create_pdf("documents")
-    create_pdf("questions")
-    print("Done generating PDF...")
+    for switch in ['documents', 'questions', 'dummy']:
+        print(f"Generating TEX files for {switch}!")
+        if switch == 'dummy':
+            create_latex('dummy', dimensions=lst_dimensions, dummy=dummy)
+        else:
+            create_latex(switch)
+        print("Done generating TEX files...")
+        #print(f"Generating PDF files from TEX files for {switch}")
+        #create_pdf(switch)
+        #print(f"Done generating PDF for {switch}!")
+
     print("DONE")
 
 
@@ -288,10 +348,10 @@ def handler(amount: int, mode: str):
                 "dimensions_index",
             ]:
                 print("Found dimension file.")
-                dimensions_path = f"../dimensions/{file}"
+                dimensions_path = f"../invIndex/{file}"
             elif file_name.lower() in ["paragraphs", "answers", "answer_paragraphs"]:
                 print("Found paragraphs file.")
-                answers_path = f"../answers/{file}"
+                answers_path = f"../invIndex/{file}"
             else:
                 print(
                     "Warning a file was found that does not fit the naming scheme provided!"
@@ -306,12 +366,6 @@ def handler(amount: int, mode: str):
         answers_path = ""
     if "dimensions_path" not in locals():
         dimensions_path = ""
-
-    if "questions_path" or "index_path" not in locals():
-        raise Exception(
-            "No questions or inverted index found in files! These files are needed in "
-            "order to generate the barcodes!"
-        )
 
     generate_barcodes(
         index_path, questions_path, dimensions_path, answers_path, amount, mode
