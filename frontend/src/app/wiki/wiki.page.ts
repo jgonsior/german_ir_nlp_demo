@@ -1,4 +1,13 @@
-import {AfterViewChecked, ChangeDetectorRef, Component, inject, OnInit, ViewChild} from "@angular/core";
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  inject,
+  OnInit, QueryList,
+  ViewChild
+} from "@angular/core";
 
 import {DataService} from "../services/data.service";
 import {IonSearchbar, Platform} from "@ionic/angular";
@@ -6,14 +15,13 @@ import {ParsedDocumentTextTypes, ParsedQueryResponseDocument,} from "../types/qu
 import {ActivatedRoute, Router} from "@angular/router";
 import {ResponseParsingService} from "../services/response-parsing-service";
 import {DataTransferService} from "../services/data-transfer.service";
-import {search} from "ionicons/icons";
 
 @Component({
   selector: 'app-wiki',
   templateUrl: './wiki.page.html',
   styleUrls: ['./wiki.page.scss'],
 })
-export class WikiPage implements OnInit, AfterViewChecked {
+export class WikiPage implements OnInit, AfterViewChecked, AfterViewInit {
   public docName: String;
   public wikiPage!: ParsedQueryResponseDocument;
   public paragraph_id: string;
@@ -22,6 +30,9 @@ export class WikiPage implements OnInit, AfterViewChecked {
   private activatedRoute = inject(ActivatedRoute);
   private platform = inject(Platform);
   private scrolledToParagraph: boolean = false;
+
+  @ViewChild('paragraphs')
+  pageParagraphs: QueryList<ElementRef>
 
   @ViewChild('searchBar')
   searchBar: IonSearchbar;
@@ -37,30 +48,27 @@ export class WikiPage implements OnInit, AfterViewChecked {
     this.data.getDocomentById(parseInt(idx, 10)).then((res) => {
       this.wikiPage = ResponseParsingService.parseDocumentResponse(res);
       this.scrolledToParagraph = false
-
-      let search_result = this.removeBracketedText(this.dataTransferService.getData().passage)
-      let paragraphs = this.wikiPage.text.
-      filter((item) => item.type == ParsedDocumentTextTypes.normal_text_passage)
-        .map((item) => {
-        return item.content;
-      });
-
-      let paragraph_found = false;
-      paragraphs.forEach((text, index) => {
-        if (!paragraph_found) {
-          if (search_result.includes(text)) {
-            this.paragraph_id = this.getParagraphIdByContent(text);
-            paragraph_found = true;
-          }
-          else if (text.includes(search_result)) {
-            this.paragraph_id = this.getParagraphIdByContent(text);
-            paragraph_found = true;
-          }
-        }
-      });
     });
     this.route.queryParams.subscribe((p) => {
       this.searchText = p['query'];
+    });
+  }
+
+  ngAfterViewInit() {
+    let search_result = this.removeBracketedText(this.dataTransferService.getData().passage)
+
+    let paragraph_found = false;
+    this.pageParagraphs.forEach((text) => {
+      if (!paragraph_found) {
+        if (search_result.includes(text.nativeElement.textContent.trim())) {
+          this.paragraph_id = text.nativeElement.id;
+          paragraph_found = true;
+        }
+        else if (text.nativeElement.textContent.trim().includes(search_result)) {
+          this.paragraph_id = text.nativeElement.id;
+          paragraph_found = true;
+        }
+      }
     });
   }
 
@@ -86,21 +94,6 @@ export class WikiPage implements OnInit, AfterViewChecked {
 
   private removeBracketedText(input: string): string {
     return input.replace(/\[.*?]/, "").trim();
-  }
-
-  private getParagraphIdByContent(content: string): string {
-    let lst_para = document.getElementsByTagName('p');
-    console.log(lst_para)
-    for (let ind = 0; ind < lst_para.length; ind++) {
-      const pt = lst_para[ind];
-      console.log(content)
-      console.log(pt);
-      if (pt.innerText === content) {
-        return pt.id;
-      }
-    }
-
-    return "#"
   }
 
   getBackButtonText() {
