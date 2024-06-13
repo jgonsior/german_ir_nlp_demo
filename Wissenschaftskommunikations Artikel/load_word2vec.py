@@ -1,13 +1,9 @@
 import matplotlib.pyplot as plt
-import numpy as np
 import seaborn as sns
 from gensim.models import Word2Vec
 
 # Load the model
 model = Word2Vec.load("Wissenschaftskommunikations Artikel/harry_potter_german_word2vec.model")
-
-# Method of finding the most similar vector for a given term
-# print(model.wv.most_similar("schwahfel"))
 
 # Has the structure ("question", "answer")
 terms_to_display = [
@@ -41,7 +37,18 @@ terms_to_display = [
 ]
 
 
-def generate_embeddin_for_term(term: str, question_id: int):
+def save_plot(path_to_save: str, idx: int):
+    plt.savefig(
+        f"{path_to_save}_{idx}.svg",
+        dpi="figure",
+        format="svg",
+        bbox_inches="tight",
+        pad_inches=0,
+    )
+    plt.close()
+
+
+def generate_embedding_for_term(term: str, idx: int, questions_set: bool = False, answers_set: bool = False):
     plt.figure(figsize=(15, 4))
     sns.heatmap(
         [model.wv[term]],
@@ -51,17 +58,21 @@ def generate_embeddin_for_term(term: str, question_id: int):
         yticklabels=False,
         linewidths=1,
     )
-    plt.savefig(f"Wissenschaftskommunikations Artikel/answers/answer_{question_id}.svg", dpi="figure", format="svg")
+    plt.axis("off")
+
+    if questions_set:
+        save_plot(path_to_save="Wissenschaftskommunikations Artikel/questions/question", idx=idx)
+
+    if answers_set:
+        save_plot(path_to_save="Wissenschaftskommunikations Artikel/answers/answer", idx=idx)
 
 
 def plot_embeddings(generate_questions: bool, generate_answers: bool):
-
-    for question_id, term_pair in enumerate(terms_to_display):
-
+    for idx, term_pair in enumerate(terms_to_display):
         if generate_questions:
-            generate_embeddin_for_term(term=term_pair[0], question_id=question_id)
+            generate_embedding_for_term(term=term_pair[0], idx=idx, questions_set=generate_questions)
         if generate_answers:
-            generate_embeddin_for_term(term=term_pair[1], question_id=question_id)
+            generate_embedding_for_term(term=term_pair[1], idx=idx, answers_set=generate_answers)
 
 
 plot_embeddings(generate_questions=True, generate_answers=True)
