@@ -55,6 +55,7 @@ cover/
 *.mo
 *.pot
 
+
 # Django stuff:
 *.log
 local_settings.py
@@ -168,12 +169,15 @@ backend/data/qa/HP/passages.csv
 backend/data/qa/HP/train_triples.jsonl
 backend/data/qa/XQA/dump
 backend/data/qa/XQA
+
 .ragatouille
 # Ignore everything in backend/data/colbert
 backend/data/colbert
 
 slurm-*.out
+setup.sh
 train_index_eval_RAG.sh
+train_index_eval_RAG_old.sh
 backend/RAGatouille/evaluate.py
 backend/RAGatouille/visualize_statistics.py
 backend/data/wiki_dumps
