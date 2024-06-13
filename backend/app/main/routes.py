@@ -37,23 +37,25 @@ def search():
 
         # Milestone 3-5
         # k could be passed by the frontend as well?
-        k = 10
+        k = 100
         results = current_app.rag_model_manager.search(query=query, k=k)
-        utils.rename_fields_and_add_title(results)
+        utils.make_response(results)
         return jsonify(results)
 
 
 @bp.route('/word_embeddings', methods=['POST'])
 def get_word_embeddings():
     if request.method == 'POST':
+        query = request.json['query']
         paragraph = request.json['paragraph']
 
-        word_embeddings = current_app.rag_model_manager.get_word_embeddings(paragraph)
+        words, scores = current_app.rag_model_manager.get_word_scores(query, paragraph, k=3)
         resp = []
-        for word, embedding in word_embeddings.items():
+
+        for word, embedding_score in zip(words, scores):
             tmp = {
                 'word': word,
-                'embedding': np.linalg.norm(embedding)
+                'embedding': embedding_score
             }
             resp.append(tmp)
 

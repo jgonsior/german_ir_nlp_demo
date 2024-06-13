@@ -1,6 +1,7 @@
 from flask import current_app
 import json
 import os
+import re
 
 from .document_manager import DocumentManager
 dm = DocumentManager()
@@ -22,14 +23,30 @@ def update_model_metadata(index_path, checkpoint_path):
         json.dump(metadata, f, indent=4)
 
 
-def rename_fields_and_add_title(results):
+def make_response(results):
+    seen_ids = set()
+    unique_results = []
+
     for i, result in enumerate(results):
         # rename fields for frontend
         doc_id = result.pop('document_id').split('-')[0]
         result['id'] = doc_id
-        result['passage'] = result.pop('content')
+
+        # Skip duplicate ids
+        if doc_id in seen_ids:
+            continue
+        seen_ids.add(doc_id)
+
+        # replace bracket part if passage starts with [
+        pattern = r'^\[.*?\]'
+        # replace with empty string and rename field from content to passage
+        result['passage'] = re.sub(pattern, '', result.pop('content')).strip()
 
         del result['passage_id']
 
         doc = dm.get_document_by_id(doc_id)
         result['title'] = doc['title']
+
+        unique_results.append(result)
+
+    return unique_results
