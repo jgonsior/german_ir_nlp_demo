@@ -9,14 +9,13 @@ from . import utils
 class RagatouilleModelManager:
     def __init__(self, index_path, checkpoint_path):
 
-        base_model_name = "bert-base-german-cased"
-        self.index_path = index_path
+        # base_model_name = "bert-base-german-cased"
 
         # Update metadata.json (checkpoint path)
         # check config.ini for defined paths
         utils.update_model_metadata(index_path, checkpoint_path)
 
-        self.tokenizer = AutoTokenizer.from_pretrained(base_model_name)
+        self.tokenizer = AutoTokenizer.from_pretrained(checkpoint_path)
 
         self.model = AutoModel.from_pretrained(checkpoint_path)
         self.rag_model = RAGPretrainedModel.from_index(index_path)
