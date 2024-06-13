@@ -40,12 +40,17 @@ def detect_os():
     return os_name
 
 
-def randomized_list_extension(lst_dimensions: list, lst_words: list, amount: int) -> list:
+def randomized_list_extension(
+    lst_dimensions: list, lst_words: list, amount: int
+) -> list:
+    unique_elements = set(lst_dimensions)
+
     while len(lst_dimensions) % amount != 0:
         next_element = random.choice(lst_words)
 
-        if next_element not in lst_dimensions:
+        if next_element not in unique_elements:
             lst_dimensions.append(next_element)
+            unique_elements.add(next_element)
 
     lst_dimensions = sorted(lst_dimensions)
 
@@ -53,18 +58,10 @@ def randomized_list_extension(lst_dimensions: list, lst_words: list, amount: int
 
 
 def get_stemmed_list(tokens: str) -> list:
-    token_raw = set(
-        str(token.lemma_.lower()) for token in nlp(tokens)
-    )
-    token_raw = set(
-        str(token.lemma_.lower()) for token in nlp(" ".join(token_raw))
-    )
-    lst_token = [
-        stemmer.stem(token) for token in token_raw if token not in stop_words
-    ]
-    lst_token = [
-        stemmer.stem(token) for token in lst_token if token not in stop_words
-    ]
+    token_raw = set(str(token.lemma_.lower()) for token in nlp(tokens))
+    token_raw = set(str(token.lemma_.lower()) for token in nlp(" ".join(token_raw)))
+    lst_token = [stemmer.stem(token) for token in token_raw if token not in stop_words]
+    lst_token = [stemmer.stem(token) for token in lst_token if token not in stop_words]
 
     return lst_token
 
@@ -78,6 +75,8 @@ def draw_svg(name: str, barcode: list, identity: str, height: int, width: int):
 
     if len(identity) == 9:
         identity_short = identity[:8]
+        if identity_short == "question":
+            identity_short = "barcode_question"
     else:
         identity_short = identity
 
@@ -112,10 +111,11 @@ def create_latex(switch: str, dimensions=None, dummy=None):
         lst_file.append(file_name)
 
     if dimensions is not None and dummy is not None:
-        print('dummy', dummy)
         lst_file = sorted(lst_file)
         document_template = latex_jinja_env.get_template(f"{switch}_stub.tex")
-        result_document = document_template.render(file=lst_file[0], dimensions=dimensions, dummy=dummy)
+        result_document = document_template.render(
+            file=lst_file[0], dimensions=dimensions, dummy=dummy
+        )
     else:
         lst_file = sorted(lst_file)
         document_template = latex_jinja_env.get_template(f"{switch}_stub.tex")
@@ -164,19 +164,14 @@ def create_pdf(switch: str):
 
 
 def generate_dummy(dimension: int) -> list:
-    if not os.path.exists(f"../barcodes_out/dummy/tex/"):
-        os.makedirs(f"../barcodes_out/dummy/tex/")
-        print(f"created directory: ../barcodes_out/dummy/tex/ to save the pdf files to")
-    if not os.path.exists(f"../barcodes_out/dummy/pdf/"):
-        os.makedirs(f"../barcodes_out/dummy/pdf/")
-        print(f"created directory: ../barcodes_out/dummy/pdf/ to save the pdf files to")
-
     barcode = [random.choice([0, 1]) for _ in range(dimension)]
 
     return barcode
 
 
-def create_dimension_codes(index: dict, questions: dict, dimensions: list) -> tuple[dict, dict]:
+def create_dimension_codes(
+    index: dict, questions: dict, dimensions: list
+) -> tuple[dict, dict]:
     dict_barcodes = {}
     dict_questions = {}
 
@@ -249,20 +244,28 @@ def generate_barcodes(
     print("Generating barcodes...")
 
     if not dimensions:
-        dict_barcodes, dict_questions = create_dimension_codes(inv_index, questions, list(inv_index.keys()))
+        dict_barcodes, dict_questions = create_dimension_codes(
+            inv_index, questions, list(inv_index.keys())
+        )
         lst_dimensions = randomized_list_extension([], list(inv_index.keys()), 30)
         dummy = generate_dummy(30)
     else:
         lst_dimensions = list(dimensions.values())
         for ind, dim in enumerate(lst_dimensions):
-            if dim not in ['existiert', 'Hogwarts']:
+            if dim == "Status":
+                word = "statu"
+            elif dim not in ["existiert", "Hogwarts"]:
                 word = get_stemmed_list(dim)[0]
             else:
                 word = dim.lower()
             lst_dimensions[ind] = word
 
-        lst_dimensions = randomized_list_extension(lst_dimensions, list(inv_index.keys()), 100)
-        dict_barcodes, dict_questions = create_dimension_codes(inv_index, questions, lst_dimensions)
+        lst_dimensions = randomized_list_extension(
+            lst_dimensions, list(inv_index.keys()), 100
+        )
+        dict_barcodes, dict_questions = create_dimension_codes(
+            inv_index, questions, lst_dimensions
+        )
         dummy = generate_dummy(len(lst_dimensions))
 
     if answers:
@@ -270,7 +273,11 @@ def generate_barcodes(
         for doc in inv_index:
             lst_doc.extend(inv_index[doc])
 
-        lst_para = randomized_list_extension(list(answers.values()), list(set(lst_doc)), 17)
+        lst_para = randomized_list_extension(
+            list(answers.values()), list(set(lst_doc)), 17
+        )
+
+        print(len(lst_para))
 
         dict_answers = {}
         for collection in dict_barcodes:
@@ -295,7 +302,7 @@ def generate_barcodes(
                 break
 
         print("Drawing SVG for the dummy barcode...")
-        draw_svg('dummy', dummy, "dummy", 500, 30)
+        draw_svg("dummy", dummy, "dummy", 500, 30)
     else:
         for idx, barcode in enumerate(dict_barcodes):
             print(f"Drawing SVG for barcode {barcode}")
@@ -306,18 +313,18 @@ def generate_barcodes(
             draw_svg(question, dict_questions[question], "questions", 100, 10)
 
         print("Drawing SVG for the dummy barcode...")
-        draw_svg('dummy', dummy, "dummy", 500, 30)
+        draw_svg("dummy", dummy, "dummy", 500, 30)
     print("Done generating svg files...")
-    for switch in ['documents', 'questions', 'dummy']:
+    for switch in ["documents", "questions", "dummy"]:
         print(f"Generating TEX files for {switch}!")
-        if switch == 'dummy':
-            create_latex('dummy', dimensions=lst_dimensions, dummy=dummy)
+        if switch == "dummy":
+            create_latex("dummy", dimensions=lst_dimensions, dummy=dummy)
         else:
             create_latex(switch)
         print("Done generating TEX files...")
-        #print(f"Generating PDF files from TEX files for {switch}")
-        #create_pdf(switch)
-        #print(f"Done generating PDF for {switch}!")
+        print(f"Generating PDF files from TEX files for {switch}")
+        create_pdf(switch)
+        print(f"Done generating PDF for {switch}!")
 
     print("DONE")
 

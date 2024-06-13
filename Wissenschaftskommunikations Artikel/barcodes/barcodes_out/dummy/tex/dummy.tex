@@ -1,4 +1,5 @@
 \documentclass[a3paper, 16pt]{article}
+\usepackage{tikz}
 \usepackage{graphicx}
 \usepackage{pdflscape}
 \usepackage[inkscapepath=../barcodes_out/dummy/pdf/inkscape_out/]{svg}
@@ -7,6 +8,7 @@
 \svgpath{{../barcodes_out/dummy/svg/}}
 
 \begin{document}
+\begin{landscape}
 \thispagestyle{empty}
 
 \begin{center}
@@ -15,108 +17,108 @@
 
 \begin{center}
     \begin{tikzpicture}
-        \node[anchor=south west,inner sep=0] (image) at (0,0) {\includesvg[scale=0.9]{dummy_dummy }};
+        \node[anchor=south west,inner sep=0] (image) at (0,0) {\includesvg[scale=0.9]{dummy_dummy}};
         \begin{scope}[x={(image.south east)},y={(image.north west)}]
-                                node[anchor=south, rotate=90] at (0.675,0) {\huge abenteu};
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge aktivitat} -- (0.675,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge amycus} -- (0.275,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge anzuruf} -- (0.675,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge anzutret} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge ariana} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge aurorenzentral} -- (0.275,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge aussteh} -- (0.675,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge ausstrahl} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge beginn} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge begrab} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge bekomm} -- (0.275,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge bekomm} -- (0.675,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge beutel} -- (0.675,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge braun} -- (0.675,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge bucherregal} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge calleng} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge decknam} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge deutsch} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge dumbledor} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge eben} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge einleit} -- (0.275,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge einsicht} -- (0.675,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge entry} -- (0.675,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge erbt} -- (0.275,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge ernenn} -- (0.675,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge existiert} -- (0.275,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge extrem} -- (0.675,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge geburtstag} -- (0.675,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge gefragt} -- (0.675,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge grabmal} -- (0.275,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge harry} -- (0.675,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge hast} -- (0.675,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge hauslehrerin} -- (0.275,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge hausmeisterburo} -- (0.675,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge hogwarts} -- (0.275,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge importiert} -- (0.675,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge innenseit} -- (0.675,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge irreparabl} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge jahr} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge kamm} -- (0.275,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge konsequenz} -- (0.675,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge kraft} -- (0.675,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge leitend} -- (0.675,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge lord} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge manipulationsfah} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge masterplan} -- (0.275,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge mcgonagall} -- (0.675,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge merlin} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge minerva} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge mitschul} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge muggel} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge nam} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge ohnegleich} -- (0.275,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge patchworkdeck} -- (0.675,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge portrait} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge position} -- (0.275,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge pott} -- (0.675,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge quidditch} -- (0.275,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge quirinus} -- (0.675,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge real} -- (0.275,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge rechtshand} -- (0.675,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge riddl} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge schenk} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge schlaf} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge schloss} -- (0.275,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge schreck} -- (0.675,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge schreibtisch} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge schulabschluss} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge schulleit} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge schulzeit} -- (0.275,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge seelenteil} -- (0.675,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge seite41} -- (0.275,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge severus} -- (0.675,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge snap} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge spontan} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge station} -- (0.275,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge sterb} -- (0.675,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge strafrecht} -- (0.675,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge tom} -- (0.675,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge treibend} -- (0.675,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge trepp} -- (0.275,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge trio} -- (0.675,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge uhrwerk} -- (0.675,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge umson} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge ungewohn} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge verbat} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge verbess} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge verteidigungsmagi} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge verwehrt} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge voldemort} -- (0.275,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge weiblich} -- (0.675,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge weissenhaus} -- (0.675,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge wiedergeburt} -- (0.275,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge zauberstab} -- (0.675,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge zaubert} -- (0.675,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge zeremoni} -- (0.275,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge ziel} -- (0.275,0);
-                                \draw[->, >=latex, black, ultra thick] (0.675,-0.15) node[below] {\huge zusatz} -- (0.675,0);
-                                \draw[->, >=latex, white, ultra thick] (0.275,-0.15) node[below] {\huge } -- (0.275,0);
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge aktivitat};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge altertumswissenschaft};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge anrichtet};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge ariana};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge aufgenomm};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge aurorin};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge ausgelegt};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge auswahl};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge baum};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge beginn};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge begrab};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge bekomm};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge bekomm};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge bess};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge bettvorhang};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge bitt};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge corban};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge court};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge creatur};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge dahint};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge decknam};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge deutsch};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge dougal};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge dumbledor};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge durchaus};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge ehemal};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge eigent};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge einfach};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge erkundungstour};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge ernenn};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge existiert};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge feig};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge geburtstag};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge gefertigt};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge geheimgang};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge grabmal};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge harry};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge hausmeisterburo};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge heimsucht};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge hinwegzutrost};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge hogwarts};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge jahr};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge kamm};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge kampfernatur};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge kompass};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge konzept};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge kraft};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge lord};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge machtposition};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge magisch};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge malfoys};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge mcgonagall};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge merula};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge minerva};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge mitteln};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge muggel};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge nam};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge nenn};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge nerhegeb};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge ogd};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge position};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge pott};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge quidditch};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge real};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge resultiert};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge riddl};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge schenk};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge schlangensprach};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge schloss};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge schreck};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge schulabschluss};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge schulleit};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge schulzeit};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge severus};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge skeletthall};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge smith};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge snap};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge soweit};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge statu};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge sterb};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge tee};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge terrorherrschaft};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge tom};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge totlich};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge treibend};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge trepp};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge treppenhaus};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge uberwalt};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge umgeb};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge un};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge ungewohn};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge unt};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge vergiftet};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge versproch};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge viaduktvorhofturm};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge voldemort};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge zauberstab};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge zaubertrankelehr};
+                                node[anchor=south, rotate=90] at (0.275,0) {\huge ziel};
+                                node[anchor=south, text=white, rotate=90] at (0.275,0) {\huge };
                 \end{scope}
     \end{tikzpicture}
 \end{center}
@@ -134,5 +136,5 @@
         \end{minipage}
     };
 \end{tikzpicture}
-
+\end{landscape}
 \end{document}

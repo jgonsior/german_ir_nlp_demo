@@ -1,4 +1,5 @@
 \documentclass[a3paper, 16pt]{article}
+\usepackage{tikz}
 \usepackage{graphicx}
 \usepackage{pdflscape}
 \usepackage[inkscapepath=../barcodes_out/dummy/pdf/inkscape_out/]{svg}
@@ -15,7 +16,7 @@
 
 \begin{center}
     \begin{tikzpicture}
-        \node[anchor=south west,inner sep=0] (image) at (0,0) {\includesvg[scale=0.9]{\VAR{ file } }};
+        \node[anchor=south west,inner sep=0] (image) at (0,0) {\includesvg[scale=0.9]{\VAR{ file }}};
         \begin{scope}[x={(image.south east)},y={(image.north west)}]
         \BLOCK{ for numeral in dummy }
         \BLOCK{ set word = dimensions[loop.index]}
