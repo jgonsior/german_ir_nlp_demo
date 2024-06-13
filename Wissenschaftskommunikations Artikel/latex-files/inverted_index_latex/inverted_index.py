@@ -9,7 +9,8 @@ nlp = spacy.load("de_core_news_sm")
 
 # No stemming on these
 unprocessed_terms = ['harry potter', 'hogwarts', 'albus dumbledore', 'severus snape', 'voldemort', 'minerva mcgonagall',
-                     'potter', 'dumbledore', 'albus', 'minerva', 'mcgonagall', 'snape', 'severus']
+                     'potter', 'dumbledore', 'albus', 'minerva', 'mcgonagall', 'snape', 'severus', 'quidditch',
+                     'ariana']
 
 
 def clean_tokens(tokenlist, normalize: bool = True):
@@ -19,11 +20,10 @@ def clean_tokens(tokenlist, normalize: bool = True):
 
     stemmer = SnowballStemmer("german")
     stop_words = set(stopwords.words("german"))
-    protected_words = set(unprocessed_terms)
     if normalize:
         tokens = []
         for token in tokens_filtered:
-            if token in protected_words:
+            if token in unprocessed_terms:
                 tokens.append(token)  # Keep protected terms unchanged
             else:
                 if token not in stop_words:
@@ -62,7 +62,7 @@ def extract_passages(input_text):
 
 
 def create_inverted_index(files, preprocess=False, normalize=True):
-    inverted_index = defaultdict(lambda: defaultdict(list))  # Use set to avoid duplicate entries
+    inverted_index = defaultdict(lambda: defaultdict(list))
 
     # Regex patterns for ignoring LaTeX commands and text within curly brackets
     ignore_patterns = [
@@ -70,7 +70,7 @@ def create_inverted_index(files, preprocess=False, normalize=True):
         r'\\[a-zA-Z]+'  # LaTeX commands without arguments
     ]
 
-    # Iterate over the list of files with their indices
+    # Iterate over the documents
     for doc_id, file in enumerate(files, start=1):
         with open(file, 'r', encoding='utf-8') as f:
             input_text = f.read()
@@ -78,10 +78,12 @@ def create_inverted_index(files, preprocess=False, normalize=True):
         # Extract passages
         passages = extract_passages(input_text)
 
-        # Iterate over the passages with their indices
+        # Iterate over the passages
         for i in range(1, len(passages), 2):
             section_id = int(passages[i])
             text = passages[i + 1]
+
+            section_terms = []
 
             # Remove LaTeX commands and text within curly brackets
             for pattern in ignore_patterns:
@@ -94,7 +96,9 @@ def create_inverted_index(files, preprocess=False, normalize=True):
                 terms = clean_tokens(terms, normalize)
 
             for term in terms:
-                inverted_index[term][doc_id].append(section_id)  # Store as int for easier sorting
+                if term not in section_terms:
+                    inverted_index[term][doc_id].append(section_id)  # Store as int for easier sorting
+                    section_terms.append(term)
 
     return inverted_index
 
