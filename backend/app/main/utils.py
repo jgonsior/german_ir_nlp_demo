@@ -13,7 +13,6 @@ def update_model_metadata(index_path, checkpoint_path):
     if not os.path.isfile(metadata_path):
         raise FileNotFoundError("{} does not exist! Check config.ini".format(metadata_path))
 
-
     with open(metadata_path, 'r') as f:
         metadata = json.load(f)
 
@@ -27,23 +26,25 @@ def make_response(results):
     seen_ids = set()
     unique_results = []
 
-    for i, result in enumerate(results):
-        # rename fields for frontend
+    for result in results:
+        # Extract document ID
         doc_id = result.pop('document_id').split('-')[0]
-        result['id'] = doc_id
 
-        # Skip duplicate ids
+        # Skip duplicate IDs
         if doc_id in seen_ids:
             continue
+
+        result['id'] = doc_id
         seen_ids.add(doc_id)
 
-        # replace bracket part if passage starts with [
+        # Process the passage content
         pattern = r'^\[.*?\]'
-        # replace with empty string and rename field from content to passage
         result['passage'] = re.sub(pattern, '', result.pop('content')).strip()
 
-        del result['passage_id']
+        # Remove the 'passage_id' key if it exists
+        result.pop('passage_id', None)
 
+        # Get the document title
         doc = dm.get_document_by_id(doc_id)
         result['title'] = doc['title']
 

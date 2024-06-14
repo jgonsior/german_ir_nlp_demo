@@ -39,8 +39,8 @@ def search():
         # k could be passed by the frontend as well?
         k = 100
         results = current_app.rag_model_manager.search(query=query, k=k)
-        utils.make_response(results)
-        return jsonify(results)
+        resp = utils.make_response(results)
+        return jsonify(resp)
 
 
 @bp.route('/word_embeddings', methods=['POST'])
