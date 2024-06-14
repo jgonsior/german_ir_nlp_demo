@@ -1,16 +1,26 @@
 import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {QueryResponseResult, QueryResponseType} from "../types/query-response.type";
-import {lastValueFrom} from "rxjs";
+import {
+  QueryResponseDocument,
+  QueryResponseResult,
+  QueryResponseType
+} from "../types/query-response.type";
+import {BehaviorSubject, lastValueFrom} from "rxjs";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+  private searchTextSource = new BehaviorSubject<string>('');
+  currentSearchText = this.searchTextSource.asObservable();
 
   constructor(private httpClient: HttpClient) {
+  }
+
+  changeSearchText(text: string) {
+    this.searchTextSource.next(text);
   }
 
   public async getQueryResults(query: String): Promise<QueryResponseResult[]> {
@@ -20,6 +30,6 @@ export class DataService {
   }
 
   public async getDocomentById(id: number) {
-    return await lastValueFrom(this.httpClient.get<String>(`${environment.baseUrl}/document?id=${id}`));
+    return await lastValueFrom(this.httpClient.get<QueryResponseDocument>(`${environment.baseUrl}/document?id=${id}`));
   }
 }
