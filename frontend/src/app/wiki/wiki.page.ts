@@ -1,4 +1,13 @@
-import {AfterViewChecked, Component, inject, OnInit, ViewChild} from "@angular/core";
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  inject,
+  OnInit,
+  ViewChild
+} from "@angular/core";
 
 import {DataService} from "../services/data.service";
 import {IonSearchbar, Platform} from "@ionic/angular";
@@ -14,14 +23,16 @@ import Color from "color";
   templateUrl: './wiki.page.html',
   styleUrls: ['./wiki.page.scss'],
 })
-export class WikiPage implements OnInit, AfterViewChecked {
+export class WikiPage implements OnInit, AfterViewChecked, AfterViewInit {
   public docName: String;
   public wikiPage!: ParsedQueryResponseDocument;
-  public paragraph_id!: string;
+  public paragraph_id: string;
   private data = inject(DataService);
   private dataTransferService = inject(DataTransferService);
   private activatedRoute = inject(ActivatedRoute);
   private platform = inject(Platform);
+  private scrolledToParagraph: boolean = false;
+  private paragraphFound: boolean = false;
   protected wordembeddings: WordEmbedding[];
   protected searchedParagraph: string;
 
@@ -30,7 +41,7 @@ export class WikiPage implements OnInit, AfterViewChecked {
 
   searchText: string = '';
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router, private route: ActivatedRoute, private cdRef: ChangeDetectorRef, private el: ElementRef) {
   }
 
   ngOnInit() {
@@ -40,6 +51,7 @@ export class WikiPage implements OnInit, AfterViewChecked {
     console.log(query)
     this.data.getDocomentById(parseInt(idx, 10)).then((res) => {
       this.wikiPage = ResponseParsingService.parseDocumentResponse(res);
+      this.scrolledToParagraph = false
       console.log('wikiData', this.wikiPage);
 
       let search_result = this.dataTransferService.getData()
@@ -79,18 +91,69 @@ export class WikiPage implements OnInit, AfterViewChecked {
     });
   }
 
-  ngAfterViewChecked() {
-    this.scrollToParagraph();
+  ngAfterViewInit() {
   }
 
-  scrollToParagraph() {
+  ngAfterViewChecked() {
+    this.cdRef.detectChanges();
+
+    if (!this.paragraphFound) {
+      this.checkParagraphs();
+    }
+
+    if (this.paragraph_id && !this.scrolledToParagraph) {
+      this.scrollToParagraph();
+      this.scrolledToParagraph = true;
+    }
+
+  }
+
+  private checkParagraphs(){
+      let search_result = this.removeBracketedText(this.dataTransferService.getData().passage)
+      search_result = this.transform(search_result)
+
+      const pageParagraphs = this.el.nativeElement.querySelectorAll('p');
+      pageParagraphs.forEach((pageParagraph: HTMLElement) => {
+        if (pageParagraph.innerText.trim().includes(search_result)) {
+          this.paragraph_id = pageParagraph.id;
+          this.paragraphFound = true;
+        }
+        else if (search_result.includes(pageParagraph.innerText.trim())) {
+          this.paragraph_id = pageParagraph.id;
+          this.paragraphFound = true;
+        }
+      });
+  }
+
+  private scrollToParagraph() {
     setTimeout(() => {
       const paragraphElement = document.getElementById(this.paragraph_id);
-      console.log('paragraphElement', paragraphElement);
       if (paragraphElement) {
-        paragraphElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        paragraphElement.scrollIntoView({behavior: 'smooth', block: 'center'});
       }
     }, 0);
+  }
+
+  private transform(value: string): string {
+    if (!value) return '';
+    let result = value.replace(/<\/?[^>]+(>|$)/g, '');
+    const textArea = document.createElement('textarea');
+    textArea.innerHTML = result;
+    result = textArea.value;
+
+    const index= result.indexOf('[');
+    if (index !== -1) {
+      const substring = result.substring(index);
+      if (substring.startsWith('[https')) {
+        result = result.substring(0, index).trim();
+      }
+    }
+
+    return result;
+  }
+
+  private removeBracketedText(input: string): string {
+    return input.replace(/\[.*?]/, "").trim();
   }
 
   getBackButtonText() {
@@ -108,7 +171,7 @@ export class WikiPage implements OnInit, AfterViewChecked {
     }
 
     this.router.navigate(['/search-results'], {
-      queryParams: { query: this.searchText },
+      queryParams: {query: this.searchText},
     });
   }
 
@@ -119,6 +182,6 @@ export class WikiPage implements OnInit, AfterViewChecked {
   }
 
   compareParagraphs(searchedParagraph: string, strcompare: string) {
-    return searchedParagraph.replace(/\s/g, '').includes(strcompare.replace(/\s/g, ''));
+    return searchedParagraph.replace(/\s/g, '').includes(strcompare.replace(/\s/g, '')) || strcompare.replace(/\s/g, '').includes(searchedParagraph.replace(/\s/g, ''));
   }
 }
