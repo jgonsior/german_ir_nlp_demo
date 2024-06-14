@@ -5,7 +5,7 @@ import {
   Component,
   ElementRef,
   inject,
-  OnInit, QueryList,
+  OnInit,
   ViewChild
 } from "@angular/core";
 
@@ -30,16 +30,14 @@ export class WikiPage implements OnInit, AfterViewChecked, AfterViewInit {
   private activatedRoute = inject(ActivatedRoute);
   private platform = inject(Platform);
   private scrolledToParagraph: boolean = false;
-
-  @ViewChild('paragraphs')
-  pageParagraphs: QueryList<ElementRef>
+  private paragraphFound: boolean = false;
 
   @ViewChild('searchBar')
   searchBar: IonSearchbar;
 
   searchText: string = '';
 
-  constructor(private router: Router, private route: ActivatedRoute, private cdRef: ChangeDetectorRef) {
+  constructor(private router: Router, private route: ActivatedRoute, private cdRef: ChangeDetectorRef, private el: ElementRef) {
   }
 
   ngOnInit() {
@@ -55,26 +53,15 @@ export class WikiPage implements OnInit, AfterViewChecked, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    let search_result = this.removeBracketedText(this.dataTransferService.getData().passage)
-
-    let paragraph_found = false;
-    this.pageParagraphs.forEach((text) => {
-      if (!paragraph_found) {
-        if (search_result.includes(text.nativeElement.textContent.trim())) {
-          this.paragraph_id = text.nativeElement.id;
-          paragraph_found = true;
-        }
-        else if (text.nativeElement.textContent.trim().includes(search_result)) {
-          this.paragraph_id = text.nativeElement.id;
-          paragraph_found = true;
-        }
-      }
-    });
   }
 
   ngAfterViewChecked() {
     this.cdRef.detectChanges();
-    console.log(this.paragraph_id, this.scrolledToParagraph);
+
+    if (!this.paragraphFound) {
+      this.checkParagraphs();
+    }
+
     if (this.paragraph_id && !this.scrolledToParagraph) {
       this.scrollToParagraph();
       this.scrolledToParagraph = true;
@@ -82,14 +69,48 @@ export class WikiPage implements OnInit, AfterViewChecked, AfterViewInit {
 
   }
 
+  private checkParagraphs(){
+      let search_result = this.removeBracketedText(this.dataTransferService.getData().passage)
+      search_result = this.transform(search_result)
+
+      const pageParagraphs = this.el.nativeElement.querySelectorAll('p');
+      pageParagraphs.forEach((pageParagraph: HTMLElement) => {
+        if (pageParagraph.innerText.trim().includes(search_result)) {
+          this.paragraph_id = pageParagraph.id;
+          this.paragraphFound = true;
+        }
+        else if (search_result.includes(pageParagraph.innerText.trim())) {
+          this.paragraph_id = pageParagraph.id;
+          this.paragraphFound = true;
+        }
+      });
+  }
+
   private scrollToParagraph() {
     setTimeout(() => {
       const paragraphElement = document.getElementById(this.paragraph_id);
-      console.log('paragraphElement', paragraphElement);
       if (paragraphElement) {
-        paragraphElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        paragraphElement.scrollIntoView({behavior: 'smooth', block: 'center'});
       }
     }, 0);
+  }
+
+  private transform(value: string): string {
+    if (!value) return '';
+    let result = value.replace(/<\/?[^>]+(>|$)/g, '');
+    const textArea = document.createElement('textarea');
+    textArea.innerHTML = result;
+    result = textArea.value;
+
+    const index= result.indexOf('[');
+    if (index !== -1) {
+      const substring = result.substring(index);
+      if (substring.startsWith('[https')) {
+        result = result.substring(0, index).trim();
+      }
+    }
+
+    return result;
   }
 
   private removeBracketedText(input: string): string {
@@ -111,7 +132,7 @@ export class WikiPage implements OnInit, AfterViewChecked, AfterViewInit {
     }
 
     this.router.navigate(['/search-results'], {
-      queryParams: { query: this.searchText },
+      queryParams: {query: this.searchText},
     });
   }
 
