@@ -51,7 +51,7 @@
             <h5 *ngIf="passages.depth === 3">{{ passages.content }}</h5>
           </ng-container>
           <ng-container *ngIf="passages.type === ParsedDocumentTextTypes.normal_text_passage">
-            <p id="#{{i}}" *ngIf="searchedParagraph.includes(passages.content) && wordembeddings; else noEmbeddings">
+            <p id="#{{i}}" *ngIf="compareParagraphs(searchedParagraph, passages.content); else noEmbeddings">
               <ng-container  *ngFor="let word of wordembeddings">
                 <span [ngStyle]="{'background-color': createColorFromEmbedding(word)}">{{word.word}} </span>
               </ng-container>

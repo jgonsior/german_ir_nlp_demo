@@ -36,6 +36,8 @@ export class WikiPage implements OnInit, AfterViewInit {
   ngOnInit() {
     this.docName = this.activatedRoute.snapshot.paramMap.get('id') as string;
     const idx = this.activatedRoute.snapshot.paramMap.get('id') as string;
+    const query = this.activatedRoute.snapshot.paramMap.get('query') as string;
+    console.log(query)
     this.data.getDocomentById(parseInt(idx, 10)).then((res) => {
       this.wikiPage = ResponseParsingService.parseDocumentResponse(res);
       console.log('wikiData', this.wikiPage);
@@ -43,7 +45,7 @@ export class WikiPage implements OnInit, AfterViewInit {
       let search_result = this.dataTransferService.getData()
       this.searchedParagraph = ResponseParsingService.unescapeHtml(search_result.passage);
       console.log('Query Response Data', this.searchedParagraph);
-      this.data.getWordEmbedding(search_result.passage).then((res) => {
+      this.data.getWordEmbedding(search_result.passage, query).then((res) => {
         let shouldTrashHeading = false
         this.wordembeddings = res.filter((item) => {
           if (item.word.startsWith('[')) {
@@ -108,9 +110,10 @@ export class WikiPage implements OnInit, AfterViewInit {
   protected readonly ParsedDocumentTextTypes = ParsedDocumentTextTypes;
 
   createColorFromEmbedding(embedding: WordEmbedding) {
-    const MIN_WORD_EMBEDDING = 22;
-    const MAX_WORD_EMBEDDING = 26;
-    const alpha = (embedding.embedding - MIN_WORD_EMBEDDING) / (MAX_WORD_EMBEDDING - MIN_WORD_EMBEDDING);
-    return Color('#0054ff').alpha(alpha);
+    return Color('#0054ff').alpha(embedding.embedding);
+  }
+
+  compareParagraphs(searchedParagraph: string, strcompare: string) {
+    return searchedParagraph.replace(/\s/g, '').includes(strcompare.replace(/\s/g, ''));
   }
 }

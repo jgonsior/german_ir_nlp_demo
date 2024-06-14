@@ -34,7 +34,7 @@ export class DataService {
     return await lastValueFrom(this.httpClient.get<QueryResponseDocument>(`${environment.baseUrl}/document?id=${id}`));
   }
 
-  public async getWordEmbedding(paragraph: String) {
-    return await lastValueFrom(this.httpClient.post<WordEmbedding[]>(`${environment.baseUrl}/word_embeddings`, {'paragraph': paragraph}));
+  public async getWordEmbedding(paragraph: String, query: String) {
+    return await lastValueFrom(this.httpClient.post<WordEmbedding[]>(`${environment.baseUrl}/word_embeddings`, {'paragraph': paragraph, 'query': query}));
   }
 }
