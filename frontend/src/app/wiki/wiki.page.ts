@@ -182,6 +182,6 @@ export class WikiPage implements OnInit, AfterViewChecked, AfterViewInit {
   }
 
   compareParagraphs(searchedParagraph: string, strcompare: string) {
-    return searchedParagraph.replace(/\s/g, '').includes(strcompare.replace(/\s/g, ''));
+    return searchedParagraph.replace(/\s/g, '').includes(strcompare.replace(/\s/g, '')) || strcompare.replace(/\s/g, '').includes(searchedParagraph.replace(/\s/g, ''));
   }
 }
