@@ -129,7 +129,7 @@ text_to_avoid = [   "Dieser Artikel stammt ursprünglich aus dem Harry Potter Wi
                  ]
 
 with open("hp-ger/corpus.jsonl", "r", encoding="utf-8") as file:
-    id = 0
+    id = 33726
     check_id = 0
     character_skipped = harry_potter_characters.copy()
     for paragraph in file:
@@ -146,7 +146,6 @@ with open("hp-ger/corpus.jsonl", "r", encoding="utf-8") as file:
             check_id = 0
 
             question["text"] = f"Wer ist {data['title']}?"
-            question["metadata"] = {}
 
             questions.append(question)
             question_answer_tuple.append((question["_id"], data["_id"], 1))
