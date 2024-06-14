@@ -88,7 +88,7 @@ def main(args):
                                             mine_hard_negatives=False)
 
             model_output_path = trainer.train(
-                    batch_size=32,
+                    batch_size=16,
                     nbits=4, # How many bits will the trained model use when compressing indexes
                     maxsteps=10_000_000, # Maximum steps hard stop
                     use_ib_negatives=True, # Use in-batch negative to calculate loss
