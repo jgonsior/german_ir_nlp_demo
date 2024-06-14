@@ -7,6 +7,7 @@ import {
   QueryResponseType
 } from "../types/query-response.type";
 import {BehaviorSubject, lastValueFrom} from "rxjs";
+import {WordEmbedding} from "../types/word-embedding-response";
 
 
 @Injectable({
@@ -31,5 +32,9 @@ export class DataService {
 
   public async getDocomentById(id: number) {
     return await lastValueFrom(this.httpClient.get<QueryResponseDocument>(`${environment.baseUrl}/document?id=${id}`));
+  }
+
+  public async getWordEmbedding(paragraph: String, query: String) {
+    return await lastValueFrom(this.httpClient.post<WordEmbedding[]>(`${environment.baseUrl}/word_embeddings`, {'paragraph': paragraph, 'query': query}));
   }
 }

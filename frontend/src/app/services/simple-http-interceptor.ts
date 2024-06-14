@@ -24,7 +24,9 @@ export class SimpleHttpInterceptor implements HttpInterceptor {
             errorMessage = `Error: ${returnedError.error.message}`;
           } else if (returnedError instanceof HttpErrorResponse) {
             errorMessage = `Error Status ${returnedError.status}: ${returnedError.error.error} - ${returnedError.error.message}`;
-            this.router.navigateByUrl('/error')
+            if(!req.url.includes('word_embeddings')) {
+              this.router.navigateByUrl('/error')
+            }
           }
 
           console.error(errorMessage ? errorMessage : returnedError);
