@@ -178,7 +178,7 @@ export class WikiPage implements OnInit, AfterViewChecked, AfterViewInit {
   protected readonly ParsedDocumentTextTypes = ParsedDocumentTextTypes;
 
   createColorFromEmbedding(embedding: WordEmbedding) {
-    return Color('#0054ff').alpha(embedding.embedding);
+    return Color('#EF6200').alpha(embedding.embedding);
   }
 
   compareParagraphs(searchedParagraph: string, strcompare: string) {
