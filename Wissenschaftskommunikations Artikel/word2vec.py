@@ -2,9 +2,7 @@ import json
 import re
 import string
 
-import matplotlib.pyplot as plt
 import nltk
-import seaborn as sns
 from gensim.models import Word2Vec
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
