@@ -4,6 +4,36 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from gensim.models import Word2Vec
 
+# Has the structure ("question", "answer")
+terms_to_display = [
+    ("harry", "potter"),
+    ("zauberer", "hexen"),
+    ("dumbledore", "schulleiter"),
+    ("hufflepuff", "branstone"),
+    ("tom", "riddle"),
+    ("malfoy", "draco"),
+    ("bellatrix", "lestrange"),
+    ("ariana", "aberforth"),
+    ("dolores", "umbridge"),
+    ("flitwick", "filius"),
+    ("sirius", "severus"),
+    ("alexia", "walkin"),
+    ("peter", "pettigrew"),
+    ("phönixfeder", "kern"),
+    ("dobby", "hauself"),
+    ("schneeeule", "hedwig"),
+    ("lilly", "beschuldigung"),
+    ("orden", "phönix"),
+    ("adalbert", "schwahfel"),
+    ("george", "fred"),
+    ("slughorn", "horace"),
+    ("heiligtümer", "todes"),
+    ("daniel", "radcliffe"),
+    ("emma", "watson"),
+    ("kammer", "schreckens"),
+    ("drachenherzfaser", "weißbuche"),
+    ("viktor", "krum"),
+]
 
 def _ensure_directiory_exists(path):
     if not os.path.exists(path):
@@ -53,36 +83,5 @@ def plot_embeddings(generate_questions: bool, generate_answers: bool):
 if __name__ == "__main__":
     # Load the model
     model = Word2Vec.load("Wissenschaftskommunikations Artikel/harry_potter_german_word2vec.model")
-
-    # Has the structure ("question", "answer")
-    terms_to_display = [
-        ("harry", "potter"),
-        ("zauberer", "hexen"),
-        ("dumbledore", "schulleiter"),
-        ("hufflepuff", "branstone"),
-        ("tom", "riddle"),
-        ("malfoy", "draco"),
-        ("bellatrix", "lestrange"),
-        ("ariana", "aberforth"),
-        ("dolores", "umbridge"),
-        ("flitwick", "filius"),
-        ("sirius", "severus"),
-        ("alexia", "walkin"),
-        ("peter", "pettigrew"),
-        ("phönixfeder", "kern"),
-        ("dobby", "hauself"),
-        ("schneeeule", "hedwig"),
-        ("lilly", "beschuldigung"),
-        ("orden", "phönix"),
-        ("adalbert", "schwahfel"),
-        ("george", "fred"),
-        ("slughorn", "horace"),
-        ("heiligtümer", "todes"),
-        ("daniel", "radcliffe"),
-        ("emma", "watson"),
-        ("kammer", "schreckens"),
-        ("drachenherzfaser", "weißbuche"),
-        ("viktor", "krum"),
-    ]
 
     plot_embeddings(generate_questions=True, generate_answers=True)
