@@ -1,40 +1,13 @@
+import os
+
 import matplotlib.pyplot as plt
 import seaborn as sns
 from gensim.models import Word2Vec
 
-# Load the model
-model = Word2Vec.load("Wissenschaftskommunikations Artikel/harry_potter_german_word2vec.model")
 
-# Has the structure ("question", "answer")
-terms_to_display = [
-    ("harry", "potter"),
-    ("zauberer", "hexen"),
-    ("dumbledore", "schulleiter"),
-    ("hufflepuff", "branstone"),
-    ("tom", "riddle"),
-    ("malfoy", "draco"),
-    ("bellatrix", "lestrange"),
-    ("ariana", "aberforth"),
-    ("dolores", "umbridge"),
-    ("flitwick", "filius"),
-    ("sirius", "severus"),
-    ("alexia", "walkin"),
-    ("peter", "pettigrew"),
-    ("phönixfeder", "kern"),
-    ("dobby", "hauself"),
-    ("schneeeule", "hedwig"),
-    ("lilly", "beschuldigung"),
-    ("orden", "phönix"),
-    ("adalbert", "schwahfel"),
-    ("george", "fred"),
-    ("slughorn", "horace"),
-    ("heiligtümer", "todes"),
-    ("daniel", "radcliffe"),
-    ("emma", "watson"),
-    ("kammer", "schreckens"),
-    ("drachenherzfaser", "weißbuche"),
-    ("viktor", "krum"),
-]
+def _ensure_directiory_exists(path):
+    if not os.path.exists(path):
+        os.makedirs(path)
 
 
 def save_plot(path_to_save: str, idx: int):
@@ -61,9 +34,11 @@ def generate_embedding_for_term(term: str, idx: int, questions_set: bool = False
     plt.axis("off")
 
     if questions_set:
+        _ensure_directiory_exists("Wissenschaftskommunikations Artikel/questions")
         save_plot(path_to_save="Wissenschaftskommunikations Artikel/questions/question", idx=idx)
 
     if answers_set:
+        _ensure_directiory_exists("Wissenschaftskommunikations Artikel/answers")
         save_plot(path_to_save="Wissenschaftskommunikations Artikel/answers/answer", idx=idx)
 
 
@@ -75,4 +50,39 @@ def plot_embeddings(generate_questions: bool, generate_answers: bool):
             generate_embedding_for_term(term=term_pair[1], idx=idx, answers_set=generate_answers)
 
 
-plot_embeddings(generate_questions=True, generate_answers=True)
+if __name__ == "__main__":
+    # Load the model
+    model = Word2Vec.load("Wissenschaftskommunikations Artikel/harry_potter_german_word2vec.model")
+
+    # Has the structure ("question", "answer")
+    terms_to_display = [
+        ("harry", "potter"),
+        ("zauberer", "hexen"),
+        ("dumbledore", "schulleiter"),
+        ("hufflepuff", "branstone"),
+        ("tom", "riddle"),
+        ("malfoy", "draco"),
+        ("bellatrix", "lestrange"),
+        ("ariana", "aberforth"),
+        ("dolores", "umbridge"),
+        ("flitwick", "filius"),
+        ("sirius", "severus"),
+        ("alexia", "walkin"),
+        ("peter", "pettigrew"),
+        ("phönixfeder", "kern"),
+        ("dobby", "hauself"),
+        ("schneeeule", "hedwig"),
+        ("lilly", "beschuldigung"),
+        ("orden", "phönix"),
+        ("adalbert", "schwahfel"),
+        ("george", "fred"),
+        ("slughorn", "horace"),
+        ("heiligtümer", "todes"),
+        ("daniel", "radcliffe"),
+        ("emma", "watson"),
+        ("kammer", "schreckens"),
+        ("drachenherzfaser", "weißbuche"),
+        ("viktor", "krum"),
+    ]
+
+    plot_embeddings(generate_questions=True, generate_answers=True)
