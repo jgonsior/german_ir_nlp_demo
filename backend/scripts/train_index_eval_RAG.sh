@@ -1,15 +1,4 @@
 #!/bin/bash
-#SBATCH --time=100:00:00   # walltime
-#SBATCH --nodes=1   # number of nodes
-#SBATCH --partition=alpha
-#SBATCH --gres=gpu:4
-#SBATCH --ntasks=1      # limit to one node
-#SBATCH --cpus-per-task=16  # number of processor cores (i.e. threads)
-#SBATCH --mem=128G
-#SBATCH --mail-user=florian_maurus.mueller@mailbox.tu-dresden.de   # email address
-#SBATCH --mail-type=FAIL
-#SBATCH -J tie_RAG
-
 # Start time
 start_time=$(date +%s)
 
