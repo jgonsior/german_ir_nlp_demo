@@ -28,7 +28,9 @@ dependencies:
   - libuuid=2.38.1=h0b41bf4_0
   - libxcrypt=4.4.36=hd590300_1
   - libzlib=1.2.13=hd590300_5
+  - matplotlib=3.8.4
   - ncurses=6.4.20240210=h59595ed_0
+  - ninja
   - numpy=1.26.4=py310hb13e2d6_0
   - openssl=3.2.1=hd590300_1
   - pip=23.3.1=py310h06a4308_0
