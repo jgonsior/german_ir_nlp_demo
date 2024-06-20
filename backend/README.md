@@ -20,7 +20,10 @@ http://localhost:8080/search?q=Wer hat Snape ermordet?
 
 # Training and Evaluation
 
-Install Conda Environment as described above
+## Installation
+Install the Conda Environment as described above or use `backend/scripts/setup_conda_env.sh` if you only want to train.
+Install CUDA.
+
 
 ## Data Preprocessing
 
