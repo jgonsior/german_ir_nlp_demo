@@ -117,12 +117,7 @@ def main():
     # creates a csv file of harry passage from the wiki dump 
     # old: create_full_passage_corpus_from_wiki_dump(WIKI_DUMP_PATH, FULL_CORPUS_PATH)
     convert_corpus_jsonl_to_csv("backend/data/wiki_dumps/corpus.jsonl", "backend/data/qa/HP/passages.csv")
-
-def test():
-    convert_corpus_jsonl_to_csv("backend/data/wiki_dumps/corpus.jsonl", "backend/data/qa/HP/passages.csv")
-
-
+  
 if __name__ == "__main__":
-    #main()
-    test()
+    main()
     
