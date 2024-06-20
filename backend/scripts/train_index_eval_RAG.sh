@@ -47,7 +47,6 @@ best_checkpoint_path_HP=$(conda run -n RAG_env_conda --no-capture-output python3
 echo "Best checkpoint for HP: $best_checkpoint_path_HP"
 
 # add and visualize best statistics
-#conda run -n RAG_env_conda --no-capture-output python3 backend/RAGatouille/add_and_visualize_best_statistics.py --best_checkpoint_paths backend/data/colbert/indexes/bert-base-german-cased/GermanDPR-10neg/epoch1/part1 backend/data/colbert/indexes/bert-base-german-cased/GermanDPR-XQA-10neg/epoch1/part1 "$best_checkpoint_path_HP"
 conda run -n RAG_env_conda --no-capture-output python3 backend/RAGatouille/add_and_visualize_best_statistics.py --best_checkpoint_paths "$best_checkpoint_path_German_DPR" "$best_checkpoint_path_XQA" "$best_checkpoint_path_HP"
 
 # End time
