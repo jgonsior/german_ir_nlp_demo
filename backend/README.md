@@ -4,7 +4,7 @@
 
 Install Conda Environment: [Miniconda](https://docs.anaconda.com/free/miniconda/)
 
-```
+```python
 # setup env
 conda env create -f RAG_env_conda.yml
 conda activate RAG_env_conda
@@ -17,7 +17,7 @@ Die Flask API ist nun unter `localhost:8080` erreichbar und erwartet eine GET-An
 
 **Beispiel**
 
-```
+```python
 http://localhost:8080/search?q=Wer hat Snape ermordet?
 ```
 
@@ -102,7 +102,7 @@ The best final checkpoint (after all train datasets were applied) is copied alon
 
 ### Installing dependencies
 
-```bash
+```python
 python -m venv venv
 pip install -r requirements_preprocessing.txt
 ```
