@@ -104,6 +104,7 @@ The best final checkpoint (after all train datasets were applied) is copied alon
 
 ```python
 python -m venv venv
+source venv/bin/activate
 pip install -r requirements_preprocessing.txt
 ```
 
