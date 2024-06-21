@@ -1,1 +1,9 @@
-# german_ir_nlp_demo
+# Harry Potter - German IR NLP Demo
+
+## Wissenschaftskommunikation
+
+## Backend
+
+## Frontend
+
+## Unity

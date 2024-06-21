@@ -4,3 +4,4 @@ lxml
 wikiextractor
 flask_cors
 numpy
+nltk

@@ -6,9 +6,29 @@ export interface QueryResponseType {
 
 export interface QueryResponseResult {
   rank: number;
-  document_id: string;
-  document_name: string;
-  categorie: string;
-  authors: string[];
-  passages: string[];
+  id: string;
+  title: string;
+  // categorie: string;
+  text: string[];
+}
+
+export interface QueryResponseDocument {
+  headers: string[];
+  text: string[];
+  title: string;
+  image_links: string[]
+}
+
+export enum ParsedDocumentTextTypes {
+  heading,
+  normal_text_passage
+}
+
+export interface ParsedQueryResponseDocument {
+  text: {
+    'type': ParsedDocumentTextTypes,
+    'depth': number,
+    'content': string,
+  }[];
+  title: string;
 }

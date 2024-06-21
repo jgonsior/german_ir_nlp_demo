@@ -1,0 +1,118 @@
+.fullheight {
+    height: 100%;
+}
+
+.wiki__header {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.wiki__toolbar {
+    --background: var(--ion-color-custom-darkblue);
+}
+
+.wiki__headline {
+    margin: 0;
+}
+
+.wiki__searchbar {
+    background: unset;
+    --background: none;
+    --background: var(--ion-color-custom-book);
+    color: var(--ion-color-custom-red);
+    position: relative;
+    padding: 0 0 1rem 2rem;
+    --border-radius: 8px;
+}
+
+.wiki__content {
+    background: var(--ion-color-custom-darkblue);
+    --background: var(--ion-color-custom-darkblue);
+    overflow-y: hidden;
+}
+
+.wiki__grid {
+    padding: 0 2rem 0 2rem;
+}
+
+.wiki__column {
+    padding: 0;
+}
+
+.wiki__row {
+    padding-top: 8rem;
+}
+
+.wiki__row--fixed {
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    height: 40px;
+    left: 0;
+    box-sizing: border-box;
+    padding: 0 2rem 0 2rem;
+}
+
+.wiki__item {
+    --background: var(--ion-color-custom-red);
+    --color: var(--ion-color-custom-book);
+    width: 100%;
+    padding-bottom: 2rem;
+}
+
+.wiki__label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+        font-weight: bold;
+    }
+}
+
+.wiki__wrapper--label {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.wiki__banner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background: var(--ion-color-custom-darkblue);
+
+    >img {
+        position: fixed;
+        margin-top: 6rem;
+        padding: 0 2rem 0 2rem;
+        flex: 0 0 calc(calc(3 / var(--ion-grid-columns, 12))* 100%);
+        width: calc(calc(3 / var(--ion-grid-columns, 12))* 100%);
+        max-width: calc(calc(3 / var(--ion-grid-columns, 12))* 70%);
+    }
+}
+
+.wiki__background {
+    img {
+        border-radius: 100%;
+        background: var(--ion-color-custom-book);
+        overflow: hidden;
+    }
+}
+
+h2,
+h3,
+h4,
+h5 {
+    color: var(--ion-color-custom-owl);
+}
+
+p {
+    color: var(--ion-color-custom-book);
+}
+
+
+ion-content::part(scroll) {
+    scrollbar-width: none;
+}

@@ -7,13 +7,21 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'message/:id/:answer',
-    loadChildren: () => import('./view-message/view-message.module').then( m => m.ViewMessagePageModule)
+    path: 'wiki/:id',
+    loadChildren: () => import('./wiki/wiki.module').then( m => m.WikiPageModule)
   },
   {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },
+  {
+    path: 'search-results',
+    loadChildren: () => import('./search-results/search-results.module').then( m => m.SearchResultsPageModule)
+  },
+  {
+    path: 'error',
+    loadChildren: () => import('./error-page/error-page/error-page.module').then(m => m.ErrorPageModule)
   },
 ];
 

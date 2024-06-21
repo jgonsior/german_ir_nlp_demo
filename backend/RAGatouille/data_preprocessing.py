@@ -4,14 +4,10 @@ import random
 
 TRAINING_DATA_PATHS_GERMAN_DPR = ["backend/data/qa/GermanDPR/GermanDPR_train.json", 
                                   "backend/data/qa/GermanDPR/GermanDPR_test.json"]
-TEST_DATA_PATH_GERMAN_DPR = "backend/data/qa/GermanDPR/GermanDPR_test.json"
 
 TRAINING_DATA_PATHS_XQA = ["backend/data/qa/XQA/dev_doc.json", 
                            "backend/data/qa/XQA/test_doc.json"]
-TEST_DATA_PATH_XQA = "backend/data/qa/XQA/test_doc.json"
 
-FULL_CORPUS_PATH = "backend/data/wiki_dumps/harry_potter_corpus.csv"
-WIKI_DUMP_PATH = "backend/data/wiki_dumps/harry_potter.json"
 
 def get_raw_data_GermanDPR(data_path):
     '''
@@ -108,21 +104,15 @@ def main():
     # creates triples for training (q, [p+], [p-,p-,p-]) in json format
     create_GermanDPR_train_files(TRAINING_DATA_PATHS_GERMAN_DPR, 
             "backend/data/qa/GermanDPR/train_triples.jsonl",
-            "backend/data/qa/GermanDPR/train_passages.csv")
+            "backend/data/qa/GermanDPR/passages.csv")
     create_QXA_train_files(TRAINING_DATA_PATHS_XQA, 
             "backend/data/qa/XQA/train_triples.jsonl",
-            "backend/data/qa/XQA/train_passages.csv"
+            "backend/data/qa/XQA/passages.csv"
     )
 
     # creates a csv file of harry passage from the wiki dump 
-    # old: create_full_passage_corpus_from_wiki_dump(WIKI_DUMP_PATH, FULL_CORPUS_PATH)
-    convert_corpus_jsonl_to_csv("backend/data/wiki_dumps/corpus.jsonl", "backend/data/qa/HP/passages.csv")
-
-def test():
-    convert_corpus_jsonl_to_csv("backend/data/wiki_dumps/corpus.jsonl", "backend/data/qa/HP/passages.csv")
-
-
+    # convert_corpus_jsonl_to_csv("backend/data/wiki_dumps/corpus.jsonl", "backend/data/qa/HP/passages.csv")
+  
 if __name__ == "__main__":
-    #main()
-    test()
+    main()
     
