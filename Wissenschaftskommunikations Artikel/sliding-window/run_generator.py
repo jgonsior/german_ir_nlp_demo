@@ -34,11 +34,14 @@ if __name__ == '__main__':
     with open(file_dir, encoding="utf-8") as file:
         documents = json.load(file)
 
+        doc_count = 0
+
         for i in range(len(documents)):
             document = documents[i]
             for j in range(len(document["text"])):
                 for template in ["template_wordboxes.tex", "template_tables.tex"]:
 
+                    doc_count += 1
                     temporary_template = Path(template).stem + "_temp"
 
                     shutil.copyfile(f"./source-material/{template}", f"{temporary_template}.tex")
@@ -63,7 +66,7 @@ if __name__ == '__main__':
                         if "id" in document:
                             file_contents = file_contents.replace("%letter_increment%", document["id"])
                         else:
-                            file_contents = file_contents.replace("%letter_increment%", " ")
+                            file_contents = file_contents.replace("%letter_increment%", str(doc_count))
                         file_contents = file_contents.replace("%document_content%", document_content)
 
                         # Purge old content and write new

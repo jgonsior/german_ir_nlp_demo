@@ -19,10 +19,17 @@
 
 \newcommand{\wordbox}[1]{\colorbox{white}{\framebox[%box_width%][c]{\strut #1}}}
 
-\AddToShipoutPicture*{
+\AddToShipoutPictureBG{
   \begin{tikzpicture}[remember picture,overlay]
     \node[anchor=north east, fill=white, minimum size=1cm, draw=black, text=black, font=\large\bfseries]
     at (current page.north east) [xshift=-1.5cm, yshift=-1cm] {%letter_increment%};
+  \end{tikzpicture}
+}
+
+\AddToShipoutPictureBG{
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=south east, fill=white, minimum size=1cm, draw=white, text=black, font=\large\bfseries]
+    at (current page.south east) [xshift=-1.5cm, yshift=1cm] {\thepage};
   \end{tikzpicture}
 }
 
