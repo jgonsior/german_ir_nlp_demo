@@ -4,13 +4,13 @@ This repository contains the code and resources used during the Long Night of Sc
 
 ## Prerequisites
 
-- Required for `Wissenschaftskommunikations Artikel/colored barcodes`: **Python 3.12.3**
-- Required for generating LaTeX files: [Inkscape](https://inkscape.org/) & **LaTeX**, such as: [TeX Live](https://tug.org/texlive/)
-  - _Note: ensure that `pdflatex` can be executed from the terminal, check your `$PATH` configuration if it can't be found_
+- Required for `./colored barcodes` and `./sliding-window`: **Python 3.12.3**
+- Required for generating LaTeX files: [Inkscape](https://inkscape.org/) & **LaTeX**, such as: [TeX Live](https://tug.org/texlive/) or [MiKTeX](https://miktex.org/)
+  - _Note: ensure that `pdflatex` and `xelatex` can be executed from the terminal, check your `$PATH` configuration if it can't be found_
 
 ## Installation
 
-To run the code in the `Wissenschaftskommunikations Artikel/colored barcodes` directory, follow these steps to create a virtual environment:
+To run the code in the `./colored barcodes` and `./sliding-window` directory, follow these steps to create a virtual environment:
 
 ```bash
 python3 -m venv <VENV-NAME>
@@ -194,3 +194,47 @@ Here, the `\vspace` and `\hspace` are used to properly place the numbering of th
 ```
 
 The scale factor is used to get the barcodes properly onto the page, the number 0.45 represents a scaling of 45% compared to the original scaling.
+
+### Sliding Window
+
+#### `sliding_window_cutting_template.pptx`
+
+The sliding window aka "Masked Language Model" is the part the computer learns context of words. So instead of looking at a single word individually, the computer will get to know other words that are closely connected to the target word. In this example it is two words before the target word and two words after. This is a static file (not generated or used in any algorithms) to be adjusted manually only if any changes to `BOX_WIDTH` or `BOX_SPACING` in `run_generator.py` were made. If you do not plan to change this, there is a ready-to-print version already for you in `output` directory. It contains some instructions in German what parts to cut with a cutter blade even though that should be pretty much self-explanatory.
+
+#### `source-material/selected-passages.json`
+
+Contains only the text passages from our documents that are to be printed. The format is chosen so that existing structured information such as `Wissenschaftskommunikations Artikel/text passages/harry_potter.json` can be easily added and scaled for thousands of documents if needed. The existing 3 text passages were added manually.
+
+If you plan to add more text passages make sure that individual words should have more than 18 characters. Otherwise you will need to adjust some parameters or even the cutting template. It is highly recommended to manually select text passages that fit best within a regular A4 page. Keep in mind that you will probably not need more than 2 or 3 different examples for people to get your "scientific idea" you want to explain.
+
+The file needs to have this format - the "id" is optional but helps to connect the previous processes and steps:
+
+```json
+[
+  {
+    "id": "DOC ID",
+    "text": [
+      "TEXT 1",
+      "TEXT 2",
+      "TEXT 3"
+    ]
+  },
+  {
+    "id": "DOC ID",
+    "text": [
+      "TEXT 1",
+      "TEXT 2",
+      "TEXT 3"
+    ]
+  },
+  ...
+]
+```
+
+#### `run_generator.py`
+
+The only file you need to execute for this part. It will Iterate over the latex templates and create two files for every text passage in `source-material/selected-passages.json`. One part contains every word in a single box that is to be used with the `sliding_window_cutting_template.pptx`. The other part contains the result after every word and the corresponding context has been read.
+
+#### `output`
+
+If you do not plan to change any values or parameters, you can print all files within the `output` directory.
