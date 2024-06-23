@@ -3,6 +3,7 @@ import platform
 import subprocess
 import jinja2
 
+# Configure the Jinja2 environment for LaTeX templates
 latex_jinja_env = jinja2.Environment(
     block_start_string=r"\BLOCK{",
     block_end_string="}",
@@ -17,12 +18,24 @@ latex_jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.abspath("Wissenschaftskommunikations Artikel/barcodes/template/")),
 )
 
-def detect_os():
+def detect_os() -> str:
+    """
+    Detect the operating system of the machine.
+
+    Returns:
+        str: The name of the operating system.
+    """
     os_name = platform.system()
     print(f"Detected OS: {os_name}")
     return os_name
 
 def create_latex():
+    """
+    Generate a LaTeX document based on SVG files in a specific directory.
+
+    This function reads SVG files from a predefined directory, processes them using a Jinja2 template,
+    and writes the resulting LaTeX code to a new file.
+    """
     pdf_path_files = "Wissenschaftskommunikations Artikel/colored barcodes/answers"
     lst_file = sorted([f.split(".")[0] for f in os.listdir(pdf_path_files) if f.endswith(".svg")])
 
@@ -36,6 +49,13 @@ def create_latex():
         document_file.write(result_document)
 
 def create_pdf():
+    """
+    Compile a LaTeX document into a PDF file.
+
+    This function detects the operating system, determines the appropriate script to run,
+    and executes the script to compile the LaTeX document into a PDF, name the `generated barcodes/latex logs/documents_colored.pdf`.
+    It also handles directory creation and setting execute permissions for non-Windows systems.
+    """
     folder_path = "Wissenschaftskommunikations Artikel/colored barcodes/generated barcodes"
     output_path = "Wissenschaftskommunikations Artikel/colored barcodes/generated barcodes/latex logs"
 
