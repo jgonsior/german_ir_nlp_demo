@@ -7,11 +7,13 @@ import spacy
 
 nlp = spacy.load("de_core_news_sm")
 
-# No stemming on these
+# No stemming on those terms, assure those appear in the inverted index
 unprocessed_terms = ['harry potter', 'hogwarts', 'albus dumbledore', 'severus snape', 'voldemort', 'minerva mcgonagall',
-                     'potter', 'dumbledore', 'albus', 'minerva', 'mcgonagall', 'snape', 'severus']
+                     'potter', 'dumbledore', 'albus', 'minerva', 'mcgonagall', 'snape', 'severus', 'quidditch',
+                     'ariana']
 
 
+# Preprocessing and stemming of every token from the text (Code taken from backend team and adapted)
 def clean_tokens(tokenlist, normalize: bool = True):
     remove_chars = ['"', ',', '.', '[', ']', '{', '}', '(', ')', ':', '-', ';', "'", "!", '“', '„', '&', "''", "'s",
                     '*', '...', '):', '/', '--', '---']
@@ -19,11 +21,10 @@ def clean_tokens(tokenlist, normalize: bool = True):
 
     stemmer = SnowballStemmer("german")
     stop_words = set(stopwords.words("german"))
-    protected_words = set(unprocessed_terms)
     if normalize:
         tokens = []
         for token in tokens_filtered:
-            if token in protected_words:
+            if token in unprocessed_terms:
                 tokens.append(token)  # Keep protected terms unchanged
             else:
                 if token not in stop_words:
@@ -51,6 +52,7 @@ def clean_tokens(tokenlist, normalize: bool = True):
     return filtered_tokens
 
 
+# Extract a passage from the text, defined manually before by an "%ABSATZ" comment
 def extract_passages(input_text):
     # Use regex to split text by \marginpar{number} to identify sections
     passages = re.split(r'\\marginpar{(\d+)}', input_text)
@@ -61,8 +63,9 @@ def extract_passages(input_text):
     return passages
 
 
+# Create the inverted index to be used for the latex and json
 def create_inverted_index(files, preprocess=False, normalize=True):
-    inverted_index = defaultdict(lambda: defaultdict(list))  # Use set to avoid duplicate entries
+    inverted_index = defaultdict(lambda: defaultdict(list))
 
     # Regex patterns for ignoring LaTeX commands and text within curly brackets
     ignore_patterns = [
@@ -70,7 +73,7 @@ def create_inverted_index(files, preprocess=False, normalize=True):
         r'\\[a-zA-Z]+'  # LaTeX commands without arguments
     ]
 
-    # Iterate over the list of files with their indices
+    # Iterate over the documents
     for doc_id, file in enumerate(files, start=1):
         with open(file, 'r', encoding='utf-8') as f:
             input_text = f.read()
@@ -78,10 +81,13 @@ def create_inverted_index(files, preprocess=False, normalize=True):
         # Extract passages
         passages = extract_passages(input_text)
 
-        # Iterate over the passages with their indices
+        # Iterate over the passages
         for i in range(1, len(passages), 2):
             section_id = int(passages[i])
             text = passages[i + 1]
+
+            # Keep track of already processed sections, to avoid duplicates in the inverted index
+            section_terms = []
 
             # Remove LaTeX commands and text within curly brackets
             for pattern in ignore_patterns:
@@ -94,11 +100,14 @@ def create_inverted_index(files, preprocess=False, normalize=True):
                 terms = clean_tokens(terms, normalize)
 
             for term in terms:
-                inverted_index[term][doc_id].append(section_id)  # Store as int for easier sorting
+                if term not in section_terms:
+                    inverted_index[term][doc_id].append(section_id)  # Store as int for easier sorting
+                    section_terms.append(term)
 
     return inverted_index
 
 
+# Abbreviate section numbers that appear consecutively (e.g. 111,112,113 -> 111-113)
 def abbreviate_sections(sections):
     if not sections:
         return ""
@@ -228,10 +237,10 @@ if __name__ == "__main__":
     # Create the inverted index for latex
     output_file_latex = "src/index/inverted_index.tex"
 
-    # Additionally create a json version for further usage
+    # Additionally create a json version for further usage in the barcode generation
     output_file_json = "src/index/inverted_index.json"
 
-    # Turn off preprocess and normalization manually if needed (unprocessd/processed index)
+    # Turn off preprocess and normalization manually if needed (unprocessed/processed index)
     preprocess = True
     normalize = True
     main(input_files, output_file_latex, output_file_json, preprocess, normalize)
