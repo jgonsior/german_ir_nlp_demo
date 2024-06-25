@@ -373,9 +373,10 @@ def handler(amount: int, mode: str):
         dimensions_path = ""
 
     for switch in ["documents", "questions", "dummy"]:
-        if len(os.listdir(f"../barcodes_out/{switch}/svg/")) != 0:
-            for file in os.listdir(f"../barcodes_out/{switch}/svg/"):
-                os.remove(f"../barcodes_out/{switch}/svg/" + file)
+        if os.path.exists(f"../barcodes_out/{switch}/svg/"):
+            if len(os.listdir(f"../barcodes_out/{switch}/svg/")) != 0:
+                for file in os.listdir(f"../barcodes_out/{switch}/svg/"):
+                    os.remove(f"../barcodes_out/{switch}/svg/" + file)
 
     generate_barcodes(
         index_path, questions_path, dimensions_path, answers_path, amount, mode

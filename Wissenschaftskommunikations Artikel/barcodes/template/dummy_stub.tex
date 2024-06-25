@@ -46,9 +46,9 @@
         \begin{figure}[!h]
             \centering
             \begin{tikzpicture}
-                \node[anchor=south west, inner sep=0] (image) at (0,0) {\includesvg[scale=0.38]{\VAR{ file }}};
+                \node[anchor=south west, inner sep=0] (barcode) at (0,0) {\includesvg[scale=0.38]{\VAR{ file }}};
                 \begin{scope}
-                    [x={(image.north west)}, y={(image.south east)}]
+                    [x={(barcode.north west)}, y={(barcode.south east)}]
                     \BLOCK{ for numeral in dummy }
                     \BLOCK{ set word = dimensions[loop.index0] }
                     \BLOCK{ set position = 0.005 + (0.01 * loop.index0) }
@@ -65,7 +65,7 @@
 
 % Legend
         \begin{tikzpicture}[overlay]
-            \node[anchor=south west] at ([xshift=10cm, yshift=-7cm]image.north west) {
+            \node[anchor=south west] at ([xshift=10cm, yshift=-7cm]barcode.north west) {
                 \begin{minipage}{\textwidth}
                     \begin{tikzpicture}
                         \draw[fill=yellow, draw=black] (0,0) rectangle (1,0.5);
