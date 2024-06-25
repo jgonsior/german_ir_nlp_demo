@@ -277,8 +277,6 @@ def generate_barcodes(
             list(answers.values()), list(set(lst_doc)), 17
         )
 
-        print(len(lst_para))
-
         dict_answers = {}
         for collection in dict_barcodes:
             if collection in lst_para:
@@ -373,6 +371,11 @@ def handler(amount: int, mode: str):
         answers_path = ""
     if "dimensions_path" not in locals():
         dimensions_path = ""
+
+    for switch in ["documents", "questions", "dummy"]:
+        if len(os.listdir(f"../barcodes_out/{switch}/svg/")) != 0:
+            for file in os.listdir(f"../barcodes_out/{switch}/svg/"):
+                os.remove(f"../barcodes_out/{switch}/svg/" + file)
 
     generate_barcodes(
         index_path, questions_path, dimensions_path, answers_path, amount, mode
