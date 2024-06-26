@@ -1,6 +1,6 @@
 import json
 
-from tools import format_json
+import format_json
 
 
 def create_corpus():

@@ -45,16 +45,16 @@ We used 3 datasets for training. GermanDPR and XQA for understanding german sema
 
 You should now have the following files:
 
-- `backend/data/qa/GermanDPR/train_triples.jsonl`
-- `backend/data/qa/GermanDPR/passages.csv`
-- `backend/data/qa/XQA/train_triples.jsonl`
-- `backend/data/qa/XQA/passages.csv`
-- `backend/data/qa/HP/train_triples.jsonl`
-- `backend/data/qa/HP/eval_triples.jsonl`
-- `backend/data/qa/HP/test_triples.jsonl`
-- `backend/data/qa/HP/passages.csv`
+-   `backend/data/qa/GermanDPR/train_triples.jsonl`
+-   `backend/data/qa/GermanDPR/passages.csv`
+-   `backend/data/qa/XQA/train_triples.jsonl`
+-   `backend/data/qa/XQA/passages.csv`
+-   `backend/data/qa/HP/train_triples.jsonl`
+-   `backend/data/qa/HP/eval_triples.jsonl`
+-   `backend/data/qa/HP/test_triples.jsonl`
+-   `backend/data/qa/HP/passages.csv`
 
-All triples files contain on each line a question, one positiive context that answers the question and 3 (GermanDPR, XQA) or 10 (HP) negative contexts:
+All triples files contain on each line a question, one positive context that answers the question and 3 (GermanDPR, XQA) or 10 (HP) negative contexts:
 
 ```json
 {
@@ -86,11 +86,11 @@ Run the training (and evaluation) script`backend/scripts/train_index_eval_RAG.sh
 
 ### Relevant Python Scripts
 
-- `backend/RAGatouille/training.py`
-- `backend/RAGatouille/indexing.py`
-- `backend/RAGatouille/evaluate.py`
-- `backend/RAGatouille/add_and_visualize_best_statistics.py` // copy best final checkpoint and add its statistics to `backend/RAGatouille/compare.py`
-- `backend/RAGatouille/compare.py` // if you want to directly compare multiple checkpoints
+-   `backend/RAGatouille/training.py`
+-   `backend/RAGatouille/indexing.py`
+-   `backend/RAGatouille/evaluate.py`
+-   `backend/RAGatouille/add_and_visualize_best_statistics.py` // copy best final checkpoint and add its statistics to `backend/RAGatouille/compare.py`
+-   `backend/RAGatouille/compare.py` // if you want to directly compare multiple checkpoints
 
 ### Results
 

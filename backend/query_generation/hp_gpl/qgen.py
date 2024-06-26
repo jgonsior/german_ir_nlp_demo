@@ -3,13 +3,12 @@ from gpl.toolkit import (
     qgen,
     NegativeMiner,
     PseudoLabeler,
-    set_logger_format,
+     set_logger_format,
 )
 import os
 import logging
-from ..tools import format_json as format
+import format_json as format
 from typing import List
-#import argparse
 
 
 set_logger_format()
@@ -106,9 +105,9 @@ def querygen_gpl(
 
 
 if __name__ == "__main__":
-    directory = 'sample-data'
+    data_dir = 'sample-data'
     querygen_gpl(
-    path_to_generated_data=f'backend/query_generation_tommy/{directory}',
+    path_to_generated_data=f'{data_dir}',
     batch_size_gpl=4,
     batch_size_generation=1,
     gpl_steps=1,
@@ -137,98 +136,3 @@ if __name__ == "__main__":
     #format.corpus_json_to_csv(directory)
     #format.create_train_eval_test_triples(directory)
 
-
-
-    # parser = argparse.ArgumentParser()
-    # parser.add_argument(
-    #     "--path_to_generated_data",
-    #     required=True,
-    #     help="Path for/to the generated data. GPL will first check this path for a `corpus.jsonl` file for the (sole) data input of the whole pipeline. If an empty folder is indicated, query generation and hard-negative mining will be run automatically; one can also use a BeIR-QGen format data folder to start and skip the query generation.",
-    # )
-    # parser.add_argument(
-    #     "--do_evaluation",
-    #     action="store_true",
-    #     default=False,
-    #     help="Wether to do the evaluation (after training)",
-    # )
-    # parser.add_argument(
-    #     "--evaluation_data",
-    #     type=str,
-    #     help="Path to the BeIR-format dataset. This is the next folder GPL goes to for the target corpus if there is no `corpus.jsonl` under `path_to_generated_data`",
-    # )
-    # parser.add_argument(
-    #     "--evaluation_output", default="output", help="Path for the evaluation output."
-    # )
-    # parser.add_argument(
-    #     "--qgen_prefix",
-    #     default="qgen",
-    #     help='This prefix will appear as part of the (folder/file) names for query-generation results: For example, we will have "qgen-qrels/" and "qgen-queries.jsonl" by default.',
-    # )
-    # parser.add_argument(
-    #     "--base_ckpt",
-    #     default="distilbert-base-uncased",
-    #     help="Initialization checkpoint in HF or SBERT format. Meaning-pooling will be used.",
-    # )
-    # parser.add_argument("--generator", default="BeIR/query-gen-msmarco-t5-base-v1")
-    # parser.add_argument(
-    #     "--cross_encoder", default="cross-encoder/ms-marco-MiniLM-L-6-v2"
-    # )
-    # parser.add_argument("--batch_size_gpl", type=int, default=32)
-    # parser.add_argument(
-    #     "--batch_size_generation",
-    #     type=int,
-    #     default=10,
-    #     help="Batch size in the query generation step.",
-    # )
-    # parser.add_argument(
-    #     "--pooling",
-    #     type=str,
-    #     default=None,
-    #     choices=["cls", "mean", "max"],
-    #     help="Specifying pooling method for dense retriever if in Huggingface-format. By default (None), it uses mean pooling. If in SBERT-format, there would be the indicated pooling method in its configure file and thus this argument will be ignored. ",
-    # )
-    # parser.add_argument("--max_seq_length", type=int, default=350)
-
-    # parser.add_argument(
-    #     "--queries_per_passage",
-    #     type=int,
-    #     default=-1,
-    #     help="Number of Queries Per Passage (QPP) in the query generation step. When set to -1 (by default), the QPP will be chosen automatically: If QPP * |corpus| <= 250K, then QPP will be set to 250K / |corpus|; else QPP will be set 3 and |corpus| will be set to 250K / 3",
-    # )
-    # parser.add_argument(
-    #     "--gpl_steps", type=int, default=140000, help="Training steps for GPL."
-    # )
-    # parser.add_argument(
-    #     "--retrievers",
-    #     nargs="+",
-    #     default=["msmarco-distilbert-base-v3", "msmarco-MiniLM-L-6-v3"],
-    #     help='Indicate retriever names for mining negatives. They could be one or many BM25 ("bm25") or dense retrievers (in SBERT format).',
-    # )
-    # parser.add_argument(
-    #     "--retriever_score_functions",
-    #     nargs="+",
-    #     default=["cos_sim", "cos_sim"],
-    #     choices=["dot", "cos_sim", "none"],
-    #     help='Score functions of the corresponding retrievers for negative mining. Please set it to "none" for BM25.',
-    # )
-    # parser.add_argument(
-    #     "--gpl_score_function", choices=["dot", "cos_sim"], default="dot"
-    # )
-
-    # parser.add_argument(
-    #     "--negatives_per_query",
-    #     type=int,
-    #     default=50,
-    #     help="Mine how many negatives per query per retriever",
-    # )
-    # parser.add_argument("--mnrl_output_dir", default=None)
-    # parser.add_argument("--mnrl_evaluation_output", default=None)
-    # parser.add_argument(
-    #     "--eval_split",
-    #     type=str,
-    #     default="test",
-    #     choices=["train", "test", "dev"],
-    #     help="Which split to evaluate on",
-    # )
-    # args = parser.parse_args()
-    # train(**vars(args))
