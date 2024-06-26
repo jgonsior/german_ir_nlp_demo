@@ -67,6 +67,7 @@ def format_to_data(dir: str):
 
 def jsonl_to_json(file: str):
     """
+    for inverted index
     convert jsonl to json file, used for gpl jsonl generation
     """
     abs_path_caller = os.path.dirname(inspect.stack()[1][1])
@@ -78,12 +79,13 @@ def jsonl_to_json(file: str):
         for obj in f:
             jsons.append(json.loads(obj))
 
-    file_name = file.strip(".jsonl")
+    file_name = os.path.splitext(file)[0]
     output_file = f"{abs_path_caller}/{file_name}.json"
+    print(file_name)
     with open(output_file, "w", encoding = "utf-8") as output:
         json.dump(jsons, output, indent = 1, ensure_ascii = False)
 
-def corpus_json_to_csv(dir: str):
+def corpus_jsonl_to_csv(dir: str):
     """
     write passages.csv from corpus.jsonl as input
 

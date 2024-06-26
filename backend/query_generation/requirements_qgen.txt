@@ -1,3 +1,8 @@
 beir
 gpl
 nltk
+pandas
+peft
+torch
+tqdm
+transformers

@@ -133,6 +133,6 @@ if __name__ == "__main__":
 
 
     #format.format_to_data(directory)
-    #format.corpus_json_to_csv(directory)
+    #format.corpus_jsonl_to_csv(directory)
     #format.create_train_eval_test_triples(directory)
 

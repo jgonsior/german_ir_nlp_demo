@@ -1,14 +1,16 @@
 import json
-
 import format_json
 
 
-def create_corpus():
-    """
+def create_corpus(dir: str):
+    """    
     create corpus.jsonl for gpl query generation from preprocessed wiki
+
+    Arguments:
+        dir -- target directory, where corpus.jsonl should be written at
     """
     corpus = []
-    with open('backend/query_generation_tommy/hp-ger/harry_potter_unicode_processed.json', 'r') as file:
+    with open('../../preprocessing/data/harry_potter_unicode_processed.json', 'r') as file:
         data = json.load(file)
         for wikipage in data:
             page_id = wikipage["id"]
@@ -21,15 +23,15 @@ def create_corpus():
                 paragraph_id += 1
                 corpus.append(doc)
 
-    with open('backend/query_generation_tommy/hp-ger/corpus.jsonl', 'w', encoding='utf-8') as file:
+    with open(f'{dir}/corpus.jsonl', 'w', encoding='utf-8') as file:
         for obj in corpus:
             json.dump(obj, file, ensure_ascii=False)
             file.write("\n")
 
 
 if __name__ == "__main__":
-    create_corpus()
+    dir = "hp-ger"
+    create_corpus(dir)
 
-    # After the top is executed once:
-    format_json.jsonl_to_json("backend/query_generation/hp-gpl/corpus.jsonl")
-    # python -m query_generation.corpus
+    # create corpus.json file from .jsonl for inverted_index script
+    #format_json.jsonl_to_json(f"{dir}/corpus.jsonl")
