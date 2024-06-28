@@ -5,7 +5,7 @@ various scripts, data sets, and other materials created for the event.
 
 ## Prerequisites
 
-- Required for `./colored barcodes` and `./sliding-window`: **Python 3.12.3**
+- Required for `./colored barcodes` , `./latex-files` and `./sliding-window`: **Python 3.12.3**
 - Required for generating LaTeX files: [Inkscape](https://inkscape.org/) & **LaTeX**, such
   as: [TeX Live](https://tug.org/texlive/) or [MiKTeX](https://miktex.org/)
     - _Note: ensure that `pdflatex` and `xelatex` can be executed from the terminal, check your `$PATH` configuration if
@@ -13,7 +13,7 @@ various scripts, data sets, and other materials created for the event.
 
 ## Installation
 
-To run the code in the `./colored barcodes` and `./sliding-window` directory, follow these steps to create a virtual
+To run the code in the `./colored barcodes`, `./latex-files` and `./sliding-window` directory, follow these steps to create a virtual
 environment:
 
 ```bash
