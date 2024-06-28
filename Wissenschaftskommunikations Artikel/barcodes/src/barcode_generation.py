@@ -67,11 +67,6 @@ def get_stemmed_list(tokens: str) -> list:
 
 
 def draw_svg(name: str, barcode: list, identity: str, height: int, width: int):
-    if not os.path.exists(f"../barcodes_out/{identity}/svg/"):
-        os.makedirs(f"../barcodes_out/{identity}/svg/")
-        print(
-            f"created directory: ../barcodes_out/{identity}/svg/ to save the latex file to"
-        )
 
     if len(identity) == 9:
         identity_short = identity[:8]
@@ -121,12 +116,6 @@ def create_latex(switch: str, dimensions=None, dummy=None):
         document_template = latex_jinja_env.get_template(f"{switch}_stub.tex")
         result_document = document_template.render(lst_files=lst_file)
 
-    if not os.path.exists(f"../barcodes_out/{switch}/tex"):
-        os.makedirs(f"../barcodes_out/{switch}/tex")
-        print(
-            f"created directory: ../barcodes_out/{switch}/tex to save the latex file to"
-        )
-
     with open(
         f"../barcodes_out/{switch}/tex/{switch}.tex",
         "w",
@@ -137,12 +126,6 @@ def create_latex(switch: str, dimensions=None, dummy=None):
 def create_pdf(switch: str):
     folder_path = f"../barcodes_out/{switch}/tex"
     output_path = f"../barcodes_out/{switch}/pdf"
-
-    if not os.path.exists(f"../barcodes_out/{switch}/pdf/"):
-        os.makedirs(f"../barcodes_out/{switch}/pdf/")
-        print(
-            f"created directory: ../barcodes_out/{switch}/pdf/ to save the pdf files to"
-        )
 
     os_name = detect_os()
 
@@ -175,7 +158,7 @@ def create_dimension_codes(
     dict_barcodes = {}
     dict_questions = {}
 
-    for word in dimensions:
+    for word in index:
         for doc in index[word]:
             if doc not in dict_barcodes:
                 dict_barcodes[doc] = []
@@ -263,6 +246,7 @@ def generate_barcodes(
         lst_dimensions = randomized_list_extension(
             lst_dimensions, list(inv_index.keys()), 100
         )
+        print(f"length lst_dimensions: {len(set(lst_dimensions))}")
         dict_barcodes, dict_questions = create_dimension_codes(
             inv_index, questions, lst_dimensions
         )
@@ -270,17 +254,17 @@ def generate_barcodes(
 
     if answers:
         lst_doc = []
-        for doc in inv_index:
-            lst_doc.extend(inv_index[doc])
+        for word in inv_index:
+            lst_doc.extend(inv_index[word])
 
         lst_para = randomized_list_extension(
             list(answers.values()), list(set(lst_doc)), 17
         )
 
         dict_answers = {}
-        for collection in dict_barcodes:
-            if collection in lst_para:
-                dict_answers[collection] = dict_barcodes[collection]
+        for doc in lst_para:
+            dict_answers[doc] = dict_barcodes[doc]
+
         dict_barcodes = dict_answers
 
     print("Done generating barcodes...")
@@ -316,15 +300,43 @@ def generate_barcodes(
     for switch in ["documents", "questions", "dummy"]:
         print(f"Generating TEX files for {switch}!")
         if switch == "dummy":
-            create_latex("dummy", dimensions=lst_dimensions, dummy=dummy)
+            create_latex(switch, dimensions=lst_dimensions, dummy=dummy)
         else:
             create_latex(switch)
         print("Done generating TEX files...")
         print(f"Generating PDF files from TEX files for {switch}")
         create_pdf(switch)
+        # if switch == "dummy":
+        #    create_pdf(switch)
         print(f"Done generating PDF for {switch}!")
 
     print("DONE")
+
+
+def create_output_structure():
+    for switch in ["documents", "questions", "dummy"]:
+        if os.path.exists(f"../barcodes_out/{switch}/svg/"):
+            if len(os.listdir(f"../barcodes_out/{switch}/svg/")) != 0:
+                for file in os.listdir(f"../barcodes_out/{switch}/svg/"):
+                    os.remove(f"../barcodes_out/{switch}/svg/" + file)
+
+        if not os.path.exists(f"../barcodes_out/{switch}/svg/"):
+            os.makedirs(f"../barcodes_out/{switch}/svg/")
+            print(
+                f"created directory: ../barcodes_out/{switch}/svg/ to save the svg file to"
+            )
+
+        if not os.path.exists(f"../barcodes_out/{switch}/tex"):
+            os.makedirs(f"../barcodes_out/{switch}/tex")
+            print(
+                f"created directory: ../barcodes_out/{switch}/tex to save the latex file to"
+            )
+
+        if not os.path.exists(f"../barcodes_out/{switch}/pdf/"):
+            os.makedirs(f"../barcodes_out/{switch}/pdf/")
+            print(
+                f"created directory: ../barcodes_out/{switch}/pdf/ to save the pdf files to"
+            )
 
 
 def handler(amount: int, mode: str):
@@ -372,11 +384,7 @@ def handler(amount: int, mode: str):
     if "dimensions_path" not in locals():
         dimensions_path = ""
 
-    for switch in ["documents", "questions", "dummy"]:
-        if os.path.exists(f"../barcodes_out/{switch}/svg/"):
-            if len(os.listdir(f"../barcodes_out/{switch}/svg/")) != 0:
-                for file in os.listdir(f"../barcodes_out/{switch}/svg/"):
-                    os.remove(f"../barcodes_out/{switch}/svg/" + file)
+    create_output_structure()
 
     generate_barcodes(
         index_path, questions_path, dimensions_path, answers_path, amount, mode
