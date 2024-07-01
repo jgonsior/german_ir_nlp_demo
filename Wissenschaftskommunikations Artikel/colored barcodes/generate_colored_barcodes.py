@@ -6,10 +6,12 @@ from gensim.models import Word2Vec
 
 # Has the structure ("question", "answer", "answer-passage-ID")
 
+# Verify that the similarity Score should be >0.9 to make the identification easier, as with updated versions the similarity scores might change
+
 terms_to_display = [
     ("harry", "potter", "1-221"),
     ("zauberer", "hexen", "1-1"),
-    ("dumbledore", "schulleiter", "1-46"),
+    ("dumbledore", "albus", "1-46"),
     ("hufflepuff", "branstone", "1-144"),
     ("tom", "riddle", "2-1"),
     ("malfoy", "draco", "2-68"),
