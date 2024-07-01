@@ -73,17 +73,21 @@ def jsonl_to_json(file: str):
     abs_path_caller = os.path.dirname(inspect.stack()[1][1])
     work_file = f"{abs_path_caller}/{file}"
 
+    file_name = os.path.splitext(file)[0]
+    output_file = f"{abs_path_caller}/{file_name}.json"
+
+    # TODO: check if file already exists
+
     jsons=[]
 
     with open(work_file, "r") as f:
         for obj in f:
             jsons.append(json.loads(obj))
 
-    file_name = os.path.splitext(file)[0]
-    output_file = f"{abs_path_caller}/{file_name}.json"
-    print(file_name)
+    #print(file_name)
     with open(output_file, "w", encoding = "utf-8") as output:
         json.dump(jsons, output, indent = 1, ensure_ascii = False)
+
 
 def corpus_jsonl_to_csv(dir: str):
     """
