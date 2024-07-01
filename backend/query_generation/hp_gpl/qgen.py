@@ -131,8 +131,6 @@ if __name__ == "__main__":
     # er/file) names for query-generation results: For example, we will have "qgen-qrels/" and "qgen-queries.jsonl" by default.
     )  
 
-
-    #format.format_to_data(directory)
-    #format.corpus_jsonl_to_csv(directory)
-    #format.create_train_eval_test_triples(directory)
+    #create training split for ML model from GPL data
+    #format.create_train_test_eval_triples(data_dir)
 
