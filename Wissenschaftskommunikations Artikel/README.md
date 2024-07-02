@@ -26,7 +26,9 @@ pip install -r Wissenschaftskommunikations Artikel/requirements.txt
 
 Instructions for executing the code within the `Wissenschaftskommunikations Artikel` directory.
 
-### Latex Representations
+----
+### 1. Latex Representations
+----
 
 Documents, Inverted Index and Query Cards are represented as LateX files. First the Documents have to be generated with
 its desired content and format. Later on the section will be enumerated to display the section number inside the documents, next to the current section.
@@ -244,7 +246,9 @@ Each set of four A5 pages represents one A4 document, ready for double-sided pri
 
 Merging of the pdfs from 2x A5 to A4 has to be done manually.
 
-### Colored Barcodes
+----
+### 2. Colored Barcodes
+----
 
 There are two main files in this section, along with an optional experimental file that might be useful in the future:
 
@@ -429,7 +433,9 @@ slight misalignment, these values should be adjusted.
 The scale factor is used to get the barcodes properly onto the page, the number 0.45 represents a scaling of 45%
 compared to the original scaling.
 
-### Sliding Window
+----
+### 3. Sliding Window
+----
 
 #### `sliding_window_cutting_template.pptx`
 
