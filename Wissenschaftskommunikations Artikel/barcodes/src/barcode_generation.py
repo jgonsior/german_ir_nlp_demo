@@ -246,7 +246,6 @@ def generate_barcodes(
         lst_dimensions = randomized_list_extension(
             lst_dimensions, list(inv_index.keys()), 100
         )
-        print(f"length lst_dimensions: {len(set(lst_dimensions))}")
         dict_barcodes, dict_questions = create_dimension_codes(
             inv_index, questions, lst_dimensions
         )
@@ -306,8 +305,8 @@ def generate_barcodes(
         print("Done generating TEX files...")
         print(f"Generating PDF files from TEX files for {switch}")
         create_pdf(switch)
-        # if switch == "dummy":
-        #    create_pdf(switch)
+        if switch == "dummy":
+            create_pdf(switch)
         print(f"Done generating PDF for {switch}!")
 
     print("DONE")
