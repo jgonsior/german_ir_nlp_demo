@@ -8,8 +8,8 @@ various scripts, data sets, and other materials created for the event.
 - Required for `./colored barcodes` , `./latex-files` and `./sliding-window`: **Python 3.12.3**
 - Required for generating LaTeX files: [Inkscape](https://inkscape.org/) & **LaTeX**, such
   as: [TeX Live](https://tug.org/texlive/) or [MiKTeX](https://miktex.org/)
-    - _Note: ensure that `pdflatex` and `xelatex` can be executed from the terminal, check your `$PATH` configuration if
-      it can't be found_
+  - _Note: ensure that `pdflatex` and `xelatex` can be executed from the terminal, check your `$PATH` configuration if
+    it can't be found_
 
 ## Installation
 
@@ -29,12 +29,9 @@ Instructions for executing the code within the `Wissenschaftskommunikations Arti
 ### Latex Representations
 
 Documents, Inverted Index and Query Cards are represented as LateX files. First the Documents have to be generated with
-its desired
-content and format. Later on the section will be enumerated
-to display the section number inside the documents, next to the current section.
+its desired content and format. Later on the section will be enumerated to display the section number inside the documents, next to the current section.
 Once the documents are generated and enumerated, the next step is to create an inverted index in LaTeX. The inverted
-index will be presented as a LaTeX
-table that maps each term to the documents and sections in which it appears.
+index will be presented as a LaTeX table that maps each term to the documents and sections in which it appears.
 
 The query cards will be also automatically generated, after the barcode and embedding generation.
 
@@ -50,7 +47,7 @@ This includes:
 
 The header for the documents used is structured like this:
 
-``` latex
+```latex
 \documentclass[a4paper, 10pt]{article}
 \usepackage{graphicx}
 \usepackage[T1]{fontenc}
@@ -98,11 +95,11 @@ fit the overall look.
 
 Some Excerpt of a sample document:
 
-``` latex
-\subsubsection*{\large Nach dem Tode} 
+```latex
+\subsubsection*{\large Nach dem Tode}
 „Albus Severus Potter, du bist nach zwei Schulleitern von Hogwarts benannt. Einer von ihnen war in Slytherin und er war wahrscheinlich der mutigste Mann, den ich je kannte. “
 \vspace{10pt}
-\newline 
+\newline
 — Harry Potter zu seinem Sohn über Severus Snape
 \vspace{10pt}
 \newline
@@ -112,18 +109,15 @@ Some Excerpt of a sample document:
 Neunzehn Jahre nach dem Sieg über Lord Voldemort machte sich der jüngere von Harry Potters Söhnen, der den Namen Albus Severus, trägt, Sorgen darüber, dass er statt für Gryffindor vielleicht für Slytherin ausgewählt würde. Darauf erklärte ihm Harry, dass Albus Severus nach einem sehr mutigen Schulleiter aus Slytherin benannt wurde.
 ```
 
-Due to the manual processing, resulting documents may vary regarding number of sections. Thus, the inverted
-index and resulting barcodes depend on the latex document sections and are independent from backend implementations.
+Due to the manual processing, resulting documents may vary regarding number of sections. Thus, the inverted index and resulting barcodes depend on the latex document sections and are independent from backend implementations.
 
 #### Enumeration
 
-In order to detect the corresponding section inside the latex documents, they have to be enumerated . The enumeration
-processed has been partially automated.
+In order to detect the corresponding section inside the latex documents, they have to be enumerated. The enumeration processed has been partially automated.
 
 #### `doc_enumerator.py`
 
-This script enumerates the documents meaning it adds the number of the section next to the
-section in the LateX Document.
+This script enumerates the documents meaning it adds the number of the section next to the section in the LateX Document.
 
 The process involves three steps:
 
@@ -135,8 +129,7 @@ The process involves three steps:
 The generated LateX documents have to be provided inside the `latex-files/docs_latex/src/files/raw` folder.
 The script will load all documents, which are inside this folder automatically.
 
-The script first scans through the LaTeX document and adds a `%ABSATZ` comment after every `\newline` command because it
-will most likely represent a section.
+The script first scans through the LaTeX document and adds a `%ABSATZ` comment after every `\newline` command because it will most likely represent a section.
 The `%ABSATZ` comments serve as placeholders, allowing for manual adjustments.
 Users have to add or remove `%ABSATZ` comments because the automatic detection is not sufficient.
 Those can easily be detected by eye.
@@ -144,28 +137,27 @@ Those can easily be detected by eye.
 After the %ABSATZ comments are added, the script replaces each generated and manually added `%ABSATZ` comment with
 a `\marginpar{section number}` command. This command places the section number in the margin next to the corresponding
 section of the text.
-All comments will lateron be replaced by the LatEx command `\marginpar{>section number<}`.
+All comments will later on be replaced by the LatEx command `\marginpar{>section number<}`.
 
-All files will be saved in a specific folder in `latex-files/docs_latex/src/files/enumerated`. This folder will lateron
-be used by the inverted index.
+All files will be saved in a specific folder in `latex-files/docs_latex/src/files/enumerated`. This folder will later on be used by the inverted index.
 
 Result should look like this e.g. compared to before
 
-``` latex
+```latex
 \subsubsection*{\large Nach dem Tode}
-\marginpar{16} 
+\marginpar{16}
 „Albus Severus Potter, du bist nach zwei Schulleitern von Hogwarts benannt. Einer von ihnen war in Slytherin und er war wahrscheinlich der mutigste Mann, den ich je kannte. “
 \vspace{10pt}
 \newline
-\marginpar{17}  
+\marginpar{17}
 — Harry Potter zu seinem Sohn über Severus Snape
 \vspace{10pt}
 \newline
-\marginpar{18}  
+\marginpar{18}
 (  Engl.  Albus Severus Potter, you were named after two headmasters of Hogwarts. One of them was a Slytherin and he was the bravest man I ever knew. )
 \vspace{10pt}
 \newline
-\marginpar{19}  
+\marginpar{19}
 Neunzehn Jahre nach dem Sieg über Lord Voldemort machte sich der jüngere von Harry Potters Söhnen, der den Namen Albus Severus, trägt, Sorgen darüber, dass er statt für Gryffindor vielleicht für Slytherin ausgewählt würde. Darauf erklärte ihm Harry, dass Albus Severus nach einem sehr mutigen Schulleiter aus Slytherin benannt wurde.
 ```
 
@@ -178,18 +170,17 @@ The inverted index for the latex documents is generated in:
 All previously generated documents from `latex-files/docs_latex/src/files/enumerated` will be used to create an inverted
 index
 on that documents. It uses NLP techniques to clean and preprocess the text, and it outputs the index in both LaTeX and
-JSON formats. 
+JSON formats.
 This involves several steps:
 
-- preprocessing  and cleaning the text (can be turned off)
+- preprocessing and cleaning the text (can be turned off)
 - generate the inverted index
 - generate a LateX table for it
 - generate a JSON Structure for it (separately)
 
-**Important: If preprocessing is turned off, this part will be skipped.**
+**IMPORTANT: If preprocessing is turned off, this part will be skipped.**
 Terms are cleaned and processed, filtering out specific number ranges, single letters, and floating-point numbers.
 A list of protected terms prevents essential keywords from being stemmed.
-
 
 Within `create_inverted_index()` the actual inverted index is created. It extracts each sections inside the document ("
 passages") with
@@ -202,31 +193,18 @@ Consecutive section numbers are abbreviated for brevity. The final LateX file wi
 to `latex-files/inverted_index_latex/index` as `inverted_index.tex`. This file can then be compiled inside LateX
 manually.
 
-Finally, the Json File will be generated inside `generate_json_file()` , which will saved inside `barcodes/invIndex`, to
-be used for the barcode generation lateron.
+Finally, the Json File will be generated inside `generate_json_file()` , which will saved inside `barcodes/invIndex`, to be used for the barcode generation later on.
 
-``` json
+```json
 {
-    "13e": [
-        "1-46"
-    ],
-    "1792": [
-        "1-107"
-    ],
-    "1874": [
-        "1-319"
-    ],
-    "1881": [
-        "1-1",
-        "1-6",
-        "1-7"
-    ],
-    "1892": [
-        "1-6",
-        "1-10"
-    ],
-    
-    ......
+	"13e": ["1-46"],
+	"1792": ["1-107"],
+	"1874": ["1-319"],
+	"1881": ["1-1", "1-6", "1-7"],
+	"1892": ["1-6", "1-10"]
+
+	//  ...
+}
 ```
 
 #### Query Card Generation
@@ -422,11 +400,7 @@ template has the following structure:
 \end{document}
 ```
 
-This LaTeX file will be used for the [Jinja2](https://github.com/pallets/jinja) environment, which is capable of
-generating LaTeX files using Python code. \
-In short, Jinja is a fast, expressive, extensible templating engine. Special placeholders in the template allow writing
-code similar to Python syntax. Then the template is passed data to render the final document. For future information of
-usage, please visit their documentation.
+This LaTeX file will be used for the [Jinja2](https://github.com/pallets/jinja) environment, which is capable of generating LaTeX files using Python code. In short, Jinja is a fast, expressive, extensible templating engine. Special placeholders in the template allow writing code similar to Python syntax. Then the template is passed data to render the final document. For future information of usage, please visit their documentation.
 
 Though, the most important lines which might need adjustment are:
 
@@ -509,6 +483,6 @@ text passage in `source-material/selected-passages.json`. One part contains ever
 used with the `sliding_window_cutting_template.pptx`. The other part contains the result after every word and the
 corresponding context has been read.
 
-#### `output`
+#### `output/`
 
 If you do not plan to change any values or parameters, you can print all files within the `output` directory.
