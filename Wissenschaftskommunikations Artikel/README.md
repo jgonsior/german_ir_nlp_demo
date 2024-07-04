@@ -640,6 +640,13 @@ def create_pdf(switch: str):
     subprocess.run([script_path, folder_path, output_path], check=True)
 ````
 
+#### Additional Information
+
+The handler call has two arguments that can be provided. Those two arguments are debugging arguments supposed to help 
+with figuring out potential bugs without needing to run the complete barcode creation process. If the `mode` variable is
+set to `single` the creations process stops after a specified amount of barcodes generated specified in the variable 
+`amount`.
+
 ### Additional JSON Files
 
 These files are used to more reliably create comparable and easily usable barcodes and are essential to this process.
