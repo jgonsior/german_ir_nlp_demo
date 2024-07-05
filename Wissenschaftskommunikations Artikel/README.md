@@ -13,7 +13,7 @@ various scripts, data sets, and other materials created for the event.
 
 ## Installation
 
-To run the code in the `./colored barcodes`, `./barcodes`, `./latex-files` and `./sliding-window` directory, follow 
+To run the code in the `./colored barcodes`, `./barcodes`, `./latex-files` and `./sliding-window` directory, follow
 these steps to create a virtual environment:
 
 ```bash
@@ -25,6 +25,23 @@ pip install -r Wissenschaftskommunikations Artikel/requirements.txt
 ## Usage
 
 Instructions for executing the code within the `Wissenschaftskommunikations Artikel` directory.
+
+### Execution Order
+
+The execution of the `Wissenschaftskommunikations Artikel` code needs to be done in a specific order to ensure that all
+output files are generated in the correct order. In the following list a comprehensive order of execution is shown:
+
+1. Execute `doc_enumerator.py` in `./latex-files/docs_latex`
+2. Execute `inverted_index.py` in `./latex-files/inverted_index_latex`
+3. Execute `barcode_generation.py` in `./barcodes/src`
+4. Execute `word2vec.py` in `./colored barcodes`
+5. Execute `generate_colored_barcodes.py` in `./colored barcodes`
+6. Execute `generate_solution_tex.py` in `./colored barcodes`
+7. Execute `query_card_generator.py` in `./latex-files/queries_latex/src`
+8. Execute `run_generator.py` in `./sliding-window`
+
+Executing the python scripts in this order will yield the expected result shown in the further explanation of the
+README.
 
 ----
 ### 1. Latex Representations
@@ -271,7 +288,7 @@ Merging of the pdfs from 2x A5 to A4 has to be done manually.
 ----
 
 For the creation of the 0/1 encoded barcodes there is one main source code file, three json files and two TeX stub files
-that are required to generate the barcodes. There is also one additional background file for one of the output barcodes. 
+that are required to generate the barcodes. There is also one additional background file for one of the output barcodes.
 This is a comprehensive list of all files needed for the creation of the barcodes:
 
 #### Source Code File
@@ -297,8 +314,8 @@ This is a comprehensive list of all files needed for the creation of the barcode
 
 This file handles all steps necessary to create a 0/1 encoded barcode. As input the barcode generation uses the inverted
 index generated from the `inverted_index.py` file explained in Section 1. Additionally, the files mentioned in
-additional files are used as input. From these files the barcodes for the questions and answers are generated. To 
-accomplish this the first step for creating a code is to extract all unique paragraphs from the inverted index. 
+additional files are used as input. From these files the barcodes for the questions and answers are generated. To
+accomplish this the first step for creating a code is to extract all unique paragraphs from the inverted index.
 
 ```py
 for word in index:
@@ -311,13 +328,13 @@ for question in questions:
         dict_questions[question] = []
 ```
 
-The next step is to generate the barcodes. For this step we use predefined dimensions that are stored in the 
-`dimensions.json`. The predefined dimensions are taken from the questions that can be found in the `questions.json`. A 
-detailed explanation as to how the dimensions and questions are connected will be given in a later Section called 
+The next step is to generate the barcodes. For this step we use predefined dimensions that are stored in the
+`dimensions.json`. The predefined dimensions are taken from the questions that can be found in the `questions.json`. A
+detailed explanation as to how the dimensions and questions are connected will be given in a later Section called
 Additional Files. These dimensions are then filled with randomly selected other dimensions until the amount evaluates to
-0 modulo 100. For these dimensions the codes are generated using the inverted index. If a paragraph contains the 
-currently selected word, a 1 is assigned if it does not contain the word a 0 is assigned. This step is repeated for the 
-questions that have been provided as input. The barcodes are stored in two dictionary one for each of the outputs 
+0 modulo 100. For these dimensions the codes are generated using the inverted index. If a paragraph contains the
+currently selected word, a 1 is assigned if it does not contain the word a 0 is assigned. This step is repeated for the
+questions that have been provided as input. The barcodes are stored in two dictionary one for each of the outputs
 questions and answers respectively.
 
 ```py
@@ -351,13 +368,13 @@ for doc in lst_para:
     dict_answers[doc] = dict_barcodes[doc]
 ```
 
-The filtered and finished barcodes for all three usages (answers, questions and dummy) are then drawn via cairo as SVGs 
-where 0 is encoded as a black stripe and 1 is encoded as a golden stripe. The colors for this can be set in the function 
-`draw_svg` under `context.set_source_rgb()` for both colors. Be aware that the color settings are not `0-255` but `0-1`. 
+The filtered and finished barcodes for all three usages (answers, questions and dummy) are then drawn via cairo as SVGs
+where 0 is encoded as a black stripe and 1 is encoded as a golden stripe. The colors for this can be set in the function
+`draw_svg` under `context.set_source_rgb()` for both colors. Be aware that the color settings are not `0-255` but `0-1`.
 
-The svgs are then used to create TeX files through the usage of the jinja2 templating engine in the function 
-`create_latex()`. These TeX files are then used to create PDF files through one of the shell or bash scripts provided in 
-the source folder. These are executed by the function `create_pdf()`. All created files will be output to 
+The svgs are then used to create TeX files through the usage of the jinja2 templating engine in the function
+`create_latex()`. These TeX files are then used to create PDF files through one of the shell or bash scripts provided in
+the source folder. These are executed by the function `create_pdf()`. All created files will be output to
 `barcodes_out/`, their respective classes (dummy, document or question) and file extensions (svg, tex and pdf).
 
 ```py
@@ -381,7 +398,7 @@ def create_pdf(switch: str):
         raise ValueError("Unsupported Operating System")
 
     script_path = os.path.join(os.getcwd(), script_name)
-    
+
     if os_name != "Windows":
         subprocess.run(["chmod", "+x", script_path], check=True)
 
@@ -390,9 +407,9 @@ def create_pdf(switch: str):
 
 #### Additional Information
 
-The handler call has two arguments that can be provided. Those two arguments are debugging arguments supposed to help 
+The handler call has two arguments that can be provided. Those two arguments are debugging arguments supposed to help
 with figuring out potential bugs without needing to run the complete barcode creation process. If the `mode` variable is
-set to `single` the creations process stops after a specified amount of barcodes generated specified in the variable 
+set to `single` the creations process stops after a specified amount of barcodes generated specified in the variable
 `amount`.
 
 ### Additional JSON Files
@@ -401,10 +418,10 @@ These files are used to more reliably create comparable and easily usable barcod
 
 `questions.json`
 
-This file contains all questions that were predetermined to be answered by the barcodes. These questions are 
-interchangeable with other question. If the questions are changed the dimensions and answers should also be changed as 
-the dimensions in `dimensions.json` are a representation of the most important tokens in the questions and the answers 
-in `answers.json` are specific paragraphs that answer the questions in the selected documents. The questions are sorted 
+This file contains all questions that were predetermined to be answered by the barcodes. These questions are
+interchangeable with other question. If the questions are changed the dimensions and answers should also be changed as
+the dimensions in `dimensions.json` are a representation of the most important tokens in the questions and the answers
+in `answers.json` are specific paragraphs that answer the questions in the selected documents. The questions are sorted
 by the document they are targeting.
 
 ```json
@@ -413,7 +430,7 @@ by the document they are targeting.
   "2": "Wer ist Dumbledore?",
   "3": "Welche ungewöhnliche Aktivität hat Dumbledore nach seiner Ernennung als Schulleiter von Hogwarts begonnen?",
   "4": "Wo wurde Dumbledore begraben?"
-  
+
   //...
 }
 ```
@@ -433,14 +450,14 @@ comparable between each other and should be adjusted as soon as the questions ar
   "6": "Schulleiter",
   "7": "Hogwarts",
   "8": "begonnen"
-  
+
   //...
 }
 ```
 
-`answers.json` 
+`answers.json`
 
-This file contains all the paragraph ids that are an answer to a question that is in the `questions.json`. If the 
+This file contains all the paragraph ids that are an answer to a question that is in the `questions.json`. If the
 questions are adjusted consider adjusting this file as well.
 
 ```json
@@ -456,7 +473,7 @@ questions are adjusted consider adjusting this file as well.
 
 ### Additional TeX Files
 
-These files are the essential templates for the jinja2 templating engine that creates the TeX files that are used to 
+These files are the essential templates for the jinja2 templating engine that creates the TeX files that are used to
 create the pdf files which can then be printed.
 
 `documents_stub.tex`
@@ -464,11 +481,12 @@ create the pdf files which can then be printed.
 This TeX file contains the necessary code to generate the A4 paper representation of the paragraphs from the documents
 that answer the questions from the `questions.json`. The idea is to use the jinja2 templating engine to create the
 environments needed for all the svgs of the paragraphs to be included in the pdf. Therefore, it uses the capabilities
-of jinja2 to be able to write python like code in code blocks like such `\BLOCK{}`. This creates the ability to use for 
+of jinja2 to be able to write python like code in code blocks like such `\BLOCK{}`. This creates the ability to use for
 loops and if statements to include all created SVGs in one pdf without knowing how many are created.
 
-The document Block then looks like this. Where all statement like `\BLOCK`, `# if` and `\VAR{}` are statements that get 
-evaluated to python-like code by the  jinja2 templating engine.
+The document Block then looks like this. Where all statement like `\BLOCK`, `# if` and `\VAR{}` are statements that get
+evaluated to python-like code by the jinja2 templating engine.
+
 ```latex
 \begin{document}
 \thispagestyle{empty}
@@ -501,8 +519,8 @@ evaluated to python-like code by the  jinja2 templating engine.
 
 The same method as above is used in the dummy barcode pdf creation process. In the end it looks quite similar, but it
 also incorporates the words used for dimensions that are then represented in the stripes of the SVG dummy barcode to
-show the words encoded in one stripe. This is done in a figure environment containing a TikZ picture environment 
-including the dummy SVG. There is also a background image used in the dummy barcode, this can be found and changed in 
+show the words encoded in one stripe. This is done in a figure environment containing a TikZ picture environment
+including the dummy SVG. There is also a background image used in the dummy barcode, this can be found and changed in
 `barcodes/assets/`.
 
 ```latex
