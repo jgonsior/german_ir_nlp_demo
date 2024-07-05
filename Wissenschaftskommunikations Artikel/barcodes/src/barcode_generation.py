@@ -14,11 +14,13 @@ import jinja2
 from nltk.corpus import stopwords
 from nltk.stem.snowball import SnowballStemmer
 
+# setup for the stemming process
 nltk.download("stopwords")
 stemmer = SnowballStemmer("german")
 stop_words = set(stopwords.words("german"))
 nlp = spacy.load("de_core_news_sm")
 
+# The latex jinja2 environment used for the creation of the TeX files through jinja2
 latex_jinja_env = jinja2.Environment(
     block_start_string=r"\BLOCK{",
     block_end_string="}",
@@ -35,6 +37,13 @@ latex_jinja_env = jinja2.Environment(
 
 
 def detect_os():
+    """
+    This function detects the operating system.
+
+    Returns: string name of the operating system
+
+    """
+
     os_name = platform.system()
     print(f"Detected OS: {os_name}")
     return os_name
@@ -43,8 +52,21 @@ def detect_os():
 def randomized_list_extension(
     lst_dimensions: list, lst_words: list, amount: int
 ) -> list:
+    """
+    Fill a given list with random unique elements no contained in the original list.
+
+    Args:
+        lst_dimensions: list of strings containing the dimensions of the barcodes
+        lst_words: list of words contained in the inverted index
+        amount: int number the modulo determining the amount of entries in the list
+
+    Returns: list that contains an amount of words modulo that evaluated to 0 modulo amount.
+
+    """
+
     unique_elements = set(lst_dimensions)
 
+    # extend the list of elements as long as the length of the output list modulo amount is not 0
     while len(lst_dimensions) % amount != 0:
         next_element = random.choice(lst_words)
 
@@ -58,6 +80,16 @@ def randomized_list_extension(
 
 
 def get_stemmed_list(tokens: str) -> list:
+    """
+    This method stems the question and dimension words to be comparable to the stemmed index.
+
+    Args:
+        tokens: string of word to be stemmed
+
+    Returns: stemmed list of tokens
+
+    """
+
     token_raw = set(str(token.lemma_.lower()) for token in nlp(tokens))
     token_raw = set(str(token.lemma_.lower()) for token in nlp(" ".join(token_raw)))
     lst_token = [stemmer.stem(token) for token in token_raw if token not in stop_words]
@@ -67,6 +99,18 @@ def get_stemmed_list(tokens: str) -> list:
 
 
 def draw_svg(name: str, barcode: list, identity: str, height: int, width: int):
+    """
+    This method creates the SVGs of the barcodes, using pyCAIRO, for later usage in the creation of the TeX and PDF
+    files.
+
+    Args:
+        name: identifier string of the document, question or dummy used as file name
+        barcode: list of zeros and ones of the drawn barcode
+        identity: string of document, question or dummy used as store location identifier
+        height: int determining the height of the barcodes
+        width: int determining the width of the barcodes
+
+    """
 
     if len(identity) == 9:
         identity_short = identity[:8]
@@ -75,6 +119,7 @@ def draw_svg(name: str, barcode: list, identity: str, height: int, width: int):
     else:
         identity_short = identity
 
+    # create the SVG file
     with cairo.SVGSurface(
         f"../barcodes_out/{identity}/svg/{identity_short}_{name}.svg",
         (len(barcode) * width),
@@ -83,22 +128,41 @@ def draw_svg(name: str, barcode: list, identity: str, height: int, width: int):
         context = cairo.Context(surface)
         for idx, numeral in enumerate(barcode):
             if numeral == 0:
+                # set RGB values for rectangle
                 context.set_source_rgb(0, 0, 0)
+                # draw the rectangle
                 context.rectangle(idx * width, 0, width, height)
                 context.fill_preserve()
+                # set RGB values for border
                 context.set_source_rgb(1, 1, 1)
+                # draw the border
                 context.set_line_width(2)
                 context.stroke()
             else:
+                # set RGB values for rectangle
                 context.set_source_rgb(1, 0.84, 0)
+                # draw the rectangle
                 context.rectangle(idx * width, 0, width, height)
                 context.fill_preserve()
+                # set RGB values for border
                 context.set_source_rgb(1, 1, 1)
+                # draw the border
                 context.set_line_width(2)
                 context.stroke()
 
 
 def create_latex(switch: str, dimensions=None, dummy=None):
+    """
+    This method invokes the jinja templating engine that creates the TeX files needed to create the PDFs for the
+    barcodes.
+
+    Args:
+        switch: string of either dummy, questions or documents
+        dimensions: list of strings containing the dimensions of the barcodes
+        dummy: list of zeros and ones of the dummy barcode
+    """
+
+    # load all existing SVGs for the class of TeX created
     pdf_path_files = f"../barcodes_out/{switch}/svg/"
     lst_file = []
     for file in os.listdir(pdf_path_files):
@@ -107,15 +171,20 @@ def create_latex(switch: str, dimensions=None, dummy=None):
 
     if dimensions is not None and dummy is not None:
         lst_file = sorted(lst_file)
+        # load the template file
         document_template = latex_jinja_env.get_template(f"{switch}_stub.tex")
+        # render the template file
         result_document = document_template.render(
             file=lst_file[0], dimensions=dimensions, dummy=dummy
         )
     else:
         lst_file = sorted(lst_file)
+        # load the template file
         document_template = latex_jinja_env.get_template(f"{switch}_stub.tex")
+        # render the template file
         result_document = document_template.render(lst_files=lst_file)
 
+    # write the created TeX file
     with open(
         f"../barcodes_out/{switch}/tex/{switch}.tex",
         "w",
@@ -124,9 +193,19 @@ def create_latex(switch: str, dimensions=None, dummy=None):
 
 
 def create_pdf(switch: str):
+    """
+    This method invokes the shell or bash scripts that start the pdflatex engine locally to create the PDFs from the
+    generated TeX files for the respective class of barcodes.
+
+    Args:
+        switch: string of either dummy, questions or documents
+
+    """
+
     folder_path = f"../barcodes_out/{switch}/tex"
     output_path = f"../barcodes_out/{switch}/pdf"
 
+    # check on which OS this is running to determine the script to use
     os_name = detect_os()
 
     if os_name == "Linux" or os_name == "Darwin":  # Linux or MacOS
@@ -147,6 +226,16 @@ def create_pdf(switch: str):
 
 
 def generate_dummy(dimension: int) -> list:
+    """
+    Create a randomized list of zeros and ones for the amount of words contained in the dimensions
+
+    Args:
+        dimension: list of strings as the dimensions
+
+    Returns: list of zeros and ones
+
+    """
+
     barcode = [random.choice([0, 1]) for _ in range(dimension)]
 
     return barcode
@@ -155,18 +244,33 @@ def generate_dummy(dimension: int) -> list:
 def create_dimension_codes(
     index: dict, questions: dict, dimensions: list
 ) -> tuple[dict, dict]:
+    """
+    This method create the 0/1 lists that represent the barcodes that are then drawn as an SVG and put into PDFs.
+
+    Args:
+        index: dictionary of the inverted index
+        questions: dictionary of the questions
+        dimensions: list of the words used as dimensions
+
+    Returns: two dictionaries, one for the document barcodes and one for the question barcodes
+
+    """
+
     dict_barcodes = {}
     dict_questions = {}
 
+    # create a dictionary of lists of all documents (paragraphs) contained in the inverted index
     for word in index:
         for doc in index[word]:
             if doc not in dict_barcodes:
                 dict_barcodes[doc] = []
 
+    # create a dictionary of lists of all questions contained in the questions dictionary
     for question in questions:
         if question not in dict_questions:
             dict_questions[question] = []
 
+    # create the lists containing dimensions length of zeros or ones for every document in the documents dictionary
     for word in dimensions:
         lst_keys = list(dict_barcodes.keys())
         for doc in index[word]:
@@ -175,6 +279,7 @@ def create_dimension_codes(
         for key in lst_keys:
             dict_barcodes[key].append(0)
 
+    # create the lists containing dimension length of zeros or ones for every question in the questions dictionary
     for question in questions:
         question_string = questions[question].replace("?", "")
         question_token = get_stemmed_list(question_string)
@@ -197,21 +302,23 @@ def generate_barcodes(
     mode: str,
 ):
     """
+    This method handles all the creation of barcodes and logging that is provided. It loads the initial files from the
+    provided path variables. It does the filtering of the final created barcodes and then creates all necessary output
+    files for the creation of the PDFs.
 
     Args:
-        index_file:
-        questions_file:
-        dimension_file:
-        answer_file:
-        amount:
-        mode:
-
-    Returns:
-
+        index_file: path string to the inverted index file
+        questions_file: path string to the questions file
+        dimension_file: path string to the dimensions file
+        answer_file: path string to the answer file
+        amount: int number for the amount of barcodes to generate
+        mode: string single or empty for debug purposes
     """
 
     print(f"{datetime.datetime.now()}")
     print("Loading files...")
+
+    # Load the inverted index, questions, dimensions and answers for the barcode creation
     with open(index_file, "r", encoding="utf8") as infile:
         inv_index = json.load(infile)
     with open(questions_file, "r", encoding="utf8") as infile:
@@ -226,6 +333,8 @@ def generate_barcodes(
     print("Done loading files...")
     print("Generating barcodes...")
 
+    # create barcodes based on either the given dimensions or create a randomized dimension list that contains 30
+    # dimensions
     if not dimensions:
         dict_barcodes, dict_questions = create_dimension_codes(
             inv_index, questions, list(inv_index.keys())
@@ -251,6 +360,8 @@ def generate_barcodes(
         )
         dummy = generate_dummy(len(lst_dimensions))
 
+    # filter the document barcode dictionary for the predetermined answers and reduce the barcode dictionary to just
+    # those
     if answers:
         lst_doc = []
         for word in inv_index:
@@ -267,8 +378,9 @@ def generate_barcodes(
         dict_barcodes = dict_answers
 
     print("Done generating barcodes...")
-
     print("Generating svg files...")
+
+    # Generate all SVG files from the dictionaries for questions, documents and dummies
     if mode == "single":
         for idx, barcode in enumerate(dict_barcodes):
             print(f"Drawing SVG for barcode {barcode}")
@@ -295,7 +407,11 @@ def generate_barcodes(
 
         print("Drawing SVG for the dummy barcode...")
         draw_svg("dummy", dummy, "dummy", 500, 30)
+
     print("Done generating svg files...")
+
+    # Generate all output files, TEX and PDF, from the SVGs for the document barcodes, question barcodes and dummy
+    # barcode
     for switch in ["documents", "questions", "dummy"]:
         print(f"Generating TEX files for {switch}!")
         if switch == "dummy":
@@ -313,6 +429,12 @@ def generate_barcodes(
 
 
 def create_output_structure():
+    """
+    Create the output directory structure for the barcodes including SVG, TEX and PDF folders. If there are already SVGs
+    in the output directory, they will be deleted to ensure the creation process creates the right amount of SVGs. This
+    is done for all different outputs, documents, questions and dummy barcodes.
+    """
+
     for switch in ["documents", "questions", "dummy"]:
         if os.path.exists(f"../barcodes_out/{switch}/svg/"):
             if len(os.listdir(f"../barcodes_out/{switch}/svg/")) != 0:
@@ -339,6 +461,18 @@ def create_output_structure():
 
 
 def handler(amount: int, mode: str):
+    """
+    This function handles the setup of the creation process. It checks if all necessary files are present and enters the
+    paths into a variable for it. It then calls the structural creation process before actually starting the barcode
+    generation process.
+
+    The arguments that can be given are DEBUG ARGUMENTS and should not be used if the script is used apart from
+    debugging.
+    Args:
+        amount: int between 1 and infinite
+        mode: single or empty string
+    """
+
     if len(os.listdir("../invIndex/")) < 2:
         raise Exception(
             "No inverted index, question or dimension files found."
