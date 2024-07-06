@@ -43,6 +43,15 @@ output files are generated in the correct order. In the following list a compreh
 Executing the python scripts in this order will yield the expected result shown in the further explanation of the
 README.
 
+### Manual Adjustments
+
+Before running the scripts in `./latex-files` some files have to be provided manually
+
+ 1. Documents from wiki have to be generated manually in any LaTeX editor
+ 2. Document files have to be placed as **tex** files inside `./latex-files/docs_latex/src/files/raw`
+ 3. After enumeration with `doc_enumerator.py` some additional comments may have to be added manually (see doc for more info)
+ 4. The `query_card_generator.py` script requires a txt file inside `./latex-files/queries_latex/res`, which contains the questions with additional information about difficulty and possible spoiler content (see doc)
+
 ----
 ### 1. Latex Representations
 ----
