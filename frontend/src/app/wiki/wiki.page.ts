@@ -1,6 +1,5 @@
 import {
   AfterViewChecked,
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ElementRef,
@@ -17,13 +16,14 @@ import {ResponseParsingService} from "../services/response-parsing-service";
 import {DataTransferService} from "../services/data-transfer.service";
 import {WordEmbedding} from "../types/word-embedding-response";
 import Color from "color";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-wiki',
   templateUrl: './wiki.page.html',
   styleUrls: ['./wiki.page.scss'],
 })
-export class WikiPage implements OnInit, AfterViewChecked, AfterViewInit {
+export class WikiPage implements OnInit, AfterViewChecked {
   public docName: String;
   public wikiPage!: ParsedQueryResponseDocument;
   public paragraph_id: string;
@@ -52,11 +52,9 @@ export class WikiPage implements OnInit, AfterViewChecked, AfterViewInit {
     this.data.getDocomentById(parseInt(idx, 10)).then((res) => {
       this.wikiPage = ResponseParsingService.parseDocumentResponse(res);
       this.scrolledToParagraph = false
-      console.log('wikiData', this.wikiPage);
 
       let search_result = this.dataTransferService.getData()
       this.searchedParagraph = ResponseParsingService.unescapeHtml(search_result.passage);
-      console.log('Query Response Data', this.searchedParagraph);
       this.data.getWordEmbedding(search_result.passage, query).then((res) => {
         let shouldTrashHeading = false
         this.wordembeddings = res.filter((item) => {
@@ -71,27 +69,10 @@ export class WikiPage implements OnInit, AfterViewChecked, AfterViewInit {
           return true;
         });
       })
-
-      let paragraphs = this.wikiPage.text.
-      filter((item) => item.type == ParsedDocumentTextTypes.normal_text_passage)
-        .map((item) => {
-        return item.content;
-      });
-
-      paragraphs.forEach((text, index) => {
-        if (search_result.passage.includes(text)) {
-          console.log('Check yielded true');
-          this.paragraph_id = '#' + index;
-          console.log(this.paragraph_id);
-        }
-      });
     });
     this.route.queryParams.subscribe((p) => {
       this.searchText = p['query'];
     });
-  }
-
-  ngAfterViewInit() {
   }
 
   ngAfterViewChecked() {
@@ -178,7 +159,7 @@ export class WikiPage implements OnInit, AfterViewChecked, AfterViewInit {
   protected readonly ParsedDocumentTextTypes = ParsedDocumentTextTypes;
 
   createColorFromEmbedding(embedding: WordEmbedding) {
-    return Color('#EF6200').alpha(embedding.embedding);
+    return Color(environment.embeddingColor).alpha(embedding.embedding);
   }
 
   compareParagraphs(searchedParagraph: string, strcompare: string) {
