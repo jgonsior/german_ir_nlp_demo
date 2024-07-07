@@ -1,10 +1,19 @@
-## How to start
+# Frontend
+
+This folder of the repository `german_ir_nlp_demo` contains the code and resources used during the Long Night of Science and 
+Technology (LNDW). It includes various scripts, data sets, and other materials created for the event.
+
+---
+Prerequisites
+---
+
+### How to start
 
 - Install node & npm
 - Install ionic cli global: `npm install -g @ionic/cli`
 - Run ionic project: `ionic serve`
 
-## How to build the application for lndw
+### How to build the application for lndw
 
 - Follow the setup instructions
 - install the dependencies: `npm i`
@@ -13,6 +22,24 @@
 - use one of the following
 - run `ionic build --prod`
 - run `cd www && npx http-server` or serve by any other webserver
+
+## Overall Structure
+
+The Frontend for the `german_ir_nlp_demo` consists of three main pages. The pages include a `homepage`, a `search-result page` and
+a `wikipage`. Additionally, there is an `error page` that intercepts any errors that may happen and visualizes that there was an
+error. For better implementation the logic of the Frontend is divided into multiple components such that they can be worked on
+separately. Furthermore, there are special predefined types that are required for the frontend to work properly.
+For each of the components and for the types a folder exists in `./src/app`.
+
+In the first section the `styling` of the Frontend is explained. The second section consists of the explanation of the `services`
+and their functionality used in the Frontend. The third section includes an explanation of the logic of the `homepage` and
+`search-result` page. The last section explains the main functionality of the `wikipage`.
+
+### Environment Variables
+
+All environment variables can be found in `./src/environments`. The main variables to note here are the `baseUrl` and 
+`embeddingColor`. The `baseUrl` variable is used to specify the URL that the backend API is deployed to. The 
+`embeddingColor` variable is used to specify the color for the background of the important words in the `wikipage`.
 
 ---
 
@@ -31,13 +58,21 @@ All images used are AI generated. The image of the home component was generated 
 The other images were generated with the Ai Generator from deepai [see](https://deepai.org/machine-learning-model/text2img)
 
 An image with the corresponding settings to maintain the same style can be found [here](src\theme\Image.PNG)
-\*Please note that it may be necessary to generate several times until the desired style is achieved.
+*Please note that it may be necessary to generate several times until the desired style is achieved.*
 
 ---
 
 # 2. Services
 
-The httpclient gets injected per DI. The IP addresses of the backend server are defined in the `environment.ts` and `environment.prod.ts` files depending on the flavor. The classes are automatically parsed based on the specified classes. Errors are caught by the HttpInterceptor and forwarded to the error page.
+In this section an explanation of the main services used in the frontend are explained. Therefore, it takes a look
+the `DataService`, the `DataTransferService`, the `ResponseParsingService` and the `SimpleHTTPInterceptor`. All the
+important files for the services can be found in `./src/app/services`.
+
+## DataService and SimpleHTTPInterceptor
+
+The httpclient gets injected per DI. The IP addresses of the backend server are defined in the `environment.ts` and 
+`environment.prod.ts` files depending on the flavor. The classes are automatically parsed based on the specified 
+classes. Errors are caught by the HttpInterceptor and forwarded to the error page.
 
 ```ts
   public async getQueryResults(query: String): Promise<QueryResponseResult[]> {
@@ -55,17 +90,107 @@ The httpclient gets injected per DI. The IP addresses of the backend server are 
   }
 ```
 
+```ts
+intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  return next.handle(req)
+    .pipe(
+      retry(1),
+      catchError((returnedError) => {
+        let errorMessage = null;
+
+        if (returnedError.error instanceof ErrorEvent) {
+          errorMessage = `Error: ${returnedError.error.message}`;
+        } else if (returnedError instanceof HttpErrorResponse) {
+          errorMessage = `Error Status ${returnedError.status}: ${returnedError.error.error} - ${returnedError.error.message}`;
+          if(!req.url.includes('word_embeddings')) {
+            this.router.navigateByUrl('/error')
+          }
+        }
+
+        console.error(errorMessage ? errorMessage : returnedError);
+
+        return of(returnedError);
+      })
+    )
+}
+```
+
+## DataTransferService
+
+The `DataTransferService` is a simple service to get and set data when transitioning from the `search-result` page to the 
+`wikipage`. It consists of two simple methods which are `setData()` and `getData()`. This service is able to send data 
+via the different components when a specific interaction on the `search-result` page is performed. It is needed to 
+not pollute the url with unnecessary information. For the `wikipage` it is used to provide the original paragraph ranked 
+in the ColBERT model to highlight and scroll to on the `wikipage` for the document. The most important part of the service
+is show in the code snippet below:
+
+```ts
+setData(data: QueryResponseResult): void {
+  this.data = data;
+}
+
+getData(): QueryResponseResult {
+  return this.data;
+}
+```
+
+## ResponseParsingService
+
+This service is used to parse the text information of a retrieved document from the Backend API. The Service takes 
+the text information stored in the `QueryResponseDocument` and filters the headings and paragraphs into their
+respective order. This is done by splitting the text off the heading in [] brackets that is in front of every string
+in the list of strings contain in the `QueryResponseDocument`. If the heading in front of the string has been seen 
+already the following text is added to the headings paragraphs if the heading hasn't been seen it is added as a new
+heading. If there are multiple headings following after each other in brackets a depth variable is increased for 
+every heading to keep track of the headings position in the original document. In the following code snippet the 
+most important parts of the `ResponseParsingService` are shown:
+
+```ts
+static parseDocumentResponse(response: QueryResponseDocument): ParsedQueryResponseDocument {
+  const parsedDocument: ParsedQueryResponseDocument = {title: response.title, text: []};
+  for (let textPassage of response.text) {
+    let text = ''
+    if(textPassage.startsWith('[') && textPassage.includes(']')){
+      const headerSection = textPassage.split(']')[0].replace('[', '')
+      const headers = headerSection.split(', ');
+      let i = 0;
+      for (let header of headers) {
+        if(!this.wasHeadingCreated(parsedDocument, this.unescapeHtml(header))) {
+          parsedDocument.text.push({
+            type: ParsedDocumentTextTypes.heading,
+            depth: i,
+            content: this.unescapeHtml(header)
+          });
+          i++;
+        }
+      }
+      text = textPassage.split(']')[1]
+    }else{
+      text = textPassage
+    }
+    parsedDocument.text.push({
+      type: ParsedDocumentTextTypes.normal_text_passage,
+      depth: 0,
+      content: text
+    });
+  }
+  return parsedDocument;
+}
+```
+
 ---
 
 # 3. Home Page and Search Results Page
 
 The homepage is based on the UI structure of other major search engines. The view is minimalist and is intended to guide the user in a targeted manner.
 
-The search-results page uses paging for loading small chunks of data. Ionic's `ion-infinite-scroll` is used here. On every page that contains a searchbar (except for the homepage) a listener is registered on the query parameters of the URL in order to always adapt the input of the searchbar to the current query. To enable optimal UI handling for mobile versions, a swipe-to-refresh function has also been implemented.
+The search-results page uses paging for loading small chunks of data. Ionic's `ion-infinite-scroll` is used here. On every page that contains a 
+searchbar (except for the homepage) a listener is registered on the query parameters of the URL in order to always adapt the input of the 
+searchbar to the current query. To enable optimal UI handling for mobile versions, a swipe-to-refresh function has also been implemented.
 
 The design of a single search result is implemented as a separate component `search-answer`. It is connected by code in the `search-results` list.
 
-```html
+```angular17html
 <app-search-answer
   *ngFor="let queryResponseResult of queryResults"
   [queryResponseResult]="queryResponseResult"
@@ -76,11 +201,12 @@ The design of a single search result is implemented as a separate component `sea
 
 New Components can be automatically generated by `ionic generate page [name]` or `ionic generate component [name]`
 
-Angular's two-way binding is the easiest way to connect an input field with the component class. Simply add an `[(ngModel)]="searchText"` to the input and the corresponding string variable to the component class.
+Angular's two-way binding is the easiest way to connect an input field with the component class. Simply add an `[(ngModel)]="searchText"` to the 
+input and the corresponding string variable to the component class.
 
 ---
 
-# 2. WikiPage
+# 4. WikiPage
 
 All code and files need for this component to work can be found in `./src/app/wiki`. The most important files for the functionality of
 the wiki page are `wiki.page.ts` and `wiki.page.html`.
