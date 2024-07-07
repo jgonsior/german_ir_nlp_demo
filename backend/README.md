@@ -181,8 +181,8 @@ You need following file:
 
 ### Prepare Corpus:
 
-Prepare `corpus.jsonl` like in [data sample](URL)
-You may use the `corpus.py` script to create corpus.jsonl from preprocessed wiki JSON file.
+Prepare `corpus.jsonl` like in [data sample](https://github.com/jgonsior/german_ir_nlp_demo/tree/gpl-doc/backend/query_generation/hp_gpl/sample-data).
+Execute the `corpus.py` script to create the `corpus.jsonl` from preprocessed wiki JSON file.
 Adjust `dir` path for target training data directory
 
 Note: working directory should be `./query_generation/hp_gpl`
@@ -193,5 +193,6 @@ Execute `qgen.py` to generate queries and hard negatives, based on the `corpus.j
 and to split the generated data into `train_triples.jsonl`, `eval_triples.jsonl`, and `test_triples.jsonl` sets.
 These files are used for the training and evaluation.
 Change `generator` and `retrievers` parameters to use different models for query generation and hard negatives.
+Adjust `data_dir` path for target training data directory.
 
 Note: Other generated files `qgen-qrels/train.tsv`, `data.json`, `hard-negatives.jsonl`, and `qgen-queries.jsonl` are only needed during the creation of the other files. May delete afterwards.
