@@ -1,6 +1,6 @@
 # Wissenschaftskommunikations Artikel
 
-This repository contains the code and resources used during the Long Night of Science and Technology (LNDW). It includes
+This folder of the repository contains the code and resources used during the Long Night of Science and Technology (LNDW). It includes
 various scripts, data sets, and other materials created for the event.
 
 ## Prerequisites
