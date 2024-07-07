@@ -11,4 +11,6 @@ This folder contains the code and resources used for the `Wissenschaftskommunika
 
 ## Frontend
 
+This folder contains the code and resources used for the `Frontend` during the Long Night of Science and Technology (LNDW) in Dresden. It encompasses an AngularJS based webpage devided into multiple components, the assets for the webpage styling and any other necessary code or files that are needed to create the `Frontend` for the project. The Frontend demonstrates the search engines capabilites and abilities focusing on a educational visualization of the underlying mechanisms. The `README.md` inside the folder provides detailed instructions on the prerequisites, installation, and usage of the code.
+
 ## Unity
