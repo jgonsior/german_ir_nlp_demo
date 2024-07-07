@@ -4,7 +4,7 @@ import format_json
 
 def create_corpus(dir: str):
     """    
-    create corpus.jsonl for gpl query generation from preprocessed wiki
+    create corpus.jsonl for gpl query generation from preprocessed wiki json
 
     Arguments:
         dir -- target directory, where corpus.jsonl should be written at
