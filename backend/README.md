@@ -3,6 +3,9 @@
 ## Deploy Backend Server
 
 Using [Conda](https://docs.anaconda.com/free/miniconda/) makes it quick and easy to set up packages because it provides precompiled binaries, avoiding manual compilation.
+If you want to train install CUDA as well.
+
+To correctly integrate the Ragatouille ColBERT model into the Flask app, the paths for the index and checkpoint folder must be defined in the `backend/config.ini`. The path for checkpoints can be freely chosen. However, we have not found a way to change the paths for the indexes in the configuration files, which means the path depends on the training and evaluation setup.
 
 ```bash
 # setup env
@@ -13,12 +16,9 @@ conda activate RAG_env_conda
 # deploy
 bash deploy_project.sh
 ```
-
-The Flask API is now accessible under `localhost:8080`
-
 ## Flask Endpoints
 
-Our application defines three key endpoints in `app/main/routes.py`:
+After deployment the Flask API is accessible under `localhost:8080`. Our application defines three key endpoints in `app/main/routes.py`:
 
 1. **/search**
 
@@ -26,10 +26,6 @@ Our application defines three key endpoints in `app/main/routes.py`:
    - **Method**: GET
    - **Parameters**: `q` (query string)
    - **Return Value**: JSON object containing the best match passage.
-   - **Example**:
-     ```bash
-     curl -X GET "http://localhost:8080/search?q=Wie alt ist Harry Potter"
-     ```
 
 2. **/document**
 
@@ -37,10 +33,6 @@ Our application defines three key endpoints in `app/main/routes.py`:
    - **Method**: GET
    - **Parameters**: `id` (document identifier)
    - **Return Value**: JSON object containing the document.
-   - **Example**:
-     ```bash
-     curl -X GET "http://localhost:8080/document?id=12345"
-     ```
 
 3. **/word_embeddings**
 
@@ -48,17 +40,8 @@ Our application defines three key endpoints in `app/main/routes.py`:
    - **Method**: POST
    - **Parameters**: JSON body containing `query` (string) and `paragraph` (string)
    - **Return Value**: JSON object with scores for each word.
-   - **Example**:
-     ```bash
-     curl -X POST "http://localhost:8080/word_embeddings" -H "Content-Type: application/json" -d '{"query": "", "paragraph": ""}'
-     ```
 
 ## Training and Evaluation
-
-### Installation
-
-Install the Conda Environment as described above or use `backend/scripts/setup_conda_env.sh` if you only want to train.
-Install CUDA.
 
 ### Data Preprocessing
 
