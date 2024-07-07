@@ -1,6 +1,6 @@
 # Backend
 
-# Prerequisites
+## Prerequisites
 Using [Conda](https://docs.anaconda.com/free/miniconda/) makes it quick and easy to set up packages because it provides precompiled binaries, avoiding manual compilation.
 If you want to train install CUDA as well.
 
@@ -33,11 +33,7 @@ conda env create -f RAG_env_conda.yml
 conda activate RAG_env_conda
 ```
 
----
-
-## Preprocessing
-
----
+## 1. Preprocessing
 
 The preprocessing sections contains all the necessary scripts to download and prepare the data for our project.
 
@@ -107,11 +103,7 @@ though these are usually just empty space symbols.
 1. Adjust the `file_path` to point to the preprocessed `.json` file.
 2. Execute `python process_unicode_characters.py`
 
----
-
-## Training and Evaluation
-
----
+## 2. Training and Evaluation
 
 ### Installation
 
@@ -119,10 +111,6 @@ though these are usually just empty space symbols.
 Install the Conda Environment as described [HERE](#RAGatouille-setup), or use `backend/scripts/setup_conda_env.sh` if you only want to train.
 
 - **NOTE: Make sure that CUDA drivers are installed**
-
-
-## Training and Evaluation
-
 
 ### Data Preprocessing
 
@@ -202,7 +190,9 @@ All checkpoints (one for each partition in each epoch) and their indexes are sto
 The best final checkpoint (after all train datasets were applied) is copied along with its index to `backend/data/colbert/best` and its statistics are added to `backend/data/statistics/best_statistics.csv` and visualized in `backend/data/statistics/best_checkpoints.pdf`.
 
 
-### Flask Endpoints
+## 3. Flask Endpoints
+
+
 After deployment the Flask API is accessible under `http://localhost:8080`. Our application defines three key endpoints in `app/main/routes.py`:
 1. **/search**
    - **Description**: Returns the best 100 match passages for a given query `q`.
