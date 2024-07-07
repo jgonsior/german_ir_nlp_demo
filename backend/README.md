@@ -5,7 +5,6 @@ If you want to train install CUDA as well.
 
 ```bash
 # setup environment for training and deployment
-cd backend/
 conda env create -f RAG_env_conda.yml
 conda activate RAG_env_conda
 ```
@@ -13,7 +12,7 @@ conda activate RAG_env_conda
 ## Flask
 ### Deploy Backend Server
 
-To correctly integrate the ColBERT model into the Flask app, the paths for the index and checkpoint folder must be defined in `backend/config.ini`. The path for checkpoints can be freely chosen. However, we have not found a way to change the paths for the indexes in the configuration files, which means the path depends on the training and evaluation setup.
+To correctly integrate the ColBERT model into the Flask app, the paths for the index and checkpoint folder must be defined in `config.ini`. The path for checkpoints can be freely chosen. However, we have not found a way to change the paths for the indexes in the configuration files, which means the path depends on the training and evaluation setup.
 
 ```bash
 # deploy
