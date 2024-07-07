@@ -15,8 +15,8 @@ def parse_csv(path):
         headers = next(reader)
         for row in reader:
             key = row[0]
-            value = list(map(float, row[1:-1]))
-            ext_value = value + [row[-1]]
+            value = list(map(float, row[1:]))
+            ext_value = value
             position_data[key] = value
             ext_data[key] = ext_value
 
