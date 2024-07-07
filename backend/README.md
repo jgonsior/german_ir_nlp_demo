@@ -5,8 +5,7 @@ Using [Conda](https://docs.anaconda.com/free/miniconda/) makes it quick and easy
 If you want to train install CUDA as well.
 
 - Required for `./preprocessing`: **Python 3.9.X**
-- Required for `./query_generation/hp_gpl`: **Python 3.10.X**
-- Required for `./RAGatouille`: A Conda Environment, such as: [Miniconda](https://docs.anaconda.com/free/miniconda/) and **CUDA** Drivers.
+- Required for `./query_generation/hp_gpl` & for `./RAGatouille`: A Conda Environment, such as: [Miniconda](https://docs.anaconda.com/free/miniconda/) using **Python 3.10.X** and **CUDA** Drivers.
 
 ## Installation
 
