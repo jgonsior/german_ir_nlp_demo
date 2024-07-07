@@ -1,4 +1,5 @@
 # Backend
+This folder of the repository contains the code and Setup for the backend using Conda for package management and CUDA for training. It also has installation instructions on the necessary Python versions and environments and deployment of the Flask API.
 
 ## Prerequisites
 Using [Conda](https://docs.anaconda.com/free/miniconda/) makes it quick and easy to set up packages because it provides precompiled binaries, avoiding manual compilation.
