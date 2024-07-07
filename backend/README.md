@@ -2,24 +2,56 @@
 
 ## Deploy Backend Server
 
-Install Conda Environment: [Miniconda](https://docs.anaconda.com/free/miniconda/)
+Using [Conda](https://docs.anaconda.com/free/miniconda/) makes it quick and easy to set up packages because it provides precompiled binaries, avoiding manual compilation.
 
-```python
+```bash
 # setup env
+cd backend/
 conda env create -f RAG_env_conda.yml
 conda activate RAG_env_conda
 
 # deploy
-python run.py
+bash deploy_project.sh
 ```
 
-Die Flask API ist nun unter `localhost:8080` erreichbar und erwartet eine GET-Anfrage an dem Endpunkt `/search`
+The Flask API is now accessible under `localhost:8080`
 
-**Beispiel**
+## Flask Endpoints
 
-```python
-http://localhost:8080/search?q=Wer hat Snape ermordet?
-```
+Our application defines three key endpoints in `app/main/routes.py`:
+
+1. **/search**
+
+   - **Description**: Returns the best 100 match passages for a given query `q`.
+   - **Method**: GET
+   - **Parameters**: `q` (query string)
+   - **Return Value**: JSON object containing the best match passage.
+   - **Example**:
+     ```bash
+     curl -X GET "http://localhost:8080/search?q=Wie alt ist Harry Potter"
+     ```
+
+2. **/document**
+
+   - **Description**: Returns the whole document by the given parameter `id`.
+   - **Method**: GET
+   - **Parameters**: `id` (document identifier)
+   - **Return Value**: JSON object containing the document.
+   - **Example**:
+     ```bash
+     curl -X GET "http://localhost:8080/document?id=12345"
+     ```
+
+3. **/word_embeddings**
+
+   - **Description**: Returns a score between 0 and 1 for each word to indicate how important the word was in matching the defined query.
+   - **Method**: POST
+   - **Parameters**: JSON body containing `query` (string) and `paragraph` (string)
+   - **Return Value**: JSON object with scores for each word.
+   - **Example**:
+     ```bash
+     curl -X POST "http://localhost:8080/word_embeddings" -H "Content-Type: application/json" -d '{"query": "", "paragraph": ""}'
+     ```
 
 ## Training and Evaluation
 
