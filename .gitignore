@@ -58,6 +58,7 @@ cover/
 *.mo
 *.pot
 
+
 # Django stuff:
 *.log
 local_settings.py
@@ -172,6 +173,10 @@ backend/data/qa/HP/passages.csv
 backend/data/qa/HP/train_triples.jsonl
 backend/data/qa/XQA/dump
 backend/data/qa/XQA
+
+
+Wissenschaftskommunikations Artikel/colored barcodes/generated barcodes/latex logs
+Wissenschaftskommunikations Artikel/colored barcodes/answers/inkscape_out
 
 .ragatouille
 # Ignore everything in backend/data/colbert
