@@ -18,20 +18,20 @@
 
 # 1. Styling
 
-Jede Komponente hat ihr eigenes jeweiliges Styling im jeweiligen Ordner der Komponente, [siehe](src\app\home\home.page.scss) zum Beispiel.
-Anpassungen für die Searchbars und dem large viewport wurden jedoch in der [global.scss](src\global.scss) getroffen.
-Des Weiteren sind die einzelnen Farben und auch andere Variablen in der [variables.scss](src\theme\variables.scss) festgehalten.
-Die hauptsächlich verwendeten Farben der Anwendung enthalten dabei --ion-color-custom-* im Namen und sind abgestimmt mit dem Titelbild, 
-welches zu der Home Komponente gehört.
+Each component has its own styling in the respective component folder, as an example [see](src\app\home\home.page.scss).
+However, adjustments for the searchbars and the large viewport were made in [global.scss](src\global.scss).
+The individual colours and other variables are also stored in [variables.scss](src\theme\variables.scss).
+The main colours used in the application contain --ion-color-custom-* in the name and are coordinated with the cover image, 
+which belongs to the home component.
 
 ## Verwendete Bilder
 
-Alle verwendeten Bilder sind KI generiert. Das Bild der Home Komponente wurde dabei mit dem Microsoft AI Image Generator, 
-[siehe](https://create.microsoft.com/en-us/features/ai-image-generator), generiert und anschließend entsprechend der Bedürfnisse angepasst.
-Die anderen Bilder wurden, mit dem Ai Generator von deepai generiert [siehe](https://deepai.org/machine-learning-model/text2img)
+All images used are AI generated. The image of the home component was generated with the Microsoft AI Image Generator, 
+[see](https://create.microsoft.com/en-us/features/ai-image-generator), and then customised according to the requirements.
+The other images were generated with the Ai Generator from deepai [see](https://deepai.org/machine-learning-model/text2img)
 
-Ein Bild mit den entsprechenden Einstellungen zur Erhaltung desselben Stils, befindet sich [hier](src\theme\Image.PNG)
-*Dabei ist zu beachten, dass gegebenenfalls mehrmals generiert werden muss bis der gewünschte Stil erreicht wird.*
+An image with the corresponding settings to maintain the same style can be found [here](src\theme\Image.PNG)
+*Please note that it may be necessary to generate several times until the desired style is achieved.
 
 ---
 # 2. Services
