@@ -1,0 +1,10 @@
+{"qid": "genQ1", "pos": ["1"], "neg": {"msmarco-distilbert-base-v3": ["32", "2", "3", "4", "7", "6", "8", "5", "31"]}}
+{"qid": "genQ2", "pos": ["2"], "neg": {"msmarco-distilbert-base-v3": ["1", "32", "3", "4", "8", "5", "6", "31", "7"]}}
+{"qid": "genQ3", "pos": ["3"], "neg": {"msmarco-distilbert-base-v3": ["5", "32", "1", "2", "4", "7", "6", "8", "31"]}}
+{"qid": "genQ4", "pos": ["31"], "neg": {"msmarco-distilbert-base-v3": ["5", "8", "32", "2", "1", "6", "3", "4", "7"]}}
+{"qid": "genQ5", "pos": ["32"], "neg": {"msmarco-distilbert-base-v3": ["4", "8", "1", "5", "3", "2", "31", "6", "7"]}}
+{"qid": "genQ6", "pos": ["4"], "neg": {"msmarco-distilbert-base-v3": ["32", "7", "3", "8", "5", "6", "2", "1", "31"]}}
+{"qid": "genQ7", "pos": ["5"], "neg": {"msmarco-distilbert-base-v3": ["31", "8", "32", "3", "7", "2", "6", "1", "4"]}}
+{"qid": "genQ8", "pos": ["6"], "neg": {"msmarco-distilbert-base-v3": ["32", "4", "8", "5", "3", "2", "7", "1", "31"]}}
+{"qid": "genQ9", "pos": ["7"], "neg": {"msmarco-distilbert-base-v3": ["5", "31", "4", "32", "6", "1", "8", "3", "2"]}}
+{"qid": "genQ10", "pos": ["8"], "neg": {"msmarco-distilbert-base-v3": ["31", "5", "32", "3", "6", "4", "2", "7", "1"]}}

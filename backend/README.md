@@ -171,7 +171,7 @@ source venv/bin/activate
 pip install -r requirements_qgen.txt
 ```
 
-Note: Python 3.12.X did not work
+Note: Python 3.12.X did not work, and working directory should be `./query_generation`
 
 ### Required Files
 
@@ -185,6 +185,8 @@ Prepare `corpus.jsonl` like in [data sample](URL)
 You may use the `corpus.py` script to create corpus.jsonl from preprocessed wiki JSON file.
 Adjust `dir` path for target training data directory
 
+Note: working directory should be `./query_generation/hp_gpl`
+
 ### Generate Training Data
 
 Execute `qgen.py` to generate queries and hard negatives, based on the `corpus.jsonl`, to create the `passages.csv`,
@@ -192,4 +194,4 @@ and to split the generated data into `train_triples.jsonl`, `eval_triples.jsonl`
 These files are used for the training and evaluation.
 Change `generator` and `retrievers` parameters to use different models for query generation and hard negatives.
 
-Note: Other generated files `qgen-qrels/train.tsv`, `hard-negatives.jsonl` are only needed during the creation of the other files. May delete afterwards.
+Note: Other generated files `qgen-qrels/train.tsv`, `data.json`, `hard-negatives.jsonl`, and `qgen-queries.jsonl` are only needed during the creation of the other files. May delete afterwards.
