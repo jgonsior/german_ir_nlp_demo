@@ -17,6 +17,7 @@ Before you begin, ensure you have the following:
 - Launch Unity Hub and click on `Add`.
 - Select `Indw` folder and click `Add Project`.
 - Open the project.
+- all content written by our group is found under `/Assets/sripts`
 
 ### Setting up XR Interaction Toolkit (Normally this is already installed in the downloaded project)
 
@@ -39,6 +40,10 @@ Before you begin, ensure you have the following:
 
 - Play the scene in Unity and now you can see the clustered labels.
 - Wear the VR headset if you want to get a better visual experience.
+
+## Currently Disabled Features
+
+Some features are disabled in the current version as they were not desired for the presentation. However the scripts are still available and can be reactivated by putting back a tick in the Unity inspector. Using the `Teleport Area Setup` requires to also reactivate the `Grid` as a basis for teleportation. Activating the `Spatial Panel Manipulator UI Example` script provides a Control Panel.
 
 ## Scripts
 
