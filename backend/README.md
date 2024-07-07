@@ -1,22 +1,25 @@
 # Backend
 
-## Deploy Backend Server
-
 Using [Conda](https://docs.anaconda.com/free/miniconda/) makes it quick and easy to set up packages because it provides precompiled binaries, avoiding manual compilation.
 If you want to train install CUDA as well.
+
+```bash
+# setup environment for training and deployment
+cd backend/
+conda env create -f RAG_env_conda.yml
+conda activate RAG_env_conda
+```
+
+## Flask
+### Deploy Backend Server
 
 To correctly integrate the ColBERT model into the Flask app, the paths for the index and checkpoint folder must be defined in `backend/config.ini`. The path for checkpoints can be freely chosen. However, we have not found a way to change the paths for the indexes in the configuration files, which means the path depends on the training and evaluation setup.
 
 ```bash
-# setup env
-cd backend/
-conda env create -f RAG_env_conda.yml
-conda activate RAG_env_conda
-
 # deploy
 bash deploy_project.sh
 ```
-## Flask Endpoints
+### Flask Endpoints
 
 After deployment the Flask API is accessible under `http://localhost:8080`. Our application defines three key endpoints in `app/main/routes.py`:
 
