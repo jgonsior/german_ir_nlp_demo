@@ -22,7 +22,9 @@ pip install -r ./preprocessing/requirements_preprocessing.txt`
 
 -   **NOTE:** `python3` should be the PATH to a **Python 3.9.X** Version. Since multiple python versions are required a version management tool could make this process easier, but one could also just type the full path to the required version.
 
-### Installing dependencies
+---
+
+To run the code in `./query_generation` directory, follow these steps to create a virtual environment:
 
 ```bash
 python3.10 m venv <VENV-NAME>
@@ -119,7 +121,7 @@ though these are usually just empty space symbols.
 
 ### Required Files
 
-You need following file:
+You need the newest preprocessed wiki file:
 
 -   `backend/preprocessing/data/harry_potter_unicode_processed.json`
 
@@ -136,7 +138,7 @@ Adjust `dir` path for target training data directory
 Execute `qgen.py` to generate queries and hard negatives, based on the `corpus.jsonl`, to create the `passages.csv`,
 and to split the generated data into `train_triples.jsonl`, `eval_triples.jsonl`, and `test_triples.jsonl` sets.
 These files are used for the training and evaluation.
-Change `generator` and `retrievers` parameters to use different models for query generation and hard negatives.
+Change `generator` and `retrievers` parameters to use different models for query generation and negative mining.
 Adjust `data_dir` path for target training data directory.
 
 -   **NOTE:** Other generated files `qgen-qrels/train.tsv`, `data.json`, `hard-negatives.jsonl`, and `qgen-queries.jsonl` are only needed during the creation of the other files. May delete afterwards.
@@ -160,7 +162,7 @@ We used 3 datasets for training. GermanDPR and XQA for understanding german sema
 
 ### HP Dataset
 
-1. Generate harry potter related training, evaluation and test queries as described in `backend/query_generation_tommy` and save them in addition to the full Harry Potter Corpus to `backend/data/qa/HP`.
+1. Generate harry potter related training, evaluation and test queries as described in `backend/query_generation/hp-gpl` and save them in addition to the full Harry Potter Corpus to `backend/data/qa/HP`.
 
 ### Required Files
 
