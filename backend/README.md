@@ -22,6 +22,16 @@ pip install -r ./preprocessing/requirements_preprocessing.txt`
 
 -   **NOTE:** `python3` should be the PATH to a **Python 3.9.X** Version. Since multiple python versions are required a version management tool could make this process easier, but one could also just type the full path to the required version.
 
+### Installing dependencies
+
+```bash
+python3.10 m venv <VENV-NAME>
+source venv/bin/activate
+pip install -r requirements_qgen.txt
+```
+
+-   **NOTE:** Python 3.12.X did not work, and working directory should be `./query_generation`
+
 ---
 
 <a id="RAGatouille-setup"></a>
@@ -107,16 +117,6 @@ though these are usually just empty space symbols.
 
 ## 2. Query Generation - HP GPL
 
-### Installing dependencies
-
-```python
-python3.10 m venv venv
-source venv/bin/activate
-pip install -r requirements_qgen.txt
-```
-
-Note: Python 3.12.X did not work, and working directory should be `./query_generation`
-
 ### Required Files
 
 You need following file:
@@ -129,7 +129,7 @@ Prepare `corpus.jsonl` like in [data sample](https://github.com/jgonsior/german_
 Execute the `corpus.py` script to create the `corpus.jsonl` from preprocessed wiki JSON file.
 Adjust `dir` path for target training data directory
 
-Note: working directory should be `./query_generation/hp_gpl`
+-   **NOTE:** working directory should be `./query_generation/hp_gpl`
 
 ### Generate Training Data
 
@@ -139,7 +139,7 @@ These files are used for the training and evaluation.
 Change `generator` and `retrievers` parameters to use different models for query generation and hard negatives.
 Adjust `data_dir` path for target training data directory.
 
-# Note: Other generated files `qgen-qrels/train.tsv`, `data.json`, `hard-negatives.jsonl`, and `qgen-queries.jsonl` are only needed during the creation of the other files. May delete afterwards.
+-   **NOTE:** Other generated files `qgen-qrels/train.tsv`, `data.json`, `hard-negatives.jsonl`, and `qgen-queries.jsonl` are only needed during the creation of the other files. May delete afterwards.
 
 ## 3. Training and Evaluation
 
