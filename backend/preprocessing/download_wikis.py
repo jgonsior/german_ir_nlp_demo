@@ -48,7 +48,8 @@ def save_df_to_json(df, output_file):
 
 if __name__ == "__main__":
     WIKI_DUMPS_URLS = {
-        "harry_potter": "https://s3.amazonaws.com/wikia_xml_dumps/d/de/deharrypotter_pages_current.xml",  # https://harrypotter.fandom.com/de/wiki/Spezial:Statistik
+        # https://harrypotter.fandom.com/de/wiki/Spezial:Statistik
+        "harry_potter": "https://s3.amazonaws.com/wikia_xml_dumps/d/de/deharrypotter_pages_current.xml",
     }
 
     preprocessing_path = "backend/preprocessing/data"
