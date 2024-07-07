@@ -1,112 +1,43 @@
 # Backend
 
-## Deploy Backend Server
+This folder of the repository contains the code and Setup for the backend using Conda for package management and CUDA for training. It also has installation instructions on the necessary Python versions and environments and deployment of the Flask API.
 
-Install Conda Environment: [Miniconda](https://docs.anaconda.com/free/miniconda/)
+## Prerequisites
 
-```python
+Using [Conda](https://docs.anaconda.com/free/miniconda/) makes it quick and easy to set up packages because it provides precompiled binaries, avoiding manual compilation.
+If you want to train install CUDA as well.
+
+-   Required for `./preprocessing`: **Python 3.9.X**
+-   Required for `./query_generation/hp_gpl` & for `./RAGatouille`: A Conda Environment, such as: [Miniconda](https://docs.anaconda.com/free/miniconda/) using **Python 3.10.X** and **CUDA** Drivers.
+
+## Installation
+
+To run the code in `./preprocessing` directory, follow these steps to create a virtual environment:
+
+```bash
+python3 -m venv <VENV-NAME>
+source <VENV-NAME>/bin/activate
+pip install -r ./preprocessing/requirements_preprocessing.txt`
+```
+
+-   **NOTE:** `python3` should be the PATH to a **Python 3.9.X** Version. Since multiple python versions are required a version management tool could make this process easier, but one could also just type the full path to the required version.
+
+---
+
+<a id="RAGatouille-setup"></a>
+To run the code for `./RAGatouille` directory **and to deploy the backend Server/Flask API**, follow these steps to create the **Conda** environment:
+
+**Setup for Training the Model**
+
+```bash
 # setup env
 conda env create -f RAG_env_conda.yml
 conda activate RAG_env_conda
-
-# deploy
-python run.py
 ```
 
-Die Flask API ist nun unter `localhost:8080` erreichbar und erwartet eine GET-Anfrage an dem Endpunkt `/search`
+## 1. Preprocessing
 
-**Beispiel**
-
-```python
-http://localhost:8080/search?q=Wer hat Snape ermordet?
-```
-
-## Training and Evaluation
-
-### Installation
-
-Install the Conda Environment as described above or use `backend/scripts/setup_conda_env.sh` if you only want to train.
-Install CUDA.
-
-### Data Preprocessing
-
-We used 3 datasets for training. GermanDPR and XQA for understanding german semantics and HP (short for Harry Potter) for learning domain specific Harry Potter terms.
-
-### GermanDPR and XQA Dataset
-
-1. Download and unpack GermanDPR (https://germanquad.s3.amazonaws.com/GermanDPR.zip) and XQA (https://thunlp.s3-us-west-1.amazonaws.com/data_XQA.tar.gz) into `backend/data/qa/GermanDPR` and `backend/data/qa/XQA`.
-2. Run `backend/RAGatouille/data_preprocessing.py` to create the files `train_triples.jsonl` and `passages.csv` required for training.
-
-### HP Dataset
-
-1. Generate harry potter related training, evaluation and test queries as described in `backend/query_generation` TODO and save them in addition to the full Harry Potter Corpus to `backend/data/qa/HP`.
-
-### Required Files
-
-You should now have the following files:
-
--   `backend/data/qa/GermanDPR/train_triples.jsonl`
--   `backend/data/qa/GermanDPR/passages.csv`
--   `backend/data/qa/XQA/train_triples.jsonl`
--   `backend/data/qa/XQA/passages.csv`
--   `backend/data/qa/HP/train_triples.jsonl`
--   `backend/data/qa/HP/eval_triples.jsonl`
--   `backend/data/qa/HP/test_triples.jsonl`
--   `backend/data/qa/HP/passages.csv`
-
-All triples files contain on each line a question, one positive context that answers the question and 3 (GermanDPR, XQA) or 10 (HP) negative contexts:
-
-```json
-{
-	"question": "Wie viele christlichen Menschen in Deutschland glauben an einen Gott?",
-	"positive_contexts": [
-		"Gott\\n\\n=== Demografie ===\\nEine Zusammenfassung von ... als in Ostdeutschland (26 %)."
-	],
-	"negative_contexts": [
-		"Christentum\\n\\n=== Ursprung und Einflüsse ===\\nDie ersten Christen waren ... Jahr des Herrn.",
-		"Noachidische_Gebote\\n\\n=== Die kommende Welt ===\\nDer Glaube ... Gute entscheiden.",
-		"Figuren_und_Schauplätze_der_Scheibenwelt-Romane ... einen Gott damit entmachten."
-	]
-}
-```
-
-All passage files are of the form:
-
-```json
-id,passage_text
-42669-0,"[""Wizarding World] Der Wiesenchampignon (oder Feldegerling), botanisch ""Agaricus campestris"" ist ein großer, weiß-cremefarbener, essbarer Pilz."
-42669-1,"[Geschichte] Lyall Lupin gewann die Zuneigung ... den Irrwicht, der Hope Howell ängstigte, in einen Wiesenchampignon zu verwandeln."
-```
-
-In case of the HP `passages.csv` the `id` can be seperated into `wiki_page_id - passage_position_on_that_page`.
-
-### Run Training/Evaluation
-
-Run the training (and evaluation) script`backend/scripts/train_index_eval_RAG.sh` (this is the only script you should modify e.g. if datasets, epochs/partitions or the basemodel differ from our experiments). This will train the base-model (currently `bert-base-german-cased`) on GermanDPR, XQA, HP in this order. After each Dataset the the best checkpoint (from the currently 2 epochs each split into 20 parts) is chosen for further training. To pick the best (=recall@5) checkpoint the HP corpus (`backend/data/qa/HP/passages.csv`) is indexed and the HP evaluation queries (`backend/data/qa/HP/eval_triples.jsonl`) are answered on this index.
-
-### Relevant Python Scripts
-
--   `backend/RAGatouille/training.py`
--   `backend/RAGatouille/indexing.py`
--   `backend/RAGatouille/evaluate.py`
--   `backend/RAGatouille/add_and_visualize_best_statistics.py` // copy best final checkpoint and add its statistics to `backend/RAGatouille/compare.py`
--   `backend/RAGatouille/compare.py` // if you want to directly compare multiple checkpoints
-
-### Results
-
-All checkpoints (one for each partition in each epoch) and their indexes are stored in `backend/data/colbert`. According statistics (recall@k values) are stored in `backend/data/statistics/statistics.csv`.
-
-The best final checkpoint (after all train datasets were applied) is copied along with its index to `backend/data/colbert/best` and its statistics are added to `backend/data/statistics/best_statistics.csv` and visualized in `backend/data/statistics/best_checkpoints.pdf`.
-
-## Preprocessing
-
-### Installing dependencies
-
-```python
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements_preprocessing.txt
-```
+The preprocessing sections contains all the necessary scripts to download and prepare the data for our project.
 
 ### Executing `download_wikis.py` (IMPORTANT: To use the `download_wikis.py` file, you must use Python 3.9.X)
 
@@ -115,9 +46,22 @@ pip install -r requirements_preprocessing.txt
 2. (Optional:) Adjust the `preprocessing_path` Path
 3. Execute `python downloads_wikis.py`
 
+**WIKI_DUMPS_URL TEMPLATE**
+
+```py
+50    WIKI_DUMPS_URLS = {
+51        # https://harrypotter.fandom.com/de/wiki/Spezial:Statistik
+52        "harry_potter": "https://s3.amazonaws.com/wikia_xml_dumps/d/de/deharrypotter_pages_current.xml",
+53    }
+54
+55     preprocessing_path = "backend/preprocessing/data"
+
+```
+
 ### Executing `preprocess_wikis.py`
 
 1. Adjust `WIKI_PATHS` to point to the correct directory that contains the `dumps/` files from `downloads_wikis.py`
+
 2. Execute `python preprocess_wikis.py`
 
 ```python
@@ -161,7 +105,7 @@ though these are usually just empty space symbols.
 1. Adjust the `file_path` to point to the preprocessed `.json` file.
 2. Execute `python process_unicode_characters.py`
 
-## Query Generation - HP GPL
+## 2. Query Generation - HP GPL
 
 ### Installing dependencies
 
@@ -195,4 +139,113 @@ These files are used for the training and evaluation.
 Change `generator` and `retrievers` parameters to use different models for query generation and hard negatives.
 Adjust `data_dir` path for target training data directory.
 
-Note: Other generated files `qgen-qrels/train.tsv`, `data.json`, `hard-negatives.jsonl`, and `qgen-queries.jsonl` are only needed during the creation of the other files. May delete afterwards.
+# Note: Other generated files `qgen-qrels/train.tsv`, `data.json`, `hard-negatives.jsonl`, and `qgen-queries.jsonl` are only needed during the creation of the other files. May delete afterwards.
+
+## 3. Training and Evaluation
+
+### Installation
+
+Install the Conda Environment as described [HERE](#RAGatouille-setup), or use `backend/scripts/setup_conda_env.sh` if you only want to train.
+
+-   **NOTE: Make sure that CUDA drivers are installed**
+
+### Data Preprocessing
+
+We used 3 datasets for training. GermanDPR and XQA for understanding german semantics and HP (short for Harry Potter) for learning domain specific Harry Potter terms.
+
+### GermanDPR and XQA Dataset
+
+1. Download and unpack GermanDPR (https://germanquad.s3.amazonaws.com/GermanDPR.zip) and XQA (https://thunlp.s3-us-west-1.amazonaws.com/data_XQA.tar.gz) into `backend/data/qa/GermanDPR` and `backend/data/qa/XQA`.
+2. Run `backend/RAGatouille/data_preprocessing.py` to create the files `train_triples.jsonl` and `passages.csv` required for training.
+
+### HP Dataset
+
+1. Generate harry potter related training, evaluation and test queries as described in `backend/query_generation_tommy` and save them in addition to the full Harry Potter Corpus to `backend/data/qa/HP`.
+
+### Required Files
+
+You should now have the following files:
+
+-   `backend/data/qa/GermanDPR/train_triples.jsonl`
+-   `backend/data/qa/GermanDPR/passages.csv`
+-   `backend/data/qa/XQA/train_triples.jsonl`
+-   `backend/data/qa/XQA/passages.csv`
+-   `backend/data/qa/HP/train_triples.jsonl`
+-   `backend/data/qa/HP/eval_triples.jsonl`
+-   `backend/data/qa/HP/test_triples.jsonl`
+-   `backend/data/qa/HP/passages.csv`
+
+All triples files contain on each line a question, one positiive context that answers the question and 3 (GermanDPR, XQA) or 10 (HP) negative contexts:
+
+```json
+{
+	"question": "Wie viele christlichen Menschen in Deutschland glauben an einen Gott?",
+	"positive_contexts": [
+		"Gott\\n\\n=== Demografie ===\\nEine Zusammenfassung von ... als in Ostdeutschland (26 %)."
+	],
+	"negative_contexts": [
+		"Christentum\\n\\n=== Ursprung und Einflüsse ===\\nDie ersten Christen waren ... Jahr des Herrn.",
+		"Noachidische_Gebote\\n\\n=== Die kommende Welt ===\\nDer Glaube ... Gute entscheiden.",
+		"Figuren_und_Schauplätze_der_Scheibenwelt-Romane ... einen Gott damit entmachten."
+	]
+}
+```
+
+All passage files are of the form:
+
+```json
+id,passage_text
+42669-0,"[""Wizarding World] Der Wiesenchampignon (oder Feldegerling), botanisch ""Agaricus campestris"" ist ein großer, weiß-cremefarbener, essbarer Pilz."
+42669-1,"[Geschichte] Lyall Lupin gewann die Zuneigung ... den Irrwicht, der Hope Howell ängstigte, in einen Wiesenchampignon zu verwandeln."
+```
+
+In case of the HP `passages.csv` the `id` can be seperated into `<wiki_page_id> - <passage_position_on_that_page>`, e.g.:
+
+```json
+42669-0,"[""Wizarding World] Der Wiesenchampignon (oder Feldegerling), botanisch ""Agaricus campestris"" ist ein großer, weiß-cremefarbener, essbarer Pilz."
+
+has wiki_page_id = 42669
+and passage_position_on_that_page = 0
+```
+
+### Run Training/Evaluation
+
+Run the training (and evaluation) script`backend/scripts/train_index_eval_RAG.sh` (this is the only script you should modify e.g. if datasets, epochs/partitions or the basemodel differ from our experiments). This will train the base-model (currently `bert-base-german-cased`) on GermanDPR, XQA, HP in this order. After each Dataset the the best checkpoint (from the currently 2 epochs each split into 20 parts) is chosen for further training. To pick the best (=recall@5) checkpoint the HP corpus (`backend/data/qa/HP/passages.csv`) is indexed and the HP evaluation queries (`backend/data/qa/HP/eval_triples.jsonl`) are answered on this index.
+
+### Relevant Python Scripts
+
+-   `backend/RAGatouille/training.py`
+-   `backend/RAGatouille/indexing.py`
+-   `backend/RAGatouille/evaluate.py`
+-   `backend/RAGatouille/add_and_visualize_best_statistics.py` $\rightarrow$ copy the best final checkpoint and add its statistics to `backend/RAGatouille/compare.py`
+-   `backend/RAGatouille/compare.py` $\rightarrow$ if you want to directly compare multiple checkpoints
+
+### Results
+
+All checkpoints (one for each partition in each epoch) and their indexes are stored in `backend/data/colbert`. According statistics (recall@k values) are stored in `backend/data/statistics/statistics.csv`.
+
+The best final checkpoint (after all train datasets were applied) is copied along with its index to `backend/data/colbert/best` and its statistics are added to `backend/data/statistics/best_statistics.csv` and visualized in `backend/data/statistics/best_checkpoints.pdf`.
+
+## 4. Flask Endpoints
+
+After deployment the Flask API is accessible under `http://localhost:8080`. Our application defines three key endpoints in `app/main/routes.py`:
+
+1. **/search**
+
+    - **Description**: Returns the best 100 match passages for a given query `q`.
+    - **Method**: GET
+    - **Parameters**: `q` (query string)
+    - **Return Value**: JSON object containing the best match passage.
+
+2. **/document**
+
+    - **Description**: Returns the whole document by the given parameter `id`.
+    - **Method**: GET
+    - **Parameters**: `id` (document identifier)
+    - **Return Value**: JSON object containing the document.
+
+3. **/word_embeddings**
+    - **Description**: Returns a score between 0 and 1 for each word to indicate how important the word was in matching the defined query.
+    - **Method**: POST
+    - **Parameters**: JSON body containing `query` (string) and `paragraph` (string)
+    - **Return Value**: JSON object with scores for each word.
