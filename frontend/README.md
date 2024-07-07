@@ -37,7 +37,7 @@ An image with the corresponding settings to maintain the same style can be found
 
 # 2. Services
 
-The httpclient gets injected per DI. The IP addresses of the backend server are defined in the `environment.ts` and `environment.prod.ts` files depending on the flavor. The classes are automatically parsed based on the specified classes.
+The httpclient gets injected per DI. The IP addresses of the backend server are defined in the `environment.ts` and `environment.prod.ts` files depending on the flavor. The classes are automatically parsed based on the specified classes. Errors are caught by the HttpInterceptor and forwarded to the error page.
 
 ```ts
   public async getQueryResults(query: String): Promise<QueryResponseResult[]> {
