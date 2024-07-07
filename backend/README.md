@@ -39,7 +39,7 @@ We used 3 datasets for training. GermanDPR and XQA for understanding german sema
 
 ### HP Dataset
 
-1. Generate harry potter related training, evaluation and test queries as described in `backend/query_generation` TODO and save them in addition to the full Harry Potter Corpus to `backend/data/qa/HP`.
+1. Generate harry potter related training, evaluation and test queries as described in `backend/query_generation_tommy` and save them in addition to the full Harry Potter Corpus to `backend/data/qa/HP`.
 
 ### Required Files
 
