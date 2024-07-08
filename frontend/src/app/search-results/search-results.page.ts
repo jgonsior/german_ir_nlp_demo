@@ -57,7 +57,6 @@ export class SearchResultsPage {
     loading.present();
 
     await this.data.getQueryResults(q).then((response) => {
-      // this.queryResults = Array(this.count).fill(response[0]);
       this.queryResults = response;
       loading.dismiss();
     });
