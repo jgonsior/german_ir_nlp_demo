@@ -1,17 +1,4 @@
 #!/bin/bash
-#SBATCH --time=100:00:00   # walltime
-#SBATCH --nodes=1   # number of nodes
-#SBATCH --partition=alpha
-#SBATCH --gres=gpu:4
-#SBATCH --ntasks=1      # limit to one node
-#SBATCH --cpus-per-task=16  # number of processor cores (i.e. threads)
-#SBATCH --mem=128G
-#SBATCH --mail-user=florian_maurus.mueller@mailbox.tu-dresden.de   # email address
-#SBATCH --mail-type=FAIL
-#SBATCH -J tie_RAG
-
-source /home/flml293c/spack/share/spack/setup-env.sh
-spack load cuda
 
 # Start time
 start_time=$(date +%s)
@@ -47,7 +34,6 @@ best_checkpoint_path_HP=$(conda run -n RAG_env_conda --no-capture-output python3
 echo "Best checkpoint for HP: $best_checkpoint_path_HP"
 
 # add and visualize best statistics
-#conda run -n RAG_env_conda --no-capture-output python3 backend/RAGatouille/add_and_visualize_best_statistics.py --best_checkpoint_paths backend/data/colbert/indexes/bert-base-german-cased/GermanDPR-10neg/epoch1/part1 backend/data/colbert/indexes/bert-base-german-cased/GermanDPR-XQA-10neg/epoch1/part1 "$best_checkpoint_path_HP"
 conda run -n RAG_env_conda --no-capture-output python3 backend/RAGatouille/add_and_visualize_best_statistics.py --best_checkpoint_paths "$best_checkpoint_path_German_DPR" "$best_checkpoint_path_XQA" "$best_checkpoint_path_HP"
 
 # End time

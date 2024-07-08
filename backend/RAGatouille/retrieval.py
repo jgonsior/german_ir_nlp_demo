@@ -1,5 +1,6 @@
 from ragatouille import RAGPretrainedModel
 import torch
+import pandas as pd
 BASE_MODEL_NAME = "bert-base-german-cased"
 TRAINING_DATA_NAME = "GermanDPR-XQA-HP"
 EPOCH = 1
@@ -12,8 +13,8 @@ if __name__ == "__main__":
     results = RAG.search(query="Wer hat Snape umgebracht?", k=k)
     print(results)
 
-
     # get embeddings. not sure what this 1-dimensional vector is
-    embeddings = torch.load("backend/data/colbert/indexes/bert-base-german-cased/GermanDPR-XQA-HP/epoch1/0.codes.pt")
+    embeddings = torch.load("backend/data/colbert/indexes/bert-base-german-cased/GermanDPR-XQA-HP/epoch1/0.residuals.pt")
+    print(embeddings)
     print(embeddings[0])
     print(embeddings.shape)

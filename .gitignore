@@ -1,3 +1,6 @@
+gunicorn.pid
+nohup.out
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -54,6 +57,7 @@ cover/
 # Translations
 *.mo
 *.pot
+
 
 # Django stuff:
 *.log
@@ -169,6 +173,9 @@ backend/data/qa/HP/passages.csv
 backend/data/qa/HP/train_triples.jsonl
 backend/data/qa/XQA/dump
 backend/data/qa/XQA
+
+Wissenschaftskommunikations Artikel/colored barcodes/generated barcodes/latex logs
+Wissenschaftskommunikations Artikel/colored barcodes/answers/inkscape_out
 
 .ragatouille
 # Ignore everything in backend/data/colbert

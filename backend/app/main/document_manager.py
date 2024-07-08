@@ -16,7 +16,7 @@ class DocumentManager:
 
     def get_document_by_id(self, doc_id):
         for d in self.documents:
-            if int(doc_id) == int(d.get('id')):
+            if str(doc_id) == str(d.get('id')):
                 print(doc_id)
                 return d
 
