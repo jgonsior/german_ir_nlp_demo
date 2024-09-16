@@ -13,6 +13,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = ""
 from .document_manager import DocumentManager
 dm = DocumentManager()
 
+
 # Milestone 2
 # from app.tf_idf import find_best_results
 # qf = find_best_results.queryFinder()
@@ -21,7 +22,6 @@ dm = DocumentManager()
 # check __init__.py
 # from .ragatouille_model_manager import RagatouilleModelManager
 # model_manager = RagatouilleModelManager()
-
 
 @bp.route('/search', methods=['GET'])
 def search():
@@ -70,5 +70,22 @@ def get_document():
 
         print('Get Document id=', document_id)
         if not doc:
-                return make_response(jsonify({'error': 'Document not found'}), 404)
+            return make_response(jsonify({'error': 'Document not found'}), 404)
         return jsonify(doc)
+
+
+@bp.route('/word_embeddings/', methods=['POST'])
+def get_word_embeddings():
+    if request.method == 'POST':
+        paragraph = request.json['paragraph']
+
+        word_embeddings = []
+        for word in paragraph.split(' '):
+            word_embeddings.append(
+                {'word': word, 'embedding': create_word_embedding(word)}
+            )
+        return jsonify({'result': word_embeddings})
+
+
+def create_word_embedding(word):
+    return randint(0, 100), randint(0, 100), randint(0, 100)

@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Start time
 start_time=$(date +%s)
 

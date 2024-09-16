@@ -51,6 +51,7 @@ export class ResponseParsingService {
     return safe
       // For security reasons we will not allow the construction of html tags
       // .replace(/&lt;/g, "<")
+      .replace(/&amp;/g, "&")
       .replace(/&gt;/g, ">")
       .replace(/\"\=\= (\w+) \=/g, "$1");
   }
