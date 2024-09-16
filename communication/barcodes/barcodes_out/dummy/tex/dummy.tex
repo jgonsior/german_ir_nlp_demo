@@ -1,0 +1,172 @@
+\documentclass[a3paper, 16pt]{article}
+\usepackage[inkscapepath=../barcodes_out/dummy/pdf/inkscape_out/]{svg}
+\usepackage{tikz}
+\usetikzlibrary{fadings}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{pdflscape}
+\usepackage[a3paper, left=0.5cm, right=0.5cm, top=0.5cm, bottom=0.5cm]{geometry}
+\usepackage{background}
+\usepackage[T1]{fontenc}
+\usepackage{txfonts}
+
+\svgpath{{../barcodes_out/dummy/svg/}}
+
+\tikzfading[name=custom fade,
+    inner color=transparent!0,
+    outer color=transparent!50]
+
+% Define the background image
+\backgroundsetup{
+    scale=1,
+    color=black,
+    opacity=0.4,
+    angle=90,
+    position=current page.center,
+    vshift=0cm,
+    contents={%
+    \includegraphics[width=0.99\paperheight,height=0.7\paperheight]{../assets/dummy_background}%
+    }
+}
+
+\begin{document}
+    \begin{landscape}
+
+        \begin{tikzpicture}[remember picture, overlay]
+            %\fill [white,path fading=custom fade] (20,-14.5) ellipse (20cm and 7cm);
+            \fill [white,path fading=circle with fuzzy edge 10 percent] (20,-14.5) ellipse (20cm and 7cm);
+        \end{tikzpicture}
+
+        \vspace*{\fill}
+        \thispagestyle{empty}
+        \begin{center}
+            \textbf{\Huge \textbf{AUFBAU EINES BARCODES}}
+        \end{center}
+
+        \begin{figure}[!h]
+            \centering
+            \begin{tikzpicture}
+                \node[anchor=south west, inner sep=0] (barcode) at (0,0) {\includesvg[scale=0.38]{dummy_dummy}};
+                \begin{scope}
+                    [x={(barcode.north west)}, y={(barcode.south east)}]
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.005) {\textbf{1913}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.015) {\textbf{1992er}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.025) {\textbf{abhandl}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.035) {\textbf{akademi}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.045) {\textbf{aktivitat}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.055) {\textbf{amos}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.065) {\textbf{anfertigt}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.075) {\textbf{angefasst}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.085) {\textbf{annaher}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.095) {\textbf{ariana}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.105) {\textbf{aurelius}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.115) {\textbf{ausgehandigt}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.125) {\textbf{befahl}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.135) {\textbf{beginn}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.145) {\textbf{begrab}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.155) {\textbf{bekomm}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.165) {\textbf{bekomm}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.175) {\textbf{bewohn}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.185) {\textbf{charm}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.195) {\textbf{dearborn}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.205) {\textbf{decknam}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.215) {\textbf{deutsch}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.225) {\textbf{dumbledor}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.235) {\textbf{entgegenzuwirk}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.245) {\textbf{ergeb}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.255) {\textbf{erlaub}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.265) {\textbf{ernenn}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.275) {\textbf{existiert}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.285) {\textbf{faulig}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.295) {\textbf{fluchbrecherin}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.305) {\textbf{geburtstag}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.315) {\textbf{gefesselt}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.325) {\textbf{geheimtrepp}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.335) {\textbf{gemacht}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.345) {\textbf{genauso}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.355) {\textbf{gewalt}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.365) {\textbf{gold}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.375) {\textbf{grabmal}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.385) {\textbf{halbrundabsatz}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.395) {\textbf{hallendeck}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.405) {\textbf{harry}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.415) {\textbf{hatt}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.425) {\textbf{hausmeisterburo}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.435) {\textbf{herrscht}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.445) {\textbf{hogwarts}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.455) {\textbf{hogwartsmitarbeit}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.465) {\textbf{intelligenz}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.475) {\textbf{jahr}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.485) {\textbf{kamm}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.495) {\textbf{kampf}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.505) {\textbf{kraft}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.515) {\textbf{kreuzung}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.525) {\textbf{lebensbedroh}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.535) {\textbf{lord}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.545) {\textbf{masterplan}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.555) {\textbf{mcgonagall}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.565) {\textbf{minerva}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.575) {\textbf{muggel}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.585) {\textbf{nam}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.595) {\textbf{offnet}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.605) {\textbf{position}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.615) {\textbf{pott}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.625) {\textbf{quidditch}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.635) {\textbf{real}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.645) {\textbf{riddl}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.655) {\textbf{ros}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.665) {\textbf{schenk}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.675) {\textbf{schloss}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.685) {\textbf{schreck}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.695) {\textbf{schulabschluss}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.705) {\textbf{schulleit}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.715) {\textbf{schulzeit}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.725) {\textbf{schweig}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.735) {\textbf{severus}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.745) {\textbf{snap}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.755) {\textbf{statu}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.765) {\textbf{sterb}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.775) {\textbf{streb}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.785) {\textbf{tier}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.795) {\textbf{tom}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.805) {\textbf{treibend}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.815) {\textbf{trepp}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.825) {\textbf{treppenhaus}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.835) {\textbf{two}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.845) {\textbf{uberraschungsfei}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.855) {\textbf{uhrenturmtrepp}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.865) {\textbf{ungehalt}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.875) {\textbf{ungewohn}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.885) {\textbf{verdeck}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.895) {\textbf{vereidigungszaub}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.905) {\textbf{verlegt}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.915) {\textbf{vertrauensschulerbad}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.925) {\textbf{verzaub}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.935) {\textbf{voldemort}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.945) {\textbf{wach}};
+                                                                                                    \node[anchor=west, text=white, rotate=90] at (-0.007, 0.955) {\textbf{wahnsinn}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.965) {\textbf{would}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.975) {\textbf{zauberstab}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.985) {\textbf{ziel}};
+                                                                                                    \node[anchor=west, rotate=90] at (-0.007, 0.995) {\textbf{zugriff}};
+                                    \end{scope}
+            \end{tikzpicture}
+        \end{figure}
+
+% Legend
+        \begin{tikzpicture}[overlay]
+            \node[anchor=south west] at ([xshift=10cm, yshift=-7cm]barcode.north west) {
+                \begin{minipage}{\textwidth}
+                    \begin{tikzpicture}
+                        \draw[fill=yellow, draw=black] (0,0) rectangle (1,0.5);
+                        \node[right] at (1.2,0.25) {\huge Wort in Absatz enthalten};
+                        \draw[fill=black, draw=black] (9.5,0) rectangle (10.5,0.5);
+                        \node[right] at (10.7,0.25) {\huge \color{black} Wort nicht in Absatz enthalten};
+                    \end{tikzpicture}
+                \end{minipage}
+            };
+        \end{tikzpicture}
+        \vspace*{\fill}
+
+    \end{landscape}
+\end{document}
