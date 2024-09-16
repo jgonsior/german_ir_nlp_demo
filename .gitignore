@@ -175,7 +175,6 @@ backend/data/qa/HP/train_triples.jsonl
 backend/data/qa/XQA/dump
 backend/data/qa/XQA
 
-
 communication/colored-barcodes/generated barcodes/latex logs
 communication/colored-barcodes/answers/inkscape_out
 
