@@ -212,6 +212,8 @@ The inverted index for the latex documents is generated in:
 nlp = spacy.load("de_core_news_sm")
 ```
 
+**_As already mentioned in the comment, there could be models that perform better, so please have a look there!_**
+
 All previously generated documents from `latex-files/docs_latex/src/files/enumerated` will be used to create an inverted
 index
 on that documents. It uses NLP techniques to clean and preprocess the text, and it outputs the index in both LaTeX and
