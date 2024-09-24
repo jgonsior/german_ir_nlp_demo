@@ -1,0 +1,4 @@
+pycairo
+jinja2
+nltk
+spacy
