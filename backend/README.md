@@ -46,6 +46,20 @@ To run the code for `./RAGatouille` directory **and to deploy the backend Server
 conda env create -f RAG_env_conda.yml
 conda activate RAG_env_conda
 ```
+## General execution order
+```
+1. download_wikis.py
+2. preprocess_wikis.py
+3. process_unicode_characters.py
+4. corpus.py
+5. querygen.py
+6. backend/RAGatouille/data_preprocessing.py
+7. backend/scripts/train_index_eval_RAG.sh
+8. Deploy Backend Server
+```
+
+**For further details on what do for this execution order, please read the instructions below.**
+
 
 ## 1. Preprocessing
 
