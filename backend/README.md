@@ -58,7 +58,7 @@ conda activate RAG_env_conda
 8. Deploy Backend Server
 ```
 
-**For further details on what do for this execution order, please read the instructions below.**
+**! ! ! For further details on what do for this execution order, please read the instructions below. ! ! !**
 
 
 ## 1. Preprocessing
