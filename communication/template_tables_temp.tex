@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage[scaled]{helvet}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{adjustbox}
+\usepackage{geometry}
+\usepackage{longtable}
+\usepackage{fontspec}
+\usepackage{eso-pic}
+\usepackage{graphicx}
+\usepackage{tikz}
+
+\geometry{
+ a3paper,
+ total={297mm,420mm},
+ left=1mm,
+ right=1mm,
+ bottom=10mm,
+ top=10mm
+}
+
+\definecolor{Gold}{rgb}{1.0, 0.84, 0.0}
+\definecolor{Black}{rgb}{0.0, 0.0, 0.0}
+\definecolor{Grey}{rgb}{0.5, 0.5, 0.5}
+
+\renewcommand{\arraystretch}{1.5}
+
+\newfontface\harrypotterfont{harryp.TTF}
+
+\AddToShipoutPicture*{
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=north east, fill=white, minimum size=1cm, draw=black, text=black, font=\large\bfseries]
+    at (current page.north east) [xshift=-2.5cm, yshift=-1.0cm] {2-79};
+  \end{tikzpicture}
+}
+
+\AddToShipoutPictureBG{
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[opacity=0.3,inner sep=0] at (current page.center) {
+      \includegraphics[width=1.4\paperwidth, height=1.4\paperheight, keepaspectratio]{source-material/background.png};
+    };
+  \end{tikzpicture}
+}
+
+\begin{document}
+\pagestyle{empty}
+
+\Large
+
+\color{Gold}
+
+\begin{longtable}{
+  >{\columncolor{Black}}l
+  >{\columncolor{Black}}l
+  >{\columncolor{Grey}}l
+  >{\columncolor{Black}}l
+  >{\columncolor{Black}}l
+}
+
+\harrypotterfont\textbf{Eingabe 1} & \harrypotterfont\textbf{Eingabe 2} & \harrypotterfont\textbf{Ausgabe} & \harrypotterfont\textbf{Eingabe 3} & \harrypotterfont\textbf{Eingabe 4} \\
+\hline
+Harry & Potters & Uhr & Irgendwann & nach\\Potters & Uhr & Irgendwann & nach & dem\\Uhr & Irgendwann & nach & dem & 31\\Irgendwann & nach & dem & 31 & Juli\\nach & dem & 31 & Juli & 1991\\dem & 31 & Juli & 1991 & hatte\\31 & Juli & 1991 & hatte & Harry\\Juli & 1991 & hatte & Harry & eine\\1991 & hatte & Harry & eine & Armbanduhr\\hatte & Harry & eine & Armbanduhr & Im\\Harry & eine & Armbanduhr & Im & zweiten\\eine & Armbanduhr & Im & zweiten & Schuljahr\\Armbanduhr & Im & zweiten & Schuljahr & in\\Im & zweiten & Schuljahr & in & Hogwarts\\zweiten & Schuljahr & in & Hogwarts & prüfte\\Schuljahr & in & Hogwarts & prüfte & er\\in & Hogwarts & prüfte & er & die\\Hogwarts & prüfte & er & die & verbliebene\\prüfte & er & die & verbliebene & Zeit\\er & die & verbliebene & Zeit & in\\die & verbliebene & Zeit & in & der\\verbliebene & Zeit & in & der & der\\Zeit & in & der & der & Vielsafttrank\\in & der & der & Vielsafttrank & noch\\der & der & Vielsafttrank & noch & wirkte\\der & Vielsafttrank & noch & wirkte & Die\\Vielsafttrank & noch & wirkte & Die & Uhr\\noch & wirkte & Die & Uhr & ging\\wirkte & Die & Uhr & ging & bei\\Die & Uhr & ging & bei & der\\Uhr & ging & bei & der & zweiten\\ging & bei & der & zweiten & Aufgabe\\bei & der & zweiten & Aufgabe & des\\der & zweiten & Aufgabe & des & Trimagischen\\zweiten & Aufgabe & des & Trimagischen & Turniers\\Aufgabe & des & Trimagischen & Turniers & kaputt\\des & Trimagischen & Turniers & kaputt & da\\Trimagischen & Turniers & kaputt & da & sie\\Turniers & kaputt & da & sie & nicht\\kaputt & da & sie & nicht & wasserdicht\\da & sie & nicht & wasserdicht & war\\
+\end{longtable}
+
+\end{document}
