@@ -171,7 +171,7 @@ We used 3 datasets for training. GermanDPR and XQA for understanding german sema
 
 ### GermanDPR and XQA Dataset
 
-1. Download and unpack GermanDPR (https://germanquad.s3.amazonaws.com/GermanDPR.zip) and XQA (https://thunlp.s3-us-west-1.amazonaws.com/data_XQA.tar.gz) into `backend/data/qa/GermanDPR` and `backend/data/qa/XQA`.
+1. Download and unpack GermanDPR (https://germanquad.s3.amazonaws.com/GermanDPR.zip) and XQA (https://thunlp.s3-us-west-1.amazonaws.com/data_XQA.tar.gz and https://thunlp.oss-cn-qingdao.aliyuncs.com/wiki_XQA.tar.gz) into `backend/data/qa/GermanDPR` and `backend/data/qa/XQA`.
 2. Run `backend/RAGatouille/data_preprocessing.py` to create the files `train_triples.jsonl` and `passages.csv` required for training.
 
 ### HP Dataset
