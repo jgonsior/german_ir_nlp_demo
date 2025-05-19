@@ -4,6 +4,13 @@ from flask_cors import CORS
 import configparser
 import os
 
+# import torch
+
+print("------------------------------")
+print("Is Cuda available?")
+# print(torch.cuda.is_available())
+print("------------------------------")
+
 from app.main.ragatouille_model_manager import create_ragatouille_model_manager
 
 
