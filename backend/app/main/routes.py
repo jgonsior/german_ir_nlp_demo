@@ -7,6 +7,7 @@ import os
 from . import utils
 from . import bp
 
+# uncomment to force the usage of CPU
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
 # Milestone 1
@@ -74,7 +75,7 @@ def get_document():
         return jsonify(doc)
 
 
-@bp.route('/word_embeddings/', methods=['POST'])
+@bp.route('/word_embeddings_random/', methods=['POST'])
 def get_word_embeddings():
     if request.method == 'POST':
         paragraph = request.json['paragraph']
